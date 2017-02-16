@@ -17,6 +17,7 @@ public class PixelMap {
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int SCREEN_WIDTH = (int)(screenSize.getWidth()*SCREEN_RATIO), SCREEN_HEIGHT = (int)(screenSize.getHeight()*SCREEN_RATIO);
     public static final int TILE_WIDTH = SCREEN_WIDTH/HORIZONTAL_MULTIPLIER;
+    public static final int TILE_FULL_WIDTH = TILE_WIDTH*2;
     public static final int TILE_HEIGHT = (int)(1.73*TILE_WIDTH);
 
     public static PixelPoint mapCoordinate(Coordinate coor){

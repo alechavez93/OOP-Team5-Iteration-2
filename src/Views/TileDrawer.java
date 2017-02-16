@@ -7,6 +7,7 @@ package Views;
 |   the inner Entities if desired (by using an Entity Drawer).
 ---------------------------------------------------------------------------------------*/
 
+import Utilities.GraphicsFactory;
 import Utilities.ImageUtil;
 
 import java.awt.*;
@@ -58,6 +59,15 @@ public class TileDrawer {
         return polygon;
     }
 
+    //Assumes a Tile proportions center point
+    public static Polygon getHexagon(){
+        Polygon polygon = new Polygon();
+        for(PixelPoint point: getHexatilePoints(new PixelPoint(PixelMap.TILE_FULL_WIDTH/2, PixelMap.TILE_HEIGHT/2))){
+            polygon.addPoint(point.x, point.y);
+        }
+        return polygon;
+    }
+
 
     //Draws the Grid between a set of points
     private static void drawGrid(Graphics g, Polygon tileShape){
@@ -68,11 +78,7 @@ public class TileDrawer {
 
     //Draws the texture or terrain of a Tile
     private static void drawTexture(Graphics g, Polygon tileShape, PixelPoint center){
-//        g.setColor(new Color(95, 170, 83));
-//        g.fillPolygon(tileShape);
-
-//        g.setClip(tileShape);
-
-        g.drawImage(ImageUtil.loadImage("grass.png"), center.x-PixelMap.TILE_WIDTH, center.y-PixelMap.TILE_HEIGHT/2, 2*PixelMap.TILE_WIDTH, PixelMap.TILE_HEIGHT, null);
+        g.setClip(tileShape);
+        g.drawImage(GraphicsFactory.getInstance().getTileTexture(GraphicsFactory.GRASS), center.x-PixelMap.TILE_WIDTH, center.y-PixelMap.TILE_HEIGHT/2, 2*PixelMap.TILE_WIDTH, PixelMap.TILE_HEIGHT, null);
     }
 }
