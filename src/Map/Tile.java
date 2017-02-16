@@ -1,11 +1,11 @@
 package Map;
 
 /*--------------------------------------------------------------------------------------
-|   Map.Tile Class: Created by CustomerPC on 2/2/2017.
+|   GameMap.Tile Class: Created by CustomerPC on 2/2/2017.
 |---------------------------------------------------------------------------------------
 |   Description: Represents a single map location and its associated data.
-|   Map.Tile data is generally immutable with data modification achieved
-|   through Effects/Items. A Map.Tile holds a List of Entity objects that can be
+|   GameMap.Tile data is generally immutable with data modification achieved
+|   through Effects/Items. A GameMap.Tile holds a List of Entity objects that can be
 |   added to and removed from.
 |---------------------------------------------------------------------------------------*/
 
@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class Tile {
     private String name;
-    private Vec2i pos;
+    private MapCoordinate pos;
     private int movementCost;
     private boolean isImpassable = false;
 
@@ -46,7 +46,7 @@ public class Tile {
     //Factory Methods
     private Tile(String name, Vec2i pos, int movement) {
         this.name = name;
-        this.pos = pos;
+        this.pos = new MapCoordinate(pos);
         this.movementCost = movement;
         //activeItem = null;
     }
@@ -102,7 +102,7 @@ public class Tile {
 
     //Getters
     public String getName() { return name; }
-    public Vec2i getPos() { return new Vec2i(pos); }
+    public MapCoordinate getPos() { return new MapCoordinate(pos); }
     public int getMovementCost() { return movementCost;}
     public boolean isImpassable() { return isImpassable; }
     //public Effect getActiveEffect() { return activeEffect; }

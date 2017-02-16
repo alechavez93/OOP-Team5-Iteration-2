@@ -7,15 +7,10 @@ import Utility.Vec2i;
  */
 
 /*--------------------------------------------------------------------------------------
-
-|    MapCoord Class: Created by CustomerPC on 2/15/2017.
-
+|   MapCoordinate Class: Created by Andrew on 2/15/2017.
 |---------------------------------------------------------------------------------------
-
-|   Description:
-
-|
-
+|   Description: Represents a location on the play-surface through a bounded
+|   2D vector.
 ---------------------------------------------------------------------------------------*/
 
 public class MapCoordinate {
@@ -24,14 +19,14 @@ public class MapCoordinate {
 
 
     public MapCoordinate(Vec2i coord) {
-        this.size = Map.getInstance().getSize();
+        this.size = GameMap.getInstance().getSize();
         coord = new Vec2i();
         if(!this.setCoord(coord))
             throw new IndexOutOfBoundsException();
     }
 
     public MapCoordinate(int row, int column) {
-        this.size = Map.getInstance().getSize();
+        this.size = GameMap.getInstance().getSize();
         coord = new Vec2i();
         if(!this.setCoord(new Vec2i(row, column)));
             throw new IndexOutOfBoundsException();

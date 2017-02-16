@@ -3,19 +3,18 @@ import Utility.Direction;
 import Utility.Vec2i;
 
 import java.util.Iterator;
-import java.util.Random;
 
 /*--------------------------------------------------------------------------------------
-|   Map.Map Class: Created by Andrew on 2/2/2017.
+|   GameMap.GameMap Class: Created by Andrew on 2/2/2017.
 |---------------------------------------------------------------------------------------
 |   Description: Responsible for managing the play-surface of the game. Has a matrix
-|   of hexagonal Map.Tile objects of size (0 => x > sizeX, 0 => y > sizeY) with an
+|   of hexagonal GameMap.Tile objects of size (0 => x > sizeX, 0 => y > sizeY) with an
 |   odd column offset.
 |---------------------------------------------------------------------------------------*/
 
-public class Map {
+public class GameMap {
     //TODO: Proper singleton design pattern
-    static Map singleton = null;
+    static GameMap singleton = null;
 
     private Vec2i size;
     private Tile[][] tileGrid;
@@ -40,10 +39,10 @@ public class Map {
         }
     }
 
-    private Map() { }
-    public static Map getInstance() {
+    private GameMap() { }
+    public static GameMap getInstance() {
         if(singleton == null)
-            singleton = new Map();
+            singleton = new GameMap();
         return singleton;
     }
 
@@ -61,7 +60,7 @@ public class Map {
             }
             isInitialized = true;
         } else {
-            throw new IllegalStateException("Map is already initialized");
+            throw new IllegalStateException("GameMap is already initialized");
         }
     }
 
@@ -71,7 +70,7 @@ public class Map {
     /*
     public int[][] generateMoveCostMatrix() {
         if(!isInitialized)
-            throw new IllegalStateException("Map is not initialized");
+            throw new IllegalStateException("GameMap is not initialized");
         int[][] matrix = new int[size.x][size.y];
         for(int iii=0; iii < size.x; iii++) {
             for(int jjj=0; jjj < size.y; jjj++) {
@@ -83,6 +82,14 @@ public class Map {
     }
     */
 
+    public Tile[] getAllNeighbors(Vec2i pos) {
+        Tile[] t = new Tile[Direction.values().length];
+        int iii = 0;
+        for(Direction d : Direction.values()) {
+            t[iii++] = getNeighborTile(pos, d);
+        }
+        return t;
+    }
 
     /*
     //For testing purposes
@@ -117,7 +124,7 @@ public class Map {
             }
             isInitialized = true;
         } else {
-            throw new IllegalStateException("Map is already initialized");
+            throw new IllegalStateException("GameMap is already initialized");
         }
     }
     */
@@ -126,7 +133,7 @@ public class Map {
     //Getters
     public Tile getTile(int x, int y) {
         if(!isInitialized)
-            throw new IllegalStateException("Map is not initialized");
+            throw new IllegalStateException("GameMap is not initialized");
         if((x >= size.x || y >= size.y) || (x < 0 || y < 0))
             throw new IndexOutOfBoundsException();
         return tileGrid[x][y];
@@ -139,7 +146,7 @@ public class Map {
 
     public Vec2i getSize() {
         if(!isInitialized)
-            throw new IllegalStateException("Map is not initialized");
+            throw new IllegalStateException("GameMap is not initialized");
         return new Vec2i(size);
     }
 

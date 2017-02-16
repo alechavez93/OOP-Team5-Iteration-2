@@ -1,10 +1,9 @@
 package Map;
 
 /*--------------------------------------------------------------------------------------
-|   Map.Path Class: Created by Andrew on 2/2/2017.
+|   GameMap.Path Class: Created by Andrew on 2/2/2017.
 |---------------------------------------------------------------------------------------
-|   Description: Represents a path through a stack of directions. Direction is
-|   currently represented as a vector.
+|   Description: Represents a path through a stack of Directions.
 |---------------------------------------------------------------------------------------*/
 
 import Utility.Direction;
