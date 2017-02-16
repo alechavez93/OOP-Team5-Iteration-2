@@ -118,7 +118,12 @@ public class AStarPathFinder implements PathFinder {
     }
 
     private Direction findDirection(Vec2i from, Vec2i too) {
-        return null;
+        Vec2i c = from.sub(too);
+        if(c.x == 0)
+            return (c.y > 0) ? Direction.South : Direction.North;
+        if(c.x > 0)
+            return (c.y == from.x%2) ? Direction.SouthEast : Direction.NorthEast;
+        return (c.y == from.x%2) ? Direction.SouthWest : Direction.NorthWest;
     }
 }
 
