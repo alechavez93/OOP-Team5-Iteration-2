@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Unit;
 
 /*--------------------------------------------------------------------------------------
 |    ColonistUnit Class: Created by Tonny Xie on 2/16/2017.
@@ -14,7 +14,7 @@ import Utilities.Coordinate;
 public class ColonistUnit extends Unit {
 
     public ColonistUnit(int instanceID, Coordinate location) {
-        super("COLONIST UNIT", instanceID, location);
+        super("COLONIST", instanceID, location);
         movement = 1;
         maxHealth = 10;
         currentHealth = maxHealth;

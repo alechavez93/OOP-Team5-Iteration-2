@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Unit;
 
 /*--------------------------------------------------------------------------------------
 |    Soldier Class: Created by Tonny Xie on 2/16/2017.

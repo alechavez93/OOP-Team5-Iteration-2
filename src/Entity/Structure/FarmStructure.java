@@ -1,7 +1,7 @@
-package Entity;
+package Entity.Structure;
 
 /*--------------------------------------------------------------------------------------
-|    Unit Class: Created by Tonny Xie on 2/16/2017.
+|    FarmStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
@@ -9,9 +9,9 @@ package Entity;
 
 import Utilities.Coordinate;
 
-public abstract class Unit extends Entity {
+public class FarmStructure extends Structure {
 
-    public Unit(String name, int instanceID, Coordinate location) {
-        super(name, instanceID, location);
+    public FarmStructure(int instanceID, Coordinate location) {
+        super("FARM", instanceID, location);
     }
 }

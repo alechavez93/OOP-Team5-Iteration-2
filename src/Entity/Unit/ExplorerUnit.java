@@ -1,4 +1,4 @@
-package Entity;
+package Entity.Unit;
 
 /*--------------------------------------------------------------------------------------
 |    ExplorerUnit Class: Created by Tonny Xie on 2/16/2017.
@@ -18,7 +18,7 @@ public class ExplorerUnit extends Unit {
     public boolean prospectMode = false;
 
     public ExplorerUnit(int instanceID, Coordinate location) {
-        super("EXPLORER UNIT", instanceID, location);
+        super("EXPLORER", instanceID, location);
         movement = 5;
         maxHealth = 10;
         currentHealth = maxHealth;

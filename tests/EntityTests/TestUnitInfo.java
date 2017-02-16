@@ -8,6 +8,10 @@ package EntityTests;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.*;
+import Entity.Unit.ColonistUnit;
+import Entity.Unit.ExplorerUnit;
+import Entity.Unit.MeleeSoldier;
+import Entity.Unit.RangeSoldier;
 import Utilities.Coordinate;
 
 public class TestUnitInfo {
@@ -23,8 +27,8 @@ public class TestUnitInfo {
     }
 
     private static void testColonistExplorerInfo() {
-        int id = 0;
-        Coordinate location = new Coordinate(0,0);
+        int id = 1;
+        Coordinate location = new Coordinate(2,3);
         ColonistUnit colonistUnit = new ColonistUnit(id, location);
         ExplorerUnit explorerUnit = new ExplorerUnit(id, location);
 
@@ -34,8 +38,8 @@ public class TestUnitInfo {
     }
 
     private static void testExplorerProspectMode() {
-        int id = 0;
-        Coordinate location = new Coordinate(0, 0);
+        int id = 1;
+        Coordinate location = new Coordinate(2, 3);
         ExplorerUnit explorerUnit = new ExplorerUnit(id, location);
 
         System.out.println("testExplorerProspectMode()");
@@ -52,8 +56,8 @@ public class TestUnitInfo {
     }
 
     private static void testMeleeRangeInfo() {
-        int id = 0;
-        Coordinate location = new Coordinate(0, 0);
+        int id = 1;
+        Coordinate location = new Coordinate(2, 3);
         MeleeSoldier meleeSoldier = new MeleeSoldier(id, location);
         RangeSoldier rangeSoldier = new RangeSoldier(id, location);
 

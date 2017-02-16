@@ -10,11 +10,16 @@ package Entity;
 
 import Utilities.Coordinate;
 
+import java.util.List;
+
 public abstract class Entity extends Stats {
 
     private String name = "";
     private int instanceID = 0;
     private Coordinate location;
+    private int direction;
+
+    public List<Order> orderQueue;
 
     public Entity(String name, int instanceID, Coordinate location) {
         super(0,0,0,0,0,0,0,0, 0);
@@ -22,6 +27,36 @@ public abstract class Entity extends Stats {
         this.instanceID = instanceID;
         this.location = location;
     }
+
+    public void addOrder(Order order) {
+        orderQueue.add(order);
+    }
+
+    public void executeNextOrder() {
+
+    }
+
+    public void cancelOrder() {
+
+    }
+
+    public void updateStats(Stats stat) {
+
+    }
+
+    public void updateDirection() {
+
+    }
+
+    public void updateVision() {
+
+    }
+
+    public void acceptTech(Technology tech) {
+
+    }
+
+//    abstract public void destroy(Entity entity);
 
     @Override
     public String toString() { return name + " " + instanceID; }

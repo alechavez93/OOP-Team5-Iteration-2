@@ -1,7 +1,7 @@
-package Entity;
+package Entity.Unit;
 
 /*--------------------------------------------------------------------------------------
-|    MeleeSoldier Class: Created by Tonny Xie on 2/16/2017.
+|    RangeSoldier Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
@@ -9,17 +9,17 @@ package Entity;
 
 import Utilities.Coordinate;
 
-public class MeleeSoldier extends Soldier {
+public class RangeSoldier extends Soldier {
 
-    public MeleeSoldier(int instanceID, Coordinate location) {
-        super("MELEE SOLDIER", instanceID, location);
+    public RangeSoldier(int instanceID, Coordinate location) {
+        super("RANGE SOLDIER", instanceID, location);
         attack = 3;
-        defense = 3;
+        defense = 2;
         armor = 1;
         movement = 2;
         maxHealth = 20;
         currentHealth = maxHealth;
-        rangeRadius = 1;
+        rangeRadius = 2;
         visibilityRadius = 1;
         upkeep = 5;
     }
