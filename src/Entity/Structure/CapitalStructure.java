@@ -17,6 +17,7 @@ public class CapitalStructure extends Structure {
 
     public CapitalStructure(int instanceID, Coordinate location) {
         super("CAPITAL", instanceID, location);
-
     }
+
+
 }

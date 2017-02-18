@@ -9,6 +9,7 @@ package Entity.Unit;
 |       Low Movement (should not be able to outrun Soldiers)
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Structure.CapitalStructure;
 import Utilities.Coordinate;
 
 public class ColonistUnit extends Unit {
@@ -21,5 +22,18 @@ public class ColonistUnit extends Unit {
         visibilityRadius = 1;
         upkeep = 2;
     }
+
+    public CapitalStructure buildCapitalStructure(int instanceID) {
+        return new CapitalStructure(instanceID, this.getLocation());
+    }
+
+    public MeleeSoldier produceMeleeSoldier(int instanceID) {
+        return new MeleeSoldier(instanceID, this.getLocation());
+    }
+
+    // MAKE WORKER METHOD NEEDS TO BE CALLED BY ENTITY MANAGER FOR
+
+
+
 
 }

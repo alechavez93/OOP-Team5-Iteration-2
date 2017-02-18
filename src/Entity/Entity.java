@@ -9,7 +9,9 @@ package Entity;
 ---------------------------------------------------------------------------------------*/
 
 import Utilities.Coordinate;
+import com.sun.org.apache.xerces.internal.impl.XMLEntityManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Entity extends Stats {
@@ -17,19 +19,21 @@ public abstract class Entity extends Stats {
     private String name = "";
     private int instanceID = 0;
     private Coordinate location;
-    private int direction;
+    private int direction = 90;
 
-    public List<Order> orderQueue;
+    public List<Order> orderList;
+    EntityManager entityManager;
 
     public Entity(String name, int instanceID, Coordinate location) {
         super(0,0,0,0,0,0,0,0, 0);
         this.name = name;
         this.instanceID = instanceID;
         this.location = location;
+        this.orderList = new ArrayList<Order>();
     }
 
     public void addOrder(Order order) {
-        orderQueue.add(order);
+        orderList.add(order);
     }
 
     public void executeNextOrder() {
