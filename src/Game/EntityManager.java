@@ -34,7 +34,9 @@ public class EntityManager {
         capitalStructureList = new ArrayList<Entity>();
     }
 
-    public void createCapitalStructure() {
+    public void buildCapitalStructure() {
+        // search for free ID in findNextID()
+
 
     }
 

@@ -22,7 +22,6 @@ public abstract class Entity extends Stats {
     private int direction = 90;
 
     public List<Order> orderList;
-    EntityManager entityManager;
 
     public Entity(String name, int instanceID, Coordinate location) {
         super(0,0,0,0,0,0,0,0, 0);
@@ -41,7 +40,7 @@ public abstract class Entity extends Stats {
     }
 
     public void cancelOrder() {
-
+        orderList.clear();
     }
 
     public void updateStats(Stats stat) {

@@ -23,17 +23,15 @@ public class ColonistUnit extends Unit {
         upkeep = 2;
     }
 
-    public CapitalStructure buildCapitalStructure(int instanceID) {
+    public CapitalStructure createCapitalStructure(int instanceID) {
         return new CapitalStructure(instanceID, this.getLocation());
     }
 
-    public MeleeSoldier produceMeleeSoldier(int instanceID) {
+    public MeleeSoldier createMeleeSoldier(int instanceID) {
         return new MeleeSoldier(instanceID, this.getLocation());
     }
 
     // MAKE WORKER METHOD NEEDS TO BE CALLED BY ENTITY MANAGER FOR
-
-
-
+    
 
 }

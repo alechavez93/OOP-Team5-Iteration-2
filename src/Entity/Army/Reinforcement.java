@@ -1,11 +1,22 @@
 package Entity.Army;
 
 /*--------------------------------------------------------------------------------------
-|    Reinforcements Class: Created by Tonny Xie on 2/16/2017.
+|    Reinforcement Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
 
-public class Reinforcements {
+import Entity.Unit.Unit;
+
+public class Reinforcement {
+
+    Unit unit;
+    Army armyToReinforce;
+
+    public void Reinforcement() {
+
+    }
+
+
 }
