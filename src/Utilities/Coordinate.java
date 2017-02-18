@@ -9,7 +9,7 @@ package Utilities;
 
 public class Coordinate implements Cloneable{
     private int row, col;
-    final int MAP_ROWS = 20, MAP_COLS = 20;
+    final int MAP_ROWS = 100000, MAP_COLS = 100000;
 
     public Coordinate(int row, int col) {
         if(row < 0 || row > MAP_ROWS - 1 || col < 0 || col > MAP_COLS - 1)

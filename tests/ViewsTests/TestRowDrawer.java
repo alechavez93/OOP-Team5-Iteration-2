@@ -14,22 +14,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TestRowDrawer {
-    static List<Tile> row1, row2, row3;
+    static List<Tile> row1, row2, row3, row4, row5;
     private static class TestPanel extends JPanel {
         @Override
         public void paint(Graphics g) {
             RowDrawer.drawRow(g, row1);
             RowDrawer.drawRow(g, row2);
             RowDrawer.drawRow(g, row3);
+            RowDrawer.drawRow(g, row4);
+            RowDrawer.drawRow(g, row5);
         }
     }
 
     public static void main(String[] args) {
         //Set Tiles
-        int cols = 12;
+        int cols = 100;
         row1 = new ArrayList<>();
         row2 = new ArrayList<>();
         row3 = new ArrayList<>();
+        row4 = new ArrayList<>();
+        row5 = new ArrayList<>();
 
         for (int i=1; i<=cols; i++){
             row1.add(new Tile(new Coordinate(1,i)));
@@ -43,6 +47,14 @@ public class TestRowDrawer {
             row3.add(new Tile(new Coordinate(3,i)));
         }
 
+        for (int i=1; i<=cols; i++){
+            row4.add(new Tile(new Coordinate(4,i)));
+        }
+
+        for (int i=1; i<=cols; i++){
+            row5.add(new Tile(new Coordinate(5,i)));
+        }
+
 
         JFrame frame = new JFrame("Game");
         JPanel panel = new TestPanel();
@@ -51,13 +63,5 @@ public class TestRowDrawer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setVisible(true);
-
-        //Load it once
-        //Clip it use
-        //GET MONEY
-//        BufferedImage image2 = ImageUtil.loadImage("gem.jpg");
-//        Graphics g = image2.getGraphics();
-//        Polygon p = TileDrawer.getHexagon(new PixelPoint(image2.getWidth()/2,image2.getHeight()/2));
-//        g.setClip(p);
     }
 }
