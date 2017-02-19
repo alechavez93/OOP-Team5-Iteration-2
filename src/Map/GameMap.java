@@ -9,7 +9,7 @@ import java.util.Iterator;
 |---------------------------------------------------------------------------------------
 |   Description: Responsible for managing the play-surface of the game. Has a matrix
 |   of hexagonal GameMap.Tile objects of size (0 => x > sizeX, 0 => y > sizeY) with an
-|   odd column offset.
+|   odd column offset. All vector methods assume (Row, Column) order.
 |---------------------------------------------------------------------------------------*/
 
 public class GameMap {
@@ -29,7 +29,7 @@ public class GameMap {
         }
 
         public Tile next() {
-            Tile t = tileGrid[iter.x][iter.y];
+            Tile t = tileGrid[iter.y][iter.x];
             iter.x++;
             if (iter.x == size.x) {
                 iter.x = 0;
@@ -46,50 +46,22 @@ public class GameMap {
         return singleton;
     }
 
-
     public void initialize(Vec2i size) {
         if(!isInitialized) {
             this.size = size;
             tileGrid = new Tile[size.x][size.y];
-            //Random rng = new Random();
+            isInitialized = true;
             for(int iii=0; iii < size.x; iii++) {
                 for(int jjj=0; jjj < size.y; jjj++) {
                     //tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(iii, jjj), rng);\
-                    tileGrid[iii][jjj] = Tile.makeGrassTile(new Vec2i(iii, jjj));
+                    tileGrid[iii][jjj] = Tile.makeGrassTile(new Vec2i(jjj, iii));
                 }
             }
-            isInitialized = true;
         } else {
             throw new IllegalStateException("GameMap is already initialized");
         }
     }
 
-    /**
-     / Generates a matrix of integers that represent the movement costs of the map Tiles.
-     */
-    /*
-    public int[][] generateMoveCostMatrix() {
-        if(!isInitialized)
-            throw new IllegalStateException("GameMap is not initialized");
-        int[][] matrix = new int[size.x][size.y];
-        for(int iii=0; iii < size.x; iii++) {
-            for(int jjj=0; jjj < size.y; jjj++) {
-                Tile t = tileGrid[iii][jjj];
-                matrix[iii][jjj] = (t.isImpassable()) ? 999 : t.getMovementCost();
-            }
-        }
-        return matrix;
-    }
-    */
-
-    public Tile[] getAllNeighbors(Vec2i pos) {
-        Tile[] t = new Tile[Direction.values().length];
-        int iii = 0;
-        for(Direction d : Direction.values()) {
-            t[iii++] = getNeighborTile(pos, d);
-        }
-        return t;
-    }
 
     /*
     //For testing purposes
@@ -131,18 +103,16 @@ public class GameMap {
 
 
     //Getters
-    public Tile getTile(int x, int y) {
+    public Tile getTile(int row, int column) {
         if(!isInitialized)
             throw new IllegalStateException("GameMap is not initialized");
-        if((x >= size.x || y >= size.y) || (x < 0 || y < 0))
+        if((column >= size.x || row >= size.y) || (column < 0 || row < 0))
             throw new IndexOutOfBoundsException();
-        return tileGrid[x][y];
+        return tileGrid[column][row];
     }
 
-    public Tile getTile(Vec2i pos) {
-        return getTile(pos.x, pos.y);
-    }
-    public Tile getTile(MapCoordinate coord) { return getTile(coord.getColumn(), coord.getRow());}
+    public Tile getTile(Vec2i pos) { return getTile(pos.x, pos.y); }
+    public Tile getTile(MapCoordinate coord) { return getTile(coord.getRow(), coord.getColumn());}
 
     public Vec2i getSize() {
         if(!isInitialized)
@@ -151,14 +121,33 @@ public class GameMap {
     }
 
     public Tile getNeighborTile(Vec2i pos, Direction dir) {
+        if(!isValidNeighbor(pos, dir))
+            throw new IndexOutOfBoundsException();
         return getTile(pos.add(dir.getHex(pos.x % 2 == 1)));
     }
     public Tile getNeighborTile(MapCoordinate coord, Direction dir) {
-        return getTile(coord.getVector().add(dir.getHex(coord.isOffset()))); //wew
+        return getNeighborTile(coord.getVector(), dir);
     }
     public Tile getNeighborTile(Tile tile, Direction dir) {
         return getNeighborTile(tile.getPos(), dir);
     }
 
+    public Tile[] getAllNeighbors(Vec2i pos) {
+        Tile[] t = new Tile[Direction.values().length];
+        int iii = 0;
+        for(Direction d : Direction.values()) {
+            if(isValidNeighbor(pos, d))
+                t[iii++] = getNeighborTile(pos, d);
+        }
+        return t;
+    }
+
     public Iterator getIterator() { return new MapIter(); }
+
+
+
+    private boolean isValidNeighbor(Vec2i pos, Direction dir) {
+        pos = pos.add(dir.getHex(pos.x % 2 == 1));
+        return !(pos.x < 0 || pos.y < 0 || pos.x >= size.y || pos.y >= size.x);
+    }
 }
