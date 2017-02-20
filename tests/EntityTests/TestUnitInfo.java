@@ -71,7 +71,8 @@ public class TestUnitInfo {
         System.out.print("Name: " + entity.getName() + "   ");
         System.out.print("ID: " + entity.getInstanceID() + "\n");
         System.out.print("Location Row: " + entity.getLocation().getCol() + "   ");
-        System.out.print("Location Col: " + entity.getLocation().getRow() + "\n");
+        System.out.print("Location Col: " + entity.getLocation().getRow() + "   ");
+        System.out.print("Direction Angle: " + entity.getDirection().getAngle() + "\n");
 
         // Stats getters
         System.out.print("Attack: " + entity.getAttack() + "   ");
