@@ -9,7 +9,7 @@ package Entity;
 ---------------------------------------------------------------------------------------*/
 
 import Utilities.Coordinate;
-import com.sun.org.apache.xerces.internal.impl.XMLEntityManager;
+import Utility.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public abstract class Entity extends Stats {
     private String name = "";
     private int instanceID = 0;
     private Coordinate location;
-    private int direction = 90;
+    private Direction direction = Direction.South;
 
     public List<Order> orderList;
 
@@ -68,10 +68,12 @@ public abstract class Entity extends Stats {
     public String getName() { return name; }
     public int getInstanceID() { return instanceID; }
     public Coordinate getLocation() { return location; }
+    public Direction getDirection() { return direction; }
 
     // setters
 //    public void setName(String name) { this.name = name; }
 //    public void setInstanceID(int instanceID) { this.instanceID = instanceID; }
     public void setLocation(Coordinate location) { this.location = location; }
+    public void setDirection(Direction direction) { this.direction = direction; }
 
 }
