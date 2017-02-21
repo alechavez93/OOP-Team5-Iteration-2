@@ -16,9 +16,18 @@ package Entity.Army;
  * handle combat
  * handle workers
  * integrate w/ view
+ *
+ * DISCUSSION NEEDED
+ *
+ * What is considered an entity? The army itself? The battlegroup?
+ *
+ * How do army stats work? When do units die in an army? Is health treated uniformly?
+ *
+ * How do we update an army at the end of the turn?
  */
 
 import Entity.Unit.Unit;
+import GameMap.MapCoordinate;
 
 public class Army {
 
@@ -38,15 +47,34 @@ public class Army {
 
     public void addUnit(Unit unit){
 
+        if(unit.getLocation().isEqual(battleGroup.getLocation())) { // if unit is on battlegroup already
 
+            battleGroup.addUnit(unit);
+        }else{
+
+            reinforcements.addUnit(unit);
+        }
     }
 
     public void updateLocation(){
 
         if(!atRallyPoint) {
+
             battleGroup.updateLocation();
         }
         reinforcements.updateLocation();
+    }
+
+    public void moveRallyPoint(MapCoordinate location){
+
+        if(!(rallyPoint.getLocation().isEqual(location))) { // if rallyPoint location is not same as new location
+
+            rallyPoint.setLocation(location);
+            atRallyPoint = false;
+        }else{
+
+            atRallyPoint = true; // ERROR: Attempted to move rally point to same location
+        }
     }
 
     public RallyPoint getRallyPoint() {

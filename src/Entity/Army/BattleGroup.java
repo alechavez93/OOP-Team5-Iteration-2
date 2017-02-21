@@ -10,6 +10,7 @@ package Entity.Army;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Unit.Unit;
+import GameMap.MapCoordinate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 public class BattleGroup {
 
     private List<Unit> units;
+    private MapCoordinate location;
     private int moveSpeed;
 
     public BattleGroup(Unit unit){
@@ -24,6 +26,9 @@ public class BattleGroup {
         units = new ArrayList<>();
 
         addUnit(unit);
+
+        location = unit.getLocation();
+
         moveSpeed = unit.getMovement();
     }
 
@@ -41,5 +46,9 @@ public class BattleGroup {
     public void updateLocation(){
 
         // MOVE BATTLEGROUP BASED ON SLOWEST UNIT
+    }
+
+    public MapCoordinate getLocation() {
+        return location;
     }
 }
