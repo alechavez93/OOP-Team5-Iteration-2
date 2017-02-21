@@ -34,16 +34,15 @@ public class AStarPathFinder implements PathFinder {
     }
 
 
-
     public Path createPath(MapCoordinate startCoord, MapCoordinate endCoord) {
+        //Clump of initializations
         GameMap map = GameMap.getInstance();
         Vec2i start = startCoord.getVector();
         Vec2i end = endCoord.getVector();
-
         Queue<Node> closed = new PriorityQueue<Node>();
         Queue<Node> open = new PriorityQueue<Node>();
+
         open.add(new Node(0, distanceHeuristic(start, end), start));
-        //int[][] costMatrix = map.generateMoveCostMatrix();
         Vec2i size = map.getSize();
         Node[][] nodeMatrix = new Node[size.y][size.x];
         while(!open.isEmpty()) {
@@ -60,7 +59,7 @@ public class AStarPathFinder implements PathFinder {
 
             closed.add(n);
             Tile[] neighbors = map.getAllNeighbors(n.loc);
-            for(int iii = 0; iii < neighbors.length; iii++) {
+            for(byte iii = 0; iii < neighbors.length; iii++) {
                 Tile nn = neighbors[iii];
 
                 //Not a sane neighbor
@@ -95,11 +94,6 @@ public class AStarPathFinder implements PathFinder {
                 nNode.eCost = nNode.sCost + distanceHeuristic(nv, end);
             }
         }
-        return null;
-    }
-
-
-    public Path recreatePath(Path p) {
         return null;
     }
 
