@@ -37,4 +37,9 @@ public enum Direction {
     public Vec2i getHex(boolean offset) {
         return new Vec2i(x, (offset && x != 0) ? y+1:y);
     }
+
+    public Direction getOpposite() {
+        int opposite = (dirAngle < 180) ? dirAngle + 180 : dirAngle - 180;
+        return Direction.values()[opposite/60]; //wew
+    }
 }

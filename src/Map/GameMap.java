@@ -51,8 +51,8 @@ public class GameMap {
             this.size = size;
             tileGrid = new Tile[size.x][size.y];
             isInitialized = true;
-            for(int iii=0; iii < size.x; iii++) {
-                for(int jjj=0; jjj < size.y; jjj++) {
+            for(short iii=0; iii < size.x; iii++) {
+                for(short jjj=0; jjj < size.y; jjj++) {
                     //tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(iii, jjj), rng);\
                     tileGrid[iii][jjj] = Tile.makeGrassTile(new Vec2i(jjj, iii));
                 }
@@ -134,7 +134,7 @@ public class GameMap {
 
     public Tile[] getAllNeighbors(Vec2i pos) {
         Tile[] t = new Tile[Direction.values().length];
-        int iii = 0;
+        byte iii = 0; //If your tiles have more than 128 neighbors its time to re-evaluate your life
         for(Direction d : Direction.values()) {
             if(isValidNeighbor(pos, d))
                 t[iii++] = getNeighborTile(pos, d);
@@ -143,8 +143,6 @@ public class GameMap {
     }
 
     public Iterator getIterator() { return new MapIter(); }
-
-
 
     private boolean isValidNeighbor(Vec2i pos, Direction dir) {
         pos = pos.add(dir.getHex(pos.x % 2 == 1));

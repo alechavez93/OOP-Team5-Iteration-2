@@ -33,11 +33,11 @@ public class Tile {
     public Entity[] getOccupyingEntities() { return entityList.toArray(new Entity[entityList.size()]); }
 
     public void addEntity(Entity entity) {
+        entityList.add(entity);
         if(activeEffect != null)
             activeEffect.execute(entity);
         if(activeItem != null)
             activeItem.triggerItemEffect();
-        entityList.add(entity);
     }
 
     public void removeEntity(Entity entity) { entityList.remove(entity); }

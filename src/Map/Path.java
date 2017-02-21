@@ -18,6 +18,7 @@ public class  Path {
     private MapCoordinate start;
     private MapCoordinate end;
 
+
     public Path(Stack<Direction> path, MapCoordinate start, MapCoordinate end) {
         this.path = path;
         this.start = start;
@@ -28,14 +29,24 @@ public class  Path {
         return path.pop();
     }
 
+    //Test this
     public boolean isValid() {
-        //TODO: Make path checker in case of terrain changes
-        return !path.empty();
+        Stack<Direction> copy = (Stack<Direction>)path.clone();
+        Tile marker = GameMap.getInstance().getTile(end);
+        while(!copy.empty()) {
+            if(marker.isImpassable())
+                return false;
+            Direction d = copy.pop().getOpposite();
+            marker = GameMap.getInstance().getNeighborTile(marker, d);
+        }
+        return true;
     }
 
-    //Attempt to recreate path and return result
-    public Path recreate() {
-        return creator.recreatePath(this);
+    public boolean isEnd() { return path.empty(); }
+
+    public void recreate(MapCoordinate curPos) {
+        this.path = creator.createPath(curPos, end).path;
+        this.start = curPos;
     }
 
     //Getters
