@@ -7,7 +7,8 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class CapitalStructure extends Structure {
 
@@ -15,8 +16,8 @@ public class CapitalStructure extends Structure {
 //    private Worker workerCount;
 //    private int workRadius;
 
-    public CapitalStructure(int instanceID, Coordinate location) {
-        super("CAPITAL", instanceID, location);
+    public CapitalStructure(int instanceID, MapCoordinate location) {
+        super(GameLibrary.CAPITAL, instanceID, location);
     }
 
 

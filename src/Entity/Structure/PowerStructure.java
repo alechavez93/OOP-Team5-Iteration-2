@@ -1,7 +1,5 @@
 package Entity.Structure;
 
-import Utilities.Coordinate;
-
 /*--------------------------------------------------------------------------------------
 |    PowerStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
@@ -9,10 +7,13 @@ import Utilities.Coordinate;
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
+
 public class PowerStructure extends Structure {
 
-    public PowerStructure(int instanceID, Coordinate location) {
-        super("POWER PLANT", instanceID, location);
+    public PowerStructure(int instanceID, MapCoordinate location) {
+        super(GameLibrary.POWER_PLANT, instanceID, location);
     }
 
 }

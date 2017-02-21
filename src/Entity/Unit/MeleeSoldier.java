@@ -7,12 +7,13 @@ package Entity.Unit;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class MeleeSoldier extends Soldier {
 
-    public MeleeSoldier(int instanceID, Coordinate location) {
-        super("MELEE SOLDIER", instanceID, location);
+    public MeleeSoldier(int instanceID,MapCoordinate location) {
+        super(GameLibrary.MELEE, instanceID, location);
         attack = 3;
         defense = 3;
         armor = 1;
@@ -20,7 +21,7 @@ public class MeleeSoldier extends Soldier {
         maxHealth = 20;
         currentHealth = maxHealth;
         rangeRadius = 1;
-        visibilityRadius = 1;
+        visibilityRadius = 2;
         upkeep = 5;
     }
 }

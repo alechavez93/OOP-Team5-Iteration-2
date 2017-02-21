@@ -10,16 +10,17 @@ package Entity.Unit;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Structure.CapitalStructure;
-import Utilities.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class ColonistUnit extends Unit {
 
-    public ColonistUnit(int instanceID, Coordinate location) {
-        super("COLONIST", instanceID, location);
+    public ColonistUnit(int instanceID, MapCoordinate location) {
+        super(GameLibrary.COLONIST, instanceID, location);
         movement = 1;
         maxHealth = 10;
         currentHealth = maxHealth;
-        visibilityRadius = 1;
+        visibilityRadius = 2;
         upkeep = 2;
     }
 

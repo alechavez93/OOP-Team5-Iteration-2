@@ -6,7 +6,7 @@ package Views;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public class Tile {
 

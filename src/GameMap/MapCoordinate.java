@@ -1,4 +1,4 @@
-package Map;
+package GameMap;
 
 import Utility.Vec2i;
 
@@ -20,21 +20,22 @@ public class MapCoordinate {
 
     public MapCoordinate(Vec2i coord) {
         this.size = GameMap.getInstance().getSize();
-        coord = new Vec2i();
-        if(!this.setCoord(coord))
+        if(coord.x < 0 || coord.x >= size.y || coord.y < 0 || coord.y >= size.x)
             throw new IndexOutOfBoundsException();
+        this.coord = new Vec2i(coord);
     }
 
     public MapCoordinate(int row, int column) {
         this.size = GameMap.getInstance().getSize();
-        coord = new Vec2i();
-        if(!this.setCoord(new Vec2i(row, column)));
+        if(row < 0 || row >= size.y || column < 0 || column >= size.x)
             throw new IndexOutOfBoundsException();
+        this.coord = new Vec2i(row, column);
     }
 
     public MapCoordinate(MapCoordinate coord) {
-        this.coord = new Vec2i(coord.coord);
         this.size = coord.size;
+        this.coord = new Vec2i();
+        this.setCoord(coord.coord);
     }
 
 

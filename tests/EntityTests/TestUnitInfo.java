@@ -12,11 +12,13 @@ import Entity.Unit.ColonistUnit;
 import Entity.Unit.ExplorerUnit;
 import Entity.Unit.MeleeSoldier;
 import Entity.Unit.RangeSoldier;
-import Utilities.Coordinate;
+import GameMap.*;
+import Utility.Vec2i;
 
 public class TestUnitInfo {
 
     public static void main(String[] args) {
+        GameMap.getInstance().initialize(new Vec2i(10,10));
         System.out.println("======================================================================================================");
         testColonistExplorerInfo();
         System.out.println("======================================================================================================");
@@ -28,7 +30,8 @@ public class TestUnitInfo {
 
     private static void testColonistExplorerInfo() {
         int id = 1;
-        Coordinate location = new Coordinate(2,3);
+        GameMap map = GameMap.getInstance();
+        MapCoordinate location = new MapCoordinate(2,3);
         ColonistUnit colonistUnit = new ColonistUnit(id, location);
         ExplorerUnit explorerUnit = new ExplorerUnit(id, location);
 
@@ -39,7 +42,8 @@ public class TestUnitInfo {
 
     private static void testExplorerProspectMode() {
         int id = 1;
-        Coordinate location = new Coordinate(2, 3);
+        GameMap map = GameMap.getInstance();
+        MapCoordinate location = new MapCoordinate(2, 3);
         ExplorerUnit explorerUnit = new ExplorerUnit(id, location);
 
         System.out.println("testExplorerProspectMode()");
@@ -57,7 +61,8 @@ public class TestUnitInfo {
 
     private static void testMeleeRangeInfo() {
         int id = 1;
-        Coordinate location = new Coordinate(2, 3);
+        GameMap map = GameMap.getInstance();
+        MapCoordinate location = new MapCoordinate(2, 3);
         MeleeSoldier meleeSoldier = new MeleeSoldier(id, location);
         RangeSoldier rangeSoldier = new RangeSoldier(id, location);
 
@@ -70,8 +75,8 @@ public class TestUnitInfo {
         System.out.println("Testing: " + entity.toString());
         System.out.print("Name: " + entity.getName() + "   ");
         System.out.print("ID: " + entity.getInstanceID() + "\n");
-        System.out.print("Location Row: " + entity.getLocation().getCol() + "   ");
-        System.out.print("Location Col: " + entity.getLocation().getRow() + "   ");
+        System.out.print("Location Row: " + entity.getLocation().getRow() + "   ");
+        System.out.print("Location Col: " + entity.getLocation().getColumn() + "   ");
         System.out.print("Direction Angle: " + entity.getDirection().getAngle() + "\n");
 
         // Stats getters

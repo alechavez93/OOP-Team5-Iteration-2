@@ -7,11 +7,12 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class UniversityStructure extends Structure {
 
-    public UniversityStructure(int instanceID, Coordinate location) {
-        super("UNIVERSITY", instanceID, location);
+    public UniversityStructure(int instanceID, MapCoordinate location) {
+        super(GameLibrary.UNIVERSITY, instanceID, location);
     }
 }

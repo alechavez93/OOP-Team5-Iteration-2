@@ -7,31 +7,34 @@ package Entity.Unit;
 |   when in prospecting mode, reveals nearby resources. If Explorer is prospecting,
 |   movement speed is "significantly" lowered.
 |   Stat Balance Note:
-|       High Movement (not prospecting)
+|       High Movement (when not prospecting)
 |       High Visibility (compared to other units)
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class ExplorerUnit extends Unit {
 
     public boolean prospectMode = false;
 
-    public ExplorerUnit(int instanceID, Coordinate location) {
-        super("EXPLORER", instanceID, location);
+    public ExplorerUnit(int instanceID, MapCoordinate location) {
+        super(GameLibrary.EXPLORER, instanceID, location);
         movement = 5;
         maxHealth = 10;
         currentHealth = maxHealth;
-        visibilityRadius = 2;
+        visibilityRadius = 4;
         upkeep = 2;
     }
 
     public void toggleProspectMode() {
         if (!prospectMode) {
-            visibilityRadius = 1;
+            visibilityRadius = 2;
+            movement = 2;
             prospectMode = true;
         } else {
-            visibilityRadius = 2;
+            visibilityRadius = 4;
+            movement = 5;
             prospectMode = false;
         }
     }
