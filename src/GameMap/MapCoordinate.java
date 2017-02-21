@@ -68,4 +68,9 @@ public class MapCoordinate {
         this.coord = new Vec2i(coord);
         return true;
     }
+
+    public boolean isEqual(MapCoordinate mapCoord) {
+        return this.coord.equals(mapCoord.coord);
+    }
+
 }
