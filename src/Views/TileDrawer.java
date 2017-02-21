@@ -77,6 +77,6 @@ public class TileDrawer {
     //Draws the texture or terrain of a Tile
     private static void drawTexture(Graphics g, Polygon tileShape, PixelPoint center){
         g.setClip(tileShape);
-        g.drawImage(GraphicsFactory.getInstance().getTileTexture(GraphicsFactory.GRASS), center.x-PixelMap.TILE_WIDTH, center.y-PixelMap.TILE_HEIGHT/2, 2*PixelMap.TILE_WIDTH, PixelMap.TILE_HEIGHT, null);
+        g.drawImage(GraphicsFactory.getInstance().getTileTexture(GraphicsFactory.WATER), center.x-PixelMap.TILE_WIDTH, center.y-PixelMap.TILE_HEIGHT/2, 2*PixelMap.TILE_WIDTH, PixelMap.TILE_HEIGHT, null);
     }
 }

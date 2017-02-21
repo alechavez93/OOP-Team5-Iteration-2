@@ -7,12 +7,13 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class FortStructure extends Structure {
 
-    public FortStructure(int instanceID, Coordinate location) {
-        super("FORT", instanceID, location);
+    public FortStructure(int instanceID, MapCoordinate location) {
+        super(GameLibrary.FORT, instanceID, location);
     }
 
 }

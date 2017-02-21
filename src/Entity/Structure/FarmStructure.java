@@ -7,11 +7,12 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class FarmStructure extends Structure {
 
-    public FarmStructure(int instanceID, Coordinate location) {
-        super("FARM", instanceID, location);
+    public FarmStructure(int instanceID, MapCoordinate location) {
+        super(GameLibrary.FARM, instanceID, location);
     }
 }

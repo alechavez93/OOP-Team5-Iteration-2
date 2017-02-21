@@ -7,12 +7,13 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class MineStructure extends Structure {
 
-    public MineStructure(int instanceID, Coordinate location) {
-        super("MINE", instanceID, location);
+    public MineStructure(int instanceID, MapCoordinate location) {
+        super(GameLibrary.MINE, instanceID, location);
     }
 
 }

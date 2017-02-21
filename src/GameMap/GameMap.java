@@ -52,13 +52,13 @@ public class GameMap {
             this.size = size;
             tileGrid = new Tile[size.x][size.y];
             //Random rng = new Random();
+            isInitialized = true;
             for(int iii=0; iii < size.x; iii++) {
-                for(int jjj=0; jjj < size.y; jjj++) {
+                for (int jjj = 0; jjj < size.y; jjj++) {
                     //tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(iii, jjj), rng);\
                     tileGrid[iii][jjj] = Tile.makeGrassTile(new Vec2i(iii, jjj));
                 }
             }
-            isInitialized = true;
         } else {
             throw new IllegalStateException("GameMap is already initialized");
         }

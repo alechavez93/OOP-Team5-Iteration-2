@@ -7,11 +7,11 @@ package Entity.Unit;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+import GameMap.MapCoordinate;
 
 public abstract class Soldier extends Unit {
 
-    public Soldier(String name, int instanceID, Coordinate location) {
+    public Soldier(String name, int instanceID, MapCoordinate location) {
         super(name, instanceID, location);
     }
 }

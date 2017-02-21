@@ -8,11 +8,11 @@ package Entity.Structure;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;
-import Utility.Coordinate;
+import GameMap.MapCoordinate;
 
 public abstract class Structure extends Entity {
 
-    public Structure(String name, int instanceID, Coordinate location) {
+    public Structure(String name, int instanceID, MapCoordinate location) {
         super(name, instanceID, location);
     }
 
