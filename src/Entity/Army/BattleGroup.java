@@ -4,11 +4,14 @@ package Entity.Army;
 |    BattleGroup Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
-|       The main entity of
+|       The main entity of an army. BattleGroup is able to partake in combat, and moves
+|       at the speed of the slowest unit it has.
+|
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Unit.Unit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BattleGroup {
@@ -17,6 +20,8 @@ public class BattleGroup {
     private int moveSpeed;
 
     public BattleGroup(Unit unit){
+
+        units = new ArrayList<>();
 
         addUnit(unit);
         moveSpeed = unit.getMovement();
