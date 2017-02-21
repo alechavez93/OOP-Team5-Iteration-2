@@ -3,8 +3,9 @@ package Entity.Structure;
 /*--------------------------------------------------------------------------------------
 |    UniversityStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|
+|   Description: University is built by Workers. It produces technological advances
+|   using the Workers staffed at the University. Only one technological advance can be
+|   researched per University at a time.
 ---------------------------------------------------------------------------------------*/
 
 import GameLibrary.GameLibrary;
