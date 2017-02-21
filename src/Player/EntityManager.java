@@ -3,12 +3,14 @@ package Player;
 import Entity.*;
 import Entity.Structure.*;
 import Entity.Unit.*;
-import Utilities.Coordinate;
+import GameMap.MapCoordinate;
+import Utility.Coordinate;
 
 import javax.swing.border.EtchedBorder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Thomas on 02/19/2017.
@@ -92,19 +94,19 @@ public class EntityManager {
         hashset = new HashSet<Integer>();
     }
 
-    public void init(Coordinate location){
+    public void init(MapCoordinate location){
 
         ColonistUnit c0 = new ColonistUnit(nextColonistIndex(), location);
         this.addColonist(c0);
 
-        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new Coordinate(location.getRow()+1, location.getCol()));
+        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow()+1, location.getColumn()));
         this.addExplorer(e0);
 
         ExplorerUnit e1 = new ExplorerUnit(nextExplorerIndex(), location);
         this.addExplorer(e1);
     }
 
-    public ColonistUnit newColonist(Coordinate coordinate){
+    public ColonistUnit newColonist(MapCoordinate coordinate){
         int index = nextColonistIndex();
         if(index != -1){
             ColonistUnit colonist = new ColonistUnit(index, coordinate );
@@ -114,7 +116,7 @@ public class EntityManager {
         //System.out.println("Invalid request");
     }
 
-    public ExplorerUnit newExplorer(Coordinate coordinate){
+    public ExplorerUnit newExplorer(MapCoordinate coordinate){
         int index = nextExplorerIndex();
         if(index != -1){
             ExplorerUnit explorer = new ExplorerUnit(index, coordinate );

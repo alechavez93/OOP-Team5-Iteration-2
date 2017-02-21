@@ -1,9 +1,11 @@
-package PlayerTests;
+package Player;
 
 import Entity.Unit.ColonistUnit;
 import Entity.Unit.ExplorerUnit;
+import GameMap.GameMap;
+import GameMap.MapCoordinate;
 import Player.*;
-import Utilities.Coordinate;
+import Utility.Coordinate;
 import Utility.Vec2i;
 
 /**
@@ -20,7 +22,8 @@ import Utility.Vec2i;
 public class TestPlayer {
 
     public static void main(String[] args) {
-        Player p1 = new Player(1, new Coordinate(1,1));
+        GameMap.getInstance().initialize(new Vec2i(10,10));
+        Player p1 = new Player(1, new MapCoordinate(1,1));
         System.out.println("Player " + p1.pID + " has resources: ");
         System.out.println("Food: " + p1.getFood());
         System.out.println("Wood: " + p1.getWood());

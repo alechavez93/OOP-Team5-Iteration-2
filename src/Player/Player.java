@@ -2,7 +2,8 @@ package Player;
 
 import Entity.*;
 import Entity.Unit.ColonistUnit;
-import Utilities.Coordinate;
+import GameMap.MapCoordinate;
+import Utility.Coordinate;
 
 /**
  * Created by Thomas on 02/19/2017.
@@ -24,7 +25,7 @@ public class Player {
     private int stone;
     private int wood;
 
-    public Player(int id, Coordinate location){
+    public Player(int id, MapCoordinate location){
         this.pID = id;
         this.entityManager = new EntityManager(this);
         entityManager.init(location);
