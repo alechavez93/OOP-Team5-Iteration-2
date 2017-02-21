@@ -37,7 +37,7 @@ public class Army {
     }
 
     public void addUnit(Unit unit){
-        
+
         // determine if unit is part of BattleGroup or Reinforcements, add to that
     }
 
