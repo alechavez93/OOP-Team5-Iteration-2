@@ -1,6 +1,7 @@
 package MapTests;
-import Map.*;
-import Utility.*;
+import GameMap.*;
+import Utility.Direction;
+import Utility.Vec2i;
 
 import java.util.Iterator;
 
@@ -8,9 +9,26 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BlockOTests {
+
+    private class consoleTile {
+        MapCoordinate pos;
+        char c;
+
+        consoleTile(MapCoordinate pos, char c) {
+            this.pos = pos;
+            this.c = c;
+        }
+    }
+
+
+
+
     public static void main(String[] args) {
         GameMap.getInstance().initialize(new Vec2i(10,10));
         testMap();
+        testTile();
+        testPath();
+
 
         /*
         Tile[] t = GameMap.getInstance().getAllNeighbors(new Vec2i(3,3));
@@ -52,6 +70,20 @@ public class BlockOTests {
                 assertTrue(match.equals(map.getTile(match).getPos().getVector()));
                 assertTrue(match.equals(map.getTile(new MapCoordinate(match)).getPos().getVector()));
             }
+        }
+    }
+
+    public static void testTile() {
+
+    }
+
+    public static void testPath() {
+        PathFinder finder = new AStarPathFinder();
+        Path path = finder.createPath(new MapCoordinate(0,0), new MapCoordinate(9,9));
+        MapCoordinate pos = new MapCoordinate(0,0);
+        while(!path.isEnd()) {
+            pos = GameMap.getInstance().getNeighborTile(pos,path.next()).getPos();
+            System.out.printf(pos.getRow() + " " + pos.getColumn() + "\n");
         }
     }
 }

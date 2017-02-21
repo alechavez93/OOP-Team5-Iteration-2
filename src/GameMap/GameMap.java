@@ -3,6 +3,7 @@ import Utility.Direction;
 import Utility.Vec2i;
 
 import java.util.Iterator;
+import java.util.Random;
 
 /*--------------------------------------------------------------------------------------
 |   GameMap.GameMap Class: Created by Andrew on 2/2/2017.
@@ -13,7 +14,6 @@ import java.util.Iterator;
 |---------------------------------------------------------------------------------------*/
 
 public class GameMap {
-    //TODO: Proper singleton design pattern
     static GameMap singleton = null;
 
     private Vec2i size;
@@ -63,43 +63,22 @@ public class GameMap {
     }
 
 
-    /*
-    //For testing purposes
-    public void hardCodeInit() {
-        char hardCode[] = {
-                'm','g','g','g','m',
-                'j','j','g','j','j',
-                'm','g','m','g','m',
-                'j','j','g','j','j',
-                'm','g','g','g','m'
-        };
-
+    public void testInit(Vec2i size) {
         if(!isInitialized) {
-            this.size = new Vec2i(5,5);
+            this.size = new Vec2i(size);
             tileGrid = new Tile[size.x][size.y];
+            Random rng = new Random();
+            isInitialized = true;
+
             for(int iii=0; iii < size.x; iii++) {
                 for(int jjj=0; jjj < size.y; jjj++) {
-                    switch(hardCode[iii + jjj*size.x]) {
-                        case 'g':
-                            Resource f = new Resource(Resource.ResourceType.Food, 3);
-                            tileGrid[iii][jjj] = Tile.makeGrassTile(new Vec2i(iii,jjj), f);
-                            break;
-                        case 'j':
-                            Resource w = new Resource(Resource.ResourceType.Wood, 3);
-                            tileGrid[iii][jjj] = Tile.makeJungleTile(new Vec2i(iii,jjj), w);
-                            break;
-                        case 'm':
-                            tileGrid[iii][jjj] = Tile.makeMountainTile(new Vec2i(iii,jjj), null);
-                            break;
-                    }
+                    tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(jjj, iii), rng);
                 }
             }
-            isInitialized = true;
         } else {
             throw new IllegalStateException("GameMap is already initialized");
         }
     }
-    */
 
 
     //Getters

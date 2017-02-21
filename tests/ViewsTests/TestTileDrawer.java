@@ -5,9 +5,10 @@ package ViewsTests;/*-----------------------------------------------------------
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameMap.Tile;
 import Utility.Coordinate;
+import Utility.Vec2i;
 import Views.PixelMap;
-import Views.Tile;
 import Views.TileDrawer;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class TestTileDrawer {
     private static class TestPanel extends JPanel{
         @Override
         public void paint(Graphics g) {
-            TileDrawer.drawTile(g, new Tile(new Coordinate(3,3)));
+            TileDrawer.drawTile(g, Tile.makeGrassTile(new Vec2i(3,3)));
 //            TileDrawer.drawTile(g, new Tile(new Coordinate(3,4)));
         }
     }

@@ -6,6 +6,8 @@ package ViewsTests;
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameMap.Tile;
+import Utility.Vec2i;
 import Views.*;
 import Utility.Coordinate;
 import java.util.ArrayList;
@@ -36,23 +38,23 @@ public class TestRowDrawer {
         row5 = new ArrayList<>();
 
         for (int i=1; i<=cols; i++){
-            row1.add(new Tile(new Coordinate(1,i)));
+            row1.add(Tile.makeGrassTile(new Vec2i(1,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row2.add(new Tile(new Coordinate(2,i)));
+            row2.add(Tile.makeGrassTile(new Vec2i(2,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row3.add(new Tile(new Coordinate(3,i)));
+            row3.add(Tile.makeGrassTile(new Vec2i(3,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row4.add(new Tile(new Coordinate(4,i)));
+            row4.add(Tile.makeGrassTile(new Vec2i(4,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row5.add(new Tile(new Coordinate(5,i)));
+            row5.add(Tile.makeGrassTile(new Vec2i(5,i)));
         }
 
 
