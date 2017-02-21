@@ -5,6 +5,7 @@ package ViewsTests;/*-----------------------------------------------------------
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameMap.GameMap;
 import GameMap.Tile;
 import Utility.Coordinate;
 import Utility.Vec2i;
@@ -25,6 +26,8 @@ public class TestTileDrawer {
 
 
     public static void main(String[] args) {
+        GameMap.getInstance().initialize(new Vec2i(10,10));
+
         JFrame frame = new JFrame("Game");
         JPanel panel = new TestPanel();
         frame.add(panel);

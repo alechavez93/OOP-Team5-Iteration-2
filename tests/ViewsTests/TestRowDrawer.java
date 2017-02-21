@@ -6,6 +6,7 @@ package ViewsTests;
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameMap.GameMap;
 import GameMap.Tile;
 import Utility.Vec2i;
 import Views.*;
@@ -29,6 +30,8 @@ public class TestRowDrawer {
     }
 
     public static void main(String[] args) {
+        GameMap.getInstance().initialize(new Vec2i(101,101));
+
         //Set Tiles
         int cols = 100;
         row1 = new ArrayList<>();
