@@ -1,22 +1,18 @@
 package Entity.Army;
 
 /*--------------------------------------------------------------------------------------
-|    Reinforcement Class: Created by Tonny Xie on 2/16/2017.
+|    RallyPoint Class: Created by Kevin on 2/21/17.
 |---------------------------------------------------------------------------------------
-|   Description: 
+|   Description:
 |
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Unit.Unit;
+public class RallyPoint {
 
-public class Reinforcement {
+    private Army army;
 
-    Unit unit;
-    Army armyToReinforce;
+    RallyPoint(Army army){
 
-    public void Reinforcement() {
-
+        this.army = army;
     }
-
-
 }
