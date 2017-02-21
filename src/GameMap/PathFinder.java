@@ -8,5 +8,5 @@ package GameMap;
 
 public interface PathFinder {
     Path createPath(MapCoordinate start, MapCoordinate end);
-    Path recreatePath(Path p);
+    //Path recreatePath(Path p);
 }
