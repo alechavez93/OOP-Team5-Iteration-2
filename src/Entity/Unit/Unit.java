@@ -8,11 +8,13 @@ package Entity.Unit;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public abstract class Unit extends Entity {
 
     public Unit(String name, int instanceID, Coordinate location) {
         super(name, instanceID, location);
     }
+
+
 }

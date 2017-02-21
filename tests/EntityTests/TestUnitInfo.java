@@ -12,7 +12,7 @@ import Entity.Unit.ColonistUnit;
 import Entity.Unit.ExplorerUnit;
 import Entity.Unit.MeleeSoldier;
 import Entity.Unit.RangeSoldier;
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public class TestUnitInfo {
 

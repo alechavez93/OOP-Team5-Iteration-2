@@ -8,7 +8,7 @@ package Entity.Structure;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public abstract class Structure extends Entity {
 

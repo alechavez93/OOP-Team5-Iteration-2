@@ -1,4 +1,4 @@
-package Map;
+package GameMap;
 
 /*--------------------------------------------------------------------------------------
 |   GameMap.Tile Class: Created by CustomerPC on 2/2/2017.
@@ -12,10 +12,6 @@ package Map;
 //import Item.Item;
 import Utility.Vec2i;
 //import Entity.Entity;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 
 
 public class Tile {

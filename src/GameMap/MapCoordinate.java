@@ -1,4 +1,4 @@
-package Map;
+package GameMap;
 
 import Utility.Vec2i;
 

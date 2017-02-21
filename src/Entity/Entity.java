@@ -8,7 +8,7 @@ package Entity;
 |   contains an order queue to execute issued orders.
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 import Utility.Direction;
 
 import java.util.ArrayList;

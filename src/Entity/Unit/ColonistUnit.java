@@ -10,7 +10,7 @@ package Entity.Unit;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Structure.CapitalStructure;
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public class ColonistUnit extends Unit {
 

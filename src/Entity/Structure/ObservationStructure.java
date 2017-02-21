@@ -7,7 +7,7 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public class ObservationStructure extends Structure {
 

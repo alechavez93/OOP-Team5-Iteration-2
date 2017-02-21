@@ -7,11 +7,9 @@ package Views;
 |   the inner Entities if desired (by using an Entity Drawer).
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.GraphicsFactory;
-import Utilities.ImageUtil;
+import Utility.GraphicsFactory;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
