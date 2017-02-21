@@ -5,11 +5,10 @@ package ViewsTests;/*-----------------------------------------------------------
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 import Views.PixelMap;
 import Views.Tile;
 import Views.TileDrawer;
-import org.junit.Test;
 
 import javax.swing.*;
 import java.awt.*;

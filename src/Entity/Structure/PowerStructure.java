@@ -1,6 +1,6 @@
 package Entity.Structure;
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 /*--------------------------------------------------------------------------------------
 |    PowerStructure Class: Created by Tonny Xie on 2/16/2017.

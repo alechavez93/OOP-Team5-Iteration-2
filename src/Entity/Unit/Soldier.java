@@ -7,7 +7,7 @@ package Entity.Unit;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public abstract class Soldier extends Unit {
 

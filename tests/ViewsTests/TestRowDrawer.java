@@ -7,7 +7,7 @@ package ViewsTests;
 ---------------------------------------------------------------------------------------*/
 
 import Views.*;
-import Utilities.Coordinate;
+import Utility.Coordinate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package Map;
+package GameMap;
 
 /*--------------------------------------------------------------------------------------
 |   GameMap.Path Class: Created by Andrew on 2/2/2017.
@@ -7,7 +7,6 @@ package Map;
 |---------------------------------------------------------------------------------------*/
 
 import Utility.Direction;
-import Utility.Vec2i;
 
 import java.util.Stack;
 

@@ -7,11 +7,11 @@ package Entity.Unit;
 |   when in prospecting mode, reveals nearby resources. If Explorer is prospecting,
 |   movement speed is "significantly" lowered.
 |   Stat Balance Note:
-|       High Movement (not prospecting)
+|       High Movement (when not prospecting)
 |       High Visibility (compared to other units)
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 public class ExplorerUnit extends Unit {
 
@@ -29,9 +29,11 @@ public class ExplorerUnit extends Unit {
     public void toggleProspectMode() {
         if (!prospectMode) {
             visibilityRadius = 1;
+            movement = 2;
             prospectMode = true;
         } else {
             visibilityRadius = 2;
+            movement = 5;
             prospectMode = false;
         }
     }
