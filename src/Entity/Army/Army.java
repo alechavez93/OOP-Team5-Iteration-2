@@ -31,14 +31,14 @@ public class Army {
     public Army(Unit startingUnit){
 
         atRallyPoint = true;
-        this.rallyPoint = new RallyPoint(this); // NEEDS TO BE UPDATED SO THAT RALLYPOINT IS AT LOC OF STARTING UNIT
+        this.rallyPoint = new RallyPoint(this, startingUnit.getLocation());
 
         battleGroup = new BattleGroup(startingUnit);
     }
 
     public void addUnit(Unit unit){
 
-        // determine if unit is part of BattleGroup or Reinforcements, add to that
+
     }
 
     public void updateLocation(){
