@@ -1,19 +1,22 @@
-package Views;
+package Entity.Army;
+
 /*--------------------------------------------------------------------------------------
-|	Tile Class: Created by Alejandro Chavez on 2/13/2017.
+|    Reinforcement Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+import Entity.Unit.Unit;
 
-public class Tile {
+public class Reinforcement {
 
-    public Coordinate position;
+    Unit unit;
+    Army armyToReinforce;
 
-    public Tile(Coordinate position){
-        this.position = position;
+    public void Reinforcement() {
+
     }
+
 
 }

@@ -1,6 +1,7 @@
-package Views;
+package Entity.Structure;
+
 /*--------------------------------------------------------------------------------------
-|	Tile Class: Created by Alejandro Chavez on 2/13/2017.
+|    MineStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
@@ -8,12 +9,10 @@ package Views;
 
 import Utility.Coordinate;
 
-public class Tile {
+public class MineStructure extends Structure {
 
-    public Coordinate position;
-
-    public Tile(Coordinate position){
-        this.position = position;
+    public MineStructure(int instanceID, Coordinate location) {
+        super("MINE", instanceID, location);
     }
 
 }

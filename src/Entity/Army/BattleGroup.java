@@ -1,19 +1,14 @@
-package Views;
+package Entity.Army;
+
 /*--------------------------------------------------------------------------------------
-|	Tile Class: Created by Alejandro Chavez on 2/13/2017.
+|    BattleGroup Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+public class BattleGroup {
 
-public class Tile {
 
-    public Coordinate position;
-
-    public Tile(Coordinate position){
-        this.position = position;
-    }
 
 }

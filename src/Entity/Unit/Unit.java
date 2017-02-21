@@ -1,19 +1,20 @@
-package Views;
+package Entity.Unit;
+
 /*--------------------------------------------------------------------------------------
-|	Tile Class: Created by Alejandro Chavez on 2/13/2017.
+|    Unit Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Entity;
 import Utility.Coordinate;
 
-public class Tile {
+public abstract class Unit extends Entity {
 
-    public Coordinate position;
-
-    public Tile(Coordinate position){
-        this.position = position;
+    public Unit(String name, int instanceID, Coordinate location) {
+        super(name, instanceID, location);
     }
+
 
 }

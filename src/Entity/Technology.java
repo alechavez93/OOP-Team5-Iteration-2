@@ -1,19 +1,11 @@
-package Views;
+package Entity;
+
 /*--------------------------------------------------------------------------------------
-|	Tile Class: Created by Alejandro Chavez on 2/13/2017.
+|    Technology Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
-|
+|   EMPTY TECHNOLOGY CLASS FOR COMPILING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
-
-public class Tile {
-
-    public Coordinate position;
-
-    public Tile(Coordinate position){
-        this.position = position;
-    }
-
+public class Technology {
 }

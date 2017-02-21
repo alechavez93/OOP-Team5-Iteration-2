@@ -1,19 +1,19 @@
-package Views;
+package Entity;
+
 /*--------------------------------------------------------------------------------------
-|	Tile Class: Created by Alejandro Chavez on 2/13/2017.
+|    Worker Class: Created by Tonny Xie on 2/18/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+public class Worker {
 
-public class Tile {
+    int workerCounter;
+    Entity assignedEntity;
 
-    public Coordinate position;
+    public Worker() {
 
-    public Tile(Coordinate position){
-        this.position = position;
     }
 
 }

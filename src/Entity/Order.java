@@ -1,19 +1,15 @@
-package Views;
+package Entity;
+
+/**
+ * Created by Tonny Xie on 2/16/2017.
+ */
+
 /*--------------------------------------------------------------------------------------
-|	Tile Class: Created by Alejandro Chavez on 2/13/2017.
+|    Order Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
-|
+|   EMPTY ORDER CLASS FOR COMPILING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
-
-public class Tile {
-
-    public Coordinate position;
-
-    public Tile(Coordinate position){
-        this.position = position;
-    }
-
+public class Order {
 }

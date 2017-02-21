@@ -6,7 +6,7 @@ package Views;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utilities.Coordinate;
+import Utility.Coordinate;
 
 import java.awt.*;
 
