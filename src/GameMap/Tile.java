@@ -11,7 +11,11 @@ package GameMap;
 
 //import Item.Item;
 import Utility.Vec2i;
-//import Entity.Entity;
+import Entity.Entity;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 
 public class Tile {
@@ -21,23 +25,21 @@ public class Tile {
     private boolean isImpassable = false;
 
     //private Effect activeEffect;
+    private List<Entity> entityList = new LinkedList<Entity>();
 
 
-    //private List<Entity> entityList = new LinkedList<Entity>();
-
-    /*
     public Entity[] getOccupyingEntities() { return entityList.toArray(new Entity[entityList.size()]); }
 
     public void addEntity(Entity entity) {
-        if(activeEffect != null)
-            activeEffect.execute(entity);
-        if(activeItem != null)
-            activeItem.triggerItemEffect();
         entityList.add(entity);
+        //if(activeEffect != null)
+        //    activeEffect.execute(entity);
+        //if(activeItem != null)
+        //    activeItem.triggerItemEffect();
     }
 
     public void removeEntity(Entity entity) { entityList.remove(entity); }
-    */
+
 
     //Factory Methods
     private Tile(String name, Vec2i pos, int movement) {
@@ -61,40 +63,27 @@ public class Tile {
         return t;
     }
 
-    /*
+    //Currently only for testing
     static public Tile makeRandomTile(Vec2i pos, Random rng) {
 
         Tile t = null;
-        Resource r = null;
+        //Resource r = null;
 
-        int random = rng.nextInt(4);
-        switch(random) {
-            case 0:
-                r = new Resource(Resource.ResourceType.Food, 2);
-                break;
-            case 1:
-                r = new Resource(Resource.ResourceType.Stone, 2);
-                break;
-            case 2:
-                r = new Resource(Resource.ResourceType.Wood, 2);
-                break;
-        }
-
-        random = rng.nextInt(6);
+        int random = rng.nextInt(6);
         switch(random) {
             case 0: case 1: case 2:
-                t = makeGrassTile(pos, r);
+                t = makeGrassTile(pos);
                 break;
             case 3: case 4:
-                t = makeJungleTile(pos, r);
+                t = makeJungleTile(pos);
                 break;
             case 5:
-                t = makeMountainTile(pos, r);
+                t = makeMountainTile(pos);
                  break;
         }
         return t;
     }
-    */
+
 
     //Getters
     public String getName() { return name; }

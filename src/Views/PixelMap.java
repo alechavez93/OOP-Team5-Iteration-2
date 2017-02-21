@@ -6,6 +6,7 @@ package Views;
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameMap.MapCoordinate;
 import Utility.Coordinate;
 
 import java.awt.*;
@@ -20,17 +21,17 @@ public class PixelMap {
     public static final int TILE_FULL_WIDTH = TILE_WIDTH*2;
     public static final int TILE_HEIGHT = (int)(1.73*TILE_WIDTH);
 
-    public static PixelPoint mapCoordinate(Coordinate coor){
+    public static PixelPoint mapCoordinate(MapCoordinate coor){
         int width_offset = (int)(TILE_WIDTH * 1.5);
         int height_offset = (int)(0.5*TILE_HEIGHT);
 
         //If even Col
-        if(coor.getCol() % 2 == 0){
-            return new PixelPoint(coor.getCol()*width_offset, coor.getRow()*TILE_HEIGHT);
+        if(coor.isOffset()){
+            return new PixelPoint(coor.getColumn()*width_offset, coor.getRow()*TILE_HEIGHT);
         }
         //If odd Col
         else{
-            return new PixelPoint(coor.getCol()*width_offset, coor.getRow()*TILE_HEIGHT+height_offset);
+            return new PixelPoint(coor.getColumn()*width_offset, coor.getRow()*TILE_HEIGHT+height_offset);
         }
     }
 }

@@ -65,7 +65,12 @@ public class MapCoordinate {
             return false;
         if(coord.y < 0 || coord.y >= size.x)
             return false;
-        coord = new Vec2i(coord);
+        this.coord = new Vec2i(coord);
         return true;
     }
+
+    public boolean isEqual(MapCoordinate mapCoord) {
+        return this.coord.equals(mapCoord.coord);
+    }
+
 }

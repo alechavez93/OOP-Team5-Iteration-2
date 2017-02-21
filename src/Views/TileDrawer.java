@@ -7,6 +7,7 @@ package Views;
 |   the inner Entities if desired (by using an Entity Drawer).
 ---------------------------------------------------------------------------------------*/
 
+import GameMap.Tile;
 import Utility.GraphicsFactory;
 
 import java.awt.*;
@@ -21,7 +22,7 @@ public class TileDrawer {
         g2.setStroke(new BasicStroke(3));
 
         //Draw Layers
-        PixelPoint center = PixelMap.mapCoordinate(tile.position);
+        PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
         Polygon tileShape = getHexagon(center);
 
         drawTexture(g, tileShape, center);
