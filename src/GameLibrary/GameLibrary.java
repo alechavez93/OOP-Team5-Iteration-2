@@ -3,7 +3,7 @@ package GameLibrary;
 /*--------------------------------------------------------------------------------------
 |    GameLibrary Class: Created by Tonny Xie on 2/21/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
+|   Description: Library
 |
 ---------------------------------------------------------------------------------------*/
 
@@ -14,12 +14,12 @@ final public class GameLibrary {
     public static final String[] MODES = {RALLY_POINT_MODE, STRUCTURE_MODE, UNIT_MODE, ARMY_MODE};
 
     //Unit Types
-    public static final String MELEE = "MELEE UNIT", RANGED = "RANGED UNIT", COLONIST = "COLONIST", EXPLORER = "EXPLORER";
+    public static final String MELEE = "MELEE SOLDIER", RANGED = "RANGED SOLDIER", COLONIST = "COLONIST", EXPLORER = "EXPLORER";
     public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER};
 
     //Structure Types
-    public static final String BASE = "BASE STRUCTURE";
-    public static final String[] STRUCTURES = {BASE};
+    public static final String CAPITAL = "CAPITAL", FARM = "FARM", MINE = "MINE", POWER_PLANT = "POWER PLANT", FORT = "FORT", OBSERVATION_TOWER = "OBSERVATION TOWER", UNIVERSITY = "UNIVERSITY";
+    public static final String[] STRUCTURES = {CAPITAL, FARM, MINE, POWER_PLANT, FORT, OBSERVATION_TOWER, UNIVERSITY};
 
     //Army Sub-Modes
     public static final String ENTIRE_ARMY = "ENTIRE ARMY", BATTLE_GROUP = "BATTLE GROUP", REINFORCEMENTS = "REINFORCEMENTS";

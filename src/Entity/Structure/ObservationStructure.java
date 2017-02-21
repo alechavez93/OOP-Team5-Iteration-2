@@ -7,11 +7,12 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Utility.Coordinate;
+import GameLibrary.GameLibrary;
+import GameMap.MapCoordinate;
 
 public class ObservationStructure extends Structure {
 
-    public ObservationStructure(int instanceID, Coordinate location) {
-        super("OBSERVATION TOWER", instanceID, location);
+    public ObservationStructure(int instanceID, MapCoordinate location) {
+        super(GameLibrary.OBSERVATION_TOWER, instanceID, location);
     }
 }
