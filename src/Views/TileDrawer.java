@@ -7,8 +7,9 @@ package Views;
 |   the inner Entities if desired (by using an Entity Drawer).
 ---------------------------------------------------------------------------------------*/
 
-import Map.Tile;
-import Utilities.GraphicsFactory;
+
+import GameMap.Tile;
+import Utility.GraphicsFactory;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;

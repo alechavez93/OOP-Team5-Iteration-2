@@ -1,4 +1,4 @@
-package Map;
+package GameMap;
 
 import Utility.Direction;
 import Utility.Vec2i;
@@ -34,16 +34,15 @@ public class AStarPathFinder implements PathFinder {
     }
 
 
-
     public Path createPath(MapCoordinate startCoord, MapCoordinate endCoord) {
+        //Clump of initializations
         GameMap map = GameMap.getInstance();
         Vec2i start = startCoord.getVector();
         Vec2i end = endCoord.getVector();
-
         Queue<Node> closed = new PriorityQueue<Node>();
         Queue<Node> open = new PriorityQueue<Node>();
+
         open.add(new Node(0, distanceHeuristic(start, end), start));
-        //int[][] costMatrix = map.generateMoveCostMatrix();
         Vec2i size = map.getSize();
         Node[][] nodeMatrix = new Node[size.y][size.x];
         while(!open.isEmpty()) {
@@ -60,7 +59,7 @@ public class AStarPathFinder implements PathFinder {
 
             closed.add(n);
             Tile[] neighbors = map.getAllNeighbors(n.loc);
-            for(int iii = 0; iii < neighbors.length; iii++) {
+            for(byte iii = 0; iii < neighbors.length; iii++) {
                 Tile nn = neighbors[iii];
 
                 //Not a sane neighbor
@@ -98,11 +97,6 @@ public class AStarPathFinder implements PathFinder {
         return null;
     }
 
-
-    public Path recreatePath(Path p) {
-        return null;
-    }
-
     private int distanceHeuristic(Vec2i a, Vec2i b) {
         //Convert a to cube
         int xa = a.y;
@@ -118,7 +112,7 @@ public class AStarPathFinder implements PathFinder {
     }
 
     private Direction findDirection(Vec2i from, Vec2i too) {
-        Vec2i c = from.sub(too);
+        Vec2i c = too.sub(from);
         if(c.x == 0)
             return (c.y > 0) ? Direction.South : Direction.North;
         if(c.x > 0)

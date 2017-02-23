@@ -6,7 +6,9 @@ package Views;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Map.MapCoordinate;
+
+import GameMap.MapCoordinate;
+
 
 import java.awt.*;
 
@@ -25,7 +27,7 @@ public class PixelMap {
         int height_offset = (int)(0.5*TILE_HEIGHT);
 
         //If even Col
-        if(coor.getColumn() % 2 == 0){
+        if(coor.isOffset()){
             return new PixelPoint(coor.getColumn()*width_offset, coor.getRow()*TILE_HEIGHT);
         }
         //If odd Col

@@ -5,7 +5,11 @@ package ViewsTests;/*-----------------------------------------------------------
 |
 ---------------------------------------------------------------------------------------*/
 
-import Map.Tile;
+import GameMap.Tile;
+import Utility.Vec2i;
+import GameMap.GameMap;
+import GameMap.Tile;
+import Utility.Coordinate;
 import Utility.Vec2i;
 import Views.PixelMap;
 import Views.TileDrawer;
@@ -18,12 +22,13 @@ public class TestTileDrawer {
         @Override
         public void paint(Graphics g) {
             TileDrawer.drawTile(g, Tile.makeGrassTile(new Vec2i(3,3)));
-//            TileDrawer.drawTile(g, new Tile(new Vec2i(3,4)));
         }
     }
 
 
     public static void main(String[] args) {
+        GameMap.getInstance().initialize(new Vec2i(10,10));
+
         JFrame frame = new JFrame("Game");
         JPanel panel = new TestPanel();
         frame.add(panel);

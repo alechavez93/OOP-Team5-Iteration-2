@@ -6,12 +6,11 @@ package ViewsTests;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Map.GameMap;
-import Map.Tile;
+
+import GameMap.GameMap;
+import GameMap.Tile;
 import Utility.Vec2i;
 import Views.*;
-import com.sun.javafx.collections.MappingChange;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -47,11 +46,12 @@ public class TestRowDrawer {
         }
 
         for (int i=1; i<=cols; i++){
-            row2.add(Tile.makeMountainTile(new Vec2i(2,i)));
+
+            row2.add(Tile.makeGrassTile(new Vec2i(2,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row3.add(Tile.makeJungleTile(new Vec2i(3,i)));
+            row3.add(Tile.makeGrassTile(new Vec2i(3,i)));
         }
 
         for (int i=1; i<=cols; i++){

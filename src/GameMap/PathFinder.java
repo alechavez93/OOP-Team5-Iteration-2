@@ -1,6 +1,4 @@
-package Map;
-
-import Utility.Vec2i;
+package GameMap;
 
 /*--------------------------------------------------------------------------------------
 |   GameMap.PathFinder Interface: Created by Andrew on 2/2/2017.
@@ -10,5 +8,5 @@ import Utility.Vec2i;
 
 public interface PathFinder {
     Path createPath(MapCoordinate start, MapCoordinate end);
-    Path recreatePath(Path p);
+    //Path recreatePath(Path p);
 }
