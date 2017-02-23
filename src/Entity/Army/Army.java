@@ -47,7 +47,7 @@ public class Army {
 
     public void addUnit(Unit unit){
 
-        if(unit.getLocation().isEqual(battleGroup.getLocation())) { // if unit is on battlegroup already
+        if(unit.getLocation().equals(battleGroup.getLocation())) { // if unit is on battlegroup already
 
             battleGroup.addUnit(unit);
         }else{
@@ -57,19 +57,22 @@ public class Army {
     }
 
     public void updateLocation(){
-
         if(!atRallyPoint) {
-
             battleGroup.updateLocation();
+            atRallyPoint = battleGroup.getLocation().equals(rallyPoint.getLocation());
+        } else {
+            //Don't want to reinforce until battleGroup is actually there
+            reinforcements.reinforce(battleGroup, rallyPoint.getLocation());
         }
-        reinforcements.updateLocation();
+        reinforcements.updateLocations();
     }
 
     public void moveRallyPoint(MapCoordinate location){
 
-        if(!(rallyPoint.getLocation().isEqual(location))) { // if rallyPoint location is not same as new location
-
+        if(!(rallyPoint.getLocation().equals(location))) { // if rallyPoint location is not same as new location
             rallyPoint.setLocation(location);
+            battleGroup.createPathTo(location);
+            reinforcements.createPathsTo(location);
             atRallyPoint = false;
         }else{
 

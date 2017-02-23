@@ -1,8 +1,12 @@
 package GameMap;
+import Entity.Army.BattleGroup;
+import Entity.Unit.Unit;
 import Utility.Direction;
 import Utility.Vec2i;
+import Entity.Entity;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 /*--------------------------------------------------------------------------------------
@@ -109,6 +113,22 @@ public class GameMap {
     }
     public Tile getNeighborTile(Tile tile, Direction dir) {
         return getNeighborTile(tile.getPos(), dir);
+    }
+
+    public void shiftEntity(Entity entity, Direction d) {
+        Tile t = getTile(entity.getLocation());
+        t.removeEntity(entity);
+        t = getNeighborTile(t, d);
+        t.addEntity(entity);
+        entity.setLocation(t.getPos());
+    }
+
+    public void shiftArmyUnits(List<Unit> units, Direction d) {
+        Tile t = getTile(units.get(0).getLocation());
+        t.removeArmyUnits(units);
+        t = getNeighborTile(t, d);
+        t.removeArmyUnits(units);
+        for(Unit u : units) u.setLocation(t.getPos());
     }
 
     public Tile[] getAllNeighbors(Vec2i pos) {

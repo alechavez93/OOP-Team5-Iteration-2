@@ -69,7 +69,7 @@ public class MapCoordinate {
         return true;
     }
 
-    public boolean isEqual(MapCoordinate mapCoord) {
+    public boolean equals(MapCoordinate mapCoord) {
         return this.coord.equals(mapCoord.coord);
     }
 

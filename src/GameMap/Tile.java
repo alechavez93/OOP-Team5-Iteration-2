@@ -10,6 +10,7 @@ package GameMap;
 |---------------------------------------------------------------------------------------*/
 
 //import Item.Item;
+import Entity.Unit.Unit;
 import Utility.Vec2i;
 import Entity.Entity;
 
@@ -37,8 +38,12 @@ public class Tile {
         //if(activeItem != null)
         //    activeItem.triggerItemEffect();
     }
+    public void addArmyUnits(List<Unit> list) {
+        entityList.addAll(list);
+    }
 
     public void removeEntity(Entity entity) { entityList.remove(entity); }
+    public void removeArmyUnits(List<Unit> list) { entityList.removeAll(list); }
 
 
     //Factory Methods
