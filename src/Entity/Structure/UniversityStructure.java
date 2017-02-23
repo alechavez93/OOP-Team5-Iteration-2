@@ -7,18 +7,24 @@ package Entity.Structure;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Entity;
 import Entity.Technology;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class UniversityStructure extends Structure {
 
-    public UniversityStructure(int instanceID, MapCoordinate location) {
-        super(GameLibrary.UNIVERSITY, instanceID, location);
+    public UniversityStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.UNIVERSITY, instanceID, location, entityManager);
     }
 
     public Technology completeResearch(){
         Technology tech = new Technology();
         return tech;
+    }
+
+    public void destroy(){
+        entityManager.destroyUniversity(this);
     }
 }

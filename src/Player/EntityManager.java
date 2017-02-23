@@ -61,6 +61,7 @@ public class EntityManager {
 
     private int maxUnitCount = 25;
     private int maxStructureCount = 10;
+    private int maxArmyCount = 10;
 
 
     public EntityManager(Player owner){
@@ -96,15 +97,15 @@ public class EntityManager {
 
     public void init(MapCoordinate location){
 
-        ColonistUnit c0 = new ColonistUnit(nextColonistIndex(), location);
+        ColonistUnit c0 = new ColonistUnit(nextColonistIndex(), location, this);
         this.addColonist(c0);
         placeEntity(c0);
 
-        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow()+1, location.getColumn()));
+        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow()+1, location.getColumn()), this);
         this.addExplorer(e0);
         placeEntity(e0);
 
-        ExplorerUnit e1 = new ExplorerUnit(nextExplorerIndex(), location);
+        ExplorerUnit e1 = new ExplorerUnit(nextExplorerIndex(), location, this);
         this.addExplorer(e1);
         placeEntity(e1);
     }
@@ -240,69 +241,109 @@ public class EntityManager {
     }
 
     public void destroyColonist(ColonistUnit colonist){
+        System.out.println("Second step");
         hashset.remove(colonist.getInstanceID());
+        System.out.println("ID: " + colonist.getInstanceID());
         removeEntity(colonist);
+        colonistUnitList.remove(colonist);
+        colonistUnitCount--;
+        unitCount--;
     }
 
     public void destroyExplorer(ExplorerUnit explorer){
         hashset.remove(explorer.getInstanceID() + 10);
         removeEntity(explorer);
+        explorerUnitList.remove(explorer);
+        explorerUnitCount--;
+        unitCount--;
     }
 
     public void destroyMelee(MeleeSoldier melee){
         hashset.remove(melee.getInstanceID());
         removeEntity(melee);
+        meleeUnitList.remove(melee);
+        meleeUnitCount--;
+        unitCount--;
     }
 
     public void destroyRange(RangeSoldier range){
         hashset.remove(range.getInstanceID());
         removeEntity(range);
+        rangeUnitList.remove(range);
+        rangeUnitCount--;
+        unitCount--;
     }
 
     public void destroyCapital(CapitalStructure capital){
         hashset.remove(capital.getInstanceID() + 100);
         removeEntity(capital);
+        capitalList.remove(capital);
+        capitalCount--;
+        structureCount--;
     }
 
     public void destroyFarm(FarmStructure farm){
         hashset.remove(farm.getInstanceID() + 110);
         removeEntity(farm);
+        farmList.remove(farm);
+        farmCount--;
+        structureCount--;
     }
 
     public void destroyFort(FortStructure fort){
         hashset.remove(fort.getInstanceID() + 120);
         removeEntity(fort);
+        fortList.remove(fort);
+        fortCount--;
+        structureCount--;
     }
 
     public void destroyMine(MineStructure mine){
         hashset.remove(mine.getInstanceID() + 130);
         removeEntity(mine);
+        mineList.remove(mine);
+        mineCount--;
+        structureCount--;
     }
 
     public void destroyObserver(ObservationStructure observer){
         hashset.remove(observer.getInstanceID() + 140);
         removeEntity(observer);
+        observationList.remove(observer);
+        observationCount--;
+        structureCount--;
     }
 
     public void destroyPower(PowerStructure power){
         hashset.remove(power.getInstanceID() + 150);
         removeEntity(power);
+        powerList.remove(power);
+        powerCount--;
+        structureCount--;
     }
 
     public void destroyUniversity(UniversityStructure university){
         hashset.remove(university.getInstanceID() + 160);
         removeEntity(university);
+        universityList.remove(university);
+        universityCount--;
+        structureCount--;
     }
 
     public void destroyArmy(Army army){
         hashset.remove(army.getInstanceID() + 200);
-        removeArmy(army);
+        armyList.remove(army);
+        armyCount--;
+        for (Unit unit : army.getBattleGroup().getUnits()) {
+           unit.destroy();
+        }
     }
 
-    public void removeArmy(Army army){
-        Tile t = GameMap.getInstance().getTile(army.getLocation().getRow(), army.getLocation().getColumn());
-        t.addEntity(entity);
-    }
+/*    public void removeArmy(Army army){
+        Tile t = GameMap.getInstance().getTile(army.getRallyPoint().getLocation().getRow(), army.getRallyPoint().getLocation().getColumn());
+        t.removeArmy(army);
+        //maybe add back in each unit in the army? I'm not sure for now.
+    }*/
 
 /*--------------------------------------------------------------------------------------
 |    List of positions in the hashset
@@ -412,9 +453,18 @@ public class EntityManager {
         return nextStructureIndex(160, 170);
     }
 
-    public int nextArmyIndex(){
-        return nextStructureIndex(200, 210);
+    public int nextArmyIndex(int start, int end){
+        if(armyCount >= maxArmyCount)
+            return -1;
+        for(int i = start; i < end; i ++){
+            if( !hashset.contains(i) ){
+                return i%10 + 200;
+            }
+        }
+        return -1;
     }
+
+
 
 
 

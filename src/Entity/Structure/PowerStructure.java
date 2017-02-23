@@ -9,11 +9,15 @@ package Entity.Structure;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class PowerStructure extends Structure {
 
-    public PowerStructure(int instanceID, MapCoordinate location) {
-        super(GameLibrary.POWER_PLANT, instanceID, location);
+    public PowerStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.POWER_PLANT, instanceID, location, entityManager);
     }
 
+    public void destroy(){
+        entityManager.destroyPower(this);
+    }
 }

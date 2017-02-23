@@ -13,6 +13,8 @@ import Entity.Unit.ExplorerUnit;
 import Entity.Unit.MeleeSoldier;
 import Entity.Unit.RangeSoldier;
 import GameMap.*;
+import Player.EntityManager;
+import Player.Player;
 import Utility.Vec2i;
 
 public class TestUnitInfo {
@@ -32,8 +34,10 @@ public class TestUnitInfo {
         int id = 1;
         GameMap map = GameMap.getInstance();
         MapCoordinate location = new MapCoordinate(2,3);
-        ColonistUnit colonistUnit = new ColonistUnit(id, location);
-        ExplorerUnit explorerUnit = new ExplorerUnit(id, location);
+        Player player = new Player(1, location);
+        EntityManager entityManager = new EntityManager(player);
+        ColonistUnit colonistUnit = new ColonistUnit(id, location, entityManager);
+        ExplorerUnit explorerUnit = new ExplorerUnit(id, location, entityManager);
 
         System.out.println("testColonistExplorerInfo()");
         printEntityInfo(colonistUnit);
@@ -44,7 +48,9 @@ public class TestUnitInfo {
         int id = 1;
         GameMap map = GameMap.getInstance();
         MapCoordinate location = new MapCoordinate(2, 3);
-        ExplorerUnit explorerUnit = new ExplorerUnit(id, location);
+        Player player = new Player(1, location);
+        EntityManager entityManager = new EntityManager(player);
+        ExplorerUnit explorerUnit = new ExplorerUnit(id, location, entityManager);
 
         System.out.println("testExplorerProspectMode()");
         System.out.println("Normal Mode");
@@ -63,8 +69,10 @@ public class TestUnitInfo {
         int id = 1;
         GameMap map = GameMap.getInstance();
         MapCoordinate location = new MapCoordinate(2, 3);
-        MeleeSoldier meleeSoldier = new MeleeSoldier(id, location);
-        RangeSoldier rangeSoldier = new RangeSoldier(id, location);
+        Player player = new Player(1, location);
+        EntityManager entityManager = new EntityManager(player);
+        MeleeSoldier meleeSoldier = new MeleeSoldier(id, location, entityManager);
+        RangeSoldier rangeSoldier = new RangeSoldier(id, location, entityManager);
 
         printEntityInfo(meleeSoldier);
         printEntityInfo(rangeSoldier);

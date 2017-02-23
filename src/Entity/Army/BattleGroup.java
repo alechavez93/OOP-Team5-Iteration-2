@@ -48,6 +48,10 @@ public class BattleGroup {
         // MOVE BATTLEGROUP BASED ON SLOWEST UNIT
     }
 
+    public List<Unit> getUnits(){
+        return units;
+    }
+
     public MapCoordinate getLocation() {
         return location;
     }

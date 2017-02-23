@@ -9,6 +9,7 @@ package Entity;
 ---------------------------------------------------------------------------------------*/
 
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 import Utility.Direction;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public abstract class Entity extends Stats {
 
+    protected EntityManager entityManager;
     private String name = "";
     private int instanceID = 0;
     private MapCoordinate location;
@@ -23,12 +25,13 @@ public abstract class Entity extends Stats {
 
     public List<Order> orderList;
 
-    public Entity(String name, int instanceID, MapCoordinate location) {
+    public Entity(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(0,0,0,0,0,0,0,0, 0);
         this.name = name;
         this.instanceID = instanceID;
         this.location = location;
         this.orderList = new ArrayList<Order>();
+        this.entityManager = entityManager;
     }
 
     public void addOrder(Order order) {
@@ -56,6 +59,10 @@ public abstract class Entity extends Stats {
     }
 
     public void acceptTech(Technology tech) {
+
+    }
+
+    public void destroy() {
 
     }
 

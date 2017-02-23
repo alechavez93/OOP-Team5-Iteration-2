@@ -9,10 +9,15 @@ package Entity.Structure;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class FarmStructure extends Structure {
 
-    public FarmStructure(int instanceID, MapCoordinate location) {
-        super(GameLibrary.FARM, instanceID, location);
+    public FarmStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.FARM, instanceID, location, entityManager);
+    }
+
+    public void destroy(){
+        entityManager.destroyFarm(this);
     }
 }

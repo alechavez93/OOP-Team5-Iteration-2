@@ -31,14 +31,15 @@ import GameMap.MapCoordinate;
 
 public class Army {
 
+    private int instanceID;
     private RallyPoint rallyPoint;
     private BattleGroup battleGroup;
     private Reinforcements reinforcements;
 
     private Boolean atRallyPoint;
 
-    public Army(Unit startingUnit) {
-
+    public Army(Unit startingUnit, int ID) {
+        this.instanceID = ID;
         atRallyPoint = true;
         this.rallyPoint = new RallyPoint(this, startingUnit.getLocation());
 
@@ -79,6 +80,14 @@ public class Army {
 
     public RallyPoint getRallyPoint() {
         return rallyPoint;
+    }
+
+    public BattleGroup getBattleGroup(){
+        return battleGroup;
+    }
+
+    public int getInstanceID(){
+        return instanceID;
     }
 
 }

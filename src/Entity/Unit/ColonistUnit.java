@@ -12,11 +12,12 @@ package Entity.Unit;
 import Entity.Structure.CapitalStructure;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class ColonistUnit extends Unit {
 
-    public ColonistUnit(int instanceID, MapCoordinate location) {
-        super(GameLibrary.COLONIST, instanceID, location);
+    public ColonistUnit(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.COLONIST, instanceID, location, entityManager);
         movement = 1;
         maxHealth = 10;
         currentHealth = maxHealth;
@@ -25,14 +26,18 @@ public class ColonistUnit extends Unit {
     }
 
     public CapitalStructure createCapitalStructure(int instanceID) {
-        return new CapitalStructure(instanceID, this.getLocation());
+        return new CapitalStructure(instanceID, this.getLocation(), this.entityManager);
     }
 
     public MeleeSoldier createMeleeSoldier(int instanceID) {
-        return new MeleeSoldier(instanceID, this.getLocation());
+        return new MeleeSoldier(instanceID, this.getLocation(), entityManager);
     }
 
     // MAKE WORKER METHOD NEEDS TO BE CALLED BY ENTITY MANAGER FOR
-    
+
+    public void destroy(){
+        System.out.println("first step");
+        entityManager.destroyColonist(this);
+    }
 
 }
