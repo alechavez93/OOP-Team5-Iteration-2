@@ -83,9 +83,11 @@ public class TestPlayer {
         System.out.println("Player 1 has " + p1.getEntityManager().getExplorerUnitList().size() + " explorers");
         System.out.println("e10s ID: " + e10.getInstanceID());*/
 
-        ColonistUnit colonist = p1.getEntityManager().newColonist(p1.getEntityManager().getExplorerUnitList().get(0).getLocation());
+        ColonistUnit colonist = new ColonistUnit(p1.getEntityManager().nextColonistIndex(), new MapCoordinate(1,1));
         p1.getEntityManager().addColonist(colonist);
         System.out.println("Player 1 has " + p1.getEntityManager().getColonistList().size() + " colonists");
+
+        System.out.println("total units: "  + p1.getEntityManager().getUnitCount());
 
 
 

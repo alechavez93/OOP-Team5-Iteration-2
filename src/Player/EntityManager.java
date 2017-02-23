@@ -1,9 +1,10 @@
 package Player;
 
 import Entity.*;
+import Entity.Army.Army;
 import Entity.Structure.*;
 import Entity.Unit.*;
-import GameMap.MapCoordinate;
+import GameMap.*;
 import Utility.Coordinate;
 
 import javax.swing.border.EtchedBorder;
@@ -53,14 +54,13 @@ public class EntityManager {
     private List<Entity> fortList;
     private List<Entity> observationList;
     private List<Entity> universityList;
-    private List<Entity> armyList;
+
+    private List<Army> armyList;
 
     private HashSet hashset;
 
-    int maxUnitCount = 25;
-
-    //not sure if this is still needed
-    //HashMap<String, List<Entity>> entityMap;
+    private int maxUnitCount = 25;
+    private int maxStructureCount = 10;
 
 
     public EntityManager(Player owner){
@@ -90,7 +90,7 @@ public class EntityManager {
         fortList = new ArrayList<Entity>();
         observationList = new ArrayList<Entity>();
         universityList = new ArrayList<Entity>();
-        armyList = new ArrayList<Entity>();
+        armyList = new ArrayList<Army>();
         hashset = new HashSet<Integer>();
     }
 
@@ -98,14 +98,18 @@ public class EntityManager {
 
         ColonistUnit c0 = new ColonistUnit(nextColonistIndex(), location);
         this.addColonist(c0);
+        placeEntity(c0);
 
         ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow()+1, location.getColumn()));
         this.addExplorer(e0);
+        placeEntity(e0);
 
         ExplorerUnit e1 = new ExplorerUnit(nextExplorerIndex(), location);
         this.addExplorer(e1);
+        placeEntity(e1);
     }
-
+/*
+//not sure if this is needed
     public ColonistUnit newColonist(MapCoordinate coordinate){
         int index = nextColonistIndex();
         if(index != -1){
@@ -124,7 +128,7 @@ public class EntityManager {
         }
         return null;
         //System.out.println("Invalid request");
-    }
+    }*/
 
 
     public void addColonist(ColonistUnit colonist){
@@ -215,113 +219,204 @@ public class EntityManager {
         structureCount++;
     }
 
+    public void addArmy(Army army){
+        armyList.add(army);
+        hashset.add(army.getInstanceID() + 200);
+
+        armyCount++;
+    }
+
+    public void placeEntity(Entity entity){
+        Tile t = GameMap.getInstance().getTile(entity.getLocation().getRow(), entity.getLocation().getColumn());
+        t.addEntity(entity);
+    }
+
+
+
+    //removing or deleting entities
+    public void removeEntity(Entity entity){
+        Tile t = GameMap.getInstance().getTile(entity.getLocation().getRow(), entity.getLocation().getColumn());
+        t.removeEntity(entity);
+    }
+
+    public void destroyColonist(ColonistUnit colonist){
+        hashset.remove(colonist.getInstanceID());
+        removeEntity(colonist);
+    }
+
+    public void destroyExplorer(ExplorerUnit explorer){
+        hashset.remove(explorer.getInstanceID() + 10);
+        removeEntity(explorer);
+    }
+
+    public void destroyMelee(MeleeSoldier melee){
+        hashset.remove(melee.getInstanceID());
+        removeEntity(melee);
+    }
+
+    public void destroyRange(RangeSoldier range){
+        hashset.remove(range.getInstanceID());
+        removeEntity(range);
+    }
+
+    public void destroyCapital(CapitalStructure capital){
+        hashset.remove(capital.getInstanceID() + 100);
+        removeEntity(capital);
+    }
+
+    public void destroyFarm(FarmStructure farm){
+        hashset.remove(farm.getInstanceID() + 110);
+        removeEntity(farm);
+    }
+
+    public void destroyFort(FortStructure fort){
+        hashset.remove(fort.getInstanceID() + 120);
+        removeEntity(fort);
+    }
+
+    public void destroyMine(MineStructure mine){
+        hashset.remove(mine.getInstanceID() + 130);
+        removeEntity(mine);
+    }
+
+    public void destroyObserver(ObservationStructure observer){
+        hashset.remove(observer.getInstanceID() + 140);
+        removeEntity(observer);
+    }
+
+    public void destroyPower(PowerStructure power){
+        hashset.remove(power.getInstanceID() + 150);
+        removeEntity(power);
+    }
+
+    public void destroyUniversity(UniversityStructure university){
+        hashset.remove(university.getInstanceID() + 160);
+        removeEntity(university);
+    }
+
+    public void destroyArmy(Army army){
+        hashset.remove(army.getInstanceID() + 200);
+        removeArmy(army);
+    }
+
+    public void removeArmy(Army army){
+        Tile t = GameMap.getInstance().getTile(army.getLocation().getRow(), army.getLocation().getColumn());
+        t.addEntity(entity);
+    }
+
+/*--------------------------------------------------------------------------------------
+|    List of positions in the hashset
+|---------------------------------------------------------------------------------------
+|
+|   0-9     colonist
+|   10-19   explorer
+|   20-29   melee
+|   30-39   range
+|
+|   100-109 capital
+|   110-119 farm
+|   120-129 fort
+|   130-139 mine
+|   140-149 observer
+|   150-159 power
+|   160-169 university
+|
+|   200+    army
+---------------------------------------------------------------------------------------*/
+
 
     //functions to find the next available (unique) index
 
-    public int nextColonistIndex() {
-        if (unitCount >= maxUnitCount)
+    public int nextUnitIndex(int start, int end){
+        if(unitCount >= maxUnitCount)
             return -1;
-
-        for (int i = 0; i < 10; i++) {
-            if (!hashset.contains(i)) {
-                return i % 10;
+        for(int i = start; i < end; i ++){
+            if( !hashset.contains(i) ){
+                return i%10;
             }
         }
         return -1;
     }
+
+    public int nextColonistIndex() {
+        return nextUnitIndex(0, 10);
+    }
+
 
     public int nextExplorerIndex(){
-        if(unitCount >= maxUnitCount)
-            return -1;
-
-        for(int i = 10; i < 20; i ++){
-            if( !hashset.contains(i) ){
-                //System.out.println("found index at :" + i);
-                return i%10;
-            }
-        }
-
-        //System.out.println("something happened");
-        return -1;
+        return nextUnitIndex(10, 20);
     }
 
-    public int nextMeleeIndex(){
-        if(unitCount >= maxUnitCount)
-            return -1;
+//  was originally
+//    public int nextExplorerIndex(){
+//        if(unitCount >= maxUnitCount)
+//            return -1;
+//
+//        for(int i = 10; i < 20; i ++){
+//            if( !hashset.contains(i) ){
+//                //System.out.println("found index at :" + i);
+//                return i%10;
+//            }
+//        }
+//
+//        //System.out.println("something happened");
+//        return -1;
+//    }
 
-        for(int i = 20; i < 30; i ++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+    public int nextMeleeIndex(){
+        return nextUnitIndex(20, 30);
     }
 
     public int nextRangeIndex(){
-        if(unitCount >= maxUnitCount)
-            return -1;
+        return nextUnitIndex(30, 40);
+    }
 
-        for(int i = 30; i < 40; i ++){
-            if( !hashset.contains(i) )
+
+    public int nextStructureIndex(int start, int end){
+        if(structureCount >= maxStructureCount)
+            return -1;
+        for(int i = start; i < end; i ++){
+            if( !hashset.contains(i) ){
                 return i%10;
+            }
         }
         return -1;
     }
 
+
     public int nextCapitalIndex(){
-        for(int i = 100; i < 110; i++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+        return nextStructureIndex(100, 110);
     }
 
     public int nextFarmIndex(){
-        for(int i = 110; i < 120; i++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+        return nextStructureIndex(110, 120);
     }
 
     public int nextFortIndex(){
-        for(int i = 120; i < 130; i++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+        return nextStructureIndex(120, 130);
     }
 
     public int nextMineIndex(){
-        for(int i = 130; i < 140; i++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+        return nextStructureIndex(130, 140);
     }
 
     public int nextObservationIndex(){
-        for(int i = 140; i < 150; i++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+        return nextStructureIndex(140, 150);
     }
 
     public int nextPowerIndex(){
-        for(int i = 150; i < 160; i++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+        return nextStructureIndex(150, 160);
     }
 
     public int nextUniversityIndex(){
-        for(int i = 160; i < 170; i++){
-            if( !hashset.contains(i) )
-                return i%10;
-        }
-        return -1;
+        return nextStructureIndex(160, 170);
     }
+
+    public int nextArmyIndex(){
+        return nextStructureIndex(200, 210);
+    }
+
+
 
 
     //general getters
@@ -370,4 +465,33 @@ public class EntityManager {
     public List<Entity> getUniversityList(){
         return universityList;
     }
+
+    public int getColonistUnitCount(){ return colonistUnitCount; }
+
+    public int getExplorerUnitCount(){return explorerUnitCount; }
+
+    public int getMeleeUnitCount(){ return meleeUnitCount; }
+
+    public int getRangeUnitCount(){ return rangeUnitCount; }
+
+    public int getUnitCount(){ return unitCount; }
+
+    public int getStructureCount(){ return structureCount; }
+
+    public int getArmyCount(){ return armyCount; }
+
+    public int getCapitalCount(){ return capitalCount; }
+
+    public int getFarmCount(){ return  farmCount; }
+
+    public int getFortCount() { return fortCount; }
+
+    public int getMineCount(){ return mineCount; }
+
+    public int getObservationCount(){ return observationCount; }
+
+    public int getPowerCount(){ return powerCount; }
+
+    public int getUniversityCount(){ return universityCount; }
+
 }
