@@ -6,8 +6,9 @@ package Views;
 |
 ---------------------------------------------------------------------------------------*/
 
+
 import GameMap.MapCoordinate;
-import Utility.Coordinate;
+
 
 import java.awt.*;
 

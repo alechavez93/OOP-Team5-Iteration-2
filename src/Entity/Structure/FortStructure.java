@@ -9,11 +9,16 @@ package Entity.Structure;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class FortStructure extends Structure {
 
-    public FortStructure(int instanceID, MapCoordinate location) {
-        super(GameLibrary.FORT, instanceID, location);
+    public FortStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.FORT, instanceID, location, entityManager);
+    }
+
+    public void destroy(){
+        entityManager.destroyFort(this);
     }
 
 }

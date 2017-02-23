@@ -69,6 +69,10 @@ public class BattleGroup {
         }
     }
 
+    public List<Unit> getUnits(){
+        return units;
+    }
+
     public MapCoordinate getLocation() {
         return location;
     }

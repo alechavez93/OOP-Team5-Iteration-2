@@ -31,14 +31,15 @@ import GameMap.MapCoordinate;
 
 public class Army {
 
+    private int instanceID;
     private RallyPoint rallyPoint;
     private BattleGroup battleGroup;
     private Reinforcements reinforcements;
 
     private Boolean atRallyPoint;
 
-    public Army(Unit startingUnit){
-
+    public Army(Unit startingUnit, int ID) {
+        this.instanceID = ID;
         atRallyPoint = true;
         this.rallyPoint = new RallyPoint(this, startingUnit.getLocation());
 
@@ -50,7 +51,7 @@ public class Army {
         if(unit.getLocation().equals(battleGroup.getLocation())) { // if unit is on battlegroup already
 
             battleGroup.addUnit(unit);
-        }else{
+        } else {
 
             reinforcements.addUnit(unit);
         }
@@ -74,7 +75,7 @@ public class Army {
             battleGroup.createPathTo(location);
             reinforcements.createPathsTo(location);
             atRallyPoint = false;
-        }else{
+        } else {
 
             atRallyPoint = true; // ERROR: Attempted to move rally point to same location
         }
@@ -82,6 +83,14 @@ public class Army {
 
     public RallyPoint getRallyPoint() {
         return rallyPoint;
+    }
+
+    public BattleGroup getBattleGroup(){
+        return battleGroup;
+    }
+
+    public int getInstanceID(){
+        return instanceID;
     }
 
 }

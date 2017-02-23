@@ -9,11 +9,12 @@ package Entity.Unit;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class MeleeSoldier extends Soldier {
 
-    public MeleeSoldier(int instanceID,MapCoordinate location) {
-        super(GameLibrary.MELEE, instanceID, location);
+    public MeleeSoldier(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.MELEE, instanceID, location, entityManager);
         attack = 3;
         defense = 3;
         armor = 1;
@@ -23,5 +24,9 @@ public class MeleeSoldier extends Soldier {
         rangeRadius = 1;
         visibilityRadius = 2;
         upkeep = 5;
+    }
+
+    public void destroy(){
+        entityManager.destroyMelee(this);
     }
 }

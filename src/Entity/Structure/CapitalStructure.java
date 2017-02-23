@@ -9,6 +9,7 @@ package Entity.Structure;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class CapitalStructure extends Structure {
 
@@ -16,9 +17,12 @@ public class CapitalStructure extends Structure {
 //    private Worker workerCount;
 //    private int workRadius;
 
-    public CapitalStructure(int instanceID, MapCoordinate location) {
-        super(GameLibrary.CAPITAL, instanceID, location);
+    public CapitalStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.CAPITAL, instanceID, location, entityManager);
     }
 
+    public void destroy(){
+        entityManager.destroyCapital(this);
+    }
 
 }

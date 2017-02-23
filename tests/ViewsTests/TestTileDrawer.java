@@ -5,6 +5,8 @@ package ViewsTests;/*-----------------------------------------------------------
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameMap.Tile;
+import Utility.Vec2i;
 import GameMap.GameMap;
 import GameMap.Tile;
 import Utility.Coordinate;
@@ -20,7 +22,6 @@ public class TestTileDrawer {
         @Override
         public void paint(Graphics g) {
             TileDrawer.drawTile(g, Tile.makeGrassTile(new Vec2i(3,3)));
-//            TileDrawer.drawTile(g, new Tile(new Coordinate(3,4)));
         }
     }
 

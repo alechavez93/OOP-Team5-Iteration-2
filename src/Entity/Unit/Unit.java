@@ -9,11 +9,12 @@ package Entity.Unit;
 
 import Entity.Entity;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public abstract class Unit extends Entity {
 
-    public Unit(String name, int instanceID, MapCoordinate location) {
-        super(name, instanceID, location);
+    public Unit(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(name, instanceID, location, entityManager);
     }
 
 
