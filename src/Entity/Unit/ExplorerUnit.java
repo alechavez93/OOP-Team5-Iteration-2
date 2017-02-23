@@ -13,13 +13,14 @@ package Entity.Unit;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class ExplorerUnit extends Unit {
 
     public boolean prospectMode = false;
 
-    public ExplorerUnit(int instanceID, MapCoordinate location) {
-        super(GameLibrary.EXPLORER, instanceID, location);
+    public ExplorerUnit(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.EXPLORER, instanceID, location, entityManager);
         movement = 5;
         maxHealth = 10;
         currentHealth = maxHealth;
@@ -39,4 +40,7 @@ public class ExplorerUnit extends Unit {
         }
     }
 
+    public void destroy(){
+        entityManager.destroyExplorer(this);
+    }
 }

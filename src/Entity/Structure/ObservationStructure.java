@@ -9,10 +9,15 @@ package Entity.Structure;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class ObservationStructure extends Structure {
 
-    public ObservationStructure(int instanceID, MapCoordinate location) {
-        super(GameLibrary.OBSERVATION_TOWER, instanceID, location);
+    public ObservationStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.OBSERVATION_TOWER, instanceID, location, entityManager);
+    }
+
+    public void destroy(){
+        entityManager.destroyObserver(this);
     }
 }

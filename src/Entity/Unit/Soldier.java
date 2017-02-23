@@ -8,10 +8,11 @@ package Entity.Unit;
 ---------------------------------------------------------------------------------------*/
 
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public abstract class Soldier extends Unit {
 
-    public Soldier(String name, int instanceID, MapCoordinate location) {
-        super(name, instanceID, location);
+    public Soldier(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(name, instanceID, location, entityManager);
     }
 }

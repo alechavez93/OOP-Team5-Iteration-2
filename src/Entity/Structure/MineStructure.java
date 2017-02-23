@@ -9,11 +9,15 @@ package Entity.Structure;
 
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public class MineStructure extends Structure {
 
-    public MineStructure(int instanceID, MapCoordinate location) {
-        super(GameLibrary.MINE, instanceID, location);
+    public MineStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(GameLibrary.MINE, instanceID, location, entityManager);
     }
 
+    public void destroy(){
+        entityManager.destroyMine(this);
+    }
 }

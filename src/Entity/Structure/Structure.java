@@ -9,11 +9,12 @@ package Entity.Structure;
 
 import Entity.Entity;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 public abstract class Structure extends Entity {
 
-    public Structure(String name, int instanceID, MapCoordinate location) {
-        super(name, instanceID, location);
+    public Structure(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
+        super(name, instanceID, location, entityManager);
     }
 
 //    public abstract void produce();
