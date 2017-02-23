@@ -6,11 +6,11 @@ package ViewsTests;
 |
 ---------------------------------------------------------------------------------------*/
 
+
 import GameMap.GameMap;
 import GameMap.Tile;
 import Utility.Vec2i;
 import Views.*;
-import Utility.Coordinate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -30,7 +30,8 @@ public class TestRowDrawer {
     }
 
     public static void main(String[] args) {
-        GameMap.getInstance().initialize(new Vec2i(101,101));
+        GameMap map = GameMap.getInstance();
+        map.initialize(new Vec2i(101, 101));
 
         //Set Tiles
         int cols = 100;
@@ -45,6 +46,7 @@ public class TestRowDrawer {
         }
 
         for (int i=1; i<=cols; i++){
+
             row2.add(Tile.makeGrassTile(new Vec2i(2,i)));
         }
 

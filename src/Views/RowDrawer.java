@@ -7,7 +7,6 @@ package Views;
 ---------------------------------------------------------------------------------------*/
 
 import GameMap.Tile;
-
 import java.awt.*;
 import java.util.List;
 
