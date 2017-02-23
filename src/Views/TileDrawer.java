@@ -7,13 +7,12 @@ package Views;
 |   the inner Entities if desired (by using an Entity Drawer).
 ---------------------------------------------------------------------------------------*/
 
+import Map.Tile;
 import Utilities.GraphicsFactory;
-import Utilities.ImageUtil;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class TileDrawer {
 
@@ -23,7 +22,7 @@ public class TileDrawer {
         g2.setStroke(new BasicStroke(3));
 
         //Draw Layers
-        PixelPoint center = PixelMap.mapCoordinate(tile.position);
+        PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
         Polygon tileShape = getHexagon(center);
 
         drawTexture(g, tileShape, center);
@@ -79,6 +78,6 @@ public class TileDrawer {
     //Draws the texture or terrain of a Tile
     private static void drawTexture(Graphics g, Polygon tileShape, PixelPoint center){
         g.setClip(tileShape);
-        g.drawImage(GraphicsFactory.getInstance().getTileTexture(GraphicsFactory.GRASS), center.x-PixelMap.TILE_WIDTH, center.y-PixelMap.TILE_HEIGHT/2, 2*PixelMap.TILE_WIDTH, PixelMap.TILE_HEIGHT, null);
+        g.drawImage(GraphicsFactory.getInstance().getTileTexture(GraphicsFactory.WATER), center.x-PixelMap.TILE_WIDTH, center.y-PixelMap.TILE_HEIGHT/2, 2*PixelMap.TILE_WIDTH, PixelMap.TILE_HEIGHT, null);
     }
 }

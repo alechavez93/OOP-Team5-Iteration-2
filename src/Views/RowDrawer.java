@@ -6,6 +6,8 @@ package Views;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Map.Tile;
+
 import java.awt.*;
 import java.util.List;
 
