@@ -37,7 +37,7 @@ public class Army {
 
     private Boolean atRallyPoint;
 
-    public Army(Unit startingUnit){
+    public Army(Unit startingUnit) {
 
         atRallyPoint = true;
         this.rallyPoint = new RallyPoint(this, startingUnit.getLocation());
@@ -45,33 +45,33 @@ public class Army {
         battleGroup = new BattleGroup(startingUnit);
     }
 
-    public void addUnit(Unit unit){
+    public void addUnit(Unit unit) {
 
-        if(unit.getLocation().isEqual(battleGroup.getLocation())) { // if unit is on battlegroup already
+        if (unit.getLocation().isEqual(battleGroup.getLocation())) { // if unit is on battlegroup already
 
             battleGroup.addUnit(unit);
-        }else{
+        } else {
 
             reinforcements.addUnit(unit);
         }
     }
 
-    public void updateLocation(){
+    public void updateLocation() {
 
-        if(!atRallyPoint) {
+        if (!atRallyPoint) {
 
             battleGroup.updateLocation();
         }
         reinforcements.updateLocation();
     }
 
-    public void moveRallyPoint(MapCoordinate location){
+    public void moveRallyPoint(MapCoordinate location) {
 
-        if(!(rallyPoint.getLocation().isEqual(location))) { // if rallyPoint location is not same as new location
+        if (!(rallyPoint.getLocation().isEqual(location))) { // if rallyPoint location is not same as new location
 
             rallyPoint.setLocation(location);
             atRallyPoint = false;
-        }else{
+        } else {
 
             atRallyPoint = true; // ERROR: Attempted to move rally point to same location
         }
