@@ -103,6 +103,7 @@ public class Tile {
     public String getName() { return name; }
     public MapCoordinate getPos() { return new MapCoordinate(pos); }
     public int getMovementCost() { return movementCost;}
+    public HarvestResources getResources() { return resources; }
     public GameLibrary.TileType getTileType() { return type; }
     public boolean isImpassable() { return isImpassable; }
     //public Effect getActiveEffect() { return activeEffect; }
