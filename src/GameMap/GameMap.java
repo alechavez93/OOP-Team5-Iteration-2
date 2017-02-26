@@ -1,6 +1,7 @@
 package GameMap;
 import Entity.Army.BattleGroup;
 import Entity.Unit.Unit;
+import GameLibrary.GameLibrary;
 import Utility.Direction;
 import Utility.Vec2i;
 import Entity.Entity;
@@ -58,7 +59,7 @@ public class GameMap {
             for(short iii=0; iii < size.x; iii++) {
                 for(short jjj=0; jjj < size.y; jjj++) {
                     //tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(iii, jjj), rng);\
-                    tileGrid[iii][jjj] = Tile.makeGrassTile(new Vec2i(jjj, iii));
+                    tileGrid[iii][jjj] = Tile.makeTile(GameLibrary.TileType.GRASS, new Vec2i(jjj, iii));
                 }
             }
         } else {
