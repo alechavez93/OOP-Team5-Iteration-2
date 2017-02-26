@@ -7,6 +7,8 @@ package GameLibrary;
 |
 ---------------------------------------------------------------------------------------*/
 
+import javax.swing.plaf.synth.SynthLookAndFeel;
+
 final public class GameLibrary {
 
     //Game Modes
@@ -49,4 +51,23 @@ final public class GameLibrary {
     //Items
     public static final String ONESHOT = "ONE SHOT ITEM", OBSTACLE = "OBSTACLE ITEM";
 
+    //Tile
+    public enum TileType {
+        GRASS("Grass", 1, false, "grass.jpg"),
+        MOUNTAIN("Mountain", 999, true, "mountain.jpg"),
+        SAND("Sand", 2, false, "sand.jpg"),
+        WATER("Water", 999, true, "water.jpg"),
+        JUNGLE("Jungle", 3, true, "grass2.jpg");
+
+        public final String name;
+        public final int movementCost;
+        public final boolean impassable;
+        public final String graphicName;
+        TileType(String name, int movementCost, boolean impassable, String graphicName) {
+            this.name = name;
+            this.movementCost = movementCost;
+            this.impassable = impassable;
+            this.graphicName = graphicName;
+        }
+    }
 }

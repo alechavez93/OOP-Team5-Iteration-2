@@ -5,6 +5,7 @@ package ViewsTests;/*-----------------------------------------------------------
 |
 ---------------------------------------------------------------------------------------*/
 
+import GameLibrary.GameLibrary;
 import GameMap.Tile;
 import Utility.Vec2i;
 import GameMap.GameMap;
@@ -21,7 +22,7 @@ public class TestTileDrawer {
     private static class TestPanel extends JPanel{
         @Override
         public void paint(Graphics g) {
-            TileDrawer.drawTile(g, Tile.makeGrassTile(new Vec2i(3,3)));
+            TileDrawer.drawTile(g, Tile.makeTile(GameLibrary.TileType.GRASS, new Vec2i(3,3)));
         }
     }
 

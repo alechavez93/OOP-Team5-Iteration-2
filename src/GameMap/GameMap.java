@@ -1,8 +1,13 @@
 package GameMap;
+import Entity.Army.BattleGroup;
+import Entity.Unit.Unit;
+import GameLibrary.GameLibrary;
 import Utility.Direction;
 import Utility.Vec2i;
+import Entity.Entity;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 /*--------------------------------------------------------------------------------------
@@ -54,7 +59,7 @@ public class GameMap {
             for(short iii=0; iii < size.x; iii++) {
                 for(short jjj=0; jjj < size.y; jjj++) {
                     //tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(iii, jjj), rng);\
-                    tileGrid[iii][jjj] = Tile.makeGrassTile(new Vec2i(jjj, iii));
+                    tileGrid[iii][jjj] = Tile.makeTile(GameLibrary.TileType.GRASS, new Vec2i(jjj, iii));
                 }
             }
         } else {
@@ -111,6 +116,22 @@ public class GameMap {
         return getNeighborTile(tile.getPos(), dir);
     }
 
+    public void shiftEntity(Entity entity, Direction d) {
+        Tile t = getTile(entity.getLocation());
+        t.removeEntity(entity);
+        t = getNeighborTile(t, d);
+        t.addEntity(entity);
+        entity.setLocation(t.getPos());
+    }
+
+    public void shiftArmyUnits(List<Unit> units, Direction d) {
+        Tile t = getTile(units.get(0).getLocation());
+        t.removeArmyUnits(units);
+        t = getNeighborTile(t, d);
+        t.removeArmyUnits(units);
+        for(Unit u : units) u.setLocation(t.getPos());
+    }
+
     public Tile[] getAllNeighbors(Vec2i pos) {
         Tile[] t = new Tile[Direction.values().length];
         byte iii = 0; //If your tiles have more than 128 neighbors its time to re-evaluate your life
@@ -121,7 +142,7 @@ public class GameMap {
         return t;
     }
 
-    public Iterator getIterator() { return new MapIter(); }
+    public Iterator<Tile> getIterator() { return new MapIter(); }
 
     private boolean isValidNeighbor(Vec2i pos, Direction dir) {
         pos = pos.add(dir.getHex(pos.x % 2 == 1));

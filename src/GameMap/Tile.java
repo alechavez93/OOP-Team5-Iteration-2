@@ -10,6 +10,8 @@ package GameMap;
 |---------------------------------------------------------------------------------------*/
 
 //import Item.Item;
+import Entity.Unit.Unit;
+import GameLibrary.GameLibrary;
 import Utility.Vec2i;
 import Entity.Entity;
 
@@ -23,6 +25,9 @@ public class Tile {
     private MapCoordinate pos;
     private int movementCost;
     private boolean isImpassable = false;
+    private HarvestResources resources = null;
+
+    private final GameLibrary.TileType type;
 
     //private Effect activeEffect;
     private List<Entity> entityList = new LinkedList<Entity>();
@@ -32,56 +37,65 @@ public class Tile {
 
     public void addEntity(Entity entity) {
         entityList.add(entity);
+        entity.setLocation(pos);
         //if(activeEffect != null)
         //    activeEffect.execute(entity);
         //if(activeItem != null)
         //    activeItem.triggerItemEffect();
     }
+    public void addArmyUnits(List<Unit> list) {
+        entityList.addAll(list);
+        for(Unit u : list) u.setLocation(pos);
+    }
 
     public void removeEntity(Entity entity) { entityList.remove(entity); }
+    public void removeArmyUnits(List<Unit> list) { entityList.removeAll(list); }
 
 
     //Factory Methods
-    private Tile(String name, Vec2i pos, int movement) {
+    private Tile(String name, Vec2i pos, int movement, boolean isImpassable) {
         this.name = name;
         this.pos = new MapCoordinate(pos);
         this.movementCost = movement;
+        this.isImpassable = isImpassable;
+        this.resources = new HarvestResources(100,100,100);
+        this.type = null;
         //activeItem = null;
     }
 
-    static public Tile makeGrassTile(Vec2i pos) {
-        return new Tile("Grass", pos, 1);
+    private Tile(GameLibrary.TileType t, Vec2i pos) {
+        this.name = t.name;
+        this.pos = new MapCoordinate(pos);
+        this.movementCost = t.movementCost;
+        this.isImpassable = t.impassable;
+        this.type = t;
+        this.resources = new HarvestResources(100,100,100);
+        //activeItem = null;
     }
 
-    static public Tile makeJungleTile(Vec2i pos) {
-        return new Tile("Jungle", pos, 3);
-    }
-
-    static public Tile makeMountainTile(Vec2i pos) {
-        Tile t = new Tile("Mountain", pos, 999);
-        t.isImpassable = true;
-        return t;
+    static public Tile makeTile(GameLibrary.TileType t, Vec2i pos) {
+        return new Tile(t, pos);
     }
 
     //Currently only for testing
     static public Tile makeRandomTile(Vec2i pos, Random rng) {
 
-        Tile t = null;
+        GameLibrary.TileType t = null;
         //Resource r = null;
 
         int random = rng.nextInt(6);
         switch(random) {
             case 0: case 1: case 2:
-                t = makeGrassTile(pos);
+                t = GameLibrary.TileType.GRASS;
                 break;
             case 3: case 4:
-                t = makeJungleTile(pos);
+                t = GameLibrary.TileType.JUNGLE;
                 break;
             case 5:
-                t = makeMountainTile(pos);
+                t = GameLibrary.TileType.MOUNTAIN;
                  break;
         }
-        return t;
+        return makeTile(t, pos);
     }
 
 
@@ -89,6 +103,8 @@ public class Tile {
     public String getName() { return name; }
     public MapCoordinate getPos() { return new MapCoordinate(pos); }
     public int getMovementCost() { return movementCost;}
+    public HarvestResources getResources() { return resources; }
+    public GameLibrary.TileType getTileType() { return type; }
     public boolean isImpassable() { return isImpassable; }
     //public Effect getActiveEffect() { return activeEffect; }
 
