@@ -142,7 +142,7 @@ public class GameMap {
         return t;
     }
 
-    public Iterator getIterator() { return new MapIter(); }
+    public Iterator<Tile> getIterator() { return new MapIter(); }
 
     private boolean isValidNeighbor(Vec2i pos, Direction dir) {
         pos = pos.add(dir.getHex(pos.x % 2 == 1));
