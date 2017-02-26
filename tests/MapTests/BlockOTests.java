@@ -12,10 +12,9 @@ import Utility.Vec2i;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class BlockOTests {
 
@@ -62,6 +61,13 @@ public class BlockOTests {
             }
         }
         System.out.printf("Map: GetTile compliance test passed.\n");
+
+        List<Tile> tt = map.getAllNeighbors(new Vec2i(5,5), 2);
+        for(Tile ttt : tt) {
+            String pos = ttt.getPos().getVector().x + " " + ttt.getPos().getVector().y;
+            System.out.printf(pos + "\n");
+        }
+
     }
 
     public static void testTile() {

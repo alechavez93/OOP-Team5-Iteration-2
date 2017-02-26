@@ -6,6 +6,7 @@ import Utility.Direction;
 import Utility.Vec2i;
 import Entity.Entity;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -80,8 +81,26 @@ public class GameMap {
                     tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(jjj, iii), rng);
                 }
             }
+            //makeCoherent();
         } else {
             throw new IllegalStateException("GameMap is already initialized");
+        }
+    }
+
+    //VERY WIP DO NOT ADD TO PRODUCTION CODE
+    private void makeCoherent() {
+        Iterator<Tile> itr = getIterator();
+        while(itr.hasNext()) {
+            Tile t = itr.next();
+            if(t.getTileType() == GameLibrary.TileType.WATER) {
+                List<Tile> tt = getAllNeighbors(t.getPos().getVector(), 1);
+                for(Tile ttt : tt) {
+                    if(ttt == null || ttt.getTileType() == GameLibrary.TileType.WATER)
+                        continue;
+                    Vec2i v = ttt.getPos().getVector();
+                    tileGrid[v.y][v.x] = Tile.makeTile(GameLibrary.TileType.SAND, ttt.getPos().getVector());
+                }
+            }
         }
     }
 
@@ -132,15 +151,29 @@ public class GameMap {
         for(Unit u : units) u.setLocation(t.getPos());
     }
 
-    public Tile[] getAllNeighbors(Vec2i pos) {
-        Tile[] t = new Tile[Direction.values().length];
-        byte iii = 0; //If your tiles have more than 128 neighbors its time to re-evaluate your life
-        for(Direction d : Direction.values()) {
-            if(isValidNeighbor(pos, d))
-                t[iii++] = getNeighborTile(pos, d);
+    public List<Tile> getAllNeighbors(Vec2i pos, int radius) {
+        int total = 0;
+        for(int iii = 1; iii <= radius; iii++)
+            total += iii;
+        List<Tile> finalList = new ArrayList<Tile>(total*6);
+        int x, y, z;
+        Vec2i offCoord = new Vec2i();
+        for(x = -radius; x <= radius; x++) {
+            for (y = Math.max(-radius, -x - radius); y <= (Math.min(radius, -x + radius)); y++) {
+                z = -x-y;
+                offCoord.x = z + (x - (x%2)) / 2;
+                offCoord.y = x;
+                offCoord = pos.add(offCoord);
+                if(offCoord.equals(pos))
+                    continue;
+                if((offCoord.y >= size.x || offCoord.x >= size.y) || (offCoord.y < 0 || offCoord.x < 0))
+                    continue;
+                finalList.add(getTile(offCoord));
+            }
         }
-        return t;
+        return finalList;
     }
+
 
     public Iterator<Tile> getIterator() { return new MapIter(); }
 

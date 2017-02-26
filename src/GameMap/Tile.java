@@ -83,7 +83,7 @@ public class Tile {
         GameLibrary.TileType t = null;
         //Resource r = null;
 
-        int random = rng.nextInt(6);
+        int random = rng.nextInt(8);
         switch(random) {
             case 0: case 1: case 2:
                 t = GameLibrary.TileType.GRASS;
@@ -94,6 +94,12 @@ public class Tile {
             case 5:
                 t = GameLibrary.TileType.MOUNTAIN;
                  break;
+            case 6:
+                t = GameLibrary.TileType.WATER;
+                break;
+            case 7:
+                t = GameLibrary.TileType.SAND;
+                break;
         }
         return makeTile(t, pos);
     }
