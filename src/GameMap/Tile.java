@@ -25,6 +25,8 @@ public class Tile {
     private MapCoordinate pos;
     private int movementCost;
     private boolean isImpassable = false;
+    private HarvestResources resources = null;
+
     private final GameLibrary.TileType type;
 
     //private Effect activeEffect;
@@ -56,6 +58,7 @@ public class Tile {
         this.pos = new MapCoordinate(pos);
         this.movementCost = movement;
         this.isImpassable = isImpassable;
+        this.resources = new HarvestResources(100,100,100);
         this.type = null;
         //activeItem = null;
     }
@@ -66,6 +69,7 @@ public class Tile {
         this.movementCost = t.movementCost;
         this.isImpassable = t.impassable;
         this.type = t;
+        this.resources = new HarvestResources(100,100,100);
         //activeItem = null;
     }
 
