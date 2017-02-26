@@ -109,6 +109,10 @@ public class EntityManager {
         this.addExplorer(e1);
         placeEntity(e1);
     }
+
+    public void finishTurn(){
+        //process queues for each entity in each list
+    }
 /*
 //not sure if this is needed
     public ColonistUnit newColonist(MapCoordinate coordinate){
@@ -133,6 +137,12 @@ public class EntityManager {
 
 
     public void addColonist(ColonistUnit colonist){
+
+        if(colonist.getInstanceID() == -1){
+            System.out.println("invalid unit added. Process quit.");
+            return;
+        }
+
         colonistUnitList.add(colonist);
         hashset.add(colonist.getInstanceID());
 
@@ -141,88 +151,154 @@ public class EntityManager {
     }
 
     public void addExplorer(ExplorerUnit explorer){
+
+        if(explorer.getInstanceID() == -1){
+            System.out.println("invalid unit added. Process quit.");
+            return;
+        }
+
         explorerUnitList.add(explorer);
-        hashset.add(explorer.getInstanceID()+10);
+        hashset.add(explorer.getInstanceID());
 
         explorerUnitCount++;
         unitCount++;
     }
 
     public void addMelee(MeleeSoldier melee){
+
+        if(melee.getInstanceID() == -1){
+            System.out.println("invalid unit added. Process quit.");
+            return;
+        }
+
         meleeUnitList.add(melee);
-        hashset.add(melee.getInstanceID()+20);
+        hashset.add(melee.getInstanceID());
 
         meleeUnitCount++;
         unitCount++;
     }
 
     public void addRange(RangeSoldier range){
+
+        if(range.getInstanceID() == -1){
+            System.out.println("invalid unit added. Process quit.");
+            return;
+        }
+
         rangeUnitList.add(range);
-        hashset.add(range.getInstanceID()+30);
+        hashset.add(range.getInstanceID());
 
         rangeUnitCount++;
         unitCount++;
     }
 
     public void addCapital(CapitalStructure capital){
+
+        if(capital.getInstanceID() == -1){
+            System.out.println("invalid structure added. Process quit.");
+            return;
+        }
+
         capitalList.add(capital);
-        hashset.add(capital.getInstanceID() + 100);
+        hashset.add(capital.getInstanceID());
 
         capitalCount++;
         structureCount++;
     }
 
     public void addFarm(FarmStructure farm){
+
+        if(farm.getInstanceID() == -1){
+            System.out.println("invalid structure added. Process quit.");
+            return;
+        }
+
         farmList.add(farm);
-        hashset.add(farm.getInstanceID() + 110);
+        hashset.add(farm.getInstanceID());
 
         farmCount++;
         structureCount++;
     }
 
     public void addFort(FortStructure fort){
+
+        if(fort.getInstanceID() == -1){
+            System.out.println("invalid structure added. Process quit.");
+            return;
+        }
+
         fortList.add(fort);
-        hashset.add(fort.getInstanceID() + 120);
+        hashset.add(fort.getInstanceID());
 
         fortCount++;
         structureCount++;
     }
 
     public void addMine(MineStructure mine){
+
+        if(mine.getInstanceID() == -1){
+            System.out.println("invalid structure added. Process quit.");
+            return;
+        }
+
         mineList.add(mine);
-        hashset.add(mine.getInstanceID() + 130);
+        hashset.add(mine.getInstanceID());
 
         mineCount++;
         structureCount++;
     }
 
     public void addObservation(ObservationStructure observation){
+
+        if(observation.getInstanceID() == -1){
+            System.out.println("invalid structure added. Process quit.");
+            return;
+        }
+
         observationList.add(observation);
-        hashset.add(observation.getInstanceID() + 140);
+        hashset.add(observation.getInstanceID());
 
         observationCount++;
         structureCount++;
     }
 
     public void addPower(PowerStructure power){
+
+        if(power.getInstanceID() == -1){
+            System.out.println("invalid structure added. Process quit.");
+            return;
+        }
+
         powerList.add(power);
-        hashset.add(power.getInstanceID() + 150);
+        hashset.add(power.getInstanceID());
 
         powerCount++;
         structureCount++;
     }
 
     public void addUniversity(UniversityStructure university){
+
+        if(university.getInstanceID() == -1){
+            System.out.println("invalid structure added. Process quit.");
+            return;
+        }
+
         universityList.add(university);
-        hashset.add(university.getInstanceID() + 160);
+        hashset.add(university.getInstanceID());
 
         universityCount++;
         structureCount++;
     }
 
     public void addArmy(Army army){
+
+        if(army.getInstanceID() == -1){
+            System.out.println("invalid army added. Process quit.");
+            return;
+        }
+
         armyList.add(army);
-        hashset.add(army.getInstanceID() + 200);
+        hashset.add(army.getInstanceID());
 
         armyCount++;
     }
@@ -240,8 +316,22 @@ public class EntityManager {
         t.removeEntity(entity);
     }
 
+    public void destroyEntity(Entity entity){
+        removeEntity(entity);
+        if(0 <= entity.getInstanceID() && entity.getInstanceID() < 10){
+            colonistUnitCount--;
+            unitCount--;
+            colonistUnitList.remove(entity);
+        }
+        if(10 <= entity.getInstanceID() && entity.getInstanceID() < 20){
+            explorerUnitCount--;
+            unitCount--;
+            explorerUnitList.remove(entity);
+        }
+    }
+
     public void destroyColonist(ColonistUnit colonist){
-        System.out.println("Second step");
+        //System.out.println("Second step");
         hashset.remove(colonist.getInstanceID());
         System.out.println("ID: " + colonist.getInstanceID());
         removeEntity(colonist);
@@ -336,6 +426,7 @@ public class EntityManager {
         armyCount--;
         for (Unit unit : army.getBattleGroup().getUnits()) {
            unit.destroy();
+           // destroy(unit)
         }
     }
 
@@ -373,7 +464,7 @@ public class EntityManager {
             return -1;
         for(int i = start; i < end; i ++){
             if( !hashset.contains(i) ){
-                return i%10;
+                return i;
             }
         }
         return -1;
@@ -396,7 +487,7 @@ public class EntityManager {
 //        for(int i = 10; i < 20; i ++){
 //            if( !hashset.contains(i) ){
 //                //System.out.println("found index at :" + i);
-//                return i%10;
+//                return i;
 //            }
 //        }
 //
@@ -418,12 +509,11 @@ public class EntityManager {
             return -1;
         for(int i = start; i < end; i ++){
             if( !hashset.contains(i) ){
-                return i%10;
+                return i;
             }
         }
         return -1;
     }
-
 
     public int nextCapitalIndex(){
         return nextStructureIndex(100, 110);
@@ -453,20 +543,16 @@ public class EntityManager {
         return nextStructureIndex(160, 170);
     }
 
-    public int nextArmyIndex(int start, int end){
+    public int nextArmyIndex(){
         if(armyCount >= maxArmyCount)
             return -1;
-        for(int i = start; i < end; i ++){
+        for(int i = 200; i < 210; i ++){
             if( !hashset.contains(i) ){
-                return i%10 + 200;
+                return i;
             }
         }
         return -1;
     }
-
-
-
-
 
 
     //general getters
