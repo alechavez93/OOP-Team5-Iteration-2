@@ -17,7 +17,7 @@ import Utility.Coordinate;
 ---------------------------------------------------------------------------------------*/
 
 public class Player {
-    public int pID;
+    private int pID;
     private EntityManager entityManager;
     private ItemManager itemManager;
     private TechManager techManager;
@@ -42,7 +42,7 @@ public class Player {
         return "Player " + pID;
     }
 
-
+    public int getpID() { return this.pID; }
     public int getFood(){ return this.food; }
     public int getWood(){ return this.wood; }
     public int getStone(){ return this.stone; }
@@ -80,6 +80,12 @@ public class Player {
         return entityManager;
     }
 
+    public void endTurn(){
+        entityManager.finishTurn();
+        //do other stuff maybe
+    }
+
+    //public int getCapitalCount(){ return entityManager.getCapitalCount();}
 
     }
 
