@@ -40,6 +40,7 @@ public enum Direction {
 
     public Direction getOpposite() {
         int opposite = (dirAngle < 180) ? dirAngle + 180 : dirAngle - 180;
+
         return Direction.values()[opposite/60]; //wew
     }
 }

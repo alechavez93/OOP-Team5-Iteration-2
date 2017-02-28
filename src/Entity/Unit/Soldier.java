@@ -7,6 +7,7 @@ package Entity.Unit;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Entity;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
@@ -14,5 +15,12 @@ public abstract class Soldier extends Unit {
 
     public Soldier(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(name, instanceID, location, entityManager);
+    }
+
+    public void takeDamage(Entity entity){
+        this.currentHealth -= (entity.getAttack() - this.getArmor());
+        if(this.getDirection() == entity.getDirection().getOpposite() && this.getState() == "Defend"){
+
+        }
     }
 }

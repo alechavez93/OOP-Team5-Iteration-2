@@ -6,6 +6,7 @@ import Entity.Structure.*;
 import Entity.Unit.*;
 import GameMap.*;
 import Utility.Coordinate;
+import Utility.Direction;
 
 import javax.swing.border.EtchedBorder;
 import java.util.ArrayList;
@@ -316,7 +317,7 @@ public class EntityManager {
         t.removeEntity(entity);
     }
 
-    public void destroyEntity(Entity entity){
+/*    public void destroyEntity(Entity entity){
         removeEntity(entity);
         if(0 <= entity.getInstanceID() && entity.getInstanceID() < 10){
             colonistUnitCount--;
@@ -328,7 +329,18 @@ public class EntityManager {
             unitCount--;
             explorerUnitList.remove(entity);
         }
-    }
+        if(20 <= entity.getInstanceID() && entity.getInstanceID() < 30){
+            meleeUnitCount--;
+            unitCount--;
+            meleeUnitList.remove(entity);
+        }
+        if(30 <= entity.getInstanceID() && entity.getInstanceID() < 40){
+            rangeUnitCount--;
+            unitCount--;
+            rangeUnitList.remove(entity);
+        }
+
+    }*/
 
     public void destroyColonist(ColonistUnit colonist){
         //System.out.println("Second step");
@@ -430,6 +442,11 @@ public class EntityManager {
         }
     }
 
+    public void disbandArmy(Army army){
+        //do something
+    }
+
+
 /*    public void removeArmy(Army army){
         Tile t = GameMap.getInstance().getTile(army.getRallyPoint().getLocation().getRow(), army.getRallyPoint().getLocation().getColumn());
         t.removeArmy(army);
@@ -437,7 +454,7 @@ public class EntityManager {
     }*/
 
 /*--------------------------------------------------------------------------------------
-|    List of positions in the hashset
+|    List of positions in the HashSet. Entity's  instanceID will be the last digit
 |---------------------------------------------------------------------------------------
 |
 |   0-9     colonist
@@ -629,5 +646,27 @@ public class EntityManager {
     public int getPowerCount(){ return powerCount; }
 
     public int getUniversityCount(){ return universityCount; }
+
+
+    //managing interactions between entities
+    public void attack(Soldier soldier, Direction direction){
+        soldier.setDirection(direction);
+        soldier.setState("Attack");
+        Tile t = GameMap.getInstance().getNeighborTile(soldier.getLocation(), direction);
+        System.out.println("Attacking (" + t.getPos().getRow() + " , " + t.getPos().getColumn() + ")");
+        System.out.println(t.getOccupyingEntities().length + " targets attacked.");
+        for (Entity entity : t.getOccupyingEntities()) {
+            entity.takeDamage(soldier);
+        }
+    }
+
+    public void defend(Soldier soldier, Direction direction){
+        soldier.setDirection(direction);
+        soldier.setState("Defend");
+    }
+
+    public void retaliate(Soldier defender, Soldier Attacker){
+
+    }
 
 }

@@ -6,13 +6,13 @@ import GameMap.*;
 import Utility.Vec2i;
 
 /**
- * Created by test on 02/26/2017.
+ * Created by Thomas on 02/26/2017.
  */
 
 /*--------------------------------------------------------------------------------------
-|    TurnTest Module: Created by test on 02/26/2017.
+|    TurnTest Module: Created by Thomas on 02/26/2017.
 |---------------------------------------------------------------------------------------
-|   Description:
+|   Description: Tests for turn passing and ending the game
 |
 ---------------------------------------------------------------------------------------*/
 

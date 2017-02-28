@@ -8,6 +8,7 @@ package Entity;
 |   contains an order queue to execute issued orders.
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Unit.Soldier;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 import Utility.Direction;
@@ -22,6 +23,7 @@ public abstract class Entity extends Stats {
     private int instanceID = 0;
     private MapCoordinate location;
     private Direction direction = Direction.South;
+    private String state;
 
     public List<Order> orderList;
 
@@ -36,6 +38,10 @@ public abstract class Entity extends Stats {
 
     public void addOrder(Order order) {
         orderList.add(order);
+    }
+
+    public void takeDamage(Entity entity){
+        this.currentHealth -= (entity.getAttack() - this.getArmor());
     }
 
     public void executeNextOrder() {
@@ -76,11 +82,13 @@ public abstract class Entity extends Stats {
     public int getInstanceID() { return instanceID; }
     public MapCoordinate getLocation() { return location; }
     public Direction getDirection() { return direction; }
+    public String getState() { return state; }
 
     // setters
 //    public void setName(String name) { this.name = name; }
 //    public void setInstanceID(int instanceID) { this.instanceID = instanceID; }
     public void setLocation(MapCoordinate location) { this.location = location; }
     public void setDirection(Direction direction) { this.direction = direction; }
+    public void setState(String state) { this.state = state; }
 
 }
