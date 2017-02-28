@@ -12,6 +12,7 @@ package Utility;
 ---------------------------------------------------------------------------------------*/
 
 public enum Direction {
+        //Set up as Column/Row, don't ask
         North(0,0,-1),
         NorthEast(60,1,-1),
         SouthEast(120,1,0),
@@ -35,7 +36,7 @@ public enum Direction {
     }
 
     public Vec2i getHex(boolean offset) {
-        return new Vec2i(x, (offset && x != 0) ? y+1:y);
+        return new Vec2i((offset && x != 0) ? y+1:y, x);
     }
 
     public Direction getOpposite() {
