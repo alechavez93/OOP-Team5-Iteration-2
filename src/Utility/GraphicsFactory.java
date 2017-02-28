@@ -15,8 +15,8 @@ import java.util.Map;
 public class GraphicsFactory {
 
     //Supported Graphics (Can be called statically)
-    public static String GRASS = "grass.jpg", MOUNTAIN = "mountain.jpg", WATER = "water.jpg", SAND = "sand.jpg";
-    public static String[] TEXTURES = new String[]{GRASS, MOUNTAIN, WATER, SAND};
+    public static String GRASS = "grass.jpg", MOUNTAIN = "mountain.jpg", WATER = "water.jpg", SAND = "sand.jpg", GRASS2 = "grass2.jpg";
+    public static String[] TEXTURES = new String[]{GRASS, MOUNTAIN, WATER, SAND, GRASS2};
     //---------------------------------------------------------------
 
     private Map<String, BufferedImage> cachedGraphics;

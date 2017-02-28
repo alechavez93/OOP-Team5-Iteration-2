@@ -7,6 +7,7 @@ package ViewsTests;
 ---------------------------------------------------------------------------------------*/
 
 
+import GameLibrary.GameLibrary;
 import GameMap.GameMap;
 import GameMap.Tile;
 import Utility.Vec2i;
@@ -42,24 +43,24 @@ public class TestRowDrawer {
         row5 = new ArrayList<>();
 
         for (int i=1; i<=cols; i++){
-            row1.add(Tile.makeGrassTile(new Vec2i(1,i)));
+            row1.add(Tile.makeTile(GameLibrary.TileType.GRASS, new Vec2i(1,i)));
         }
 
         for (int i=1; i<=cols; i++){
 
-            row2.add(Tile.makeGrassTile(new Vec2i(2,i)));
+            row2.add(Tile.makeTile(GameLibrary.TileType.WATER, new Vec2i(2,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row3.add(Tile.makeGrassTile(new Vec2i(3,i)));
+            row3.add(Tile.makeTile(GameLibrary.TileType.JUNGLE, new Vec2i(3,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row4.add(Tile.makeGrassTile(new Vec2i(4,i)));
+            row4.add(Tile.makeTile(GameLibrary.TileType.MOUNTAIN,new Vec2i(4,i)));
         }
 
         for (int i=1; i<=cols; i++){
-            row5.add(Tile.makeGrassTile(new Vec2i(5,i)));
+            row5.add(Tile.makeTile(GameLibrary.TileType.SAND,new Vec2i(5,i)));
         }
 
 
