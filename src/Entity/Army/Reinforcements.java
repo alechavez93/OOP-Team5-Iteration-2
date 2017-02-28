@@ -11,18 +11,42 @@ package Entity.Army;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Unit.Unit;
+import GameMap.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Reinforcements {
 
-    private List<Unit> units;
+    private List<UnitPath> units;
     private Army armyToReinforce;
     private RallyPoint rallyPoint;
 
-    public void Reinforcements(Army army) {
+    //Unit shouldn't know how to path itself except in the context of reinforcement
+    private class UnitPath {
+        public Unit unit;
+        public Path path;
 
+        public UnitPath(Unit u, Path p) {this.unit = u; this.path = p;}
+
+        public void updateLocation() {
+            if(path.isEnd())
+                return;
+            if(!path.isValid())
+                path.recreate(unit.getLocation());
+
+            int speed = unit.getMovement();
+            GameMap map = GameMap.getInstance();
+            while(speed > 0) {
+                map.shiftEntity(unit, path.next());
+                speed -= map.getTile(unit.getLocation()).getMovementCost();
+            }
+        }
+    }
+
+
+    public void Reinforcements(Army army) {
         armyToReinforce = army;
         units = new ArrayList<>();
         rallyPoint = armyToReinforce.getRallyPoint();
@@ -30,25 +54,35 @@ public class Reinforcements {
 
     // Add unit to an Army's reinforcements
     public void addUnit(Unit unit){
+        PathFinder finder = new AStarPathFinder();
+        Path path = finder.createPath(unit.getLocation(), rallyPoint.getLocation());
+        units.add(new UnitPath(unit, path));
+    }
 
-        units.add(unit);
+    public void createPathsTo(MapCoordinate endPoint) {
+        PathFinder finder = new AStarPathFinder();
+        for(UnitPath u : units) {
+            u.path = finder.createPath(u.unit.getLocation(), endPoint);
+        }
     }
 
     // update the location of every reinforcement
-    // check to see if the reinforcement is now a part of the BattleGroup
-    public void updateLocation(){
+    public void updateLocations(){
+        for(UnitPath u: units) {
+            u.updateLocation();
+        }
+    }
 
-        /**
-         * POSSIBLE UPDATES
-         *
-         * if not at rally point, move towards it
-         *
-         * if at rally point, check if BattleGroup is present
-         *      YES:
-         *          add to BattleGroup
-         *      NO:
-         *          stays at RallyPoint, still a reinforcement
-         */
+    //Reinforces a battleGroup with units at location
+    public void reinforce(BattleGroup battleGroup, MapCoordinate location) {
+        List<UnitPath> removeList = new ArrayList<UnitPath>(units.size());
+        for(UnitPath u : units) {
+            if(u.unit.getLocation().equals(location)) {
+                battleGroup.addUnit(u.unit);
+                removeList.add(u);
+            }
+        }
+        units.removeAll(removeList);
     }
 
     // call this if the army is disbanded, all units need to know they are no longer in the army
