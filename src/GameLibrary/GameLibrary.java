@@ -7,7 +7,13 @@ package GameLibrary;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Game.Game;
+import Utility.GraphicsFactory;
+
 import javax.swing.plaf.synth.SynthLookAndFeel;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 final public class GameLibrary {
 
@@ -70,4 +76,17 @@ final public class GameLibrary {
             this.graphicName = graphicName;
         }
     }
+
+    //Graphics mapping for Structures
+    public static Map<String, String> structMap = new HashMap<>();
+    static{
+        structMap.put(CAPITAL, GraphicsFactory.CAPITAL_SRC);
+        structMap.put(FARM, GraphicsFactory.FARM_SRC);
+        structMap.put(MINE, GraphicsFactory.MINE_SRC);
+        structMap.put(POWER_PLANT, GraphicsFactory.PLANT_SRC);
+        structMap.put(OBSERVATION_TOWER, GraphicsFactory.TOWER_SRC);
+        structMap.put(UNIVERSITY, GraphicsFactory.UNIVERSITY_SRC);
+        structMap.put(FORT, GraphicsFactory.FORT_SRC);
+    }
+
 }
