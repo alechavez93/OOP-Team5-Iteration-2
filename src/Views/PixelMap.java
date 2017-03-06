@@ -15,12 +15,14 @@ import java.awt.*;
 public class PixelMap {
 
     private static final double SCREEN_RATIO = 0.9;
-    private static final int HORIZONTAL_MULTIPLIER = 20;
+    private static final int HORIZONTAL_MULTIPLIER = 13;
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int SCREEN_WIDTH = (int)(screenSize.getWidth()*SCREEN_RATIO), SCREEN_HEIGHT = (int)(screenSize.getHeight()*SCREEN_RATIO);
     public static final int TILE_WIDTH = SCREEN_WIDTH/HORIZONTAL_MULTIPLIER;
     public static final int TILE_FULL_WIDTH = TILE_WIDTH*2;
     public static final int TILE_HEIGHT = (int)(1.73*TILE_WIDTH);
+    public static final double STRUCTURE_TILE_HEIGHT = 0.5;
+    public static final int STRUCTURE_HEIGHT = (int)(STRUCTURE_TILE_HEIGHT*(double)TILE_HEIGHT);
 
     public static PixelPoint mapCoordinate(MapCoordinate coor){
         int width_offset = (int)(TILE_WIDTH * 1.5);

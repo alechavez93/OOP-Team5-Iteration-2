@@ -28,7 +28,6 @@ public class TileDrawer {
 
         drawTexture(g, tileShape, center, tile.getTileType().graphicName);
         drawGrid(g, tileShape);
-
     }
 
     //Gets corner points for a Hexatile
