@@ -36,8 +36,13 @@ public class ColonistUnit extends Unit {
     // MAKE WORKER METHOD NEEDS TO BE CALLED BY ENTITY MANAGER FOR
 
     public void destroy(){
-        System.out.println("first step");
+        //System.out.println("first step");
         entityManager.destroyColonist(this);
+
+
+
+
+
     }
 
 }
