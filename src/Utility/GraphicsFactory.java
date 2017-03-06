@@ -26,7 +26,9 @@ public class GraphicsFactory {
 
     //Structure graphics
     public static final String CAPITAL_SRC = "capital2.png", FARM_SRC = "farm.png", FORT_SRC = "fort2.png", MINE_SRC = "mine2.png", PLANT_SRC = "plant.png", TOWER_SRC = "tower.png", UNIVERSITY_SRC = "university2.png";
-    public static final String[] STRUCTURE_SOURCES = {CAPITAL_SRC, FARM_SRC, FORT_SRC, PLANT_SRC, TOWER_SRC, UNIVERSITY_SRC};
+
+    //Unit sources
+    public static final String ARMY_SRC = "army.png", COLONIST_SRC = "colonist.png", EXPLORER_SRC = "explorer.png", MELEE_SRC = "melee.png", RANGED_SRC = "ranged.png", WORKER_SRC = "worker.png", BODY_SRC = "dead.png";
     //-------------------------------------------------------------------------------------------
 
     private Map<String, BufferedImage> cachedGraphics;
@@ -46,6 +48,13 @@ public class GraphicsFactory {
             loadStructureResource((String)pair.getKey());
             i.remove();
         }
+
+        //Load Units
+        for (Iterator i = GameLibrary.unitMap.entrySet().iterator(); i.hasNext();){
+            Map.Entry pair = (Map.Entry) i.next();
+            loadUnitResources((String)pair.getKey());
+            i.remove();
+        }
     }
 
     //Public Accessors
@@ -63,8 +72,13 @@ public class GraphicsFactory {
     public BufferedImage getStructure(String name){
         if(Arrays.asList(GameLibrary.STRUCTURES).contains(name)){
             return cachedGraphics.get(name);
-        }
-        throw new RuntimeException("Error, structure name is not valid. For valid structure names check GameLibrary.");
+        }throw new RuntimeException("Error, structure name is not valid. For valid structure names check GameLibrary.");
+    }
+
+    public BufferedImage getUnit(String name){
+        if(Arrays.asList(GameLibrary.UNITS).contains(name)){
+            return cachedGraphics.get(name);
+        }throw new RuntimeException("Error, unit name is not valid. For valid unit names check GameLibrary.");
     }
 
     //Helper Functions
@@ -78,5 +92,11 @@ public class GraphicsFactory {
         BufferedImage structure = ImageUtil.loadImage(GameLibrary.structMap.get(key));
         structure = ImageUtil.toBufferedImage(structure.getScaledInstance(-1, PixelMap.STRUCTURE_HEIGHT, Image.SCALE_SMOOTH));
         cachedGraphics.put(key, structure);
+    }
+
+    private void loadUnitResources(String key){
+        BufferedImage unit = ImageUtil.loadImage(GameLibrary.unitMap.get(key));
+        unit = ImageUtil.toBufferedImage(unit.getScaledInstance(-1, PixelMap.UNIT_HEIGHT, Image.SCALE_SMOOTH));
+        cachedGraphics.put(key, unit);
     }
 }
