@@ -31,13 +31,13 @@ public class GameMap {
         private Vec2i iter = new Vec2i();
 
         public boolean hasNext() {
-            return iter.y < size.y;
+            return iter.y < size.x;
         }
 
         public Tile next() {
             Tile t = tileGrid[iter.y][iter.x];
             iter.x++;
-            if (iter.x == size.x) {
+            if (iter.x == size.y) {
                 iter.x = 0;
                 iter.y++;
             }
@@ -61,6 +61,34 @@ public class GameMap {
                 for(short jjj=0; jjj < size.y; jjj++) {
                     //tileGrid[iii][jjj] = Tile.makeRandomTile(new Vec2i(iii, jjj), rng);\
                     tileGrid[iii][jjj] = Tile.makeTile(GameLibrary.TileType.GRASS, new Vec2i(jjj, iii));
+                }
+            }
+        } else {
+            throw new IllegalStateException("GameMap is already initialized");
+        }
+    }
+
+    public void initialize(char[][] cMap, Vec2i size) {
+        if(!isInitialized) {
+            this.size = size;
+            tileGrid = new Tile[size.x][size.y];
+            isInitialized = true;
+            for(short iii=0; iii < size.x; iii++) {
+                for(short jjj=0; jjj < size.y; jjj++) {
+                    GameLibrary.TileType tt = null;
+                    switch(cMap[iii][jjj]) {
+                        case 'g':
+                            tt = GameLibrary.TileType.GRASS; break;
+                        case 'w':
+                            tt = GameLibrary.TileType.WATER; break;
+                        case 's':
+                            tt = GameLibrary.TileType.SAND; break;
+                        case 'm':
+                            tt = GameLibrary.TileType.MOUNTAIN; break;
+                        case 'j':
+                            tt = GameLibrary.TileType.JUNGLE; break;
+                    }
+                    tileGrid[iii][jjj] = Tile.makeTile(tt, new Vec2i(jjj,iii));
                 }
             }
         } else {

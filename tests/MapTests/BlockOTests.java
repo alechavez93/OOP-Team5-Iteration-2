@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class BlockOTests {
 
     public static void main(String[] args) {
-        GameMap.getInstance().initialize(new Vec2i(10,10));
+        GameMap.getInstance().initialize(new Vec2i(15,10));
         testMap();
         testTile();
         testPath();
@@ -36,7 +36,7 @@ public class BlockOTests {
             itr.next();
             iii++;
         }
-        assertEquals(100, iii);
+        assertEquals(150, iii);
         System.out.printf("Map: Basic Iterator funtionality test passed.\n");
 
         //Test iterator compliance
