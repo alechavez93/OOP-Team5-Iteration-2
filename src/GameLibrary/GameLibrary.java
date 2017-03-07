@@ -59,11 +59,11 @@ final public class GameLibrary {
 
     //Tile
     public enum TileType {
-        GRASS("Grass", 1, false, "grass.jpg",'g'),
-        MOUNTAIN("Mountain", 999, true, "mountain.jpg",'m'),
-        SAND("Sand", 2, false, "sand.jpg",'s'),
-        WATER("Water", 999, true, "water.jpg",'w'),
-        JUNGLE("Jungle", 3, true, "grass2.jpg",'j');
+        GRASS("Grass", 1, false, "grass.jpg",'G'),
+        MOUNTAIN("Mountain", 999, true, "mountain.jpg",'M'),
+        SAND("Sand", 2, false, "sand.jpg",'S'),
+        WATER("Water", 999, true, "water.jpg",'W'),
+        JUNGLE("Jungle", 3, true, "grass2.jpg",'J');
 
         public final String name;
         public final int movementCost;
