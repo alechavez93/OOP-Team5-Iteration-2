@@ -59,21 +59,23 @@ final public class GameLibrary {
 
     //Tile
     public enum TileType {
-        GRASS("Grass", 1, false, "grass.jpg"),
-        MOUNTAIN("Mountain", 999, true, "mountain.jpg"),
-        SAND("Sand", 2, false, "sand.jpg"),
-        WATER("Water", 999, true, "water.jpg"),
-        JUNGLE("Jungle", 3, true, "grass2.jpg");
+        GRASS("Grass", 1, false, "grass.jpg",'g'),
+        MOUNTAIN("Mountain", 999, true, "mountain.jpg",'m'),
+        SAND("Sand", 2, false, "sand.jpg",'s'),
+        WATER("Water", 999, true, "water.jpg",'w'),
+        JUNGLE("Jungle", 3, true, "grass2.jpg",'j');
 
         public final String name;
         public final int movementCost;
         public final boolean impassable;
         public final String graphicName;
-        TileType(String name, int movementCost, boolean impassable, String graphicName) {
+        public final char charSymbol;
+        TileType(String name, int movementCost, boolean impassable, String graphicName, char charSymbol) {
             this.name = name;
             this.movementCost = movementCost;
             this.impassable = impassable;
             this.graphicName = graphicName;
+            this.charSymbol = charSymbol;
         }
     }
 

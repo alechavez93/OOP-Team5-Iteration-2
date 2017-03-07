@@ -75,20 +75,12 @@ public class GameMap {
             isInitialized = true;
             for(short iii=0; iii < size.x; iii++) {
                 for(short jjj=0; jjj < size.y; jjj++) {
-                    GameLibrary.TileType tt = null;
-                    switch(cMap[iii][jjj]) {
-                        case 'g':
-                            tt = GameLibrary.TileType.GRASS; break;
-                        case 'w':
-                            tt = GameLibrary.TileType.WATER; break;
-                        case 's':
-                            tt = GameLibrary.TileType.SAND; break;
-                        case 'm':
-                            tt = GameLibrary.TileType.MOUNTAIN; break;
-                        case 'j':
-                            tt = GameLibrary.TileType.JUNGLE; break;
+                    for(GameLibrary.TileType tt : GameLibrary.TileType.values()) {
+                        if(cMap[iii][jjj] == tt.charSymbol) {
+                            tileGrid[iii][jjj] = Tile.makeTile(tt, new Vec2i(jjj,iii));
+                            break;
+                        }
                     }
-                    tileGrid[iii][jjj] = Tile.makeTile(tt, new Vec2i(jjj,iii));
                 }
             }
         } else {
