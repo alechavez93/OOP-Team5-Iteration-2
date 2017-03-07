@@ -7,7 +7,13 @@ package GameLibrary;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Game.Game;
+import Utility.GraphicsFactory;
+
 import javax.swing.plaf.synth.SynthLookAndFeel;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 final public class GameLibrary {
 
@@ -16,8 +22,8 @@ final public class GameLibrary {
     public static final String[] MODES = {RALLY_POINT_MODE, STRUCTURE_MODE, UNIT_MODE, ARMY_MODE};
 
     //Unit Types
-    public static final String MELEE = "MELEE SOLDIER", RANGED = "RANGED SOLDIER", COLONIST = "COLONIST", EXPLORER = "EXPLORER";
-    public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER};
+    public static final String MELEE = "MELEE SOLDIER", RANGED = "RANGED SOLDIER", COLONIST = "COLONIST", EXPLORER = "EXPLORER", WORKER = "WORKER", BODY = "BODY";
+    public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER, WORKER, BODY};
 
     //Structure Types
     public static final String CAPITAL = "CAPITAL", FARM = "FARM", MINE = "MINE", POWER_PLANT = "POWER PLANT", FORT = "FORT", OBSERVATION_TOWER = "OBSERVATION TOWER", UNIVERSITY = "UNIVERSITY";
@@ -70,4 +76,28 @@ final public class GameLibrary {
             this.graphicName = graphicName;
         }
     }
+
+    //Graphics mapping for Structures
+    public static Map<String, String> structMap = new HashMap<>();
+    static{
+        structMap.put(CAPITAL, GraphicsFactory.CAPITAL_SRC);
+        structMap.put(FARM, GraphicsFactory.FARM_SRC);
+        structMap.put(MINE, GraphicsFactory.MINE_SRC);
+        structMap.put(POWER_PLANT, GraphicsFactory.PLANT_SRC);
+        structMap.put(OBSERVATION_TOWER, GraphicsFactory.TOWER_SRC);
+        structMap.put(UNIVERSITY, GraphicsFactory.UNIVERSITY_SRC);
+        structMap.put(FORT, GraphicsFactory.FORT_SRC);
+    }
+
+    //Graphics mapping for Structures
+    public static Map<String, String> unitMap = new HashMap<>();
+    static{
+        unitMap.put(MELEE, GraphicsFactory.MELEE_SRC);
+        unitMap.put(RANGED, GraphicsFactory.RANGED_SRC);
+        unitMap.put(EXPLORER, GraphicsFactory.EXPLORER_SRC);
+        unitMap.put(COLONIST, GraphicsFactory.COLONIST_SRC);
+        unitMap.put(WORKER, GraphicsFactory.WORKER_SRC);
+        unitMap.put(BODY, GraphicsFactory.BODY_SRC);
+    }
+
 }
