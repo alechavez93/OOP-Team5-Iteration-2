@@ -25,6 +25,7 @@ public class PixelMap {
     public static final int STRUCTURE_HEIGHT = (int)(STRUCTURE_TILE_HEIGHT*(double)TILE_HEIGHT);
     public static final double UNIT_TILE_HEIGHT = 0.35;
     public static final int UNIT_HEIGHT = (int) ((double)STRUCTURE_HEIGHT*UNIT_TILE_HEIGHT);
+    public static final int UNIT_MARKER_RADIUS = (int)((0.6)*UNIT_HEIGHT);
 
     public static PixelPoint mapCoordinate(MapCoordinate coor){
         int width_offset = (int)(TILE_WIDTH * 1.5);
