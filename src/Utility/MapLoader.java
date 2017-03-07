@@ -33,12 +33,14 @@ public class MapLoader {
         return result;
     }
 
+    //Takes the name of the file without including the .txt extension
+    //Ex: file.txt --> getCharMap("file");
     public static char[][] getCharMap(String mapName){
-        String result = loadFileText(mapName+".txt");
+        String workingDir = System.getProperty("user.dir");
+        String result = loadFileText(workingDir+"/res/"+mapName+".txt");
         String[] content = result.split("\n");
         int rows = content.length;
         int cols = (result.length()-rows)/rows-1;
-        System.out.println(content);
         char[][] map = new char[rows][cols];
 
         for(int i=0; i<rows; i++){

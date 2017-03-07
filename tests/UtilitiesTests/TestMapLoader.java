@@ -12,7 +12,7 @@ public class TestMapLoader {
 
     @Test
     public void testGetCharMap(){
-        char[][] charMap = MapLoader.getCharMap("././res/sample");
+        char[][] charMap = MapLoader.getCharMap("sample");
         for(int i=0; i<charMap.length; i++){
             for (int j =0; j<charMap[0].length; j++){
                 System.out.print(Character.toString(charMap[i][j])+" ");
