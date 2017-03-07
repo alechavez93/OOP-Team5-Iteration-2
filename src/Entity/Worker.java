@@ -9,11 +9,17 @@ package Entity;
 
 public class Worker {
 
-    int workerCounter;
-    Entity assignedEntity;
+    int numberOfWorkers;
 
-    public Worker() {
-
+    public Worker(int numberOfWorkers) {
+        this.numberOfWorkers = numberOfWorkers;
     }
 
+    public int getNumberOfWorkers() {
+        return numberOfWorkers;
+    }
+
+    public void setNumberOfWorkers(int numberOfWorkers) {
+        this.numberOfWorkers = numberOfWorkers;
+    }
 }
