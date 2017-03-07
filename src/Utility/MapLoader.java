@@ -33,15 +33,17 @@ public class MapLoader {
         return result;
     }
 
-    public static Character[][] getCharMap(String mapName){
-        String content = loadFileText(mapName+".txt");
-        int rows = countChar(content, '\n');
-        int cols = content.length()/rows;
-        Character[][] map = new Character[rows][cols];
+    public static char[][] getCharMap(String mapName){
+        String result = loadFileText(mapName+".txt");
+        String[] content = result.split("\n");
+        int rows = content.length;
+        int cols = (result.length()-rows)/rows-1;
+        System.out.println(content);
+        char[][] map = new char[rows][cols];
 
         for(int i=0; i<rows; i++){
             for(int j=0; j<cols; j++){
-                map[i][j] = content.charAt(i*cols + j);
+                map[i][j] = content[i].charAt(j);
             }
         }
         return map;
