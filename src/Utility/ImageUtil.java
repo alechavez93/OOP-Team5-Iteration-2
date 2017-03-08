@@ -6,7 +6,7 @@ package Utility;
 |   Offered such as loading images, resizing to Tile Size, etc.
 ---------------------------------------------------------------------------------------*/
 
-import Views.PixelMap;
+import Views.PixelMaps.PixelMap;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

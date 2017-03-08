@@ -3,8 +3,9 @@ package MapTests;
 import GameMap.GameMap;
 import GameMap.Tile;
 import Utility.Vec2i;
-import Views.PixelMap;
-import Views.TileDrawer;
+import Views.Drawers.TileDrawer;
+import Views.PixelMaps.PixelMap;
+
 
 import javax.swing.*;
 import java.awt.*;

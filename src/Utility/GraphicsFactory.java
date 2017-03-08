@@ -8,7 +8,7 @@ package Utility;
 
 
 import GameLibrary.GameLibrary;
-import Views.PixelMap;
+import Views.PixelMaps.PixelMap;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
