@@ -63,7 +63,7 @@ final public class GameLibrary {
         MOUNTAIN("Mountain", 999, true, "mountain.jpg",'M'),
         SAND("Sand", 2, false, "sand.jpg",'S'),
         WATER("Water", 999, true, "water.jpg",'W'),
-        JUNGLE("Jungle", 3, true, "grass2.jpg",'J');
+        JUNGLE("Jungle", 3, false, "grass2.jpg",'J');
 
         public final String name;
         public final int movementCost;
