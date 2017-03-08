@@ -8,17 +8,18 @@ package Utility;
 |    Direction Class: Created by CustomerPC on 2/15/2017.
 |---------------------------------------------------------------------------------------
 |   Description:
+|                   )
 |
 ---------------------------------------------------------------------------------------*/
 
 public enum Direction {
         //Set up as Column/Row, don't ask
-        North(0,0,-1),
-        NorthEast(60,1,-1),
-        SouthEast(120,1,0),
-        South(180,0,1),
-        SouthWest(240,-1,0),
-        NorthWest(300,-1,-1);
+        NorthEast(30,1,-1),
+        North(90,0,-1),
+        NorthWest(150,-1,-1),
+        SouthWest(210,-1,0),
+        South(270,0,1),
+        SouthEast(330,1,0);
 
 
     private final int dirAngle;
