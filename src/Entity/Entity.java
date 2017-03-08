@@ -42,6 +42,7 @@ public abstract class Entity extends Stats {
 
     public void takeDamage(Entity entity){
         this.currentHealth -= (entity.getAttack() - this.getArmor());
+        System.out.println(entity.getAttack() - this.getArmor() + " damage was taken by " + this.name);
     }
 
     public void executeNextOrder() {

@@ -146,7 +146,7 @@ public class EntityManager {
 
         colonistUnitList.add(colonist);
         hashset.add(colonist.getInstanceID());
-
+        placeEntity(colonist);
         colonistUnitCount++;
         unitCount++;
     }
@@ -160,7 +160,7 @@ public class EntityManager {
 
         explorerUnitList.add(explorer);
         hashset.add(explorer.getInstanceID());
-
+        placeEntity(explorer);
         explorerUnitCount++;
         unitCount++;
     }
@@ -174,7 +174,7 @@ public class EntityManager {
 
         meleeUnitList.add(melee);
         hashset.add(melee.getInstanceID());
-
+        placeEntity(melee);
         meleeUnitCount++;
         unitCount++;
     }
@@ -188,7 +188,7 @@ public class EntityManager {
 
         rangeUnitList.add(range);
         hashset.add(range.getInstanceID());
-
+        placeEntity(range);
         rangeUnitCount++;
         unitCount++;
     }
@@ -202,7 +202,7 @@ public class EntityManager {
 
         capitalList.add(capital);
         hashset.add(capital.getInstanceID());
-
+        placeEntity(capital);
         capitalCount++;
         structureCount++;
     }
@@ -216,7 +216,7 @@ public class EntityManager {
 
         farmList.add(farm);
         hashset.add(farm.getInstanceID());
-
+        placeEntity(farm);
         farmCount++;
         structureCount++;
     }
@@ -230,7 +230,7 @@ public class EntityManager {
 
         fortList.add(fort);
         hashset.add(fort.getInstanceID());
-
+        placeEntity(fort);
         fortCount++;
         structureCount++;
     }
@@ -244,7 +244,7 @@ public class EntityManager {
 
         mineList.add(mine);
         hashset.add(mine.getInstanceID());
-
+        placeEntity(mine);
         mineCount++;
         structureCount++;
     }
@@ -258,7 +258,7 @@ public class EntityManager {
 
         observationList.add(observation);
         hashset.add(observation.getInstanceID());
-
+        placeEntity(observation);
         observationCount++;
         structureCount++;
     }
@@ -272,7 +272,7 @@ public class EntityManager {
 
         powerList.add(power);
         hashset.add(power.getInstanceID());
-
+        placeEntity(power);
         powerCount++;
         structureCount++;
     }
@@ -286,7 +286,7 @@ public class EntityManager {
 
         universityList.add(university);
         hashset.add(university.getInstanceID());
-
+        placeEntity(university);
         universityCount++;
         structureCount++;
     }
@@ -300,7 +300,7 @@ public class EntityManager {
 
         armyList.add(army);
         hashset.add(army.getInstanceID());
-
+        //does army get placed on the tile? I think not
         armyCount++;
     }
 
@@ -654,8 +654,9 @@ public class EntityManager {
         soldier.setState("Attack");
         Tile t = GameMap.getInstance().getNeighborTile(soldier.getLocation(), direction);
         System.out.println("Attacking (" + t.getPos().getRow() + " , " + t.getPos().getColumn() + ")");
-        System.out.println(t.getOccupyingEntities().length + " targets attacked.");
+        System.out.println(t.getOccupyingEntities().length + " targets found.");
         for (Entity entity : t.getOccupyingEntities()) {
+            System.out.println("Attacking " + entity.getName());
             entity.takeDamage(soldier);
         }
     }
@@ -665,7 +666,7 @@ public class EntityManager {
         soldier.setState("Defend");
     }
 
-    public void retaliate(Soldier defender, Soldier Attacker){
+    public void retaliate(Soldier defender, Entity Attacker){
 
     }
 
