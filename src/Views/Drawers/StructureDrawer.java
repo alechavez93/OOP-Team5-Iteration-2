@@ -1,4 +1,4 @@
-package Views;
+package Views.Drawers;
 /*--------------------------------------------------------------------------------------
 |	StructureDrawer Class: Created by Alejandro Chavez on 3/5/2017.
 |---------------------------------------------------------------------------------------
@@ -7,6 +7,8 @@ package Views;
 
 import Entity.Structure.Structure;
 import Utility.GraphicsFactory;
+import Views.PixelMaps.PixelMap;
+import Views.PixelMaps.PixelPoint;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

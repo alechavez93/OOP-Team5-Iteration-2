@@ -1,4 +1,4 @@
-package Views;
+package Views.Drawers;
 /*--------------------------------------------------------------------------------------
 |	TileDrawer Class: Created by Alejandro Chavez on 2/13/2017.
 |---------------------------------------------------------------------------------------
@@ -10,6 +10,9 @@ package Views;
 
 import GameMap.Tile;
 import Utility.GraphicsFactory;
+import Views.PixelMaps.PixelMap;
+import Views.PixelMaps.PixelPoint;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;

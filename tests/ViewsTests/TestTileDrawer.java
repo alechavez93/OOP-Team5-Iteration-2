@@ -9,11 +9,8 @@ import GameLibrary.GameLibrary;
 import GameMap.Tile;
 import Utility.Vec2i;
 import GameMap.GameMap;
-import GameMap.Tile;
-import Utility.Coordinate;
-import Utility.Vec2i;
-import Views.PixelMap;
-import Views.TileDrawer;
+import Views.PixelMaps.PixelMap;
+import Views.Drawers.TileDrawer;
 
 import javax.swing.*;
 import java.awt.*;
