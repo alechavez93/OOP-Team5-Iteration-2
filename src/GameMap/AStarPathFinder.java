@@ -58,10 +58,8 @@ public class AStarPathFinder implements PathFinder {
             }
 
             closed.add(n);
-            Tile[] neighbors = map.getAllNeighbors(n.loc);
-            for(byte iii = 0; iii < neighbors.length; iii++) {
-                Tile nn = neighbors[iii];
-
+            List<Tile> neighbors = map.getAllNeighbors(n.loc, 1);
+            for(Tile nn : neighbors) {
                 //Not a sane neighbor
                 if (nn == null)
                     continue;

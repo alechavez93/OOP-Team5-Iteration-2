@@ -6,7 +6,7 @@ package Utility;
 |   Offered such as loading images, resizing to Tile Size, etc.
 ---------------------------------------------------------------------------------------*/
 
-import Views.PixelMap;
+import Views.PixelMaps.PixelMap;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -29,7 +29,17 @@ public class ImageUtil {
         img.getScaledInstance(PixelMap.TILE_FULL_WIDTH, PixelMap.TILE_HEIGHT, Image.SCALE_DEFAULT);
     }
 
-    public static void resizeToIconSize(){
-
+    public static BufferedImage toBufferedImage(Image img) {
+        if (img instanceof BufferedImage) {
+            return (BufferedImage) img;
+        }
+        // Create a buffered image with transparency
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        // Return the buffered image
+        return bimage;
     }
 }

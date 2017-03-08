@@ -12,15 +12,14 @@ import Utility.Vec2i;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class BlockOTests {
 
     public static void main(String[] args) {
-        GameMap.getInstance().initialize(new Vec2i(10,10));
+        GameMap.getInstance().initialize(new Vec2i(15,10));
         testMap();
         testTile();
         testPath();
@@ -37,7 +36,7 @@ public class BlockOTests {
             itr.next();
             iii++;
         }
-        assertEquals(100, iii);
+        assertEquals(150, iii);
         System.out.printf("Map: Basic Iterator funtionality test passed.\n");
 
         //Test iterator compliance
@@ -62,6 +61,13 @@ public class BlockOTests {
             }
         }
         System.out.printf("Map: GetTile compliance test passed.\n");
+
+        List<Tile> tt = map.getAllNeighbors(new Vec2i(5,5), 2);
+        for(Tile ttt : tt) {
+            String pos = ttt.getPos().getVector().x + " " + ttt.getPos().getVector().y;
+            System.out.printf(pos + "\n");
+        }
+
     }
 
     public static void testTile() {
