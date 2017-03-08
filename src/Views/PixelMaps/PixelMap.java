@@ -8,6 +8,7 @@ package Views.PixelMaps;
 
 
 import GameMap.MapCoordinate;
+import Views.ViewPort;
 
 
 import java.awt.*;
@@ -31,6 +32,7 @@ public class PixelMap {
     public static final int TAB_FONTSIZE = TAB_HEIGHT/2;
 
 
+    //Plain Pixel Mapping based on position
     public static PixelPoint mapCoordinate(MapCoordinate coor){
         int width_offset = (int)(TILE_WIDTH * 1.5);
         int height_offset = (int)(0.5*TILE_HEIGHT);
@@ -42,6 +44,22 @@ public class PixelMap {
         //If odd Col
         else{
             return new PixelPoint(coor.getColumn()*width_offset, coor.getRow()*TILE_HEIGHT+height_offset);
+        }
+    }
+
+    //Considers the viewport's origin
+    public static PixelPoint mapCoordinate(MapCoordinate coor, ViewPort viewPort){
+        int width_offset = (int)(TILE_WIDTH * 1.5);
+        int height_offset = (int)(0.5*TILE_HEIGHT);
+        PixelPoint origin = viewPort.getOrigin();
+
+        //If even Col
+        if(coor.isOffset()){
+            return new PixelPoint(coor.getColumn()*width_offset - origin.x, coor.getRow()*TILE_HEIGHT - origin.y);
+        }
+        //If odd Col
+        else{
+            return new PixelPoint(coor.getColumn()*width_offset - origin.x, coor.getRow()*TILE_HEIGHT+height_offset - origin.y);
         }
     }
 }
