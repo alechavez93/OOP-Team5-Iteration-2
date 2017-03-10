@@ -21,14 +21,19 @@ import java.util.Map;
 public class GraphicsFactory {
 
     //Supported Graphics (Can be called statically)
-    public static final String GRASS = "grass.jpg", MOUNTAIN = "mountain.jpg", WATER = "water.jpg", SAND = "sand.jpg", GRASS2 = "grass2.jpg";
-    public static final String[] TEXTURES = new String[]{GRASS, MOUNTAIN, WATER, SAND, GRASS2};
+    public static final String GRASS = "grass.jpg", MOUNTAIN = "mountain.jpg", WATER = "water2.jpg", SAND = "sand.jpg", JUNGLE = "grass2.jpg";
+    public static final String[] TEXTURES = new String[]{GRASS, MOUNTAIN, WATER, SAND, JUNGLE};
 
     //Structure graphics
     public static final String CAPITAL_SRC = "capital2.png", FARM_SRC = "farm.png", FORT_SRC = "fort2.png", MINE_SRC = "mine2.png", PLANT_SRC = "plant.png", TOWER_SRC = "tower.png", UNIVERSITY_SRC = "university2.png";
 
     //Unit sources
     public static final String ARMY_SRC = "army.png", COLONIST_SRC = "colonist.png", EXPLORER_SRC = "explorer.png", MELEE_SRC = "melee.png", RANGED_SRC = "ranged.png", WORKER_SRC = "worker.png", BODY_SRC = "dead.png";
+
+    //Icons and separators
+    public static final String MAP_SEPARATOR = "map-separator.png", ATTACK_ICON = "icons/attack.png", DEFENSE_ICON = "icons/defense.png", ARMOR_ICON = "icons/armor.png", MOVEMENT_ICON = "icons/movement.png", HEALTH_ICON = "icons/health.png", RANGE_ICON = "icons/range.png", VISION_ICON = "icons/vision.png", UPKEEP_ICON = "icons/upkeep.png";
+    public static final String FOOD_ICON = "icons/meat.png", ENERGY_ICON = "icons/energy.png", ORE_ICON = "icons/ore.png", PLAYER_ICON = "icons/player.png", MODE_ICON = "icons/mode.png", TYPE_ICON = "icons/type.png", ID_ICON = "icons/id.png", COMMAND_ICON = "icons/command.png";
+    public static String[] icons = {ATTACK_ICON, DEFENSE_ICON, ARMOR_ICON, MOVEMENT_ICON, HEALTH_ICON, RANGE_ICON, VISION_ICON, UPKEEP_ICON, FOOD_ICON, ENERGY_ICON, ORE_ICON, PLAYER_ICON, MODE_ICON, TYPE_ICON, ID_ICON, COMMAND_ICON};
     //-------------------------------------------------------------------------------------------
 
     private Map<String, BufferedImage> cachedGraphics;
@@ -54,6 +59,13 @@ public class GraphicsFactory {
             Map.Entry pair = (Map.Entry) i.next();
             loadUnitResources((String)pair.getKey());
             i.remove();
+        }
+
+        //Load icons
+        for(String iconSrc: icons){
+            BufferedImage icon = ImageUtil.loadImage(iconSrc);
+            icon = ImageUtil.toBufferedImage(icon.getScaledInstance(PixelMap.ICON_SIZE, PixelMap.ICON_SIZE, Image.SCALE_SMOOTH));
+            cachedGraphics.put(iconSrc, icon);
         }
     }
 
@@ -81,6 +93,10 @@ public class GraphicsFactory {
         }throw new RuntimeException("Error, unit name is not valid. For valid unit names check GameLibrary.");
     }
 
+    public BufferedImage getGraphics(String name){
+        return cachedGraphics.get(name);
+    }
+
     //Helper Functions
     private void loadTileResource(String imgName){
         BufferedImage texture = ImageUtil.loadImage(imgName);
@@ -96,7 +112,7 @@ public class GraphicsFactory {
 
     private void loadUnitResources(String key){
         BufferedImage unit = ImageUtil.loadImage(GameLibrary.unitMap.get(key));
-        unit = ImageUtil.toBufferedImage(unit.getScaledInstance(-1, PixelMap.UNIT_HEIGHT, Image.SCALE_SMOOTH));
+//        unit = ImageUtil.toBufferedImage(unit.getScaledInstance(-1, PixelMap.UNIT_HEIGHT, Image.SCALE_SMOOTH));
         cachedGraphics.put(key, unit);
     }
 }

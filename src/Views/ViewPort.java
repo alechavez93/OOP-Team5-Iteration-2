@@ -17,21 +17,25 @@ import Views.PixelMaps.PixelMap;
 import Views.PixelMaps.PixelPoint;
 
 import GameMap.*;
+
+import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 
-public class ViewPort {
+public class ViewPort extends JPanel{
     private PixelPoint origin;
     private GameMap map;
     private int mapPixelWidth, mapPixelHeight;
     private static ViewPort instance;
-    public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.8*(double)PixelMap.SCREEN_HEIGHT);
+    public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.72*(double)PixelMap.SCREEN_HEIGHT);
 
     private ViewPort(PixelPoint origin){
+        setLayout(null);
         this.origin = origin;
         map = GameMap.getInstance();
         mapPixelWidth = map.getSize().x * PixelMap.TILE_WIDTH;
         mapPixelHeight = map.getSize().y * PixelMap.TILE_HEIGHT;
+        setBounds(0,0,VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     }
 
     public void setOrigin(int newX, int newY){
@@ -63,6 +67,7 @@ public class ViewPort {
         return instance;
     }
 
+
     public void paintLayerOne(Graphics g){
         for(Iterator iter = map.getIterator(); iter.hasNext();){
             Tile tile = (Tile) iter.next();
@@ -74,5 +79,16 @@ public class ViewPort {
                     StructureDrawer.drawStructure(g, (Structure)e);
             }
         }
+        System.out.println("Hello");
+    }
+
+    public void paintViewPort(Graphics g){
+        paintLayerOne(g);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paintComponent(g);
+        paintViewPort(g);
     }
 }

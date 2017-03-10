@@ -18,11 +18,12 @@ public class InGameFrame extends JFrame{
 
     private CardsContainer cards;
     private Controller controller;
-
+    private JLayeredPane layeredPane;
 
     public InGameFrame(){
+        layeredPane = new JLayeredPane();
         cards = new CardsContainer();
-        getContentPane().add(cards, BorderLayout.CENTER);
+        getContentPane().add(cards);
         setTitle("Game");
         setSize(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
