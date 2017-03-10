@@ -1,9 +1,6 @@
 package MapTests;
-import Entity.Unit.ExplorerUnit;
-import Entity.Unit.MeleeSoldier;
+import Entity.Unit.*;
 import Entity.Entity;
-import Entity.Unit.RangeSoldier;
-import Entity.Unit.Unit;
 import GameLibrary.GameLibrary;
 import GameMap.*;
 import Utility.Direction;
@@ -23,6 +20,7 @@ public class BlockOTests {
         testMap();
         testTile();
         testPath();
+        testFog();
     }
 
     //TODO: Proper Neighbor Testing
@@ -62,9 +60,9 @@ public class BlockOTests {
         }
         System.out.printf("Map: GetTile compliance test passed.\n");
 
-        List<Tile> tt = map.getAllNeighbors(new Vec2i(5,5), 2);
+        List<Tile> tt = map.getAllNeighbors(new Vec2i(5,5), 1);
         for(Tile ttt : tt) {
-            String pos = ttt.getPos().getVector().x + " " + ttt.getPos().getVector().y;
+            String pos = ttt.getPos().getVector().y + " " + ttt.getPos().getVector().x;
             System.out.printf(pos + "\n");
         }
 
@@ -119,9 +117,21 @@ public class BlockOTests {
         PathFinder finder = new AStarPathFinder();
         Path path = finder.createPath(new MapCoordinate(0,0), new MapCoordinate(9,9));
         MapCoordinate pos = new MapCoordinate(0,0);
+        System.out.printf("\n");
         while(!path.isEnd()) {
             pos = GameMap.getInstance().getNeighborTile(pos,path.next()).getPos();
             System.out.printf(pos.getRow() + " " + pos.getColumn() + "\n");
         }
+    }
+
+    public static void testFog() {
+        FogOfWar fog = new FogOfWar();
+        List<Entity> list = new ArrayList<Entity>(2);
+        list.add(new RangeSoldier(3, new MapCoordinate(1,1), null));
+        list.add(new MeleeSoldier(3, new MapCoordinate(5,5), null));
+        fog.calculateVisibility(list);
+        Visibility[][] vis = fog.getVisibilityMatrix();
+
+
     }
 }

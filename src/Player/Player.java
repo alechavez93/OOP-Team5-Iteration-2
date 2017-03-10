@@ -2,6 +2,7 @@ package Player;
 
 import Entity.*;
 import Entity.Unit.ColonistUnit;
+import GameMap.FogOfWar;
 import GameMap.MapCoordinate;
 import Utility.Coordinate;
 
@@ -24,11 +25,13 @@ public class Player {
     private int food;
     private int stone;
     private int wood;
+    private FogOfWar fogOfWar;
 
     public Player(int id, MapCoordinate location){
         this.pID = id;
         this.entityManager = new EntityManager(this);
         entityManager.init(location);
+        fogOfWar = new FogOfWar();
         //itemManager = new ItemManager(this);
         //techManager = new TechManager(this);
         this.food = 500;
@@ -83,6 +86,8 @@ public class Player {
     public void endTurn(){
         entityManager.finishTurn();
         //do other stuff maybe
+
+        //fogOfWar.calculateVisibility(entityManager.allEntities()); //<--EntityManager needs a way to get all entities
     }
 
     //public int getCapitalCount(){ return entityManager.getCapitalCount();}
