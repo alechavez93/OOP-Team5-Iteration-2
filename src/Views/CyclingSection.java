@@ -6,7 +6,8 @@ package Views;
 |   also displays some indicators such as Player in turn, Resources, etc.
 ---------------------------------------------------------------------------------------*/
 
-import GameLibrary.GameLibrary;
+
+import Game.CyclingState;
 import Utility.GraphicsFactory;
 import Views.Drawers.OptionDrawer;
 import Views.PixelMaps.PixelMap;
@@ -19,21 +20,62 @@ import java.awt.image.BufferedImage;
 public class CyclingSection extends JPanel{
 
     GraphicsFactory graphicsFactory;
+    CyclingState cyclingState;
 
     public CyclingSection(){
         setLayout(null);
-        setBounds(0, ViewPort.VIEWPORT_HEIGHT, PixelMap.SCREEN_WIDTH/2, PixelMap.SCREEN_HEIGHT);
+        setBounds(0, ViewPort.VIEWPORT_HEIGHT, PixelMap.SCREEN_WIDTH/2, PixelMap.SCREEN_HEIGHT-ViewPort.VIEWPORT_HEIGHT);
         graphicsFactory = GraphicsFactory.getInstance();
         setVisible(true);
-//        setBackground(new Color(255,255,255));
     }
+
+    public void setCyclingState(CyclingState cyclingState){ this.cyclingState = cyclingState; }
 
     @Override
     public void paint(Graphics g) {
         super.paintComponent(g);
-        BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.ATTACK_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(0+50, 50), icon, 50+"");
-        OptionDrawer.drawOption(g, new PixelPoint(0+50, 125), icon, "Attack:", 50+"", new Color(0,0,255));
-        OptionDrawer.drawOption(g, new PixelPoint(0+50, 200), icon, "Lol:", 30+"", new Color(13,89,45));
+        g.drawRect(5, 5, getWidth()-10, getHeight()-10);
+        paintCyclingState(g);
+        paintResources(g);
+    }
+
+
+    private void paintCyclingState(Graphics g){
+        //Player
+        BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.PLAYER_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 50), icon, "Player: ", cyclingState.inTurn.getName(), new Color(10,119,16));
+
+        //Game Mode
+        icon = graphicsFactory.getGraphics(GraphicsFactory.MODE_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 125), icon, "Game Mode: ", cyclingState.gameMode, new Color(0,0,254));
+
+        //Mode Type
+        icon = graphicsFactory.getGraphics(GraphicsFactory.TYPE_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 200), icon, "Mode Type: ", cyclingState.modeType, new Color(136,137,46));
+
+        //Entity
+        icon = graphicsFactory.getGraphics(GraphicsFactory.ID_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 275), icon, "Entity Id: ", cyclingState.selectedEntity.getInstanceID()+"", new Color(254,0,0));
+
+        //Command
+        icon = graphicsFactory.getGraphics(GraphicsFactory.COMMAND_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 350), icon, "Command: ", cyclingState.selectedCommand, new Color(254,0,254));
+    }
+
+
+    private void paintResources(Graphics g){
+        g.setColor(new Color(0,0,0));
+
+        //Food
+        BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.FOOD_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, 50), icon, cyclingState.inTurn.getFood()+"");
+
+        //Ore
+        icon = graphicsFactory.getGraphics(GraphicsFactory.ORE_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, 125), icon, cyclingState.inTurn.getOre()+"");
+
+        //Energy
+        icon = graphicsFactory.getGraphics(GraphicsFactory.ENERGY_ICON);
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, 200), icon, cyclingState.inTurn.getEnergy()+"");
     }
 }

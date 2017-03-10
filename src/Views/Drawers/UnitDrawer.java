@@ -25,7 +25,7 @@ public class UnitDrawer {
         BufferedImage unitImg = GraphicsFactory.getInstance().getUnit(unit.getName());
 
         //Drawing Unit and Marker
-        g.drawImage(unitImg, pos.x, pos.y, null);
+        g.drawImage(unitImg, pos.x, pos.y, PixelMap.UNIT_HEIGHT, PixelMap.UNIT_HEIGHT, null);
         drawMarker(g, PixelMap.UNIT_MARKER_RADIUS, facingPos);
     }
 
