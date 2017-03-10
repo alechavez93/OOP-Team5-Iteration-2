@@ -11,7 +11,9 @@ import GameLibrary.GameLibrary;
 import GameMap.GameMap;
 import GameMap.Tile;
 import Utility.Vec2i;
-import Views.*;
+import Views.Drawers.RowDrawer;
+import Views.PixelMaps.PixelMap;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;

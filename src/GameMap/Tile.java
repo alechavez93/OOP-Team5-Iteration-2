@@ -14,6 +14,7 @@ import Entity.Unit.Unit;
 import GameLibrary.GameLibrary;
 import Utility.Vec2i;
 import Entity.Entity;
+import Entity.EntityEffect;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,8 +30,8 @@ public class Tile {
 
     private final GameLibrary.TileType type;
 
-    //private Effect activeEffect;
     private List<Entity> entityList = new LinkedList<Entity>();
+    private List<EntityEffect> affectList = new LinkedList<EntityEffect>();
 
 
     public Entity[] getOccupyingEntities() { return entityList.toArray(new Entity[entityList.size()]); }
@@ -38,14 +39,28 @@ public class Tile {
     public void addEntity(Entity entity) {
         entityList.add(entity);
         entity.setLocation(pos);
-        //if(activeEffect != null)
-        //    activeEffect.execute(entity);
-        //if(activeItem != null)
-        //    activeItem.triggerItemEffect();
+        if(!affectList.isEmpty()) {
+            for(EntityEffect a : affectList)
+                a.apply(entity);
+        }
     }
     public void addArmyUnits(List<Unit> list) {
         entityList.addAll(list);
-        for(Unit u : list) u.setLocation(pos);
+        for(Unit u : list) {
+            u.setLocation(pos);
+            if(!affectList.isEmpty()) {
+                for(EntityEffect a : affectList)
+                    a.apply(u);
+            }
+        }
+    }
+
+    public void addEffect(EntityEffect e) {
+        affectList.add(e);
+    }
+
+    public void removeEffect(EntityEffect e) {
+        affectList.remove(e);
     }
 
     public void removeEntity(Entity entity) { entityList.remove(entity); }
@@ -83,7 +98,7 @@ public class Tile {
         GameLibrary.TileType t = null;
         //Resource r = null;
 
-        int random = rng.nextInt(6);
+        int random = rng.nextInt(8);
         switch(random) {
             case 0: case 1: case 2:
                 t = GameLibrary.TileType.GRASS;
@@ -94,6 +109,12 @@ public class Tile {
             case 5:
                 t = GameLibrary.TileType.MOUNTAIN;
                  break;
+            case 6:
+                t = GameLibrary.TileType.WATER;
+                break;
+            case 7:
+                t = GameLibrary.TileType.SAND;
+                break;
         }
         return makeTile(t, pos);
     }
@@ -106,11 +127,11 @@ public class Tile {
     public HarvestResources getResources() { return resources; }
     public GameLibrary.TileType getTileType() { return type; }
     public boolean isImpassable() { return isImpassable; }
-    //public Effect getActiveEffect() { return activeEffect; }
+    //public DamageEffect getActiveEffect() { return activeEffect; }
 
     //Setters
     /*
-    public void setActiveEffect(Effect effect) { activeEffect = effect; }
+    public void setActiveEffect(DamageEffect effect) { activeEffect = effect; }
     */
     public void setImpassable(boolean impassable) { isImpassable = impassable; }
 }

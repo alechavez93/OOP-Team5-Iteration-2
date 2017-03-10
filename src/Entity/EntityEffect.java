@@ -1,16 +1,13 @@
-package Views;
+package Entity;
+
 /*--------------------------------------------------------------------------------------
-|	PixelPoint Class: Created by Alejandro Chavez on 2/13/2017.
+|    EntityEffect Interface: Created by Andrew on 3/5/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
+|   Description:
 |
 ---------------------------------------------------------------------------------------*/
 
-public class PixelPoint {
-    public int x, y;
-
-    public PixelPoint(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
+public interface EntityEffect extends Cloneable{
+    void apply(Entity e);
+    Object clone();
 }
