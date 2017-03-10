@@ -21,14 +21,17 @@ import java.util.Map;
 public class GraphicsFactory {
 
     //Supported Graphics (Can be called statically)
-    public static final String GRASS = "grass.jpg", MOUNTAIN = "mountain.jpg", WATER = "water.jpg", SAND = "sand.jpg", GRASS2 = "grass2.jpg";
-    public static final String[] TEXTURES = new String[]{GRASS, MOUNTAIN, WATER, SAND, GRASS2};
+    public static final String GRASS = "grass.jpg", MOUNTAIN = "mountain.jpg", WATER = "water2.jpg", SAND = "sand.jpg", JUNGLE = "grass2.jpg";
+    public static final String[] TEXTURES = new String[]{GRASS, MOUNTAIN, WATER, SAND, JUNGLE};
 
     //Structure graphics
     public static final String CAPITAL_SRC = "capital2.png", FARM_SRC = "farm.png", FORT_SRC = "fort2.png", MINE_SRC = "mine2.png", PLANT_SRC = "plant.png", TOWER_SRC = "tower.png", UNIVERSITY_SRC = "university2.png";
 
     //Unit sources
     public static final String ARMY_SRC = "army.png", COLONIST_SRC = "colonist.png", EXPLORER_SRC = "explorer.png", MELEE_SRC = "melee.png", RANGED_SRC = "ranged.png", WORKER_SRC = "worker.png", BODY_SRC = "dead.png";
+
+    //Icons and separators
+    public static final String MAP_SEPARATOR = "map-separator.png", ATTACK_ICON = "icons/attack.png";
     //-------------------------------------------------------------------------------------------
 
     private Map<String, BufferedImage> cachedGraphics;
@@ -55,6 +58,10 @@ public class GraphicsFactory {
             loadUnitResources((String)pair.getKey());
             i.remove();
         }
+
+        BufferedImage icon = ImageUtil.loadImage(ATTACK_ICON);
+        icon = ImageUtil.toBufferedImage(icon.getScaledInstance(PixelMap.ICON_SIZE, PixelMap.ICON_SIZE, Image.SCALE_SMOOTH));
+        cachedGraphics.put(ATTACK_ICON, icon);
     }
 
     //Public Accessors
@@ -79,6 +86,10 @@ public class GraphicsFactory {
         if(Arrays.asList(GameLibrary.UNITS).contains(name)){
             return cachedGraphics.get(name);
         }throw new RuntimeException("Error, unit name is not valid. For valid unit names check GameLibrary.");
+    }
+
+    public BufferedImage getGraphics(String name){
+        return cachedGraphics.get(name);
     }
 
     //Helper Functions

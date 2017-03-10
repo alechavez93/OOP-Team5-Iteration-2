@@ -19,11 +19,11 @@ public class UnitView extends View{
 
     public UnitView(String name){
         setName(name);
-        setBackground(new Color(255,255,0));
     }
 
     @Override
     public void paint(Graphics g) {
+        super.paintComponent(g);
         EntityManager em = new EntityManager(new Player(0, new MapCoordinate(3,3) ));
         Unit ranged = new RangeSoldier(0, new MapCoordinate(3,3), em);
         UnitDrawer.drawUnit(g, ranged);

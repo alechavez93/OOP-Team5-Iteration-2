@@ -15,13 +15,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TestViewPort {
-    private static class TestPanel extends JPanel {
-        @Override
-        public void paint(Graphics g) {
-            ViewPort.getInstance().paintLayerOne(g);
-        }
-    }
-
 
     public static void main(String[] args) {
         char[][] cMap = MapLoader.getCharMap("sample");
@@ -29,11 +22,18 @@ public class TestViewPort {
         map.initialize(cMap, new Vec2i(cMap.length, cMap[0].length));
         ViewPort.initialize(new PixelPoint(0,0));
         JFrame frame = new JFrame("Game");
-        JPanel panel = new TestPanel();
-        frame.add(panel);
-        frame.setBounds(0,0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+        frame.setLayout(null);
+        frame.setBounds(0,0,PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+
+        ViewPort viewPort = ViewPort.getInstance();
+//        viewPort.setLayout(new BoxLayout());
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(255, 255, 255));
+        panel.setBounds(viewPort.getOrigin().x, viewPort.getOrigin().y, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+        frame.add(viewPort);
+        frame.add(panel);
         frame.setVisible(true);
     }
 }
