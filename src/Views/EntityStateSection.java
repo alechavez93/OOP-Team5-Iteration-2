@@ -39,26 +39,26 @@ public class EntityStateSection extends JPanel{
         Entity entity = cyclingState.selectedEntity;
 
         BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.ATTACK_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 50), icon, entity.getAttack()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE), icon, entity.getAttack()+"");
         icon = graphicsFactory.getGraphics(GraphicsFactory.DEFENSE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 125), icon, entity.getDefense()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, entity.getDefense()+"");
         icon = graphicsFactory.getGraphics(GraphicsFactory.ARMOR_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 200), icon, entity.getArmor()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, entity.getArmor()+"");
 
         icon = graphicsFactory.getGraphics(GraphicsFactory.RANGE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*1.5), 50), icon, entity.getRangeRadius()+"");
+        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*1.5), PixelMap.INIT_SPACE), icon, entity.getRangeRadius()+"");
         icon = graphicsFactory.getGraphics(GraphicsFactory.MOVEMENT_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*1.5), 125), icon, entity.getMovement()+"");
+        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*1.5), PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, entity.getMovement()+"");
         icon = graphicsFactory.getGraphics(GraphicsFactory.VISION_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*1.5), 200), icon, entity.getVisibilityRadius()+"");
+        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*1.5), PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, entity.getVisibilityRadius()+"");
 
         icon = graphicsFactory.getGraphics(GraphicsFactory.HEALTH_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*2.5), 50), icon, entity.getCurrentHealth()+"/"+entity.getMaxHealth());
+        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*2.5), PixelMap.INIT_SPACE), icon, entity.getCurrentHealth()+"/"+entity.getMaxHealth());
         icon = graphicsFactory.getGraphics(GraphicsFactory.UPKEEP_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*2.5), 125), icon, entity.getUpkeep()+"");
+        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*2.5), PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, entity.getUpkeep()+"");
 
         icon = graphicsFactory.getGraphics(entity.getName());
-        int width = PixelMap.UNIT_HEIGHT*3, height = PixelMap.UNIT_HEIGHT*3, x = (int)(PixelMap.TILE_WIDTH*3.8), y = 50;
+        int width = PixelMap.UNIT_HEIGHT*3, height = PixelMap.UNIT_HEIGHT*3, x = (int)(PixelMap.TILE_WIDTH*3.8), y = PixelMap.INIT_SPACE;
         g.drawRect(x-5, y-5, width+10, height+10);
         g.drawImage(icon, x, y, width, height, null);
     }

@@ -43,23 +43,24 @@ public class CyclingSection extends JPanel{
     private void paintCyclingState(Graphics g){
         //Player
         BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.PLAYER_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 50), icon, "Player: ", cyclingState.inTurn.getName(), new Color(10,119,16));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE), icon, "Player: ", cyclingState.inTurn.getName(), new Color(10,119,16));
+        System.out.println(PixelMap.TILE_HEIGHT);
 
         //Game Mode
         icon = graphicsFactory.getGraphics(GraphicsFactory.MODE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 125), icon, "Game Mode: ", cyclingState.gameMode, new Color(0,0,254));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, "Game Mode: ", cyclingState.gameMode, new Color(0,0,254));
 
         //Mode Type
         icon = graphicsFactory.getGraphics(GraphicsFactory.TYPE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 200), icon, "Mode Type: ", cyclingState.modeType, new Color(136,137,46));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, "Mode Type: ", cyclingState.modeType, new Color(136,137,46));
 
         //Entity
         icon = graphicsFactory.getGraphics(GraphicsFactory.ID_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 275), icon, "Entity Id: ", cyclingState.selectedEntity.getInstanceID()+"", new Color(254,0,0));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*3), icon, "Entity Id: ", cyclingState.selectedEntity.getInstanceID()+"", new Color(254,0,0));
 
         //Command
         icon = graphicsFactory.getGraphics(GraphicsFactory.COMMAND_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, 350), icon, "Command: ", cyclingState.selectedCommand, new Color(254,0,254));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*4), icon, "Command: ", cyclingState.selectedCommand, new Color(254,0,254));
     }
 
 
@@ -68,14 +69,14 @@ public class CyclingSection extends JPanel{
 
         //Food
         BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.FOOD_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, 50), icon, cyclingState.inTurn.getFood()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE), icon, cyclingState.inTurn.getFood()+"");
 
         //Ore
         icon = graphicsFactory.getGraphics(GraphicsFactory.ORE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, 125), icon, cyclingState.inTurn.getOre()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, cyclingState.inTurn.getOre()+"");
 
         //Energy
         icon = graphicsFactory.getGraphics(GraphicsFactory.ENERGY_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, 200), icon, cyclingState.inTurn.getEnergy()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, cyclingState.inTurn.getEnergy()+"");
     }
 }
