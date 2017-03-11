@@ -2,30 +2,79 @@ package Views;
 /*--------------------------------------------------------------------------------------
 |	UnitView Class: Created by Alejandro Chavez on 3/8/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|
+|   Description: Maintains the overview of all the Units in a Player's possession.
 ---------------------------------------------------------------------------------------*/
 
 
-import Entity.Unit.RangeSoldier;
+import Entity.Entity;
+import Entity.Unit.MeleeSoldier;
 import Entity.Unit.Unit;
+import Game.CyclingState;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
-import Player.Player;
-import Views.Drawers.UnitDrawer;
+import Utility.GraphicsFactory;
+import Views.Drawers.OptionDrawer;
+import Views.PixelMaps.PixelMap;
+import Views.PixelMaps.PixelPoint;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.List;
 
 public class UnitView extends View{
 
-    public UnitView(String name){
-        setName(name);
+    private CyclingState state;
+    private GraphicsFactory graphicsFactory;
+    int count = 0;
+    public static final int MARGIN = PixelMap.UNIT_HEIGHT/7;
+
+    public UnitView(String name, CyclingState state){
+        super(name);
+        this.state = state;
+        graphicsFactory = GraphicsFactory.getInstance();
+    }
+
+    public void CyclingState(CyclingState state){
+        this.state = state;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paintComponent(g);
-        EntityManager em = new EntityManager(new Player(0, new MapCoordinate(3,3) ));
-        Unit ranged = new RangeSoldier(0, new MapCoordinate(3,3), em);
-        UnitDrawer.drawUnit(g, ranged);
+        EntityManager entityManager = state.inTurn.getEntityManager();
+        entityManager.addMelee(new MeleeSoldier(count++, new MapCoordinate(2,2), entityManager));
+        List<Entity> list = entityManager.getMeleeUnitList();
+
+        for(int i=0; i<10; i++){
+            if(i<list.size()){
+                drawUnit(g, new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(i+1),50), (Unit) list.get(i));
+            }else{
+                drawUnit(g, new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(i+1),50), i);
+            }
+        }
+    }
+
+
+    private void drawUnit(Graphics g, PixelPoint point, Unit unit){
+        BufferedImage img = graphicsFactory.getGraphics(unit.getName());
+        g.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, OptionDrawer.FONT_SIZE));
+        g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2);
+        g.drawImage(img, point.x, point.y, PixelMap.STRUCTURE_HEIGHT, PixelMap.STRUCTURE_HEIGHT, null);
+        g.drawString(unit.getInstanceID()+"",point.x+PixelMap.TILE_WIDTH/8, point.y+PixelMap.TILE_WIDTH/2+PixelMap.TILE_WIDTH/3);
+        //Draw the health bar
+        drawHealthBar(g, new PixelPoint(point.x, point.y+(int)(1.2*PixelMap.STRUCTURE_HEIGHT)), unit);
+    }
+
+    private void drawUnit(Graphics g, PixelPoint point, int number){
+        g.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 2*OptionDrawer.FONT_SIZE));
+        g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2);
+        g.drawString(number+"",point.x+(PixelMap.STRUCTURE_HEIGHT+30)/2-OptionDrawer.FONT_SIZE, point.y+(PixelMap.STRUCTURE_HEIGHT+30)/2);
+    }
+
+    private void drawHealthBar(Graphics g, PixelPoint point, Entity entity){
+        g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+2* MARGIN,  OptionDrawer.FONT_SIZE+2* MARGIN);
+        g.setColor(new Color(86,128,4));
+        g.fillRect(point.x, point.y, (int)((double)entity.getCurrentHealth()/(double)entity.getMaxHealth()*PixelMap.STRUCTURE_HEIGHT), OptionDrawer.FONT_SIZE);
+        g.setColor(new Color(0,0,0));
     }
 }

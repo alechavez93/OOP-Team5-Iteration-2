@@ -5,6 +5,7 @@ package ViewsTests;
 |   Description: Tests functionality of InGameFrame, which contains all in game views.
 ---------------------------------------------------------------------------------------*/
 
+import Game.CyclingState;
 import GameMap.*;
 import Player.EntityManager;
 import Player.Player;
@@ -25,7 +26,8 @@ public class TestInGameFrame {
         EntityManager em = new EntityManager(new Player(0, new MapCoordinate(3,3) ));
 
         InGameFrame frame = new InGameFrame();
-        frame.addView(new MapView("Map Overview"));
-        frame.addView(new UnitView("Unit Overview"));
+        CyclingState state = new CyclingState();
+        frame.addView(new MapView("Map Overview", state));
+        frame.addView(new UnitView("Unit Overview", state));
     }
 }
