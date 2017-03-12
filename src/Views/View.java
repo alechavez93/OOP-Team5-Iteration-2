@@ -9,16 +9,14 @@ package Views;
 import Views.PixelMaps.PixelMap;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class View extends JPanel{
 
-    public View(){
-//        JFrame frame = new JFrame("Game");
-//        JPanel panel = new TestPanel();
-//        frame.add(panel);
-//        frame.setBounds(0,0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setResizable(false);
-//        frame.setVisible(true);
+    public View(String name){
+        setName(name);
+//        setBackground(new Color(255,255,255));
+        setLayout(null);
+        setBounds(0,0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
     }
 }

@@ -6,11 +6,15 @@ package Views.PixelMaps;
 |
 ---------------------------------------------------------------------------------------*/
 
-public class PixelPoint {
+public class PixelPoint{
     public int x, y;
 
     public PixelPoint(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public PixelPoint getCopy(){
+        return new PixelPoint(x, y);
     }
 }

@@ -25,12 +25,11 @@ public class UnitDrawer {
         BufferedImage unitImg = GraphicsFactory.getInstance().getUnit(unit.getName());
 
         //Drawing Unit and Marker
-        g.drawImage(unitImg, pos.x, pos.y, null);
+        g.drawImage(unitImg, pos.x, pos.y, PixelMap.UNIT_HEIGHT, PixelMap.UNIT_HEIGHT, null);
         drawMarker(g, PixelMap.UNIT_MARKER_RADIUS, facingPos);
     }
 
     private static void drawMarker(Graphics g, int radius, PixelPoint center){
-        System.out.println("Trying to draw marker");
         g.setColor(new Color(0,0,255));
         ((Graphics2D)g).setStroke(new BasicStroke(3));
         g.drawOval(center.x-radius, center.y-radius, radius*2, radius*2);
@@ -43,9 +42,9 @@ public class UnitDrawer {
 
     //Returns the possible points for drawing depending which direction the combat unit is facing
     private static PixelPoint getFacingPos(PixelPoint center, Direction facing){
-        System.out.println(facing);
         double r = PixelMap.TILE_HEIGHT/2.6;
         double angle = getCommonSenseAngle(facing);
+//        double angle = 330;
         int x = (int)(center.x + r * Math.cos(Math.toRadians(angle)));
         int y = (int)(center.y - r * Math.sin(Math.toRadians(angle)));
         return new PixelPoint(x, y);
