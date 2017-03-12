@@ -12,7 +12,7 @@ import Entity.Unit.Soldier;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 import Utility.Direction;
-
+import Technology.Technology;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +76,7 @@ public abstract class Entity extends Stats {
     }
 
     public void acceptTech(Technology tech) {
+        tech.visit(this);
 
     }
 

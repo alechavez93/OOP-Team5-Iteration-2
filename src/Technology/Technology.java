@@ -1,5 +1,7 @@
 package Technology;
 
+import Entity.*;
+
 /**
  * Created by test on 03/11/2017.
  */
@@ -12,4 +14,11 @@ package Technology;
 ---------------------------------------------------------------------------------------*/
 
 public class Technology {
+    String name;
+
+    //
+
+    public void visit(Entity entity){
+
+    }
 }

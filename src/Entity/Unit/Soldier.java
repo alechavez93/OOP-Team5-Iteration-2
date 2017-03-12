@@ -7,11 +7,7 @@ package Entity.Unit;
 |
 ---------------------------------------------------------------------------------------*/
 
-<<<<<<< HEAD
-import Entity.Entity;
-=======
-import Entity.Unit.Unit;
->>>>>>> 69b8060b8b56c1327b69b51204c2700da525d343
+import Entity.*;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
