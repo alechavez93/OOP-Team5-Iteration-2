@@ -3,8 +3,12 @@ package Entity.Structure;
 /*--------------------------------------------------------------------------------------
 |    UniversityStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|
+|   Description:
+|       University is built by Workers.
+|       Produce technological advances
+|       Staffed by Workers
+|       Only ONE tech advance can be researched at one time
+|       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;

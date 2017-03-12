@@ -7,6 +7,7 @@ package Entity.Unit;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Unit.Unit;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 

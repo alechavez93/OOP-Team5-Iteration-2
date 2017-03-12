@@ -4,14 +4,13 @@ import Entity.*;
 import Entity.Army.Army;
 import Entity.Structure.*;
 import Entity.Unit.*;
+import Entity.Unit.MeleeSoldier;
+import Entity.Unit.RangeSoldier;
 import GameMap.*;
-import Utility.Coordinate;
 
-import javax.swing.border.EtchedBorder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Thomas on 02/19/2017.

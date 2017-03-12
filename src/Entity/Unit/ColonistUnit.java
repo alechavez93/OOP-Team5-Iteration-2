@@ -38,11 +38,6 @@ public class ColonistUnit extends Unit {
     public void destroy(){
         //System.out.println("first step");
         entityManager.destroyColonist(this);
-
-
-
-
-
     }
 
 }

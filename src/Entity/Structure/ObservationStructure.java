@@ -3,8 +3,11 @@ package Entity.Structure;
 /*--------------------------------------------------------------------------------------
 |    ObservationStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|
+|   Description:
+|       Observation Tower is built by Workers.
+|       Staffed by NONE.
+|       Automatically makes tiles within visibility radius remain visible
+|       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
 import GameLibrary.GameLibrary;

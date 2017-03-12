@@ -48,8 +48,10 @@ final public class GameLibrary {
     public static final String REINFORCE = "REINFORCE ARMY";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
-    //Resources
-    public static final String FOOD = "FOOD RESOURCE", WOOD = "WOOD RESOURCE", STONE = "STONE RESOURCE", DIAMOND="DIAMOND RESOURCE";
+    //Resources (Harvest)
+    public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
+    //Resources (Produce)
+    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL";
 
 
     public static final int MAP_HEIGHT = 10, MAP_WIDTH = 20;

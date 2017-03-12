@@ -49,7 +49,12 @@ public abstract class Stats {
     public void setArmor(int armor) { this.armor = armor; }
     public void setMovement(int movement) { this.movement = movement; }
     public void setMaxHealth(int maxHealth) { this.maxHealth = maxHealth;}
-    public void setCurrrentHealth(int currentHealth) { this.currentHealth = currentHealth; }
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+        if (this.currentHealth > this.maxHealth) {
+            this.currentHealth = this.maxHealth;
+        }
+    }
     public void setRangeRadius(int rangeRadius) { this.rangeRadius = rangeRadius; }
     public void setVisibilityRadius(int visibilityRadius) { this.visibilityRadius = visibilityRadius; }
     public void setUpkeep(int upkeep) { this.upkeep = upkeep; }
