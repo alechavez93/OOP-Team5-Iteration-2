@@ -7,6 +7,7 @@ import Entity.Unit.*;
 import Entity.Unit.MeleeSoldier;
 import Entity.Unit.RangeSoldier;
 import GameMap.*;
+import Utility.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -100,7 +101,7 @@ public class EntityManager {
         this.addColonist(c0);
         placeEntity(c0);
 
-        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow()+1, location.getColumn()), this);
+        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow(), location.getColumn()), this);
         this.addExplorer(e0);
         placeEntity(e0);
 
@@ -111,6 +112,24 @@ public class EntityManager {
 
     public void finishTurn(){
         //process queues for each entity in each list
+    }
+
+    public List<Entity> getAllEntities(){
+        List<Entity> totalList = new ArrayList<Entity>();
+        totalList.addAll(colonistUnitList);
+        totalList.addAll(explorerUnitList);
+        totalList.addAll(meleeUnitList);
+        totalList.addAll(rangeUnitList);
+        totalList.addAll(capitalList);
+        totalList.addAll(farmList);
+        totalList.addAll(fortList);
+        totalList.addAll(mineList);
+        totalList.addAll(observationList);
+        totalList.addAll(powerList);
+        totalList.addAll(universityList);
+
+        return totalList;
+
     }
 /*
 //not sure if this is needed
@@ -144,7 +163,7 @@ public class EntityManager {
 
         colonistUnitList.add(colonist);
         hashset.add(colonist.getInstanceID());
-
+        placeEntity(colonist);
         colonistUnitCount++;
         unitCount++;
     }
@@ -158,7 +177,7 @@ public class EntityManager {
 
         explorerUnitList.add(explorer);
         hashset.add(explorer.getInstanceID());
-
+        placeEntity(explorer);
         explorerUnitCount++;
         unitCount++;
     }
@@ -172,7 +191,7 @@ public class EntityManager {
 
         meleeUnitList.add(melee);
         hashset.add(melee.getInstanceID());
-
+        placeEntity(melee);
         meleeUnitCount++;
         unitCount++;
     }
@@ -186,7 +205,7 @@ public class EntityManager {
 
         rangeUnitList.add(range);
         hashset.add(range.getInstanceID());
-
+        placeEntity(range);
         rangeUnitCount++;
         unitCount++;
     }
@@ -200,7 +219,7 @@ public class EntityManager {
 
         capitalList.add(capital);
         hashset.add(capital.getInstanceID());
-
+        placeEntity(capital);
         capitalCount++;
         structureCount++;
     }
@@ -214,7 +233,7 @@ public class EntityManager {
 
         farmList.add(farm);
         hashset.add(farm.getInstanceID());
-
+        placeEntity(farm);
         farmCount++;
         structureCount++;
     }
@@ -228,7 +247,7 @@ public class EntityManager {
 
         fortList.add(fort);
         hashset.add(fort.getInstanceID());
-
+        placeEntity(fort);
         fortCount++;
         structureCount++;
     }
@@ -242,7 +261,7 @@ public class EntityManager {
 
         mineList.add(mine);
         hashset.add(mine.getInstanceID());
-
+        placeEntity(mine);
         mineCount++;
         structureCount++;
     }
@@ -256,7 +275,7 @@ public class EntityManager {
 
         observationList.add(observation);
         hashset.add(observation.getInstanceID());
-
+        placeEntity(observation);
         observationCount++;
         structureCount++;
     }
@@ -270,7 +289,7 @@ public class EntityManager {
 
         powerList.add(power);
         hashset.add(power.getInstanceID());
-
+        placeEntity(power);
         powerCount++;
         structureCount++;
     }
@@ -284,7 +303,7 @@ public class EntityManager {
 
         universityList.add(university);
         hashset.add(university.getInstanceID());
-
+        placeEntity(university);
         universityCount++;
         structureCount++;
     }
@@ -298,7 +317,7 @@ public class EntityManager {
 
         armyList.add(army);
         hashset.add(army.getInstanceID());
-
+        //does army get placed on the tile? I think not
         armyCount++;
     }
 
@@ -315,7 +334,7 @@ public class EntityManager {
         t.removeEntity(entity);
     }
 
-    public void destroyEntity(Entity entity){
+/*    public void destroyEntity(Entity entity){
         removeEntity(entity);
         if(0 <= entity.getInstanceID() && entity.getInstanceID() < 10){
             colonistUnitCount--;
@@ -327,7 +346,18 @@ public class EntityManager {
             unitCount--;
             explorerUnitList.remove(entity);
         }
-    }
+        if(20 <= entity.getInstanceID() && entity.getInstanceID() < 30){
+            meleeUnitCount--;
+            unitCount--;
+            meleeUnitList.remove(entity);
+        }
+        if(30 <= entity.getInstanceID() && entity.getInstanceID() < 40){
+            rangeUnitCount--;
+            unitCount--;
+            rangeUnitList.remove(entity);
+        }
+
+    }*/
 
     public void destroyColonist(ColonistUnit colonist){
         //System.out.println("Second step");
@@ -429,6 +459,11 @@ public class EntityManager {
         }
     }
 
+    public void disbandArmy(Army army){
+        //do something
+    }
+
+
 /*    public void removeArmy(Army army){
         Tile t = GameMap.getInstance().getTile(army.getRallyPoint().getLocation().getRow(), army.getRallyPoint().getLocation().getColumn());
         t.removeArmy(army);
@@ -436,7 +471,7 @@ public class EntityManager {
     }*/
 
 /*--------------------------------------------------------------------------------------
-|    List of positions in the hashset
+|    List of positions in the HashSet. Entity's  instanceID will be the last digit
 |---------------------------------------------------------------------------------------
 |
 |   0-9     colonist
@@ -628,5 +663,54 @@ public class EntityManager {
     public int getPowerCount(){ return powerCount; }
 
     public int getUniversityCount(){ return universityCount; }
+
+
+    public Direction calcDirection(Entity entity, MapCoordinate coordinate) {
+
+        int x1 = entity.getLocation().getColumn();
+        int y1 = entity.getLocation().getRow();
+        int x2 = coordinate.getColumn();
+        int y2 = coordinate.getRow();
+        //System.out.println("x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2);
+
+        if (x2 == x1 && y2 > y1 ) { return Direction.South; }
+        if (x2 < x1 && y2 >= y1 ) { return Direction.SouthWest; }
+        if (x2 > x1 && y2 > y1 )  { return Direction.SouthEast; }
+
+
+        if ( x2 == x1 && y2 < y1 ) { return Direction.North; }
+        if ( x2 < x1 && y2 < y1 )  { return Direction.NorthWest; }
+        if ( x2 > x1 && y2 <= y1 ) { return Direction.NorthEast; }
+
+        if (x2 == x1 && y2 == y1) { return entity.getDirection(); }
+
+        System.out.println("Something broke in getDirection");
+        return Direction.South;
+
+    }
+
+
+    //managing interactions between entities
+    public void attack(Entity entity, MapCoordinate coordinate){
+        entity.setDirection(calcDirection(entity, coordinate));
+        entity.setState("Attack");
+        Tile t = GameMap.getInstance().getTile(coordinate);
+        //System.out.println("Attacking (" + t.getPos().getRow() + " , " + t.getPos().getColumn() + ")");
+        //System.out.println(t.getOccupyingEntities().length + " targets found.");
+        for (Entity target : t.getOccupyingEntities()) {
+            //System.out.println("Attacking " + entity.getName());
+            target.takeDamage(entity, "Attack");
+        }
+    }
+
+    public void defend(Soldier soldier, Direction direction){
+        soldier.setDirection(direction);
+        soldier.setState("Defend");
+    }
+
+    public void retaliate(Soldier defender, Entity Attacker){
+        //System.out.println("Retaliate was called");
+        Attacker.takeDamage(defender, "Defend");
+    }
 
 }

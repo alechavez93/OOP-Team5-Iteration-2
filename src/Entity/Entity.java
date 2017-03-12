@@ -8,10 +8,11 @@ package Entity;
 |   contains an order queue to execute issued orders.
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Unit.Soldier;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 import Utility.Direction;
-
+import Technology.Technology;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public abstract class Entity extends Stats {
     private int instanceID = 0;
     private MapCoordinate location;
     private Direction direction = Direction.South;
+    private String state;
 
     public List<Order> orderList;
 
@@ -36,6 +38,21 @@ public abstract class Entity extends Stats {
 
     public void addOrder(Order order) {
         orderList.add(order);
+    }
+
+    public void takeDamage(Entity entity, String mode){
+        int damage = 0;
+        if(mode == "Attack") { damage = entity.getAttack(); }
+        if(mode == "Defend") { damage = entity.getDefense(); }
+        if(damage == 0)
+
+        this.currentHealth -= damage - this.getArmor();
+        System.out.println(entity.getAttack() - this.getArmor() + " damage was taken by Player " + entity.entityManager.playerOwner.getpID() + "'s " + this.name);
+
+        if(currentHealth <= 0) {
+            destroy();
+            System.out.println(name + " was destroyed");
+        }
     }
 
     public void executeNextOrder() {
@@ -59,6 +76,7 @@ public abstract class Entity extends Stats {
     }
 
     public void acceptTech(Technology tech) {
+        tech.visit(this);
 
     }
 
@@ -76,11 +94,14 @@ public abstract class Entity extends Stats {
     public int getInstanceID() { return instanceID; }
     public MapCoordinate getLocation() { return location; }
     public Direction getDirection() { return direction; }
+    public String getState() { return state; }
+    public EntityManager getEntityManager(){ return entityManager; }
 
     // setters
 //    public void setName(String name) { this.name = name; }
 //    public void setInstanceID(int instanceID) { this.instanceID = instanceID; }
     public void setLocation(MapCoordinate location) { this.location = location; }
     public void setDirection(Direction direction) { this.direction = direction; }
+    public void setState(String state) { this.state = state; }
 
 }

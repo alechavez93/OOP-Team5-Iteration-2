@@ -34,15 +34,15 @@ public class TestPlayer {
         System.out.println("Player 1 has " + p1.getEntityManager().getExplorerUnitList().size() + " explorers");
 
 
-        System.out.println("Next ColonistUnit Index: " + p1.getEntityManager().nextColonistIndex());
-        System.out.println("Next ExplorerUnit Index: " + p1.getEntityManager().nextExplorerIndex());
+        System.out.println("Next ColonistUnit Index: " + p1.getEntityManager().nextColonistIndex()%10);
+        System.out.println("Next ExplorerUnit Index: " + p1.getEntityManager().nextExplorerIndex()%10);
 
         System.out.println("Attempting to make new explorers:");
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 8; i++){
             ExplorerUnit explorer = new ExplorerUnit(p1.getEntityManager().nextExplorerIndex(), new MapCoordinate(1,1), p1.getEntityManager());
             p1.getEntityManager().addExplorer(explorer);
         }
-
+        System.out.println("Attempting to create an 11th explorer - should be invalid");
         ExplorerUnit explorer1 = new ExplorerUnit(p1.getEntityManager().nextExplorerIndex(), new MapCoordinate(1,1), p1.getEntityManager());
         p1.getEntityManager().addExplorer(explorer1);
         System.out.println("Index of last explorer: " + explorer1.getInstanceID());
@@ -58,10 +58,6 @@ public class TestPlayer {
 
         colonist.destroy();
         System.out.println("Player 1 has " + p1.getEntityManager().getColonistList().size() + " = " + p1.getEntityManager().getColonistUnitCount() + " colonists");
-
-
-
-
 
 
     }

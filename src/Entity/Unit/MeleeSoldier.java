@@ -16,7 +16,7 @@ public class MeleeSoldier extends Soldier {
     public MeleeSoldier(int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(GameLibrary.MELEE, instanceID, location, entityManager);
         attack = 3;
-        defense = 3;
+        defense = 2;
         armor = 1;
         movement = 2;
         maxHealth = 20;

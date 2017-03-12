@@ -12,10 +12,10 @@ package Entity.Structure;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;
-import Entity.Technology;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
+import Technology.Technology;
 
 public class UniversityStructure extends Structure {
 
