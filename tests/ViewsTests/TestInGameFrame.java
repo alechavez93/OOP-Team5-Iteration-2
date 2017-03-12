@@ -14,6 +14,7 @@ import Utility.MapLoader;
 import Utility.Vec2i;
 import Views.InGameFrame;
 import Views.MapView;
+import Views.StructureView;
 import Views.UnitView;
 
 public class TestInGameFrame {
@@ -29,5 +30,6 @@ public class TestInGameFrame {
         CyclingState state = new CyclingState();
         frame.addView(new MapView("Map Overview", state));
         frame.addView(new UnitView("Unit Overview", state));
+        frame.addView(new StructureView("Structure Overview", state));
     }
 }

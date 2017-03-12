@@ -60,4 +60,10 @@ public class MapLoader {
         }
         return counter;
     }
+
+    public static String[] getControllerConfig(String controllerName){
+        String workingDir = System.getProperty("user.dir");
+        String result = loadFileText(workingDir+"/res/"+controllerName+".txt");
+        return result.split("\n");
+    }
 }
