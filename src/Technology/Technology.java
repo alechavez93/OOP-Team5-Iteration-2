@@ -1,11 +1,24 @@
-package Entity;
+package Technology;
+
+import Entity.*;
+
+/**
+ * Created by test on 03/11/2017.
+ */
 
 /*--------------------------------------------------------------------------------------
-|    Technology Class: Created by Tonny Xie on 2/16/2017.
+|    Technology Module: Created by test on 03/11/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|   EMPTY TECHNOLOGY CLASS FOR COMPILING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+|   Description:
+|
 ---------------------------------------------------------------------------------------*/
 
 public class Technology {
+    String name;
+
+    //
+
+    public void visit(Entity entity){
+
+    }
 }

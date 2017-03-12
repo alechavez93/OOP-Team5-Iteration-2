@@ -12,9 +12,9 @@ import GameMap.Tile;
 import Player.EntityManager;
 import Player.Player;
 import Utility.Vec2i;
-import Views.PixelMap;
-import Views.StructureDrawer;
-import Views.TileDrawer;
+import Views.PixelMaps.PixelMap;
+import Views.Drawers.StructureDrawer;
+import Views.Drawers.TileDrawer;
 
 import javax.swing.*;
 import java.awt.*;

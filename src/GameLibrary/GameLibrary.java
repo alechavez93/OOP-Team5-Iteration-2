@@ -48,8 +48,10 @@ final public class GameLibrary {
     public static final String REINFORCE = "REINFORCE ARMY";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
-    //Resources
-    public static final String FOOD = "FOOD RESOURCE", WOOD = "WOOD RESOURCE", STONE = "STONE RESOURCE", DIAMOND="DIAMOND RESOURCE";
+    //Resources (Harvest)
+    public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
+    //Resources (Produce)
+    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL";
 
 
     public static final int MAP_HEIGHT = 10, MAP_WIDTH = 20;
@@ -59,11 +61,11 @@ final public class GameLibrary {
 
     //Tile
     public enum TileType {
-        GRASS("Grass", 1, false, "grass.jpg",'G'),
-        MOUNTAIN("Mountain", 999, true, "mountain.jpg",'M'),
-        SAND("Sand", 2, false, "sand.jpg",'S'),
-        WATER("Water", 999, true, "water.jpg",'W'),
-        JUNGLE("Jungle", 3, false, "grass2.jpg",'J');
+        GRASS("Grass", 1, false, GraphicsFactory.GRASS,'G'),
+        MOUNTAIN("Mountain", 999, true, GraphicsFactory.MOUNTAIN,'M'),
+        SAND("Sand", 2, false, GraphicsFactory.SAND,'S'),
+        WATER("Water", 999, true, GraphicsFactory.WATER,'W'),
+        JUNGLE("Jungle", 3, true, GraphicsFactory.JUNGLE,'J');
 
         public final String name;
         public final int movementCost;

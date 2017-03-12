@@ -3,7 +3,6 @@ import Entity.Unit.*;
 import Entity.Entity;
 import GameLibrary.GameLibrary;
 import GameMap.*;
-import Utility.Direction;
 import Utility.Vec2i;
 
 import java.util.ArrayList;

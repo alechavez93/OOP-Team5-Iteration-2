@@ -1,17 +1,11 @@
 package MapTests;
 
-import Entity.Unit.RangeSoldier;
-import Entity.Unit.Unit;
 import GameMap.*;
-import Player.EntityManager;
-import Player.Player;
-import UtilitiesTests.TestMapLoader;
-import Utility.Direction;
-import Utility.MapLoader;
 import Utility.Vec2i;
-import Views.PixelMap;
-import Views.TileDrawer;
-import Views.UnitDrawer;
+import Entity.*;
+import Views.PixelMaps.PixelMap;
+import Views.Drawers.TileDrawer;
+import Views.Drawers.UnitDrawer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +17,15 @@ import java.util.Iterator;
  * Created by CustomerPC on 3/7/2017.
  */
 
+
+
 /*--------------------------------------------------------------------------------------
 |    MapViewTest Class: Created by CustomerPC on 3/7/2017.
 |---------------------------------------------------------------------------------------
 |   Description: The code in this test class is horrid. Do not look up to it.
 ---------------------------------------------------------------------------------------*/
+
+/*
 
 public class MapViewTest {
     private static Vec2i scroller;
@@ -120,3 +118,5 @@ public class MapViewTest {
             System.out.printf(d.name() + " " + unit.getLocation().getColumn() + " " + unit.getLocation().getRow() + "\n");
     }
 }
+
+*/

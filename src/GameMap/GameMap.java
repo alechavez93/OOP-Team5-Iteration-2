@@ -68,16 +68,17 @@ public class GameMap {
         }
     }
 
-    public void initialize(char[][] cMap, Vec2i size) {
+    public void initialize(char[][] cMap) {
+
         if(!isInitialized) {
-            this.size = size;
+            this.size = new Vec2i(cMap[0].length, cMap.length);
             tileGrid = new Tile[size.x][size.y];
             isInitialized = true;
-            for(short iii=0; iii < size.x; iii++) {
-                for(short jjj=0; jjj < size.y; jjj++) {
+            for(short iii=0; iii < size.y; iii++) {
+                for(short jjj=0; jjj < size.x; jjj++) {
                     for(GameLibrary.TileType tt : GameLibrary.TileType.values()) {
                         if(cMap[iii][jjj] == tt.charSymbol) {
-                            tileGrid[iii][jjj] = Tile.makeTile(tt, new Vec2i(jjj,iii));
+                            tileGrid[jjj][iii] = Tile.makeTile(tt, new Vec2i(iii,jjj));
                             break;
                         }
                     }
