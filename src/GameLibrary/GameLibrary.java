@@ -65,7 +65,7 @@ final public class GameLibrary {
         MOUNTAIN("Mountain", 999, true, GraphicsFactory.MOUNTAIN,'M'),
         SAND("Sand", 2, false, GraphicsFactory.SAND,'S'),
         WATER("Water", 999, true, GraphicsFactory.WATER,'W'),
-        JUNGLE("Jungle", 3, true, GraphicsFactory.JUNGLE,'J');
+        JUNGLE("Jungle", 3, false, GraphicsFactory.JUNGLE,'J');
 
         public final String name;
         public final int movementCost;
