@@ -1,8 +1,8 @@
 package MapTests;
 import Entity.Unit.ExplorerUnit;
-import Entity.Unit.Soldier.MeleeSoldier;
+import Entity.Unit.MeleeSoldier;
 import Entity.Entity;
-import Entity.Unit.Soldier.RangeSoldier;
+import Entity.Unit.RangeSoldier;
 import Entity.Unit.Unit;
 import GameLibrary.GameLibrary;
 import GameMap.*;

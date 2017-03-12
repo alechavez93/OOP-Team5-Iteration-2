@@ -31,6 +31,8 @@ public class PixelMap {
     public static final int TAB_HEIGHT = TAB_WIDTH/4;
     public static final int TAB_FONTSIZE = TAB_HEIGHT/2;
     public static final int ICON_SIZE = TILE_HEIGHT/5;
+    public static final int INIT_SPACE = (int)((0.15)*(double)TILE_HEIGHT);
+    public static final int AFTER_SPACE = INIT_SPACE + INIT_SPACE/2;
 
 
     //Plain Pixel Mapping based on position

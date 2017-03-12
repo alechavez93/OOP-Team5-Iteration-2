@@ -4,8 +4,8 @@ import Entity.*;
 import Entity.Army.Army;
 import Entity.Structure.*;
 import Entity.Unit.*;
-import Entity.Unit.Soldier.MeleeSoldier;
-import Entity.Unit.Soldier.RangeSoldier;
+import Entity.Unit.MeleeSoldier;
+import Entity.Unit.RangeSoldier;
 import GameMap.*;
 
 import java.util.ArrayList;

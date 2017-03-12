@@ -10,7 +10,7 @@ package EntityTests;
 import Entity.Entity;
 import Entity.Structure.CapitalStructure;
 import Entity.Unit.ColonistUnit;
-import Entity.Unit.Soldier.MeleeSoldier;
+import Entity.Unit.MeleeSoldier;
 import Entity.Resource;
 import Utility.Vec2i;
 import GameMap.*;

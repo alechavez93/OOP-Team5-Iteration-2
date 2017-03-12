@@ -10,7 +10,6 @@ package Entity.Unit;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Structure.CapitalStructure;
-import Entity.Unit.Soldier.MeleeSoldier;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;

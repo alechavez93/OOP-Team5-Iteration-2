@@ -13,8 +13,8 @@ package Entity.Structure;
 |       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Unit.Soldier.MeleeSoldier;
-import Entity.Unit.Soldier.RangeSoldier;
+import Entity.Unit.MeleeSoldier;
+import Entity.Unit.RangeSoldier;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
