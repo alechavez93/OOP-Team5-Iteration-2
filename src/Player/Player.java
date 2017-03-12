@@ -30,7 +30,7 @@ public class Player {
         this.entityManager = new EntityManager(this);
         entityManager.init(location);
         //itemManager = new ItemManager(this);
-        //techManager = new TechManager(this);
+        techManager = new TechManager(this);
         this.food = 500;
         this.stone = 500;
         this.wood = 500;

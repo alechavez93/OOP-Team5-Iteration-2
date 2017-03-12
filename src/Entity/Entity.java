@@ -40,9 +40,19 @@ public abstract class Entity extends Stats {
         orderList.add(order);
     }
 
-    public void takeDamage(Entity entity){
-        this.currentHealth -= (entity.getAttack() - this.getArmor());
-        System.out.println(entity.getAttack() - this.getArmor() + " damage was taken by " + this.name);
+    public void takeDamage(Entity entity, String mode){
+        int damage = 0;
+        if(mode == "Attack") { damage = entity.getAttack(); }
+        if(mode == "Defend") { damage = entity.getDefense(); }
+        if(damage == 0)
+
+        this.currentHealth -= damage - this.getArmor();
+        System.out.println(entity.getAttack() - this.getArmor() + " damage was taken by Player " + entity.entityManager.playerOwner.getpID() + "'s " + this.name);
+
+        if(currentHealth <= 0) {
+            destroy();
+            System.out.println(name + " was destroyed");
+        }
     }
 
     public void executeNextOrder() {
@@ -84,6 +94,7 @@ public abstract class Entity extends Stats {
     public MapCoordinate getLocation() { return location; }
     public Direction getDirection() { return direction; }
     public String getState() { return state; }
+    public EntityManager getEntityManager(){ return entityManager; }
 
     // setters
 //    public void setName(String name) { this.name = name; }

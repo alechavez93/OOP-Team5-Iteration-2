@@ -102,7 +102,7 @@ public class EntityManager {
         this.addColonist(c0);
         placeEntity(c0);
 
-        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow()+1, location.getColumn()), this);
+        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow(), location.getColumn()), this);
         this.addExplorer(e0);
         placeEntity(e0);
 
@@ -113,6 +113,24 @@ public class EntityManager {
 
     public void finishTurn(){
         //process queues for each entity in each list
+    }
+
+    public List<Entity> getAllEntities(){
+        List<Entity> totalList = new ArrayList<Entity>();
+        totalList.addAll(colonistUnitList);
+        totalList.addAll(explorerUnitList);
+        totalList.addAll(meleeUnitList);
+        totalList.addAll(rangeUnitList);
+        totalList.addAll(capitalList);
+        totalList.addAll(farmList);
+        totalList.addAll(fortList);
+        totalList.addAll(mineList);
+        totalList.addAll(observationList);
+        totalList.addAll(powerList);
+        totalList.addAll(universityList);
+
+        return totalList;
+
     }
 /*
 //not sure if this is needed
@@ -648,16 +666,41 @@ public class EntityManager {
     public int getUniversityCount(){ return universityCount; }
 
 
+    public Direction calcDirection(Entity entity, MapCoordinate coordinate) {
+
+        int x1 = entity.getLocation().getColumn();
+        int y1 = entity.getLocation().getRow();
+        int x2 = coordinate.getColumn();
+        int y2 = coordinate.getRow();
+        //System.out.println("x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2);
+
+        if (x2 == x1 && y2 > y1 ) { return Direction.South; }
+        if (x2 < x1 && y2 >= y1 ) { return Direction.SouthWest; }
+        if (x2 > x1 && y2 > y1 )  { return Direction.SouthEast; }
+
+
+        if ( x2 == x1 && y2 < y1 ) { return Direction.North; }
+        if ( x2 < x1 && y2 < y1 )  { return Direction.NorthWest; }
+        if ( x2 > x1 && y2 <= y1 ) { return Direction.NorthEast; }
+
+        if (x2 == x1 && y2 == y1) { return entity.getDirection(); }
+
+        System.out.println("Something broke in getDirection");
+        return Direction.South;
+
+    }
+
+
     //managing interactions between entities
-    public void attack(Soldier soldier, Direction direction){
-        soldier.setDirection(direction);
-        soldier.setState("Attack");
-        Tile t = GameMap.getInstance().getNeighborTile(soldier.getLocation(), direction);
-        System.out.println("Attacking (" + t.getPos().getRow() + " , " + t.getPos().getColumn() + ")");
-        System.out.println(t.getOccupyingEntities().length + " targets found.");
-        for (Entity entity : t.getOccupyingEntities()) {
-            System.out.println("Attacking " + entity.getName());
-            entity.takeDamage(soldier);
+    public void attack(Entity entity, MapCoordinate coordinate){
+        entity.setDirection(calcDirection(entity, coordinate));
+        entity.setState("Attack");
+        Tile t = GameMap.getInstance().getTile(coordinate);
+        //System.out.println("Attacking (" + t.getPos().getRow() + " , " + t.getPos().getColumn() + ")");
+        //System.out.println(t.getOccupyingEntities().length + " targets found.");
+        for (Entity target : t.getOccupyingEntities()) {
+            //System.out.println("Attacking " + entity.getName());
+            target.takeDamage(entity, "Attack");
         }
     }
 
@@ -667,7 +710,8 @@ public class EntityManager {
     }
 
     public void retaliate(Soldier defender, Entity Attacker){
-
+        //System.out.println("Retaliate was called");
+        Attacker.takeDamage(defender, "Defend");
     }
 
 }
