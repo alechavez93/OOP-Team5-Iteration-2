@@ -3,8 +3,12 @@ package Entity.Structure;
 /*--------------------------------------------------------------------------------------
 |    PowerStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
-|   Description: Power Plant is built by Workers. It can harvest only energy
-|   which can be produced into power by the workers staffed at the Power Plant.
+|   Description: |
+|       Power Plant is built by Workers.
+|       + Harvest energy
+|       + Produce power
+|       + Staffed by Workers (Workers harvest and produce)
+|       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Resource;

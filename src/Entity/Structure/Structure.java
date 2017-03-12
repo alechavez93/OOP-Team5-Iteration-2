@@ -4,7 +4,7 @@ package Entity.Structure;
 |    Structure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: Abstract Structure class
-|
+|       Needs a transfer workers function for all structures to inherit once the structure is built
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;

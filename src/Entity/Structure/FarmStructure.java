@@ -3,8 +3,12 @@ package Entity.Structure;
 /*--------------------------------------------------------------------------------------
 |    FarmStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
-|   Description: Farm is built by Workers. It can only harvest food
-|   which can be produced into nutrients by the Workers staffed at the Farm.
+|   Description:
+|       Farm is built by Workers.
+|       + Harvest food
+|       + Produce nutrients
+|       + Staffed by Workers (Workers harvest and produce)
+|       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Resource;

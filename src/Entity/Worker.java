@@ -15,6 +15,14 @@ public class Worker {
         this.numberOfWorkers = numberOfWorkers;
     }
 
+    public void incrementNumberOfWorkers(int numberOfWorkers) {
+        setNumberOfWorkers(getNumberOfWorkers() + numberOfWorkers);
+    }
+
+    public void decrementNumberOfWorkers(int numberOfWorkers) {
+        setNumberOfWorkers(getNumberOfWorkers() - numberOfWorkers);
+    }
+
     public int getNumberOfWorkers() {
         return numberOfWorkers;
     }

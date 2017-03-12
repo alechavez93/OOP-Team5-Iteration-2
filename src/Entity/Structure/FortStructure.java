@@ -4,10 +4,15 @@ package Entity.Structure;
 |    FortStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
 |   Description: 
-|
+|       Fort is built by Workers.
+|       Staffed by Workers and Soldiers
+|           Workers train to become Soldiers
+|           Soldiers speed up Workers' training
+|       Automatically attacks enemies within influence radius
+|       Automatically buff ally defenses within influence radius
+|       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Unit.ExplorerUnit;
 import Entity.Unit.Soldier.MeleeSoldier;
 import Entity.Unit.Soldier.RangeSoldier;
 import GameLibrary.GameLibrary;
@@ -26,10 +31,6 @@ public class FortStructure extends Structure {
 
     public RangeSoldier createRangeSoldier(int instanceID) {
         return new RangeSoldier(instanceID, this.getLocation(), entityManager);
-    }
-
-    public ExplorerUnit createExplorerUnit(int instanceID) {
-        return new ExplorerUnit(instanceID, this.getLocation(), entityManager);
     }
 
     public void destroy(){

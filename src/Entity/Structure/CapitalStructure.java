@@ -52,7 +52,7 @@ public class CapitalStructure extends Structure {
     }
 
     public void breedWorkers(int workerCount) {
-        workers.setNumberOfWorkers(workers.getNumberOfWorkers() + productionRate*workerCount);
+        workers.incrementNumberOfWorkers(productionRate*workerCount);
     }
 
     public void healUnit(Unit unit) {

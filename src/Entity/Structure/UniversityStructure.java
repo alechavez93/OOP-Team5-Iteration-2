@@ -3,9 +3,12 @@ package Entity.Structure;
 /*--------------------------------------------------------------------------------------
 |    UniversityStructure Class: Created by Tonny Xie on 2/16/2017.
 |---------------------------------------------------------------------------------------
-|   Description: University is built by Workers. It produces technological advances
-|   using the Workers staffed at the University. Only one technological advance can be
-|   researched per University at a time.
+|   Description:
+|       University is built by Workers.
+|       Produce technological advances
+|       Staffed by Workers
+|       Only ONE tech advance can be researched at one time
+|       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;
