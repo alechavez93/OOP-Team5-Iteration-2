@@ -1,8 +1,12 @@
 package MapTests;
 
-import GameMap.*;
-import Utility.Vec2i;
 import Entity.*;
+import Entity.Unit.*;
+import GameMap.*;
+import Player.*;
+import Utility.Direction;
+import Utility.MapLoader;
+import Utility.Vec2i;
 import Views.PixelMaps.PixelMap;
 import Views.Drawers.TileDrawer;
 import Views.Drawers.UnitDrawer;
@@ -25,7 +29,7 @@ import java.util.Iterator;
 |   Description: The code in this test class is horrid. Do not look up to it.
 ---------------------------------------------------------------------------------------*/
 
-/*
+
 
 public class MapViewTest {
     private static Vec2i scroller;
@@ -90,7 +94,7 @@ public class MapViewTest {
     public static void main(String[] args) {
         scroller = new Vec2i();
         char[][] test = MapLoader.getCharMap("sample");
-        GameMap.getInstance().initialize(test, new Vec2i(test.length, test[0].length));
+        GameMap.getInstance().initialize(test);
         path = (new AStarPathFinder()).createPath(new MapCoordinate(2,2), new MapCoordinate(12,12));
 
         EntityManager em = new EntityManager(new Player(0, new MapCoordinate(2,2)));
@@ -119,4 +123,3 @@ public class MapViewTest {
     }
 }
 
-*/

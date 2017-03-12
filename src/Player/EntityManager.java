@@ -664,35 +664,23 @@ public class EntityManager {
 
     public int getUniversityCount(){ return universityCount; }
 
-
-    public Direction calcDirection(Entity entity, MapCoordinate coordinate) {
-
-        int x1 = entity.getLocation().getColumn();
-        int y1 = entity.getLocation().getRow();
-        int x2 = coordinate.getColumn();
-        int y2 = coordinate.getRow();
-        //System.out.println("x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2);
-
-        if (x2 == x1 && y2 > y1 ) { return Direction.South; }
-        if (x2 < x1 && y2 >= y1 ) { return Direction.SouthWest; }
-        if (x2 > x1 && y2 > y1 )  { return Direction.SouthEast; }
-
-
-        if ( x2 == x1 && y2 < y1 ) { return Direction.North; }
-        if ( x2 < x1 && y2 < y1 )  { return Direction.NorthWest; }
-        if ( x2 > x1 && y2 <= y1 ) { return Direction.NorthEast; }
-
-        if (x2 == x1 && y2 == y1) { return entity.getDirection(); }
-
-        System.out.println("Something broke in getDirection");
-        return Direction.South;
-
+    /*
+    public Direction calcDirection(Entity entity, MapCoordinate coord) {
+        Vec2i from = entity.getLocation().getVector();
+        Vec2i too = coord.getVector();
+        Vec2i c = too.sub(from);
+        if(c.y == 0)
+            return (c.x > 0) ? Direction.South : Direction.North;
+        if(c.y > 0)
+            return (c.x == from.y%2) ? Direction.SouthEast : Direction.NorthEast;
+        return (c.x == from.y%2) ? Direction.SouthWest : Direction.NorthWest;
     }
+    */
 
 
     //managing interactions between entities
     public void attack(Entity entity, MapCoordinate coordinate){
-        entity.setDirection(calcDirection(entity, coordinate));
+        entity.setDirection(GameMap.directionTo(entity.getLocation(), coordinate));
         entity.setState("Attack");
         Tile t = GameMap.getInstance().getTile(coordinate);
         //System.out.println("Attacking (" + t.getPos().getRow() + " , " + t.getPos().getColumn() + ")");

@@ -202,4 +202,13 @@ public class GameMap {
         pos = pos.add(dir.getHex(pos.y % 2 == 1));
         return !(pos.x < 0 || pos.y < 0 || pos.x >= size.y || pos.y >= size.x);
     }
+
+    public static Direction directionTo(MapCoordinate origin, MapCoordinate destination) {
+        Vec2i c = origin.getVector().sub(destination.getVector());
+        if(c.y == 0)
+            return (c.x > 0) ? Direction.South : Direction.North;
+        if(c.y > 0)
+            return (c.x == origin.getVector().y%2) ? Direction.SouthEast : Direction.NorthEast;
+        return (c.x == origin.getVector().y%2) ? Direction.SouthWest : Direction.NorthWest;
+    }
 }
