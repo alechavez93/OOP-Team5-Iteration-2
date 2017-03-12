@@ -44,7 +44,6 @@ public class CyclingSection extends JPanel{
         //Player
         BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.PLAYER_ICON);
         OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE), icon, "Player: ", cyclingState.inTurn.getName(), new Color(10,119,16));
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE), icon, "Player: ", cyclingState.inTurn.getName(), new Color(10,119,16));
 
         //Game Mode
         icon = graphicsFactory.getGraphics(GraphicsFactory.MODE_ICON);
