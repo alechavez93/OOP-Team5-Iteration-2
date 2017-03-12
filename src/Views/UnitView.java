@@ -47,7 +47,6 @@ public class UnitView extends View{
         EntityManager entityManager = state.inTurn.getEntityManager();
         entityManager.addMelee(new MeleeSoldier(count++, new MapCoordinate(2,2), entityManager));
         entityManager.addRange(new RangeSoldier(count, new MapCoordinate(2,2), entityManager));
-        entityManager.addColonist(new ColonistUnit(count, new MapCoordinate(2,2), entityManager));
 
         //Print Melee Units
         List<Entity> list = entityManager.getMeleeUnitList();
@@ -57,17 +56,13 @@ public class UnitView extends View{
         list = entityManager.getRangeUnitList();
         printEntityList(g, list, 2);
 
-        //Print Colonist Units
-        list = entityManager.getColonistList();
-        printEntityList(g, list, 4);
-
         //Print Explorer Units
         list = entityManager.getExplorerUnitList();
-        printEntityList(g, list, 6);
+        printEntityList(g, list, 4);
 
         //Print Worker Count
         int workerCount = 0;
-        PixelPoint point = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*8);
+        PixelPoint point = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*6);
         g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2);
         BufferedImage worker = graphicsFactory.getGraphics(GameLibrary.WORKER);
         g.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 2*OptionDrawer.FONT_SIZE));

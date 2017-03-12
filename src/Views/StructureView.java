@@ -6,5 +6,14 @@ package Views;
 |
 ---------------------------------------------------------------------------------------*/
 
-public class StructureView {
+import Game.CyclingState;
+
+public class StructureView extends View{
+
+    CyclingState state;
+
+    public StructureView(String name, CyclingState state){
+        super(name);
+        this.state = state;
+    }
 }
