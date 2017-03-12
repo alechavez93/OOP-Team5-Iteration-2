@@ -1,4 +1,4 @@
-package Entity.Unit;
+package Entity.Unit.Soldier;
 
 /*--------------------------------------------------------------------------------------
 |    MeleeSoldier Class: Created by Tonny Xie on 2/16/2017.

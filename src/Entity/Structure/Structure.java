@@ -17,7 +17,4 @@ public abstract class Structure extends Entity {
         super(name, instanceID, location, entityManager);
     }
 
-//    public abstract void produce();
-//    public abstract void harvest();
-
 }

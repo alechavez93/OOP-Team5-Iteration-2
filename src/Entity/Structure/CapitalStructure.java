@@ -5,20 +5,21 @@ package Entity.Structure;
 |---------------------------------------------------------------------------------------
 |   Description:
 |       + Capital is built by Colonist.
-|       Harvest energy, food, and ore
-|       Produce power, nutrients, and metal
-|       Staffed by Workers (Workers harvest and produce)
-|       Heals damaged units
+|       + Harvest energy, food, and ore
+|       + Produce power, nutrients, and metal
+|       + Staffed by Workers (Workers harvest and produce)
+|       + Heals damaged units
 |       + Create Explorers
-|       Create Workers
+|       + Create Workers
 |       Game ends when Capital is destroyed
 |       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Resource;
 import Entity.Unit.ExplorerUnit;
+import Entity.Unit.Unit;
 import Entity.Worker;
 import GameLibrary.GameLibrary;
-import GameMap.HarvestResources;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
@@ -28,28 +29,34 @@ public class CapitalStructure extends Structure {
     private Worker workers;
     private int workRadius;
 
+    private int healAmount;
+
     public CapitalStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(GameLibrary.CAPITAL, instanceID, location, entityManager);
-        this.productionRate = 10;
+        this.productionRate = 1;
+        this.workers = new Worker(5);
         this.workRadius = 1;
+        this.healAmount = 10;
     }
 
     public ExplorerUnit createExplorerUnit(int instanceID) {
         return new ExplorerUnit(instanceID, this.getLocation(), entityManager);
     }
 
-    // CREATE WORKER UNITS
-
-    public void harvest(HarvestResources resource) {
-        resource.decrementEnergy( productionRate*workers.getNumberOfWorkers());
+    public void assignHarvest(int workerCount, Resource resource, MapCoordinate location) {
+        resource.decrementAmount(productionRate*workerCount);
     }
 
-    public void produce(ProduceResources resource) {
-        resource.increment( productionRate*workers.getNumberOfWorkers());
+    public void assignProduce(int workerCount, Resource resource) {
+        resource.incrementAmount( productionRate*workerCount);
     }
 
-    public Worker breed(Worker count) {
+    public void breedWorkers(int workerCount) {
+        workers.setNumberOfWorkers(workers.getNumberOfWorkers() + productionRate*workerCount);
+    }
 
+    public void healUnit(Unit unit) {
+        unit.setCurrentHealth(unit.getCurrentHealth() + healAmount);
     }
 
     public void destroy(){
@@ -57,7 +64,6 @@ public class CapitalStructure extends Structure {
     }
 
     public int getProductionRate() { return productionRate; }
-    public Worker getWorkerCount() { return workerCount; }
     public int getWorkRadius() { return workRadius; }
 
 }

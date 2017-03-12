@@ -1,4 +1,4 @@
-package Entity.Unit;
+package Entity.Unit.Soldier;
 
 /*--------------------------------------------------------------------------------------
 |    Soldier Class: Created by Tonny Xie on 2/16/2017.
@@ -7,6 +7,7 @@ package Entity.Unit;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Unit.Unit;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 

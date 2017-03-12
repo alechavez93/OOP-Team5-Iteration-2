@@ -10,6 +10,7 @@ package Entity.Unit;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Structure.CapitalStructure;
+import Entity.Unit.Soldier.MeleeSoldier;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
@@ -38,11 +39,6 @@ public class ColonistUnit extends Unit {
     public void destroy(){
         //System.out.println("first step");
         entityManager.destroyColonist(this);
-
-
-
-
-
     }
 
 }

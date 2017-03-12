@@ -7,7 +7,7 @@ package Views;
 ---------------------------------------------------------------------------------------*/
 
 
-import Entity.Unit.RangeSoldier;
+import Entity.Unit.Soldier.RangeSoldier;
 import Entity.Unit.Unit;
 import GameMap.MapCoordinate;
 import Player.EntityManager;

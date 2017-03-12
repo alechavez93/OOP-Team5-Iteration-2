@@ -7,7 +7,7 @@ package ViewsTests;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Structure.*;
-import Entity.Unit.RangeSoldier;
+import Entity.Unit.Soldier.RangeSoldier;
 import Entity.Unit.Unit;
 import GameLibrary.GameLibrary;
 import GameMap.GameMap;

@@ -1,12 +1,11 @@
 package MapTests;
 import Entity.Unit.ExplorerUnit;
-import Entity.Unit.MeleeSoldier;
+import Entity.Unit.Soldier.MeleeSoldier;
 import Entity.Entity;
-import Entity.Unit.RangeSoldier;
+import Entity.Unit.Soldier.RangeSoldier;
 import Entity.Unit.Unit;
 import GameLibrary.GameLibrary;
 import GameMap.*;
-import Utility.Direction;
 import Utility.Vec2i;
 
 import java.util.ArrayList;

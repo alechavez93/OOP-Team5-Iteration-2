@@ -8,8 +8,8 @@ package Entity.Structure;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Unit.ExplorerUnit;
-import Entity.Unit.MeleeSoldier;
-import Entity.Unit.RangeSoldier;
+import Entity.Unit.Soldier.MeleeSoldier;
+import Entity.Unit.Soldier.RangeSoldier;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
