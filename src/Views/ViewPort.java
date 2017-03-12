@@ -79,7 +79,6 @@ public class ViewPort extends JPanel{
                     StructureDrawer.drawStructure(g, (Structure)e);
             }
         }
-        System.out.println("Hello");
     }
 
     public void paintViewPort(Graphics g){

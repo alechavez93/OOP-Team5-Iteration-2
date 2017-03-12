@@ -19,11 +19,8 @@ public class MapView extends View{
     EntityStateSection entityState;
     MiniMapSection miniMap;
 
-    public MapView(String name){
-        setName(name);
-        setBackground(new Color(255,255,255));
-        setLayout(null);
-        setBounds(0,0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+    public MapView(String name, CyclingState state){
+        super(name);
 
         //Initialize ViewPort and other Sections
         ViewPort.initialize(new PixelPoint(0,0));
@@ -32,11 +29,8 @@ public class MapView extends View{
         entityState = new EntityStateSection();
         miniMap = new MiniMapSection();
 
-
-        //Temporary
-        CyclingState cs = new CyclingState();
-        cyclingSection.setCyclingState(cs);
-        entityState.setCyclingState(cs);
+        cyclingSection.setCyclingState(state);
+        entityState.setCyclingState(state);
 
         //Adding inner components
         add(viewPort);
@@ -44,6 +38,11 @@ public class MapView extends View{
         add(entityState);
         add(miniMap);
         setVisible(true);
+    }
+
+    public void CyclingState(CyclingState state){
+        cyclingSection.setCyclingState(state);
+        entityState.setCyclingState(state);
     }
 
     @Override

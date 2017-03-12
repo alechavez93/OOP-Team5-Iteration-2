@@ -55,7 +55,7 @@ public class EntityStateSection extends JPanel{
         icon = graphicsFactory.getGraphics(GraphicsFactory.HEALTH_ICON);
         OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*2.5), PixelMap.INIT_SPACE), icon, entity.getCurrentHealth()+"/"+entity.getMaxHealth());
         icon = graphicsFactory.getGraphics(GraphicsFactory.UPKEEP_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*2.5), PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, entity.getUpkeep()+"");
+        OptionDrawer.drawOption(g, new PixelPoint((int)(PixelMap.TILE_WIDTH*2.5), PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, entity.getUpkeep()+"");
 
         icon = graphicsFactory.getGraphics(entity.getName());
         int width = PixelMap.UNIT_HEIGHT*3, height = PixelMap.UNIT_HEIGHT*3, x = (int)(PixelMap.TILE_WIDTH*3.8), y = PixelMap.INIT_SPACE;
