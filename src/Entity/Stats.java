@@ -10,15 +10,15 @@ package Entity;
 
 public abstract class Stats {
 
-    public static int attack = 0;
-    public static int defense = 0;
-    public static int armor = 0;
-    public static int movement = 0;
-    public static int maxHealth = 0;
-    public static int currentHealth = 0;
-    public static int rangeRadius = 0;
-    public static int visibilityRadius = 0;
-    public static int upkeep = 0;
+    public int attack = 0;
+    public int defense = 0;
+    public int armor = 0;
+    public int movement = 0;
+    public int maxHealth = 0;
+    public int currentHealth = 0;
+    public int rangeRadius = 0;
+    public int visibilityRadius = 0;
+    public int upkeep = 0;
 
     public Stats(int attack, int defense, int armor, int movement, int maxHealth, int currentHealth, int rangeRadius, int visibilityRadius, int upkeep) {
         this.attack = attack;
