@@ -21,6 +21,13 @@ public class UniversityStructure extends Structure {
 
     public UniversityStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(GameLibrary.UNIVERSITY, instanceID, location, entityManager);
+        defense = 3;
+        armor = 5;
+        maxHealth = 125;
+        currentHealth = maxHealth;
+        rangeRadius = 1;
+        visibilityRadius = 2;
+        upkeep = 5;
     }
 
     public Technology completeResearch(){

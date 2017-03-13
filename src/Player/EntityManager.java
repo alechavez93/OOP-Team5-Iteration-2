@@ -101,13 +101,15 @@ public class EntityManager {
         this.addColonist(c0);
         placeEntity(c0);
 
-        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow(), location.getColumn()), this);
+        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), location, this);
         this.addExplorer(e0);
         placeEntity(e0);
+        e0.setDirection(Direction.NorthEast);
 
         ExplorerUnit e1 = new ExplorerUnit(nextExplorerIndex(), location, this);
         this.addExplorer(e1);
         placeEntity(e1);
+        e1.setDirection(Direction.NorthWest);
     }
 
     public void finishTurn(){

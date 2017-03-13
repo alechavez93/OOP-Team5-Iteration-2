@@ -37,6 +37,13 @@ public class CapitalStructure extends Structure {
         this.workers = new Worker(5);
         this.workRadius = 1;
         this.healAmount = 10;
+        defense = 3;
+        armor = 5;
+        maxHealth = 150;
+        currentHealth = maxHealth;
+        rangeRadius = 1;
+        visibilityRadius = 2;
+        upkeep = 5;
     }
 
     public ExplorerUnit createExplorerUnit(int instanceID) {
