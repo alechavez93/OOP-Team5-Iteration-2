@@ -41,14 +41,6 @@ public class FortStructure extends Structure {
         return new RangeSoldier(instanceID, this.getLocation(), entityManager);
     }
 
-    public MeleeSoldier createMeleeSoldier(int instanceID) {
-        return new MeleeSoldier(instanceID, this.getLocation(), entityManager);
-    }
-
-    public RangeSoldier createRangeSoldier(int instanceID) {
-        return new RangeSoldier(instanceID, this.getLocation(), entityManager);
-    }
-
     public void destroy(){
         entityManager.destroyFort(this);
     }
