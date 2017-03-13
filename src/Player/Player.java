@@ -94,7 +94,7 @@ public class Player {
     public TechManager getTechManager() { return techManager; }
 
     public void endTurn(){
-        itemManager.finishTurn();
+        //itemManager.finishTurn();
         entityManager.finishTurn();
         techManager.finishTurn();
         //do other stuff maybe

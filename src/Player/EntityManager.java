@@ -479,10 +479,6 @@ public class EntityManager {
         hashset.remove(army.getInstanceID() + 200);
         armyList.remove(army);
         armyCount--;
-        for (Unit unit : army.getBattleGroup().getUnits()) {
-           unit.destroy();
-           // destroy(unit)
-        }
     }
 
     public void disbandArmy(Army army){
