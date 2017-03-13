@@ -1,6 +1,7 @@
 package Technology.StructureTechnology;
 
 import Entity.Structure.*;
+import Entity.Entity;
 import static GameLibrary.GameLibrary.*;
 
 import Technology.Technology;
@@ -22,15 +23,19 @@ public class StructureTechnology extends Technology {
         super(techType);
     }
 
+    public void visit(Entity entity){
+
+    }
+
     public void visit(Structure structure){
-        if(researchType == ENERGY) { structure.upgradeEnergyRate(); }
-        if(researchType == FOOD) { structure.upgradeFoodRate(); }
-        if(researchType == ORE) { structure.upgradeOreRate(); }
-        if(researchType == POWER) { structure.upgradePowerRate(); }
-        if(researchType == NUTRIENT) { structure.upgradeNutrientsRate(); }
-        if(researchType == METAL) { structure.upgradeMetalRate(); }
-        if(researchType == BREEDING) { structure.upgradeBreedingRate(); }
-        if(researchType == EXPLORER) { structure.upgradeExplorerRate(); }
-        if(researchType == SOLDIER) { structure.upgradeSolderRate(); }
+        if(techType == ENERGY) { structure.upgradeEnergyRate(); }
+        if(techType == FOOD) { structure.upgradeFoodRate(); }
+        if(techType == ORE) { structure.upgradeOreRate(); }
+        if(techType == POWER) { structure.upgradePowerRate(); }
+        if(techType == NUTRIENT) { structure.upgradeNutrientsRate(); }
+        if(techType == METAL) { structure.upgradeMetalRate(); }
+        if(techType == BREEDING) { structure.upgradeBreedingRate(); }
+        if(techType == EXPLORER) { structure.upgradeExplorerRate(); }
+        if(techType == SOLDIER) { structure.upgradeSolderRate(); }
     }
 }

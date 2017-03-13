@@ -7,7 +7,7 @@ package Entity;
 |
 ---------------------------------------------------------------------------------------*/
 
-import Technology.WorkerTechnology;
+import Technology.StructureTechnology.WorkerTechnology;
 
 public class Worker {
 

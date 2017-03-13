@@ -11,6 +11,7 @@ package Entity;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 import Technology.EntityTechnology.EntityTechnology;
+import Technology.StructureTechnology.StructureTechnology;
 import Utility.Direction;
 
 import java.util.ArrayList;
@@ -83,6 +84,10 @@ public abstract class Entity extends Stats {
 
     public void acceptTech(EntityTechnology tech) {
         tech.visit(this);
+    }
+
+    public void acceptTech(StructureTechnology tech) {
+
     }
 
     public void upgradeVision() {

@@ -1,6 +1,8 @@
-package Technology;
+package Technology.StructureTechnology;
 
 import Entity.Worker;
+import Technology.Technology;
+
 import static GameLibrary.GameLibrary.*;
 
 /**
@@ -14,14 +16,14 @@ import static GameLibrary.GameLibrary.*;
 |
 ---------------------------------------------------------------------------------------*/
 
-public class WorkerTechnology extends  Technology{
+public class WorkerTechnology extends StructureTechnology{
 
-    public WorkerTechnology(String researchType){
-        super(researchType);
+    public WorkerTechnology(String techType){
+        super(techType);
     }
 
     public void visit(Worker worker){
-        if(researchType == DENSITY) { worker.upgradeDensity(); }
-        if(researchType == RADIUS) { worker.upgradeRadius(); }
+        if(techType == DENSITY) { worker.upgradeDensity(); }
+        if(techType == RADIUS) { worker.upgradeRadius(); }
     }
 }

@@ -12,16 +12,14 @@ import Player.Player;
 import Utility.GraphicsFactory;
 import Utility.MapLoader;
 import Utility.Vec2i;
-import Views.InGameFrame;
-import Views.MapView;
-import Views.UnitView;
+import Views.*;
 
 public class TestInGameFrame {
 
     public static void main(String[] args) {
         char[][] cMap = MapLoader.getCharMap("sample");
         GameMap map = GameMap.getInstance();
-        map.initialize(cMap, new Vec2i(cMap.length, cMap[0].length));
+        map.initialize(cMap);
         GraphicsFactory.getInstance();
         EntityManager em = new EntityManager(new Player(0, new MapCoordinate(3,3) ));
 
@@ -29,5 +27,7 @@ public class TestInGameFrame {
         CyclingState state = new CyclingState();
         frame.addView(new MapView("Map Overview", state));
         frame.addView(new UnitView("Unit Overview", state));
+        frame.addView(new StructureView("Structure Overview", state));
+        frame.addView(new TechTreeView("Tech Tree", state));
     }
 }

@@ -15,10 +15,15 @@ import Entity.*;
 
 public abstract class  Technology {
     protected String techType;
-    protected String productionType;
 
     public Technology(String techType){
         this.techType = techType;
+    }
+
+    abstract public void visit(Entity entity);
+
+    public void visit(Worker worker){
+
     }
 
 }

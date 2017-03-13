@@ -18,18 +18,18 @@ import static GameLibrary.GameLibrary.*;
 
 public class EntityTechnology extends Technology {
 
-    public EntityTechnology(String researchType){
-        super(researchType);
+    public EntityTechnology(String techType){
+        super(techType);
     }
 
     public void visit(Entity entity){
-        if(researchType == VISIBILITY){ entity.upgradeVision(); }
-        if(researchType == ATTACK) { entity.upgradeAttack(); }
-        if(researchType == DEFENSE) { entity.upgradeDefense(); }
-        if(researchType == ARMOR) { entity.upgradeArmor(); }
-        if(researchType == SPEED) { entity.upgradeSpeed(); }
-        if(researchType == HEALTH) { entity.upgradeHealth(); }
-        if(researchType == EFFICIENCY) { entity.upgradeEfficiency(); }
+        if(techType == VISIBILITY){ entity.upgradeVision(); }
+        if(techType == ATTACK) { entity.upgradeAttack(); }
+        if(techType == DEFENSE) { entity.upgradeDefense(); }
+        if(techType == ARMOR) { entity.upgradeArmor(); }
+        if(techType == SPEED) { entity.upgradeSpeed(); }
+        if(techType == HEALTH) { entity.upgradeHealth(); }
+        if(techType == EFFICIENCY) { entity.upgradeEfficiency(); }
     }
 
 }

@@ -68,16 +68,17 @@ public class GameMap {
         }
     }
 
-    public void initialize(char[][] cMap, Vec2i size) {
+    public void initialize(char[][] cMap) {
+
         if(!isInitialized) {
-            this.size = size;
+            this.size = new Vec2i(cMap[0].length, cMap.length);
             tileGrid = new Tile[size.x][size.y];
             isInitialized = true;
-            for(short iii=0; iii < size.x; iii++) {
-                for(short jjj=0; jjj < size.y; jjj++) {
+            for(short iii=0; iii < size.y; iii++) {
+                for(short jjj=0; jjj < size.x; jjj++) {
                     for(GameLibrary.TileType tt : GameLibrary.TileType.values()) {
                         if(cMap[iii][jjj] == tt.charSymbol) {
-                            tileGrid[iii][jjj] = Tile.makeTile(tt, new Vec2i(jjj,iii));
+                            tileGrid[jjj][iii] = Tile.makeTile(tt, new Vec2i(iii,jjj));
                             break;
                         }
                     }
@@ -146,7 +147,7 @@ public class GameMap {
     public Tile getNeighborTile(Vec2i pos, Direction dir) {
         if(!isValidNeighbor(pos, dir))
             throw new IndexOutOfBoundsException();
-        return getTile(pos.add(dir.getHex(pos.x % 2 == 1)));
+        return getTile(pos.add(dir.getHex(pos.y % 2 == 1)));
     }
     public Tile getNeighborTile(MapCoordinate coord, Direction dir) {
         return getNeighborTile(coord.getVector(), dir);
@@ -176,14 +177,14 @@ public class GameMap {
         for(int iii = 1; iii <= radius; iii++)
             total += iii;
         List<Tile> finalList = new ArrayList<Tile>(total*6);
+        int pX = pos.y;
+        int pZ = pos.x - (pos.y - (pos.y%2)) / 2;
         int x, y, z;
-        Vec2i offCoord = new Vec2i();
         for(x = -radius; x <= radius; x++) {
             for (y = Math.max(-radius, -x - radius); y <= (Math.min(radius, -x + radius)); y++) {
                 z = -x-y;
-                offCoord.x = z + (x - (x%2)) / 2;
-                offCoord.y = x;
-                offCoord = pos.add(offCoord);
+                int xx = pX + x;
+                Vec2i offCoord = new Vec2i((z + pZ) + (xx - (xx%2)) / 2, xx);
                 if(offCoord.equals(pos))
                     continue;
                 if((offCoord.y >= size.x || offCoord.x >= size.y) || (offCoord.y < 0 || offCoord.x < 0))
@@ -198,7 +199,16 @@ public class GameMap {
     public Iterator<Tile> getIterator() { return new MapIter(); }
 
     private boolean isValidNeighbor(Vec2i pos, Direction dir) {
-        pos = pos.add(dir.getHex(pos.x % 2 == 1));
+        pos = pos.add(dir.getHex(pos.y % 2 == 1));
         return !(pos.x < 0 || pos.y < 0 || pos.x >= size.y || pos.y >= size.x);
+    }
+
+    public static Direction directionTo(MapCoordinate origin, MapCoordinate destination) {
+        Vec2i c = origin.getVector().sub(destination.getVector());
+        if(c.y == 0)
+            return (c.x > 0) ? Direction.South : Direction.North;
+        if(c.y > 0)
+            return (c.x == origin.getVector().y%2) ? Direction.SouthEast : Direction.NorthEast;
+        return (c.x == origin.getVector().y%2) ? Direction.SouthWest : Direction.NorthWest;
     }
 }

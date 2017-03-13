@@ -23,6 +23,14 @@ public class FortStructure extends Structure {
 
     public FortStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(GameLibrary.FORT, instanceID, location, entityManager);
+        attack = 5;
+        defense = 3;
+        armor = 5;
+        maxHealth = 125;
+        currentHealth = maxHealth;
+        rangeRadius = 1;
+        visibilityRadius = 2;
+        upkeep = 5;
     }
 
     public MeleeSoldier createMeleeSoldier(int instanceID) {

@@ -46,7 +46,7 @@ public class InGameFrame extends JFrame{
         private ImageIcon icon = new ImageIcon("fort.png");
         private int count = 0;
 
-        CardsContainer(){
+        public CardsContainer(){
             cardsPane = new JTabbedPane();
             add(cardsPane);
             setLayout(new GridLayout(1, 1));
@@ -56,7 +56,7 @@ public class InGameFrame extends JFrame{
             cardsPane.addTab(card.getName(), icon, card);
             JLabel lab = new JLabel(card.getName());
             lab.setFont(new Font(Font.DIALOG, Font.PLAIN, PixelMap.TAB_FONTSIZE));
-            lab.setPreferredSize(new Dimension(PixelMap.TAB_WIDTH, PixelMap.TAB_HEIGHT));
+            lab.setPreferredSize(new Dimension((int)(PixelMap.TAB_WIDTH*1.5), PixelMap.TAB_HEIGHT));
             cardsPane.setTabComponentAt(count, lab);
             count++;
         }

@@ -19,7 +19,7 @@ public class TestViewPort {
     public static void main(String[] args) {
         char[][] cMap = MapLoader.getCharMap("sample");
         GameMap map = GameMap.getInstance();
-        map.initialize(cMap, new Vec2i(cMap.length, cMap[0].length));
+        map.initialize(cMap);
         ViewPort.initialize(new PixelPoint(0,0));
         JFrame frame = new JFrame("Game");
         frame.setLayout(null);
