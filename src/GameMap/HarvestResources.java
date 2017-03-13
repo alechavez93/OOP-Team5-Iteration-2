@@ -26,4 +26,6 @@ public class HarvestResources {
         energy -= amount;
     }
     public void setFood( int amount ) { food = amount; } //Allows for dynamic regeneration
+
+    public void voidAll() { ore = 0; energy = 0; food = 0;}
 }

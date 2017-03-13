@@ -95,9 +95,9 @@ public class MapViewTest {
         scroller = new Vec2i();
         char[][] test = MapLoader.getCharMap("sample");
         GameMap.getInstance().initialize(test);
-        path = (new AStarPathFinder()).createPath(new MapCoordinate(2,2), new MapCoordinate(12,12));
+        path = (new AStarPathFinder()).createPath(new MapCoordinate(12,12), new MapCoordinate(4,6));
 
-        EntityManager em = new EntityManager(new Player(0, new MapCoordinate(2,2)));
+        EntityManager em = new EntityManager(new Player(0, new MapCoordinate(12,12)));
         unit = new RangeSoldier(0, path.getStart(), em);
         frame = new JFrame("Game");
         JPanel panel = new MapPanel();
