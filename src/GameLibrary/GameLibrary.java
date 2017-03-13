@@ -22,7 +22,7 @@ final public class GameLibrary {
     public static final String[] MODES = {RALLY_POINT_MODE, STRUCTURE_MODE, UNIT_MODE, ARMY_MODE};
 
     //Unit Types
-    public static final String MELEE = "MELEE SOLDIER", RANGED = "RANGED SOLDIER", COLONIST = "COLONIST", EXPLORER = "EXPLORER", WORKER = "WORKER", BODY = "BODY";
+    public static final String MELEE = "MELEE SOLDIER", RANGED = "RANGED SOLDIER", COLONIST = "COLONIST", EXPLORER = "EXPLORER", WORKER = "WORKER", BODY = "BODY", SOLDIER = "SOLDIER";
     public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER, WORKER, BODY};
 
     //Structure Types
@@ -33,6 +33,8 @@ final public class GameLibrary {
     public static final String ENTIRE_ARMY = "ENTIRE ARMY", BATTLE_GROUP = "BATTLE GROUP", REINFORCEMENTS = "REINFORCEMENTS";
     public static final String[] ARMIES = {ENTIRE_ARMY, BATTLE_GROUP, REINFORCEMENTS};
 
+    //Stats
+    public static final String VISIBILITY = "VISIBILITY", DEFENSE = "DEFENSE", ARMOR = "ARMOR", SPEED = "SPEED", HEALTH = "HEALTH", EFFICIENCY = "EFFICIENCY";
 
 
     //Army Commands
@@ -51,7 +53,9 @@ final public class GameLibrary {
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
     //Resources (Produce)
-    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL";
+    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL", BREEDING = "BREEDING";
+    //Worker stats
+    public static final String RADIUS = "RADIUS", DENSITY = "DENSITY";
 
 
     public static final int MAP_HEIGHT = 10, MAP_WIDTH = 20;

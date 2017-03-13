@@ -8,11 +8,12 @@ package Entity;
 |   contains an order queue to execute issued orders.
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Unit.Soldier;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
+import Technology.EntityTechnology.EntityTechnology;
+import Technology.StructureTechnology.StructureTechnology;
 import Utility.Direction;
-import Technology.Technology;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +56,16 @@ public abstract class Entity extends Stats {
         }
     }
 
-    public void executeNextOrder() {
+    public void finishTurn() {
+        processQueue();
+        processUpkeep();
+    }
+
+    public void processQueue() {
+
+    }
+
+    public void processUpkeep() {
 
     }
 
@@ -71,12 +81,45 @@ public abstract class Entity extends Stats {
 
     }
 
-    public void updateVision() {
+
+    public void acceptTech(EntityTechnology tech) {
+        tech.visit(this);
+    }
+
+    public void acceptTech(StructureTechnology tech) {
 
     }
 
-    public void acceptTech(Technology tech) {
-        tech.visit(this);
+    public void upgradeVision() {
+        visibilityRadius++;
+    }
+
+    public void upgradeAttack() {
+        attack++;
+    }
+
+    public void upgradeDefense() {
+        defense++;
+    }
+
+    public void upgradeArmor() {
+        armor++;
+    }
+
+    public void upgradeSpeed() {
+
+    }
+
+    public void upgradeHealth() {
+        maxHealth++;
+        currentHealth++;
+    }
+
+    public void upgradeEfficiency() {
+        upkeep *= 0.9;
+    }
+
+    public void upgradeProduction(String productionType) {
 
     }
 
