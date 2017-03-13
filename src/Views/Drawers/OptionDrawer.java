@@ -52,6 +52,4 @@ public class OptionDrawer {
         icon = graphicsFactory.getGraphics(GraphicsFactory.UPKEEP_ICON);
         OptionDrawer.drawOption(g, new PixelPoint((int)(position.x+PixelMap.TILE_WIDTH*2.5), position.y+PixelMap.AFTER_SPACE), icon, entity.getUpkeep()+"");
     }
-
-
 }

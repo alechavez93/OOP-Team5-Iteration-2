@@ -8,7 +8,7 @@ package Entity;
 |   contains an order queue to execute issued orders.
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Unit.Soldier;
+import Commands.Command;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 import Utility.Direction;
@@ -19,25 +19,27 @@ import java.util.List;
 public abstract class Entity extends Stats {
 
     protected EntityManager entityManager;
+    protected boolean isPowered;
     private String name = "";
     private int instanceID = 0;
     private MapCoordinate location;
     private Direction direction = Direction.South;
     private String state;
 
-    public List<Order> orderList;
+    public List<Command> commandList;
 
     public Entity(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(0,0,0,0,0,0,0,0, 0);
         this.name = name;
         this.instanceID = instanceID;
         this.location = location;
-        this.orderList = new ArrayList<Order>();
+        this.commandList = new ArrayList<Command>();
         this.entityManager = entityManager;
+        this.isPowered = true;
     }
 
-    public void addOrder(Order order) {
-        orderList.add(order);
+    public void addCommand(Command command) {
+        commandList.add(command);
     }
 
     public void takeDamage(Entity entity, String mode){
@@ -59,8 +61,8 @@ public abstract class Entity extends Stats {
 
     }
 
-    public void cancelOrder() {
-        orderList.clear();
+    public void cancelOrders() {
+        commandList.clear();
     }
 
     public void updateStats(Stats stat) {
@@ -77,12 +79,24 @@ public abstract class Entity extends Stats {
 
     public void acceptTech(Technology tech) {
         tech.visit(this);
-
     }
 
-    public void destroy() {
-
+    //Commands functionality
+    public abstract void destroy();
+    public void powerUp(){
+        if(!isPowered){
+            isPowered = true;
+            upkeep = upkeep*4;
+        }
     }
+
+    public void powerDown(){
+        if(isPowered){
+            isPowered = false;
+            upkeep = upkeep/4;
+        }
+    }
+
 
 //    abstract public void destroy(Entity entity);
 

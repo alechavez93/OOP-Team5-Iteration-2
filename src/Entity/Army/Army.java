@@ -1,96 +1,107 @@
 package Entity.Army;
-
 /*--------------------------------------------------------------------------------------
-|    Army Class: Created by Tonny Xie on 2/16/2017.
+|	Army Class: Created by Alejandro Chavez on 3/13/2017.
 |---------------------------------------------------------------------------------------
-|   Description: 
-|       Army is responsible for grouping units together and moving them to a RallyPoint.
-|       It consists of a BattleGroup and Reinforcements.
-|
+|   Description: Encapsulates a battle group and a list of the reinforcing units.
 ---------------------------------------------------------------------------------------*/
 
-/**
- * TO DO
- *
- * updateLocation()
- * handle combat
- * handle workers
- * integrate w/ view
- *
- * DISCUSSION NEEDED
- *
- * What is considered an entity? The army itself? The battlegroup?
- *
- * How do army stats work? When do units die in an army? Is health treated uniformly?
- *
- * How do we update an army at the end of the turn?
- */
-
-import Entity.Unit.Unit;
+import Entity.Entity;
+import Entity.Unit.*;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
-public class Army {
+import java.util.ArrayList;
+import java.util.List;
 
-    private int instanceID;
-    private RallyPoint rallyPoint;
-    private BattleGroup battleGroup;
-    private Reinforcements reinforcements;
+public class Army extends Entity{
 
-    private Boolean atRallyPoint;
+    private List<Unit> battleGroup;
+    private List<Unit> reinforcement;
+    private MapCoordinate rallyPoint;
+    private int meleeAttack;
+    private int rangeAttack;
+    private boolean isAttacking;
 
-    public Army(Unit startingUnit, int ID) {
-        this.instanceID = ID;
-        atRallyPoint = true;
-        this.rallyPoint = new RallyPoint(this, startingUnit.getLocation());
-
-        battleGroup = new BattleGroup(startingUnit);
+    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial, MapCoordinate rallyPoint) {
+        super(name, instanceID, location, entityManager);
+        battleGroup = new ArrayList<>();
+        reinforcement = new ArrayList<>();
+        this.battleGroup.add(initial);
+        this.rallyPoint = rallyPoint;
+        isAttacking = false;
+        updateStats();
     }
 
-    public void addUnit(Unit unit){
-
-        if(unit.getLocation().equals(battleGroup.getLocation())) { // if unit is on battlegroup already
-
-            battleGroup.addUnit(unit);
-        } else {
-
-            reinforcements.addUnit(unit);
+    private void updateAttack(){
+        meleeAttack = 0;
+        rangeAttack = 0;
+        for(Unit unit: battleGroup){
+            if(unit instanceof MeleeSoldier){
+                meleeAttack += unit.getAttack();
+            }else if(unit instanceof RangeSoldier){
+                rangeAttack += unit.getAttack();
+            }
         }
     }
 
-    public void updateLocation(){
-        if(!atRallyPoint) {
-            battleGroup.updateLocation();
-            atRallyPoint = battleGroup.getLocation().equals(rallyPoint.getLocation());
-        } else {
-            //Don't want to reinforce until battleGroup is actually there
-            reinforcements.reinforce(battleGroup, rallyPoint.getLocation());
+    private  void updateTotalStats(){
+        resetStats();
+        int minSpeed = 5;
+        int maxVisibility = 0;
+        int minRange = 3;
+        //Regular Stats
+        for(Unit unit: battleGroup){
+            //Update speed
+            if(unit.getMovement() < minSpeed) minSpeed = unit.getMovement();
+            //Update visibility
+            if(unit.getVisibilityRadius() > maxVisibility) maxVisibility = unit.getVisibilityRadius();
+            //Update range
+            if(unit instanceof Soldier && unit.getRangeRadius() < minRange ) minRange = unit.getRangeRadius();
+            attack += unit.getAttack();
+            defense += unit.getDefense();
+            armor += unit.getArmor();
+            maxHealth += unit.getMaxHealth();
+            upkeep += unit.getUpkeep();
         }
-        reinforcements.updateLocations();
+
+        //Movement for the Army
+        movement = minSpeed;
+        //Visibility for the army
+        visibilityRadius = maxVisibility;
+        //Ranged for army
+        rangeRadius = minRange;
     }
 
-    public void moveRallyPoint(MapCoordinate location){
+    public void updateStats(){
+        updateAttack();
+        updateTotalStats();
+    }
 
-        if(!(rallyPoint.getLocation().equals(location))) { // if rallyPoint location is not same as new location
-            rallyPoint.setLocation(location);
-            battleGroup.createPathTo(location);
-            reinforcements.createPathsTo(location);
-            atRallyPoint = false;
-        } else {
+    @Override
+    public void destroy(){
+        for(Unit unit: battleGroup){
+            unit.destroy();
+        }
+        for(Unit unit: reinforcement){
+            unit.destroy();
+        }
+        entityManager.destroyArmy(this);
+    }
 
-            atRallyPoint = true; // ERROR: Attempted to move rally point to same location
+    public void addReinforcement(Unit unit){
+        reinforcement.add(unit);
+    }
+
+    public void updateArmyReinforcement(){
+        List<Unit> arrived = new ArrayList<>();
+        for(Unit unit: reinforcement){
+            if(unit.getLocation().equals(getLocation())){
+                battleGroup.add(unit);
+                arrived.add(unit);
+            }
+        }
+        for(Unit removed: arrived){
+            reinforcement.remove(removed);
         }
     }
-
-    public RallyPoint getRallyPoint() {
-        return rallyPoint;
-    }
-
-    public BattleGroup getBattleGroup(){
-        return battleGroup;
-    }
-
-    public int getInstanceID(){
-        return instanceID;
-    }
-
 }

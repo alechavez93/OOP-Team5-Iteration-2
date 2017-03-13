@@ -58,4 +58,15 @@ public abstract class Stats {
     public void setRangeRadius(int rangeRadius) { this.rangeRadius = rangeRadius; }
     public void setVisibilityRadius(int visibilityRadius) { this.visibilityRadius = visibilityRadius; }
     public void setUpkeep(int upkeep) { this.upkeep = upkeep; }
+    public void resetStats(){
+        attack = 0;
+        defense = 0;
+        armor = 0;
+        movement = 0;
+        maxHealth = 0;
+        currentHealth = 0;
+        rangeRadius = 0;
+        visibilityRadius = 0;
+        upkeep = 0;
+    }
 }

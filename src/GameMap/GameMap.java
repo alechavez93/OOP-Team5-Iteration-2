@@ -1,5 +1,4 @@
 package GameMap;
-import Entity.Army.BattleGroup;
 import Entity.Unit.Unit;
 import GameLibrary.GameLibrary;
 import Utility.Direction;
