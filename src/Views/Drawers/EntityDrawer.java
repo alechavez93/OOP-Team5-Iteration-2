@@ -7,7 +7,6 @@ package Views.Drawers;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Entity;
-import Entity.Unit.Unit;
 import Utility.GraphicsFactory;
 import Views.PixelMaps.PixelMap;
 import Views.PixelMaps.PixelPoint;

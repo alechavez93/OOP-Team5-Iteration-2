@@ -34,6 +34,8 @@ public class GraphicsFactory {
     public static final String MAP_SEPARATOR = "map-separator.png", ATTACK_ICON = "icons/attack.png", DEFENSE_ICON = "icons/defense.png", ARMOR_ICON = "icons/armor.png", MOVEMENT_ICON = "icons/movement.png", HEALTH_ICON = "icons/health.png", RANGE_ICON = "icons/range.png", VISION_ICON = "icons/vision.png", UPKEEP_ICON = "icons/upkeep.png";
     public static final String FOOD_ICON = "icons/meat.png", ENERGY_ICON = "icons/energy.png", ORE_ICON = "icons/ore.png", PLAYER_ICON = "icons/player.png", MODE_ICON = "icons/mode.png", TYPE_ICON = "icons/type.png", ID_ICON = "icons/id.png", COMMAND_ICON = "icons/command.png";
     public static String[] icons = {ATTACK_ICON, DEFENSE_ICON, ARMOR_ICON, MOVEMENT_ICON, HEALTH_ICON, RANGE_ICON, VISION_ICON, UPKEEP_ICON, FOOD_ICON, ENERGY_ICON, ORE_ICON, PLAYER_ICON, MODE_ICON, TYPE_ICON, ID_ICON, COMMAND_ICON};
+
+    public static final String BACKGROUND_SRC = "background.jpg";
     //-------------------------------------------------------------------------------------------
 
     private Map<String, BufferedImage> cachedGraphics;
@@ -67,6 +69,10 @@ public class GraphicsFactory {
             icon = ImageUtil.toBufferedImage(icon.getScaledInstance(PixelMap.ICON_SIZE, PixelMap.ICON_SIZE, Image.SCALE_SMOOTH));
             cachedGraphics.put(iconSrc, icon);
         }
+
+        //Load background
+        BufferedImage icon = ImageUtil.loadImage(BACKGROUND_SRC);
+        cachedGraphics.put(BACKGROUND_SRC, icon);
     }
 
     //Public Accessors
