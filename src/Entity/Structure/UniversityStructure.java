@@ -15,17 +15,27 @@ import Entity.Entity;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
+import Player.TechManager;
 import Technology.Technology;
 
 public class UniversityStructure extends Structure {
+    private TechManager techmanager;
 
     public UniversityStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(GameLibrary.UNIVERSITY, instanceID, location, entityManager);
+        this.techmanager = entityManager.playerOwner.getTechManager();
+        defense = 3;
+        armor = 5;
+        maxHealth = 125;
+        currentHealth = maxHealth;
+        rangeRadius = 1;
+        visibilityRadius = 2;
+        upkeep = 5;
     }
 
-    public Technology completeResearch(){
-        Technology tech = new Technology();
-        return tech;
+
+    public void finishResearch(Technology tech){
+        techmanager.addTech(tech);
     }
 
     public void destroy(){

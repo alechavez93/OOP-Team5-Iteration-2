@@ -51,7 +51,8 @@ public class AStarPathFinder implements PathFinder {
                 //Path successfully calculated
                 Stack<Direction> path = new Stack<Direction>();
                 while(n.cameFrom != null) {
-                    path.add(findDirection(n.cameFrom.loc, n.loc));
+                    //System.out.printf(n.loc.x + " " + n.loc.y +"\n");
+                    path.add(findDirectionVec(n.cameFrom.loc, n.loc));
                     n = n.cameFrom;
                 }
                 return new Path(path, startCoord, endCoord);
@@ -109,13 +110,13 @@ public class AStarPathFinder implements PathFinder {
         return Math.max(Math.abs(xa-xb), Math.max(Math.abs(ya-yb), Math.abs(za-zb)));
     }
 
-    private Direction findDirection(Vec2i from, Vec2i too) {
+    private Direction findDirectionVec(Vec2i from, Vec2i too) {
         Vec2i c = too.sub(from);
-        if(c.x == 0)
-            return (c.y > 0) ? Direction.South : Direction.North;
-        if(c.x > 0)
-            return (c.y == from.x%2) ? Direction.SouthEast : Direction.NorthEast;
-        return (c.y == from.x%2) ? Direction.SouthWest : Direction.NorthWest;
+        if(c.y == 0)
+            return (c.x > 0) ? Direction.South : Direction.North;
+        if(c.y > 0)
+            return (c.x == from.y%2) ? Direction.SouthEast : Direction.NorthEast;
+        return (c.x == from.y%2) ? Direction.SouthWest : Direction.NorthWest;
     }
 }
 

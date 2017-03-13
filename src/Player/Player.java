@@ -91,9 +91,12 @@ public class Player {
     public EntityManager getEntityManager(){
         return entityManager;
     }
+    public TechManager getTechManager() { return techManager; }
 
     public void endTurn(){
+        itemManager.finishTurn();
         entityManager.finishTurn();
+        techManager.finishTurn();
         //do other stuff maybe
     }
 

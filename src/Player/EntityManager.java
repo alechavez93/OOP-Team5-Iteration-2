@@ -7,11 +7,15 @@ import Entity.Unit.*;
 import Entity.Unit.MeleeSoldier;
 import Entity.Unit.RangeSoldier;
 import GameMap.*;
+import Technology.EntityTechnology.EntityTechnology;
+import Technology.StructureTechnology.StructureTechnology;
+import Technology.Technology;
 import Utility.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by Thomas on 02/19/2017.
@@ -101,17 +105,39 @@ public class EntityManager {
         this.addColonist(c0);
         placeEntity(c0);
 
-        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), new MapCoordinate(location.getRow(), location.getColumn()), this);
+        ExplorerUnit e0 = new ExplorerUnit(nextExplorerIndex(), location, this);
         this.addExplorer(e0);
         placeEntity(e0);
+        e0.setDirection(Direction.NorthEast);
 
         ExplorerUnit e1 = new ExplorerUnit(nextExplorerIndex(), location, this);
         this.addExplorer(e1);
         placeEntity(e1);
+        e1.setDirection(Direction.NorthWest);
     }
 
     public void finishTurn(){
-        //process queues for each entity in each list
+        List<Entity> everything = getAllEntities();
+        ListIterator<Entity> entityListIterator = everything.listIterator();
+        while ( entityListIterator.hasNext()){
+            entityListIterator.next().finishTurn();
+        }
+    }
+
+    public void accept( EntityTechnology technology){
+        List<Entity> everything = getAllEntities();
+        ListIterator<Entity> entityListIterator = everything.listIterator();
+        while ( entityListIterator.hasNext()){
+            entityListIterator.next().acceptTech(technology);
+        }
+    }
+
+    public void accept(StructureTechnology technology){
+
+    }
+
+    public void accept(Technology tech){
+
     }
 
     public List<Entity> getAllEntities(){

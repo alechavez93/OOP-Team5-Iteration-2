@@ -1,19 +1,20 @@
-package Player;
+package Technology.StructureTechnology;
 
 /**
- * Created by Thomas on 02/19/2017.
+ * Created by test on 03/12/2017.
  */
 
 /*--------------------------------------------------------------------------------------
-|    ItemManager Module: Created by Thomas on 02/19/2017.
+|    FortTechnology Module: Created by test on 03/12/2017.
 |---------------------------------------------------------------------------------------
-|   Description: Used to hold items owned by each Player
+|   Description:
 |
 ---------------------------------------------------------------------------------------*/
 
-public class ItemManager {
+public class FortTechnology extends StructureTechnology {
 
-    public void finishTurn(){
 
+    public FortTechnology(String techType){
+        super(techType);
     }
 }

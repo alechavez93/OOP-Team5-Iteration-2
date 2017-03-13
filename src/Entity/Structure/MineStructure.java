@@ -27,6 +27,13 @@ public class MineStructure extends Structure {
         this.productionRate = 1;
         this.workers = new Worker(0);
         this.workRadius = 1;
+        defense = 3;
+        armor = 5;
+        maxHealth = 100;
+        currentHealth = maxHealth;
+        rangeRadius = 1;
+        visibilityRadius = 2;
+        upkeep = 5;
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {

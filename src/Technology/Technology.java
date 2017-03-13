@@ -13,12 +13,17 @@ import Entity.*;
 |
 ---------------------------------------------------------------------------------------*/
 
-public class Technology {
-    String name;
+public abstract class  Technology {
+    protected String techType;
 
-    //
+    public Technology(String techType){
+        this.techType = techType;
+    }
 
-    public void visit(Entity entity){
+    abstract public void visit(Entity entity);
+
+    public void visit(Worker worker){
 
     }
+
 }
