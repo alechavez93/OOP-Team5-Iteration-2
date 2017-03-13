@@ -10,11 +10,53 @@ package Entity.Structure;
 import Entity.Entity;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
+import Technology.StructureTechnology.StructureTechnology;
 
-public abstract class Structure extends Entity {
+public abstract class Structure extends Entity{
+    Production production;
 
     public Structure(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(name, instanceID, location, entityManager);
+        }
+
+    public void acceptTech(StructureTechnology tech){
+        tech.visit(this);
+    }
+
+    public void upgradeFoodRate() {
+        this.production.foodRate *= 1.1;
+    }
+
+    public void upgradeEnergyRate() {
+        this.production.energyRate *= 1.1;
+    }
+
+    public void upgradeOreRate() {
+        this.production.oreRate *= 1.1;
+    }
+
+    public void upgradePowerRate() {
+        this.production.energyRate *= 1.1;
+    }
+
+    public void upgradeNutrientsRate() {
+        this.production.nutrientsRate *= 1.1;
+    }
+
+    public void upgradeMetalRate() {
+        this.production.metalRate *= 1.1;
+    }
+
+    public void upgradeBreedingRate() {
+        this.production.breedingRate *= 1.1;
+    }
+
+    public void upgradeExplorerRate() {
+        this.production.explorerRate *= 1.1;
+    }
+
+    public void upgradeSolderRate() {
+        this.production.soldierRate *= 1.1;
     }
 
 }

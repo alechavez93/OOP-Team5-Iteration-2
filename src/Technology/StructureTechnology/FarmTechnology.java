@@ -1,24 +1,21 @@
-package Technology;
+package Technology.StructureTechnology;
 
-import Entity.*;
+import Entity.Structure.FarmStructure;
 
 /**
- * Created by test on 03/11/2017.
+ * Created by test on 03/12/2017.
  */
 
 /*--------------------------------------------------------------------------------------
-|    Technology Module: Created by test on 03/11/2017.
+|    FarmTechnology Module: Created by test on 03/12/2017.
 |---------------------------------------------------------------------------------------
 |   Description:
 |
 ---------------------------------------------------------------------------------------*/
 
-public abstract class  Technology {
-    protected String techType;
-    protected String productionType;
+public class FarmTechnology extends StructureTechnology {
 
-    public Technology(String techType){
-        this.techType = techType;
+    public FarmTechnology(String techType){
+        super(techType);
     }
-
 }

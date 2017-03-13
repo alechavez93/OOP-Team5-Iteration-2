@@ -17,5 +17,9 @@ public abstract class Unit extends Entity {
         super(name, instanceID, location, entityManager);
     }
 
+    public void upgradeSpeed() {
+        movement++;
+    }
+
 
 }

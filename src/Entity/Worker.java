@@ -7,6 +7,8 @@ package Entity;
 |
 ---------------------------------------------------------------------------------------*/
 
+import Technology.WorkerTechnology;
+
 public class Worker {
 
     int numberOfWorkers;
@@ -29,5 +31,17 @@ public class Worker {
 
     public void setNumberOfWorkers(int numberOfWorkers) {
         this.numberOfWorkers = numberOfWorkers;
+    }
+
+    public void accept(WorkerTechnology technology){
+        technology.visit(this);
+    }
+
+    public void upgradeRadius() {
+
+    }
+
+    public void upgradeDensity() {
+
     }
 }
