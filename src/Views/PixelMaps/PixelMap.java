@@ -33,6 +33,7 @@ public class PixelMap {
     public static final int ICON_SIZE = TILE_HEIGHT/5;
     public static final int INIT_SPACE = (int)((0.15)*(double)TILE_HEIGHT);
     public static final int AFTER_SPACE = INIT_SPACE + INIT_SPACE/2;
+    public static final int MARGIN = PixelMap.UNIT_HEIGHT/7;
 
 
     //Plain Pixel Mapping based on position

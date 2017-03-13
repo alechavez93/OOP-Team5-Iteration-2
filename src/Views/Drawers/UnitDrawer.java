@@ -6,6 +6,7 @@ package Views.Drawers;
 |   does a mapping between directions and angles based on origin being x-axis.
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Entity;
 import Entity.Unit.Unit;
 import Utility.Direction;
 import Utility.GraphicsFactory;
@@ -16,6 +17,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class UnitDrawer {
+
+    public static final int MARGIN = PixelMap.MARGIN;
 
     public static void drawUnit(Graphics g, Unit unit){
         g.setClip(null);
@@ -28,6 +31,7 @@ public class UnitDrawer {
         g.drawImage(unitImg, pos.x, pos.y, PixelMap.UNIT_HEIGHT, PixelMap.UNIT_HEIGHT, null);
         drawMarker(g, PixelMap.UNIT_MARKER_RADIUS, facingPos);
     }
+
 
     private static void drawMarker(Graphics g, int radius, PixelPoint center){
         g.setColor(new Color(0,0,255));
@@ -59,5 +63,31 @@ public class UnitDrawer {
         else if(direction == Direction.SouthWest) return 210;
         else if(direction == Direction.NorthWest) return 150;
         else return 0;
+    }
+
+
+    //Drawers for the different Views other than the MapView
+    //--------------------------------------------------------------------------------------------------
+    public static void drawUnit(Graphics g, PixelPoint point, Unit unit, GraphicsFactory graphicsFactory){
+        BufferedImage img = graphicsFactory.getGraphics(unit.getName());
+        g.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, OptionDrawer.FONT_SIZE));
+        g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2);
+        g.drawImage(img, point.x, point.y, PixelMap.STRUCTURE_HEIGHT, PixelMap.STRUCTURE_HEIGHT, null);
+        g.drawString(unit.getInstanceID()+"",point.x+PixelMap.TILE_WIDTH/8, point.y+PixelMap.TILE_WIDTH/2+PixelMap.TILE_WIDTH/3);
+        //Draw the health bar
+        drawHealthBar(g, new PixelPoint(point.x, point.y+(int)(1.2*PixelMap.STRUCTURE_HEIGHT)), unit);
+    }
+
+    public static void drawUnit(Graphics g, PixelPoint point, int number){
+        g.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 2*OptionDrawer.FONT_SIZE));
+        g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2);
+        g.drawString(number+"",point.x+(PixelMap.STRUCTURE_HEIGHT+30)/2-OptionDrawer.FONT_SIZE, point.y+(PixelMap.STRUCTURE_HEIGHT+30)/2);
+    }
+
+    public static void drawHealthBar(Graphics g, PixelPoint point, Entity entity){
+        g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+2* MARGIN,  OptionDrawer.FONT_SIZE+2* MARGIN);
+        g.setColor(new Color(86,128,4));
+        g.fillRect(point.x, point.y, (int)((double)entity.getCurrentHealth()/(double)entity.getMaxHealth()*PixelMap.STRUCTURE_HEIGHT), OptionDrawer.FONT_SIZE);
+        g.setColor(new Color(0,0,0));
     }
 }
