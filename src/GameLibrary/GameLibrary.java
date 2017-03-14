@@ -44,14 +44,26 @@ final public class GameLibrary {
 
     //Structure Commands
     public static final String MAKE_UNIT = "MAKE UNIT TYPE", HEAL_UNIT = "HEAL UNIT";
-    public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+//    public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+
+    //Capital Commands
+    public static final String[] CAPITAL_COMMANDS = {MAKE_UNIT, HEAL_UNIT, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+
+    //Fort Commands
+    public static final String[] FORT_COMMANDS = {MAKE_UNIT, ATTACK, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
     //Unit Commands
-    public static final String REINFORCE = "REINFORCE ARMY";
+    public static final String REINFORCE = "REINFORCE ARMY", BUILD_CAPITAL = "BUILD CAPITAL", PROSPECT_MODE = "PROSPECT MODE";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
     //Colonist Commands
-    public static final String BUILD_CAPITAL = "BUILD CAPITAL";
+    public static final String[] COLONIST_COMMANDS = {BUILD_CAPITAL, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+
+    //Explorer Commands
+    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+
+    //Soldier Commands
+    public static final String[] SOLDIER_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
