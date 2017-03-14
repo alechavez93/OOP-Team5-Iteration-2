@@ -15,6 +15,7 @@ package Entity.Structure;
 |       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Army.Army;
 import Entity.Resource;
 import Entity.Unit.ExplorerUnit;
 import Entity.Unit.Unit;
@@ -88,10 +89,11 @@ public class CapitalStructure extends Structure {
         workers.incrementNumberOfWorkers(production.breedingRate*workerCount);
     }
 
-    public void healUnit(Unit unit) {
+    public void heal(Unit unit) {
         unit.setCurrentHealth(unit.getCurrentHealth() + healAmount);
     }
-    //TODO: consume resources for healing stuff. See heal command from iteration 1
+
+    public void heal(Army army) { army.setCurrentHealth(army.getCurrentHealth() + healAmount); }
 
     public void destroy(){
         entityManager.destroyCapital(this);

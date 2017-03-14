@@ -53,7 +53,7 @@ final public class GameLibrary {
     public static final String[] FORT_COMMANDS = {MAKE_UNIT, ATTACK, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
     //Unit Commands
-    public static final String REINFORCE = "REINFORCE ARMY", BUILD_CAPITAL = "BUILD CAPITAL", PROSPECT_MODE = "PROSPECT MODE";
+    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", BUILD_CAPITAL = "BUILD CAPITAL", PROSPECT_MODE = "PROSPECT MODE";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
     //Colonist Commands

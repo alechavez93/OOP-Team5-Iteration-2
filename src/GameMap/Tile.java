@@ -64,6 +64,7 @@ public class Tile {
     }
 
     public void removeEntity(Entity entity) { entityList.remove(entity); }
+
     public void removeArmyUnits(List<Unit> list) { entityList.removeAll(list); }
 
 

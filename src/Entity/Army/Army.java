@@ -7,6 +7,7 @@ package Entity.Army;
 
 import Entity.Entity;
 import Entity.Unit.*;
+import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
@@ -22,8 +23,8 @@ public class Army extends Entity{
     private int rangeAttack;
     private boolean isAttacking;
 
-    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial) {
-        super(name, instanceID, location, entityManager);
+    public Army(int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial) {
+        super(GameLibrary.ARMY_MODE, instanceID, location, entityManager);
         battleGroup = new ArrayList<>();
         reinforcement = new ArrayList<>();
         this.battleGroup.add(initial);
@@ -61,6 +62,7 @@ public class Army extends Entity{
             defense += unit.getDefense();
             armor += unit.getArmor();
             maxHealth += unit.getMaxHealth();
+            currentHealth += unit.getCurrentHealth();
             upkeep += unit.getUpkeep();
         }
 
