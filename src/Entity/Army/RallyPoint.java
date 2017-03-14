@@ -33,16 +33,22 @@ public class RallyPoint {
 
     public void pickupWorker(Structure source, int workerCount) {
         if (workerCount <= source.getWorkers().getNumberOfWorkers()) {
-            worker.setNumberOfWorkers(workerCount);
+            worker.incrementNumberOfWorkers(workerCount);
+            source.getWorkers().decrementNumberOfWorkers(workerCount);
         }
-        System.out.println("Not enough workers to pickup");
+        else {
+            System.out.println("Not enough workers to pickup");
+        }
     }
 
     public void dropoffWorker(Structure destination, int workerCount) {
         if (workerCount <= worker.getNumberOfWorkers()) {
-            destination.getWorkers().setNumberOfWorkers(workerCount);
+            destination.getWorkers().incrementNumberOfWorkers(workerCount);
+            worker.decrementNumberOfWorkers(workerCount);
         }
-        System.out.println("Not enough workers to dropoff");
+        else {
+            System.out.println("Not enough workers to dropoff");
+        }
     }
 
     public void build(Structure structureType, int workerCount, MapCoordinate location) {

@@ -33,6 +33,10 @@ public class Army extends Entity{
         updateStats();
     }
 
+    public RallyPoint getRallyPoint() {
+        return rallyPoint;
+    }
+
     private void updateAttack(){
         meleeAttack = 0;
         rangeAttack = 0;
@@ -105,6 +109,7 @@ public class Army extends Entity{
             }
         }
         for(Unit removed: arrived){
+            removed.getEntityManager().removeEntity(removed);
             reinforcement.remove(removed);
         }
     }

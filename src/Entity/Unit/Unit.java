@@ -31,4 +31,10 @@ public abstract class Unit extends Entity {
 
     public void setInArmy(boolean inArmy) { this.inArmy = inArmy; }
 
+    public void processUpkeep(){
+        if(!entityManager.spendResources(upkeep,0,0)){
+            degrade();
+        }
+    }
+
 }

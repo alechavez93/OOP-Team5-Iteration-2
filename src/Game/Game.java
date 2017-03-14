@@ -81,8 +81,9 @@ public class Game {
     public int endGameCheck(){
 
         for(Player player: players){
+            int settlerCount = player.getEntityManager().getColonistUnitCount();
             int capitalCount = player.getEntityManager().getCapitalCount();
-            if(capitalCount < 1){
+            if(capitalCount + settlerCount < 1){
                 gameOver = true;
                 return player.getpID();
             }

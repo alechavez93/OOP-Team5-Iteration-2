@@ -30,7 +30,7 @@ public class Player {
         //itemManager = new ItemManager(this);
         techManager = new TechManager(this);
         this.food = 300;
-        this.ore = 300;
+        this.ore = 400;
         this.energy = 300;
 
     }
@@ -63,6 +63,7 @@ public class Player {
     public void gainFood(int amount) { this.food += amount; }
     public void gainEnergy(int amount) { this.energy += amount; }
     public void gainOre(int amount) {this.ore += amount; }
+    public void printResources() { System.out.println("Food: " + food + ", Ore: " + ore + ", Energy: " + energy); }
 
     public boolean spendFood(int amount){
         if( this.food > amount){

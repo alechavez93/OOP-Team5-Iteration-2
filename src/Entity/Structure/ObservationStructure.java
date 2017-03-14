@@ -16,7 +16,7 @@ import Player.EntityManager;
 
 public class ObservationStructure extends Structure {
 
-    public ObservationStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+    public ObservationStructure(int instanceID, MapCoordinate location, EntityManager entityManager, int workerCount) {
         super(GameLibrary.OBSERVATION_TOWER, instanceID, location, entityManager);
         defense = 3;
         armor = 5;
@@ -24,7 +24,8 @@ public class ObservationStructure extends Structure {
         currentHealth = maxHealth;
         rangeRadius = 1;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 8;
+        workers.setNumberOfWorkers(workerCount);
     }
 
     public void destroy(){

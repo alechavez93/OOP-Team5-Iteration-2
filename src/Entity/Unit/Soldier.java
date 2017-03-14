@@ -15,6 +15,12 @@ public abstract class Soldier extends Unit {
 
     public Soldier(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(name, instanceID, location, entityManager);
-
     }
+
+    public void processUpkeep(){
+        if(!entityManager.spendResources(0,0,upkeep)){
+            degrade();
+        }
+    }
+
 }

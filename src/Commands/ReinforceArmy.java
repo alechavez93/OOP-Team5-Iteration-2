@@ -41,6 +41,9 @@ public class ReinforceArmy extends Command {
                 cumulative = 0;
             }
         }
-        if(path.size() == 0) isFinished = true;
+        if(path.size() == 0) {
+            destination.updateArmyReinforcement();
+            isFinished = true;
+        }
     }
 }

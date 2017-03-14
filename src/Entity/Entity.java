@@ -74,25 +74,36 @@ public abstract class Entity extends Stats {
     }
 
     public void processQueue() {
-        if(!commandList.isEmpty()){
-            lastCommand = commandList.get(0);
-            commandList.get(0).execute();
-            if(commandList.get(0).isFinished() == true) {
-                commandList.remove(0);
+        if(isPowered) {
+
+            if (!commandList.isEmpty()) {
+                lastCommand = commandList.get(0);
+                commandList.get(0).execute();
+                if (commandList.get(0).isFinished() == true) {
+                    commandList.remove(0);
+                }
+                //TODO: figure out how to not stop stuff
+
+            } else {
+                if (commandList.isEmpty() && (state == GameLibrary.ATTACK || state == GameLibrary.DEFEND)) {
+                    lastCommand.execute();
+                }
             }
-            //TODO: figure out how to not stop stuff
+        }
+        else {
+
+            if( commandList.get(0) instanceof PowerUp){
+                commandList.get(0).execute();
+                if (commandList.get(0).isFinished() == true) {
+                    commandList.remove(0);
+                }
+            }
 
         }
-        else{
-            if(commandList.isEmpty() && (state == GameLibrary.ATTACK || state == GameLibrary.DEFEND)){
-                lastCommand.execute();
-            }
-        }
-
     }
 
     public void processUpkeep() {
-        if(!entityManager.spendResources(upkeep,0,0)){
+        if(!entityManager.spendResources(0,0,0)){
             degrade();
         }
     }

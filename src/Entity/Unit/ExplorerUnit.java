@@ -25,7 +25,7 @@ public class ExplorerUnit extends Unit {
         maxHealth = 10;
         currentHealth = maxHealth;
         visibilityRadius = 4;
-        upkeep = 2;
+        upkeep = 12;
     }
 
     public void toggleProspectMode() {

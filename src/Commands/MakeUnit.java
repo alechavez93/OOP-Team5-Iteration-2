@@ -16,7 +16,7 @@ public class MakeUnit extends Command {
 
     private String type;
     private int workAmount;
-    
+
 
     public MakeUnit(CapitalStructure capital, String type) {
         super(GameLibrary.MAKE_UNIT, capital);

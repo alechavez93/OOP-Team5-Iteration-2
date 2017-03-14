@@ -23,7 +23,7 @@ public class RangeSoldier extends Soldier {
         currentHealth = maxHealth;
         rangeRadius = 2;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 16;
     }
 
     public void destroy(){

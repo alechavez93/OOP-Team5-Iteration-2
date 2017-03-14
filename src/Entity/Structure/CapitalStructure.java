@@ -26,17 +26,13 @@ import Player.EntityManager;
 
 public class CapitalStructure extends Structure {
 
-    private Worker workers;
-    private int workRadius;
-
     private int healAmount;
 
     public CapitalStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(GameLibrary.CAPITAL, instanceID, location, entityManager);
 
         production = new Production(1,1,1,1,1,1,1,1,0);
-        this.workers = new Worker(5);
-        this.workRadius = 1;
+        workers.setNumberOfWorkers(5);
         this.healAmount = 10;
         defense = 3;
         armor = 5;
@@ -44,7 +40,7 @@ public class CapitalStructure extends Structure {
         currentHealth = maxHealth;
         rangeRadius = 1;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 24;
     }
 
     public ExplorerUnit createExplorerUnit() {
