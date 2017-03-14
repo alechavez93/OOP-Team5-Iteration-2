@@ -24,7 +24,7 @@ public class InGameController implements KeyListener {
     public InGameController(InGameFrame frame, CyclingState state){
         this.frame = frame;
         this.state = state;
-        game = Game.getInstance();
+//        game = Game.getInstance();
         keysPressed = new HashSet<>();
     }
 
@@ -50,6 +50,10 @@ public class InGameController implements KeyListener {
                 System.out.println(code);
                 frame.setViewVisible(2);
                 break;
+//            case KeyEvent.VK_R:
+//                System.out.println(code);
+//                frame.setViewVisible(3);
+//                break;
         }
     }
 
