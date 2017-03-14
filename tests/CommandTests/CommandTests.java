@@ -5,6 +5,7 @@ import Entity.*;
 import Entity.Army.Army;
 import Entity.Army.RallyPoint;
 import Entity.Structure.CapitalStructure;
+import Entity.Structure.FarmStructure;
 import Entity.Unit.*;
 import Game.Game;
 import GameLibrary.GameLibrary;
@@ -286,6 +287,15 @@ public class CommandTests {
         game.player1.getEntityManager().finishTurn();
         printEntityList(game.player1);
 
+        System.out.println("~~~~~~~~~~~~~~~~");
+        FarmStructure farmStructure = (FarmStructure) game.player1.getEntityManager().getFarmList().get(0);
+        PickupWorkers pickupWorkers = new PickupWorkers(rallyPoint, farmStructure, 3);
+        System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
+        System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
+        System.out.println("~~~~~~~~~~~~~~~~");
+        Dropoff dropoff = new Dropoff(rallyPoint, farmStructure, 3);
+        System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
+        System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
 
 
     }

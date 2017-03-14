@@ -21,7 +21,9 @@ import Entity.Unit.ExplorerUnit;
 import Entity.Unit.Unit;
 import Entity.Worker;
 import GameLibrary.GameLibrary;
+import GameMap.GameMap;
 import GameMap.MapCoordinate;
+import GameMap.Tile;
 import Player.EntityManager;
 
 public class CapitalStructure extends Structure {
@@ -53,15 +55,37 @@ public class CapitalStructure extends Structure {
     }*/
 
     public void harvestFood(int workerCount, MapCoordinate location){
-        //TODO: use foodRate
+        int total = production.foodRate * workerCount;
+        entityManager.playerOwner.gainFood(total);
+        //assuming food is never exhausted and it is a renewable resource
     }
 
-    public void harvestOre(int wokerCount, MapCoordinate location){
-        //TODO: use oreRate
+    public void harvestOre(int workerCount, MapCoordinate location){
+        int requestedAmount = production.oreRate * workerCount;
+        Tile tile = GameMap.getInstance().getTile(location);
+        int availableAmount = tile.getResources().getOre();
+        if(availableAmount > requestedAmount){
+            entityManager.playerOwner.gainFood(requestedAmount);
+            tile.getResources().decrementOre(requestedAmount);
+        }
+        else{
+            entityManager.playerOwner.gainOre(availableAmount);
+            tile.getResources().decrementOre(availableAmount);
+        }
     }
 
     public void harvestEnergy(int workerCount, MapCoordinate location){
-        //TODO: use energyRate
+        int requestedAmount = production.energyRate * workerCount;
+        Tile tile = GameMap.getInstance().getTile(location);
+        int availableAmount = tile.getResources().getEnergy();
+        if(availableAmount > requestedAmount){
+            entityManager.playerOwner.gainEnergy(requestedAmount);
+            tile.getResources().decrementEnergy(requestedAmount);
+        }
+        else{
+            entityManager.playerOwner.gainEnergy(availableAmount);
+            tile.getResources().decrementEnergy(availableAmount);
+        }
     }
 
 /*    public void assignProduce(int workerCount, Resource resource) {
@@ -69,20 +93,19 @@ public class CapitalStructure extends Structure {
     }*/
 
     public void producePower(int workerCount){
-        //TODO: decrease energy, increase power. use powerRate
+        entityManager.playerOwner.gainPower(production.powerRate * workerCount);
     }
 
     public void produceNutrients(int workerCount){
-        //TODO: same. use nutrientsRate
+        entityManager.playerOwner.gainNutrients(production.nutrientsRate * workerCount);
     }
 
     public void produceMetal(int workerCount){
-        //TODO: same. use metalRate
+        entityManager.playerOwner.gainMetal(production.metalRate * workerCount);
     }
 
     public void breedWorkers(int workerCount) {
-        //TODO: fix the rate
-        workers.incrementNumberOfWorkers(production.breedingRate*workerCount);
+        workers.incrementNumberOfWorkers(production.breedingRate*workerCount/2);
     }
 
     public void heal(Unit unit) {

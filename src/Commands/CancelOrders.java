@@ -10,8 +10,6 @@ import GameLibrary.GameLibrary;
 
 public class CancelOrders extends Command{
 
-    //TODO: change this into something instant
-
     public CancelOrders(Entity affected){
 
         super(GameLibrary.CANCEL, affected);

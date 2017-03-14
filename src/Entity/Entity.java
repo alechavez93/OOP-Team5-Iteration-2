@@ -82,7 +82,6 @@ public abstract class Entity extends Stats {
                 if (commandList.get(0).isFinished() == true) {
                     commandList.remove(0);
                 }
-                //TODO: figure out how to not stop stuff
 
             } else {
                 if (commandList.isEmpty() && (state == GameLibrary.ATTACK || state == GameLibrary.DEFEND)) {

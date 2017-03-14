@@ -19,11 +19,12 @@ import Player.EntityManager;
 
 public class CreateArmy extends Command{
 
-    //TODO: make this into something instant
 
     public CreateArmy(Entity affected) {
         super(GameLibrary.CREATE_ARMY, affected);
-        }
+        execute();
+    }
+
     @Override
     public void execute() {
         EntityManager entityManager = affected.getEntityManager();

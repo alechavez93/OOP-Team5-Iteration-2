@@ -1,6 +1,5 @@
 package Commands;
 
-import Entity.Army.Army;
 import Entity.Army.RallyPoint;
 import Entity.Structure.Structure;
 import GameLibrary.GameLibrary;
@@ -10,17 +9,20 @@ import GameLibrary.GameLibrary;
  */
 
 /*--------------------------------------------------------------------------------------
-|    PickupWorkers Module: Created by test on 03/14/2017.
+|    Dropoff Module: Created by test on 03/14/2017.
 |---------------------------------------------------------------------------------------
-|   Description: Used to pick up workers from a structure
+|   Description:
+|
 ---------------------------------------------------------------------------------------*/
 
-public class PickupWorkers extends Command{
+public class Dropoff extends Command{
+
+
     private RallyPoint rallyPoint;
-    private  Structure structure;
+    private Structure structure;
     private int workerCount;
 
-    public PickupWorkers(RallyPoint rallyPoint, Structure structure, int workerCount){
+    public Dropoff(RallyPoint rallyPoint, Structure structure, int workerCount){
         super(GameLibrary.PICKUP, rallyPoint);
         this.rallyPoint = rallyPoint;
         this.structure = structure;
@@ -31,7 +33,7 @@ public class PickupWorkers extends Command{
     @Override
     public void execute() {
         if(rallyPoint.getLocation().equals(structure.getLocation())){
-            rallyPoint.pickupWorker(structure, workerCount);
+            rallyPoint.dropoffWorker(structure, workerCount);
             isFinished = true;
         }
         else{

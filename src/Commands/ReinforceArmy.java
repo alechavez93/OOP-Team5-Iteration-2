@@ -16,15 +16,22 @@ import java.util.List;
 public class ReinforceArmy extends Command {
 
     private Army destination;
+    private boolean firstExecute;
 
     public ReinforceArmy(Unit unit, Army destination){
         super(GameLibrary.REINFORCE, unit);
         this.destination = destination;
-        execute();
+        firstExecute = true;
     }
 
     @Override
     public void execute() {
         destination.addReinforcement((Unit)affected);
+        if(firstExecute) {
+            destination.addReinforcement((Unit)affected);
+            firstExecute = false;
+        } else {
+            isFinished = affected.getLocation().equals(destination.getRallyPoint().getLocation());
+        }
     }
 }
