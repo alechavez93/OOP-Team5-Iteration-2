@@ -21,7 +21,7 @@ public class Controller implements KeyListener {
     private boolean shiftHeld;
     private boolean altHeld;
 
-    Controller(CyclingState cycle) {
+    public Controller(CyclingState cycle) {
         this.cyclingState = cycle;
         ctrlHeld = false;
         shiftHeld = false;
