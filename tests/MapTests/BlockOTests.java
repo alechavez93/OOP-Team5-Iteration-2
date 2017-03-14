@@ -134,6 +134,12 @@ public class BlockOTests {
         System.out.printf(a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
         a.processMovement();
         System.out.printf(a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
+        a.processMovement();
+        System.out.printf(a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
+        a.processMovement();
+        System.out.printf(a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
+        a.processMovement();
+        System.out.printf(a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
     }
 
     public static void testFog() {

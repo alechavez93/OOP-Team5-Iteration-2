@@ -141,7 +141,7 @@ public class Army extends Entity{
             if(!path.isValid()) {}
                 //path.recreate(getLocation());
             int speed = movement;
-            while(speed > 0) {
+            while(speed > 0 && !path.isEnd()) {
                 GameMap.getInstance().shiftEntity(this,path.next());
                 speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
             }
@@ -153,7 +153,7 @@ public class Army extends Entity{
                 if(!u.path.isValid()) {}
                 //path.recreate(getLocation());
                 int speed = u.unit.movement;
-                while(speed > 0) {
+                while(speed > 0 && !u.path.isEnd()) {
                     GameMap.getInstance().shiftEntity(u.unit,u.path.next());
                     speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
                 }
