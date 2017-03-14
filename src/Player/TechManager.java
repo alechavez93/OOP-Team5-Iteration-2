@@ -47,6 +47,7 @@ public class TechManager {
         this.mineTech = new ArrayList<Technology>();
         this.observationTech = new ArrayList<Technology>();
         this.powerTech = new ArrayList<Technology>();
+        //this.finishTech = new Queue<Technology>();
     }
 
     public void finishTurn(){
@@ -60,13 +61,13 @@ public class TechManager {
     private void completeTech(Technology technology) {
     }
 
-    public List<Technology> getAllTech(){
+/*    public List<Technology> getAllTech(){
         List<Technology> totalList = new ArrayList<Technology>();
         totalList.addAll(explorerTech);
         totalList.addAll(meleeTech);
         totalList.addAll(workerTech);
         return totalList;
-    }
+    }*/
 
     public void completeTech(ExplorerTechnology tech){
         explorerTech.add(tech);

@@ -22,12 +22,12 @@ public class Army extends Entity{
     private int rangeAttack;
     private boolean isAttacking;
 
-    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial, RallyPoint rallyPoint) {
+    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial) {
         super(name, instanceID, location, entityManager);
         battleGroup = new ArrayList<>();
         reinforcement = new ArrayList<>();
         this.battleGroup.add(initial);
-        this.rallyPoint = rallyPoint;
+        this.rallyPoint = new RallyPoint(initial.getLocation(), initial.getEntityManager());
         isAttacking = false;
         updateStats();
     }

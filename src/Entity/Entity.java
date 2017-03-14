@@ -10,6 +10,7 @@ package Entity;
 
 
 import Commands.*;
+import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 import Technology.EntityTechnology.EntityTechnology;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public abstract class Entity extends Stats {
 
+    protected Command lastCommand;
     protected EntityManager entityManager;
     protected boolean isPowered;
     private String name = "";
@@ -72,11 +74,32 @@ public abstract class Entity extends Stats {
     }
 
     public void processQueue() {
+        if(!commandList.isEmpty()){
+            commandList.get(0).execute();
+            lastCommand = commandList.get(0);
+            commandList.remove(0);
+            //TODO: figure out how to not stop stuff
+
+        }
+        if(commandList.isEmpty() && (state == GameLibrary.ATTACK || state == GameLibrary.DEFEND)){
+            lastCommand.execute();
+        }
 
     }
 
     public void processUpkeep() {
+        if(!entityManager.spendResources(upkeep,0,0)){
+            degrade();
+        }
+    }
 
+    public void degrade() {
+        if(currentHealth > 2)
+            currentHealth -= 2;
+        if(attack > 2)
+            attack--;
+        if(defense > 2)
+            defense--;
     }
 
     public void cancelOrders() {

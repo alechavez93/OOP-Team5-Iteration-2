@@ -8,24 +8,27 @@ package Entity.Army;
 ---------------------------------------------------------------------------------------*/
 
 import Commands.Command;
+import Entity.Entity;
 import Entity.Structure.Structure;
 import Entity.Worker;
 import GameMap.MapCoordinate;
+import Player.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class RallyPoint {
-
+    private EntityManager entityManager;
     private MapCoordinate location;
     private Worker worker;
     private List<Command> commandList;
 
-    public RallyPoint(MapCoordinate location) {
+    public RallyPoint(MapCoordinate location, EntityManager entityManager) {
         this.location = location;
         this.worker = new Worker(0);
         this.commandList = new ArrayList<>();
+        this.entityManager = entityManager;
     }
 
     public void pickupWorker(Structure source, int workerCount) {
@@ -46,9 +49,14 @@ public class RallyPoint {
 
     }
 
+    public void addCommand(Command command){
+        commandList.add(command);
+    }
+
     public MapCoordinate getLocation() { return location; }
     public Worker getWorker() { return worker; }
 
     public void setLocation(MapCoordinate location) { this.location = location; }
     public void setWorker(Worker worker) { this.worker = worker; }
+    public EntityManager getEntityManager() { return entityManager; }
 }

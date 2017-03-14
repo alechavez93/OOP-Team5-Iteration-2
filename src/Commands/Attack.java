@@ -24,5 +24,11 @@ public class Attack extends Command{
     public void execute() {
         EntityManager entityManager = affected.getEntityManager();
         entityManager.attack(affected, attacked);
+
+        if(affected.commandList.size() == 1){
+            affected.commandList.add(this);
+        }
+
+        isFinished = true;
     }
 }

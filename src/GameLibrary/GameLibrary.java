@@ -121,7 +121,14 @@ final public class GameLibrary {
                             FARM_FOOD = 50, FARM_ORE = 50, FARM_ENERGY = 50,
                             MINE_FOOD = 0, MINE_ORE = 100, MINE_ENERGY = 50,
                             POWER_FOOD = 0, POWER_ORE = 100, POWER_ENERGY = 100,
-                            FORT_FOOD = 100, FORT_ORE = 100, FORT_ENERGY = 50;
+                            FORT_FOOD = 100, FORT_ORE = 100, FORT_ENERGY = 50,
+                            OBSERVATION_FOOD = 0, OBSERVATION_ORE = 50, OBSERVATION_ENERGY = 50,
+                            UNIVERSITY_FOOD = 0, UNIVERSITY_ORE = 100, UNIVERSITY_ENERGY = 150;
+
     public static final int HEAL_FOOD_COST = 10;
 
+    //building structures
+    public static final String BUILD_STRUCTURE = "BUILD STRUCTURE";
+
+    public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
 }

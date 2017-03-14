@@ -65,4 +65,6 @@ public abstract class Structure extends Entity{
         return workers;
     }
 
+    public void setWorkers(Worker workers) { this.workers = workers; }
+
 }
