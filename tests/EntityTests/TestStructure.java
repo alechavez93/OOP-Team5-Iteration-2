@@ -72,9 +72,9 @@ public class TestStructure {
         System.out.println("\n============================================================");
         meleeSoldier1.setCurrentHealth(5);
         System.out.println("Melee Soldier 1 Health before Heal: " + meleeSoldier1.getCurrentHealth());
-        capital.healUnit(meleeSoldier1);
+        capital.heal(meleeSoldier1);
         System.out.println("Melee Soldier 1 Health after Heal: " + meleeSoldier1.getCurrentHealth());
-        capital.healUnit(meleeSoldier1);
+        capital.heal(meleeSoldier1);
         System.out.println("Melee Soldier 1 Health after OverHeal: " + meleeSoldier1.getCurrentHealth());
 
     }

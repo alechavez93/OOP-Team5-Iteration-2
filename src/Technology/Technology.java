@@ -20,10 +20,9 @@ public abstract class  Technology {
         this.techType = techType;
     }
 
-    abstract public void visit(Entity entity);
+    public void visit(Entity entity){
 
-    public void visit(Worker worker){
+    };
 
-    }
 
 }

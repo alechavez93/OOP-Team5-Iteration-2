@@ -29,9 +29,9 @@ public class Player {
         entityManager.init(location);
         //itemManager = new ItemManager(this);
         techManager = new TechManager(this);
-        this.food = 500;
-        this.ore = 500;
-        this.energy = 500;
+        this.food = 300;
+        this.ore = 300;
+        this.energy = 300;
 
     }
 
@@ -42,9 +42,9 @@ public class Player {
         entityManager.init(location);
         //itemManager = new ItemManager(this);
         //techManager = new TechManager(this);
-        this.food = 500;
-        this.ore = 500;
-        this.energy = 500;
+        this.food = 300;
+        this.ore = 300;
+        this.energy = 300;
 
     }
 

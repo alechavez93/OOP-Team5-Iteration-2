@@ -25,6 +25,10 @@ public abstract class Structure extends Entity{
         tech.visit(this);
     }
 
+/*    public void upgrade(String string){
+
+    }*/
+
     public void upgradeFoodRate() {
         this.production.foodRate *= 1.1;
     }
