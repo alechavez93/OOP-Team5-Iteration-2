@@ -33,9 +33,9 @@ public class TestStructure {
 
         ColonistUnit colonist = new ColonistUnit(id, location, entityManager);
 
-        CapitalStructure capital = colonist.createCapitalStructure(id);
-        MeleeSoldier meleeSoldier1 = colonist.createMeleeSoldier(id);
-        MeleeSoldier meleeSoldier2 = colonist.createMeleeSoldier(id);
+        CapitalStructure capital = colonist.createCapitalStructure();
+        MeleeSoldier meleeSoldier1 = colonist.createMeleeSoldier();
+        MeleeSoldier meleeSoldier2 = colonist.createMeleeSoldier();
         colonist.destroy();
 
         System.out.println("\n============================================================");

@@ -17,12 +17,12 @@ public class Army extends Entity{
 
     private List<Unit> battleGroup;
     private List<Unit> reinforcement;
-    private MapCoordinate rallyPoint;
+    private RallyPoint rallyPoint;
     private int meleeAttack;
     private int rangeAttack;
     private boolean isAttacking;
 
-    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial, MapCoordinate rallyPoint) {
+    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial, RallyPoint rallyPoint) {
         super(name, instanceID, location, entityManager);
         battleGroup = new ArrayList<>();
         reinforcement = new ArrayList<>();

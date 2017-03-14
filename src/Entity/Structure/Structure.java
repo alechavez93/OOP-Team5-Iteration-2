@@ -7,17 +7,19 @@ package Entity.Structure;
 |       Needs a transfer workers function for all structures to inherit once the structure is built
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Entity;
+import Entity.*;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 import Technology.StructureTechnology.StructureTechnology;
 
 public abstract class Structure extends Entity{
     Production production;
+    Worker workers;
 
     public Structure(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(name, instanceID, location, entityManager);
-        }
+        this.workers = new Worker(0);
+    }
 
     public void acceptTech(StructureTechnology tech){
         tech.visit(this);
@@ -57,6 +59,10 @@ public abstract class Structure extends Entity{
 
     public void upgradeSolderRate() {
         this.production.soldierRate *= 1.1;
+    }
+
+    public Worker getWorkers() {
+        return workers;
     }
 
 }

@@ -48,14 +48,21 @@ public abstract class Entity extends Stats {
         int damage = 0;
         if(mode == "Attack") { damage = entity.getAttack(); }
         if(mode == "Defend") { damage = entity.getDefense(); }
-        if(damage == 0)
-
+        if(damage == 0) { System.out.println("Something went wrong in takeDamage"); }
         this.currentHealth -= damage - this.getArmor();
-        System.out.println(entity.getAttack() - this.getArmor() + " damage was taken by Player " + entity.entityManager.playerOwner.getpID() + "'s " + this.name);
+        //System.out.println(damage - this.getArmor() + " damage was taken by Player " + this.getEntityManager().playerOwner.getpID() + "'s " + this.getName());
 
-        if(currentHealth <= 0) {
+        //System.out.println("target's direction: " + getDirection() + ", attacker's direction:: " + entity.getDirection());
+
+        if(this.currentHealth <= 0){
+            System.out.println("Player " + this.getEntityManager().playerOwner.getpID() + "'s " + this.getName() + " died");
             destroy();
-            System.out.println(name + " was destroyed");
+            return;
+        }
+
+        if(this.getDirection() == entity.getDirection().getOpposite() && this.getState() == "Defend"){
+            //System.out.println(this.getName() + " defended successfully!");
+            entityManager.retaliate(this, entity);
         }
     }
 
