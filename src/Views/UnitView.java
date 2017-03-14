@@ -44,8 +44,8 @@ public class UnitView extends View{
     public void paint(Graphics g) {
         super.paintComponent(g);
         EntityManager entityManager = state.inTurn.getEntityManager();
-        entityManager.addMelee(new MeleeSoldier(count++, new MapCoordinate(2,2), entityManager));
-        entityManager.addRange(new RangeSoldier(count, new MapCoordinate(2,2), entityManager));
+        entityManager.addMelee(new MeleeSoldier(count, new MapCoordinate(2,2), entityManager));
+        entityManager.addRange(new RangeSoldier(count++, new MapCoordinate(2,2), entityManager));
 
         //Print Melee Units
         List<Entity> list = entityManager.getMeleeUnitList();

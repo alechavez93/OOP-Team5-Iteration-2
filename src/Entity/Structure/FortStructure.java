@@ -33,12 +33,12 @@ public class FortStructure extends Structure {
         upkeep = 5;
     }
 
-    public MeleeSoldier createMeleeSoldier(int instanceID) {
-        return new MeleeSoldier(instanceID, this.getLocation(), entityManager);
+    public MeleeSoldier createMeleeSoldier() {
+        return new MeleeSoldier(entityManager.nextMeleeIndex(), this.getLocation(), entityManager);
     }
 
-    public RangeSoldier createRangeSoldier(int instanceID) {
-        return new RangeSoldier(instanceID, this.getLocation(), entityManager);
+    public RangeSoldier createRangeSoldier() {
+        return new RangeSoldier(entityManager.nextRangeIndex(), this.getLocation(), entityManager);
     }
 
     public void destroy(){

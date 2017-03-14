@@ -61,8 +61,8 @@ public class Player {
 
 
     public void gainFood(int amount) { this.food += amount; }
-    public void gainWood(int amount) { this.energy += amount; }
-    public void gainStone(int amount) {this.ore += amount; }
+    public void gainEnergy(int amount) { this.energy += amount; }
+    public void gainOre(int amount) {this.ore += amount; }
 
     public boolean spendFood(int amount){
         if( this.food > amount){
@@ -72,7 +72,7 @@ public class Player {
         return false;
     }
 
-    public boolean spendStone(int amount){
+    public boolean spendOre(int amount){
         if( this.ore > amount){
             this.ore -= amount;
             return true;
@@ -80,7 +80,7 @@ public class Player {
         return false;
     }
 
-    public boolean spendWood(int amount){
+    public boolean spendEnergy(int amount){
         if( this.energy > amount){
             this.energy -= amount;
             return true;
@@ -94,9 +94,10 @@ public class Player {
     public TechManager getTechManager() { return techManager; }
 
     public void endTurn(){
-        itemManager.finishTurn();
+
+//        itemManager.finishTurn();
         entityManager.finishTurn();
-        techManager.finishTurn();
+//        techManager.finishTurn();
         //do other stuff maybe
     }
 
