@@ -48,8 +48,8 @@ public abstract class Entity extends Stats {
 
     public void takeDamage(Entity entity, String mode){
         int damage = 0;
-        if(mode == "Attack") { damage = entity.getAttack(); }
-        if(mode == "Defend") { damage = entity.getDefense(); }
+        if(mode == GameLibrary.ATTACK) { damage = entity.getAttack(); }
+        if(mode == GameLibrary.DEFEND) { damage = entity.getDefense(); }
         if(damage == 0) { System.out.println("Something went wrong in takeDamage"); }
         this.currentHealth -= damage - this.getArmor();
         //System.out.println(damage - this.getArmor() + " damage was taken by Player " + this.getEntityManager().playerOwner.getpID() + "'s " + this.getName());
@@ -62,7 +62,7 @@ public abstract class Entity extends Stats {
             return;
         }
 
-        if(this.getDirection() == entity.getDirection().getOpposite() && this.getState() == "Defend"){
+        if(this.getDirection() == entity.getDirection().getOpposite() && this.getState() == GameLibrary.DEFEND){
             //System.out.println(this.getName() + " defended successfully!");
             entityManager.retaliate(this, entity);
         }
@@ -75,14 +75,18 @@ public abstract class Entity extends Stats {
 
     public void processQueue() {
         if(!commandList.isEmpty()){
-            commandList.get(0).execute();
             lastCommand = commandList.get(0);
-            commandList.remove(0);
+            commandList.get(0).execute();
+            if(commandList.get(0).isFinished() == true) {
+                commandList.remove(0);
+            }
             //TODO: figure out how to not stop stuff
 
         }
-        if(commandList.isEmpty() && (state == GameLibrary.ATTACK || state == GameLibrary.DEFEND)){
-            lastCommand.execute();
+        else{
+            if(commandList.isEmpty() && (state == GameLibrary.ATTACK || state == GameLibrary.DEFEND)){
+                lastCommand.execute();
+            }
         }
 
     }
@@ -119,10 +123,6 @@ public abstract class Entity extends Stats {
         tech.visit(this);
     }
 
-//<<<<<<< HEAD
-//    public void acceptTech(Technology tech) {
-//        tech.visit(this);
-//=======
     public void acceptTech(StructureTechnology tech) {
 
     }
@@ -174,13 +174,14 @@ public abstract class Entity extends Stats {
             isPowered = false;
             upkeep = upkeep/4;
         }
+        state = GameLibrary.POWER_DOWN;
     }
 
 
 //    abstract public void destroy(Entity entity);
 
     @Override
-    public String toString() { return name + " " + instanceID; }
+    public String toString() { return name + " " + instanceID%10; }
 
     // getters
     public String getName() { return name; }
@@ -196,5 +197,9 @@ public abstract class Entity extends Stats {
     public void setLocation(MapCoordinate location) { this.location = location; }
     public void setDirection(Direction direction) { this.direction = direction; }
     public void setState(String state) { this.state = state; }
+
+    public List<Command> getCommandList() { return commandList; }
+
+    public boolean getIsPowered() { return isPowered; }
 
 }

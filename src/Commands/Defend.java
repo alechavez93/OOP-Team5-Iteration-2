@@ -25,9 +25,9 @@ public class Defend extends Command{
         EntityManager entityManager = affected.getEntityManager();
         entityManager.defend(affected, direction);
 
-        if(affected.commandList.size() == 1){
-            affected.commandList.add(this);
-        }
+//        if(affected.commandList.size() == 0){
+//            affected.commandList.add(this);
+//        }
 
         isFinished = true;
     }

@@ -22,10 +22,11 @@ public class Attack extends Command{
 
     @Override
     public void execute() {
+        System.out.println("Executing attack command");
         EntityManager entityManager = affected.getEntityManager();
         entityManager.attack(affected, attacked);
 
-        if(affected.commandList.size() == 1){
+        if(affected.commandList.size() == 0){
             affected.commandList.add(this);
         }
 
