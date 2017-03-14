@@ -11,6 +11,7 @@ import Views.PixelMaps.PixelMap;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class InGameFrame extends JFrame{
 
@@ -43,5 +44,9 @@ public class InGameFrame extends JFrame{
     public void addController(Controller controller){
         this.controller = controller;
         addKeyListener(controller);
+    }
+
+    public MapView getMapView(){
+        return (MapView) viewsList.get(0);
     }
 }
