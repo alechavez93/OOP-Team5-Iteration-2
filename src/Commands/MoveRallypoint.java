@@ -15,6 +15,7 @@ public class MoveRallypoint extends Command {
     }
 
     public void execute() {
+
         ((Army)affected).moveRallypoint(newPos);
     }
 }

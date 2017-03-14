@@ -252,7 +252,7 @@ public class CommandTests {
         game.player1.getEntityManager().finishTurn();
         game.player1.printResources();*/
 
-printEntityList(game.player1);
+        //printEntityList(game.player1);
 
         CreateArmy createArmy = new CreateArmy(game.player1.getEntityManager().getMeleeUnitList().get(0));
         game.player1.getEntityManager().finishTurn();
@@ -261,10 +261,31 @@ printEntityList(game.player1);
         Army army = (Army) game.player1.getEntityManager().getArmyList().get(0);
         RallyPoint rallyPoint = army.getRallyPoint();
         System.out.println("Capital has workerCount: " + capitalStructure.getWorkers().getNumberOfWorkers());
-        System.out.println("Capital has health " + capitalStructure.getCurrentHealth());
+        //System.out.println("Capital has health " + capitalStructure.getCurrentHealth());
         rallyPoint.pickupWorker(capitalStructure, 10);
         rallyPoint.pickupWorker(capitalStructure, 5);
         System.out.println("after pickup it has " + capitalStructure.getWorkers().getNumberOfWorkers());
+
+        System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
+        MoveRallypoint moveRallypoint = new MoveRallypoint(army, new MapCoordinate(1,5));
+        BuildStructure buildStructure = new BuildStructure( army, 5, GameLibrary.FARM);
+
+        game.player1.getEntityManager().finishTurn();
+        printCommandList(game.player1);
+        System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
+        game.player1.getEntityManager().finishTurn();
+        printCommandList(game.player1);
+        System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
+        game.player1.getEntityManager().finishTurn();
+        printCommandList(game.player1);
+
+        //printEntityList(game.player1);
+        //printCommandList(game.player1);
+        game.player1.getEntityManager().finishTurn();
+        game.player1.getEntityManager().finishTurn();
+        game.player1.getEntityManager().finishTurn();
+        printEntityList(game.player1);
+
 
 
     }

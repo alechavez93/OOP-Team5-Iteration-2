@@ -1,5 +1,6 @@
 package Commands;
 
+import Entity.Army.Army;
 import Entity.Army.RallyPoint;
 import Entity.Structure.*;
 import Entity.Worker;
@@ -22,11 +23,13 @@ public class BuildStructure extends Command {
     private String structureType;
     private int workAmount;
 
-    public BuildStructure(RallyPoint rallyPoint, int workerCount, String structureType){
-        super(BUILD_STRUCTURE, rallyPoint);
+    public BuildStructure(Army army, int workerCount, String structureType){
+        super(BUILD_STRUCTURE, army.getRallyPoint());
         this.workerCount = workerCount;
         this.structureType = structureType;
         workAmount = calculate(structureType);
+        army.addCommand(this);
+
     }
 
 

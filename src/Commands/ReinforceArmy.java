@@ -20,6 +20,7 @@ public class ReinforceArmy extends Command {
     public ReinforceArmy(Unit unit, Army destination){
         super(GameLibrary.REINFORCE, unit);
         this.destination = destination;
+        execute();
     }
 
     @Override
