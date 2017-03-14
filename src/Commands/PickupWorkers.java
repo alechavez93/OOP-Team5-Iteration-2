@@ -33,7 +33,7 @@ public class PickupWorkers extends Command{
             isFinished = true;
         }
         else{
-
+            System.out.println("Something went wrong in Pickupworker");
         }
 
     }

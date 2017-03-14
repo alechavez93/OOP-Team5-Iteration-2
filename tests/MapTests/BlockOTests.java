@@ -1,8 +1,10 @@
 package MapTests;
+import Entity.Army.Army;
 import Entity.Unit.*;
 import Entity.Entity;
 import GameLibrary.GameLibrary;
 import GameMap.*;
+import Player.EntityManager;
 import Utility.Vec2i;
 
 import java.util.ArrayList;
@@ -121,6 +123,17 @@ public class BlockOTests {
             pos = GameMap.getInstance().getNeighborTile(pos,path.next()).getPos();
             System.out.printf(pos.getRow() + " " + pos.getColumn() + "\n");
         }
+
+        EntityManager em = new EntityManager(null);
+        Unit x = new RangeSoldier(0, new MapCoordinate(3,3), em);
+        Army a = new Army("AAGH",0, new MapCoordinate(3,3), em, x);
+        a.moveRallypoint(new MapCoordinate(7,7));
+        a.addReinforcement(new MeleeSoldier(1, new MapCoordinate(9,9), em));
+        System.out.printf("\n" + a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
+        a.processMovement();
+        System.out.printf(a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
+        a.processMovement();
+        System.out.printf(a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");
     }
 
     public static void testFog() {
