@@ -46,6 +46,7 @@ public class Army extends Entity{
         this.battleGroup.add(initial);
         this.rallyPoint = new RallyPoint(initial.getLocation(), initial.getEntityManager());
         isAttacking = false;
+        atRallyPoint = true;
         updateStats();
     }
 
@@ -110,7 +111,6 @@ public class Army extends Entity{
         Path p = null;
         if(!unit.getLocation().equals(getLocation())) {
             p = (new AStarPathFinder()).createPath(unit.getLocation(), rallyPoint.getLocation());
-            unit.isMoving(true);
         }
         UnitPath up = new UnitPath(p, unit);
         reinforcement.add(up);
@@ -120,7 +120,6 @@ public class Army extends Entity{
         List<UnitPath> arrived = new ArrayList<>();
         for(UnitPath u: reinforcement){
             if(u.unit.getLocation().equals(getLocation())){
-                u.unit.isMoving(false);
                 battleGroup.add(u.unit);
                 arrived.add(u);
                 currentHealth += u.unit.getCurrentHealth();
@@ -162,8 +161,6 @@ public class Army extends Entity{
         }
     }
 
-
-
     public void moveRallypoint(MapCoordinate newLoc) {
         rallyPoint.setLocation(newLoc);
         atRallyPoint = getLocation().equals(newLoc);
@@ -172,4 +169,9 @@ public class Army extends Entity{
         }
     }
 
+    public void disband() {
+
+    }
+
+    public RallyPoint getRallyPoint() { return rallyPoint; }
 }

@@ -13,12 +13,10 @@ import Player.EntityManager;
 
 public abstract class Unit extends Entity {
     private boolean inArmy;
-    private boolean isMoving;
 
     public Unit(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(name, instanceID, location, entityManager);
         inArmy = false;
-        isMoving = false;
     }
 
     public void upgradeSpeed() {
@@ -32,12 +30,5 @@ public abstract class Unit extends Entity {
     public boolean getInArmy() { return inArmy; }
 
     public void setInArmy(boolean inArmy) { this.inArmy = inArmy; }
-
-    public void isMoving(boolean isMoving) {this.isMoving = isMoving;}
-
-    public void processQueue() {
-        if(!isMoving)
-            super.processQueue();
-    }
 
 }
