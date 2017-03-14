@@ -43,7 +43,7 @@ public class RallyPoint {
     }
 
     public void build(Structure structureType, int workerCount, MapCoordinate location) {
-        
+
     }
 
     public MapCoordinate getLocation() { return location; }
