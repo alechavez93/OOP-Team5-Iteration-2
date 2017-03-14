@@ -47,7 +47,7 @@ public class TechManager {
         this.mineTech = new ArrayList<Technology>();
         this.observationTech = new ArrayList<Technology>();
         this.powerTech = new ArrayList<Technology>();
-        this.finishTech = new Queue<Technology>();
+        //this.finishTech = new Queue<Technology>();
     }
 
     public void finishTurn(){
