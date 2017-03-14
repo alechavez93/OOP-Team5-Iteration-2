@@ -126,7 +126,7 @@ public class BlockOTests {
 
         EntityManager em = new EntityManager(null);
         Unit x = new RangeSoldier(0, new MapCoordinate(3,3), em);
-        Army a = new Army("AAGH",0, new MapCoordinate(3,3), em, x);
+        Army a = new Army(0, new MapCoordinate(3,3), em, x);
         a.moveRallypoint(new MapCoordinate(7,7));
         a.addReinforcement(new MeleeSoldier(1, new MapCoordinate(9,9), em));
         System.out.printf("\n" + a.getLocation().getColumn() + " " + a.getLocation().getRow() + "\n");

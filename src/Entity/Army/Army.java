@@ -108,8 +108,10 @@ public class Army extends Entity{
 
     public void addReinforcement(Unit unit){
         Path p = null;
-        if(!unit.getLocation().equals(getLocation()))
+        if(!unit.getLocation().equals(getLocation())) {
             p = (new AStarPathFinder()).createPath(unit.getLocation(), rallyPoint.getLocation());
+            unit.isMoving(true);
+        }
         UnitPath up = new UnitPath(p, unit);
         reinforcement.add(up);
     }
@@ -118,6 +120,7 @@ public class Army extends Entity{
         List<UnitPath> arrived = new ArrayList<>();
         for(UnitPath u: reinforcement){
             if(u.unit.getLocation().equals(getLocation())){
+                u.unit.isMoving(false);
                 battleGroup.add(u.unit);
                 arrived.add(u);
                 currentHealth += u.unit.getCurrentHealth();
