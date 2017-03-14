@@ -28,6 +28,7 @@ public class MakeCapital extends Command {
         if (entityManager.spendResources(GameLibrary.MELEE_FOOD, GameLibrary.MELEE_ORE, GameLibrary.MELEE_ENERGY))
             entityManager.addMelee(((ColonistUnit)affected).createMeleeSoldier());
 
+        affected.destroy();
         isFinished = true;
     }
 }

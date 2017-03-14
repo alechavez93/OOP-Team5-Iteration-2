@@ -41,9 +41,6 @@ public class CombatTest {
 
 
         System.out.println("The soldier m1 is on tile (" + m1.getLocation().getRow() + " , " + m1.getLocation().getColumn() + ")");
-        System.out.print("The soldier m1 attacks South, which is off by: ");
-        Vec2i target = Direction.South.getHex(false);
-        System.out.println("(" + target.x + " , " + target.y + ")");
 
         System.out.println("Soldier m1 has " + m1.getMaxHealth() + " max health");
         for(int i = 0; i < 10; i++) {
