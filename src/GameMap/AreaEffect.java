@@ -51,11 +51,14 @@ public class AreaEffect {
     }
 
     private void addEffect(EntityEffect e, Tile t) {
-        effects.add(new EffectLocation(t.getPos(), (EntityEffect)e.clone()));
-        t.addEffect(e);
+        EntityEffect ee = (EntityEffect)e.clone();
+        effects.add(new EffectLocation(t.getPos(), ee));
+        t.addEffect(ee);
     }
 
     public void deconstruct() {
+        if(!isValid)
+            throw new IllegalStateException("AreaEffect is already deconstructed");
         GameMap map = GameMap.getInstance();
         for(EffectLocation e : effects )
             map.getTile(e.loc).removeEffect(e.effect);

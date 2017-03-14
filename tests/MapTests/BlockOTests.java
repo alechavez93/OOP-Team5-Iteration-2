@@ -1,10 +1,11 @@
 package MapTests;
 import Entity.Army.Army;
 import Entity.Unit.*;
-import Entity.Entity;
+import Entity.*;
 import GameLibrary.GameLibrary;
 import GameMap.*;
 import Player.EntityManager;
+import Utility.Direction;
 import Utility.Vec2i;
 
 import java.util.ArrayList;
@@ -20,8 +21,9 @@ public class BlockOTests {
         GameMap.getInstance().initialize(new Vec2i(15,10));
         testMap();
         testTile();
-        testPath();
-        testFog();
+        testAoE();
+        //testPath();
+        //testFog();
     }
 
     //TODO: Proper Neighbor Testing
@@ -149,7 +151,32 @@ public class BlockOTests {
         list.add(new MeleeSoldier(3, new MapCoordinate(5,5), null));
         fog.calculateVisibility(list);
         Visibility[][] vis = fog.getVisibilityMatrix();
+    }
 
-
+    public static void testAoE() {
+        AreaEffect a = new AreaEffect(new MapCoordinate(5,5), 2, new DamageEffect(5));
+        RangeSoldier x = new RangeSoldier(0, new MapCoordinate(2,2), new EntityManager(null));
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.SouthEast);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.SouthEast);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.SouthEast);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.SouthEast);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        a.deconstruct();
+        System.out.printf("\n");
+        a = new AreaEffect(new MapCoordinate(5,5), 3, new HealEffect(3));
+        GameMap.getInstance().shiftEntity(x, Direction.NorthWest);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.NorthWest);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.NorthWest);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.NorthWest);
+        System.out.printf(x.getCurrentHealth() + "\n");
+        GameMap.getInstance().shiftEntity(x, Direction.NorthWest);
+        System.out.printf(x.getCurrentHealth() + "\n");
     }
 }
