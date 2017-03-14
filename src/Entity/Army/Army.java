@@ -7,7 +7,11 @@ package Entity.Army;
 
 import Entity.Entity;
 import Entity.Unit.*;
+import Game.Game;
+import GameMap.GameMap;
 import GameMap.MapCoordinate;
+import GameMap.Path;
+import GameMap.AStarPathFinder;
 import Player.EntityManager;
 
 import java.util.ArrayList;
@@ -18,9 +22,11 @@ public class Army extends Entity{
     private List<Unit> battleGroup;
     private List<Unit> reinforcement;
     private RallyPoint rallyPoint;
+    private Path path;
     private int meleeAttack;
     private int rangeAttack;
     private boolean isAttacking;
+    private boolean atRallyPoint;
 
     public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial) {
         super(name, instanceID, location, entityManager);
@@ -106,4 +112,37 @@ public class Army extends Entity{
             reinforcement.remove(removed);
         }
     }
+
+    public void finishTurn() {
+        super.finishTurn();
+        processMovement();
+    }
+
+    public void processMovement() {
+        if(!atRallyPoint) {
+            if(!path.isValid()) {}
+                //path.recreate(getLocation());
+            int speed = movement;
+            while(speed > 0) {
+                GameMap.getInstance().shiftEntity(this,path.next());
+                speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
+            }
+            atRallyPoint = getLocation().equals(rallyPoint.getLocation());
+        } else {
+            //Don't want to reinforce until battleGroup is actually there
+            updateArmyReinforcement();
+            //reinforcements.updateLocations();
+        }
+    }
+
+
+
+    public void moveRallypoint(MapCoordinate newLoc) {
+        rallyPoint.setLocation(newLoc);
+        atRallyPoint = getLocation().equals(newLoc);
+        if(!atRallyPoint) {
+            path = (new AStarPathFinder()).createPath(getLocation(),newLoc);
+        }
+    }
+
 }
