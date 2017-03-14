@@ -735,4 +735,14 @@ public class EntityManager {
         Attacker.takeDamage(defender, "Defend");
     }
 
+    public boolean spendResources(int food, int ore, int energy) {
+        if ((playerOwner.getFood() > food) && (playerOwner.getOre() > ore) && (playerOwner.getEnergy() > energy)) {
+            playerOwner.spendFood(food);
+            playerOwner.spendOre(ore);
+            playerOwner.spendEnergy(energy);
+            return true;
+        }
+        return false;
+    }
+
 }
