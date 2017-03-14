@@ -98,6 +98,8 @@ public class Army extends Entity{
             if(unit.getLocation().equals(getLocation())){
                 battleGroup.add(unit);
                 arrived.add(unit);
+                currentHealth += unit.getCurrentHealth();
+                updateStats();
             }
         }
         for(Unit removed: arrived){
