@@ -50,6 +50,9 @@ final public class GameLibrary {
     public static final String REINFORCE = "REINFORCE ARMY";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
+    //Colonist Commands
+    public static final String BUILD_CAPITAL = "BUILD CAPITAL";
+
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
     //Resources (Produce)
@@ -108,4 +111,24 @@ final public class GameLibrary {
         unitMap.put(BODY, GraphicsFactory.BODY_SRC);
     }
 
+    //Stuff Creation Cost
+    public static final int MELEE_FOOD = 30, MELEE_ORE = 10, MELEE_ENERGY = 0,
+                            RANGED_FOOD = 25, RANGED_ORE = 20, RANGED_ENERGY = 10,
+                            EXPLORER_FOOD = 40, EXPLORER_ORE = 15, EXPLORER_ENERGY = 15,
+                            WORKER_FOOD = 10, WORKER_ORE = 0, WORKER_ENRGY = 5;
+
+    public static final int CAPITAL_FOOD = 0, CAPITAL_ORE = 200, CAPITAL_ENERGY = 100,
+                            FARM_FOOD = 50, FARM_ORE = 50, FARM_ENERGY = 50,
+                            MINE_FOOD = 0, MINE_ORE = 100, MINE_ENERGY = 50,
+                            POWER_FOOD = 0, POWER_ORE = 100, POWER_ENERGY = 100,
+                            FORT_FOOD = 100, FORT_ORE = 100, FORT_ENERGY = 50,
+                            OBSERVATION_FOOD = 0, OBSERVATION_ORE = 50, OBSERVATION_ENERGY = 50,
+                            UNIVERSITY_FOOD = 0, UNIVERSITY_ORE = 100, UNIVERSITY_ENERGY = 150;
+
+    public static final int HEAL_FOOD_COST = 10;
+
+    //building structures
+    public static final String BUILD_STRUCTURE = "BUILD STRUCTURE";
+
+    public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
 }

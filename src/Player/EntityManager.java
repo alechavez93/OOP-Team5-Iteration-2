@@ -725,14 +725,24 @@ public class EntityManager {
         }
     }
 
-    public void defend(Soldier soldier, Direction direction){
-        soldier.setDirection(direction);
-        soldier.setState("Defend");
+    public void defend(Entity entity, Direction direction){
+        entity.setDirection(direction);
+        entity.setState("Defend");
     }
 
-    public void retaliate(Soldier defender, Entity Attacker){
+    public void retaliate(Entity defender, Entity Attacker){
         //System.out.println("Retaliate was called");
         Attacker.takeDamage(defender, "Defend");
+    }
+
+    public boolean spendResources(int food, int ore, int energy) {
+        if ((playerOwner.getFood() > food) && (playerOwner.getOre() > ore) && (playerOwner.getEnergy() > energy)) {
+            playerOwner.spendFood(food);
+            playerOwner.spendOre(ore);
+            playerOwner.spendEnergy(energy);
+            return true;
+        }
+        return false;
     }
 
 }

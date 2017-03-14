@@ -17,17 +17,17 @@ public class Army extends Entity{
 
     private List<Unit> battleGroup;
     private List<Unit> reinforcement;
-    private MapCoordinate rallyPoint;
+    private RallyPoint rallyPoint;
     private int meleeAttack;
     private int rangeAttack;
     private boolean isAttacking;
 
-    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial, MapCoordinate rallyPoint) {
+    public Army(String name, int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial) {
         super(name, instanceID, location, entityManager);
         battleGroup = new ArrayList<>();
         reinforcement = new ArrayList<>();
         this.battleGroup.add(initial);
-        this.rallyPoint = rallyPoint;
+        this.rallyPoint = new RallyPoint(initial.getLocation(), initial.getEntityManager());
         isAttacking = false;
         updateStats();
     }
@@ -98,6 +98,8 @@ public class Army extends Entity{
             if(unit.getLocation().equals(getLocation())){
                 battleGroup.add(unit);
                 arrived.add(unit);
+                currentHealth += unit.getCurrentHealth();
+                updateStats();
             }
         }
         for(Unit removed: arrived){
