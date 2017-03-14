@@ -35,7 +35,7 @@ public class UnitDrawer {
 
     private static void drawMarker(Graphics g, int radius, PixelPoint center){
         g.setColor(new Color(0,0,255));
-        ((Graphics2D)g).setStroke(new BasicStroke(3));
+        ((Graphics2D)g).setStroke(new BasicStroke(2));
         g.drawOval(center.x-radius, center.y-radius, radius*2, radius*2);
     }
 

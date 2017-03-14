@@ -27,7 +27,7 @@ public class ViewPort extends JPanel{
     private GameMap map;
     private int mapPixelWidth, mapPixelHeight;
     private static ViewPort instance;
-    public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.72*(double)PixelMap.SCREEN_HEIGHT);
+    public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.75*(double)PixelMap.SCREEN_HEIGHT);
 
     private ViewPort(PixelPoint origin){
         setLayout(null);

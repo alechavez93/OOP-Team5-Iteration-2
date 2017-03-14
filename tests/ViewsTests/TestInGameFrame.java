@@ -5,15 +5,13 @@ package ViewsTests;
 |   Description: Tests functionality of InGameFrame, which contains all in game views.
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Entity;
-import Entity.Unit.ColonistUnit;
+import Game.Control.InGameController;
 import Game.CyclingState;
 import GameMap.*;
 import Player.EntityManager;
 import Player.Player;
 import Utility.GraphicsFactory;
 import Utility.MapLoader;
-import Utility.Vec2i;
 import Views.*;
 
 public class TestInGameFrame {
@@ -32,7 +30,6 @@ public class TestInGameFrame {
         frame.addView(new StructureView("Structure Overview", state));
         frame.addView(new TechTreeView("Tech Tree", state));
 
-        Player inTurn = new Player(1, "Logan", new MapCoordinate(2,2));
-        Entity unit = new ColonistUnit(0,new MapCoordinate(2,2),new EntityManager(inTurn));
+        frame.addKeyListener(new InGameController(frame, state));
     }
 }

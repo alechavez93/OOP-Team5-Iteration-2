@@ -23,7 +23,7 @@ public class TileDrawer {
     public static void drawTile(Graphics g, Tile tile){
         //Set Stroke
         Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(3));
+        g2.setStroke(new BasicStroke(2));
 
         //Draw Layers
         PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
