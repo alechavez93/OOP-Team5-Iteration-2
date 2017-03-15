@@ -6,6 +6,7 @@ import Player.Player;
 import GameMap.*;
 import Utility.Vec2i;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /*--------------------------------------------------------------------------------------
@@ -39,7 +40,9 @@ public class Game {
         p2Start = new MapCoordinate(10,15);
         //GameMap.getInstance().initialize(new Vec2i(20,20));
         player1 = new Player(1, "Logan", p1Start);
+        player1.setColor(new Color(0,0,255));
         player2 = new Player(2, "Wade", p2Start);
+        player2.setColor(new Color(255,0,0));
         turnCount = 1;
         currentPlayer = 0;
 

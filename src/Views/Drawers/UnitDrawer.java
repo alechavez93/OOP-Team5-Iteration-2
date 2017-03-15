@@ -12,6 +12,7 @@ import Utility.Direction;
 import Utility.GraphicsFactory;
 import Views.PixelMaps.PixelMap;
 import Views.PixelMaps.PixelPoint;
+import Player.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,7 @@ public class UnitDrawer {
     public static final int MARGIN = PixelMap.MARGIN;
 
     public static void drawUnit(Graphics g, Unit unit){
+        Player player = unit.getEntityManager().playerOwner;
         g.setClip(null);
         PixelPoint center = PixelMap.mapCoordinate(unit.getLocation());
         PixelPoint facingPos = getFacingPos(center, unit.getDirection());
@@ -29,12 +31,12 @@ public class UnitDrawer {
 
         //Drawing Unit and Marker
         g.drawImage(unitImg, pos.x, pos.y, PixelMap.UNIT_HEIGHT, PixelMap.UNIT_HEIGHT, null);
-        drawMarker(g, PixelMap.UNIT_MARKER_RADIUS, facingPos);
+        drawMarker(g, PixelMap.UNIT_MARKER_RADIUS, facingPos, player);
     }
 
 
-    private static void drawMarker(Graphics g, int radius, PixelPoint center){
-        g.setColor(new Color(0,0,255));
+    private static void drawMarker(Graphics g, int radius, PixelPoint center, Player player){
+        g.setColor(player.getColor());
         ((Graphics2D)g).setStroke(new BasicStroke(2));
         g.drawOval(center.x-radius, center.y-radius, radius*2, radius*2);
     }
