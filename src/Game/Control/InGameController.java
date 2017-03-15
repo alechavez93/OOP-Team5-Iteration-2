@@ -67,7 +67,7 @@ public class InGameController extends GameLibrary implements KeyListener {
         cycleCommands(code);
         specialKeys(code);
         moveCursor(code);
-        changeArmy(code);
+        changeArmies(code);
         frame.getMapView().refreshCyclinigSection();
         frame.getMapView().refreshEntityStateSection();
         frame.getMapView().refreshMinimapSection();
@@ -79,7 +79,6 @@ public class InGameController extends GameLibrary implements KeyListener {
         }
         catch(Exception ex){
             ex.printStackTrace();
-            System.out.println("LOL");
         }
 
     }
@@ -111,7 +110,8 @@ public class InGameController extends GameLibrary implements KeyListener {
         }
     }
 
-    public void changeArmy(int code){
+    public void changeArmies(int code){
+
         EntityManager entityManager = state.inTurn.getEntityManager();
         List<Entity> armies = entityManager.getArmyList();
         try {
@@ -206,21 +206,18 @@ public class InGameController extends GameLibrary implements KeyListener {
     public void changeScreen(int code){
         switch(code) {
             case KeyEvent.VK_Q:
-                System.out.println(code);
                 frame.setViewVisible(0);
                 break;
             case KeyEvent.VK_W:
-                System.out.println(code);
                 frame.setViewVisible(1);
                 break;
             case KeyEvent.VK_E:
-                System.out.println(code);
                 frame.setViewVisible(2);
                 break;
-//            case KeyEvent.VK_R:
-//                System.out.println(code);
-//                frame.setViewVisible(3);
-//                break;
+            case KeyEvent.VK_R:
+                System.out.println(code);
+                frame.setViewVisible(3);
+                break;
         }
     }
 
