@@ -3,6 +3,8 @@ package Player;
 import GameMap.FogOfWar;
 import GameMap.MapCoordinate;
 
+import java.awt.*;
+
 /**
  * Created by Thomas on 02/19/2017.
  */
@@ -28,6 +30,15 @@ public class Player {
     private int metal;
     private int power;
     private Fog fogOfWar;
+    private Color color;
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 
     public Player(int id, MapCoordinate location){
         this.pID = id;
@@ -44,6 +55,7 @@ public class Player {
         this.metal = 0;
         this.power = 0;
         fogOfWar = new Fog(this);
+
     }
 
     public Player(int id, String name, MapCoordinate location){
