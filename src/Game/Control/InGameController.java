@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import Entity.*;
+import com.sun.xml.internal.bind.v2.TODO;
 
 public class InGameController extends GameLibrary implements KeyListener {
 
@@ -194,16 +195,55 @@ public class InGameController extends GameLibrary implements KeyListener {
     public void cycleCommands(int code){
         if(keysPressed.contains(keyConfiguration.getMode())) return;
         if(code == keyConfiguration.getCycleRight() || code == keyConfiguration.getCycleLeft()) return;
-
-        if(state.gameMode.equals(UNIT_MODE)){
-            state.selectedCommand = cycleItem(code, UNIT_COMMANDS, state.selectedCommand);
-        }
-        else  if(state.gameMode.equals(STRUCTURE_MODE)){
-            state.selectedCommand = cycleItem(code, STRUCTURE_COMMANDS, state.selectedCommand);
-        }
-        else  if(state.gameMode.equals(ARMY_MODE)){
-            state.selectedCommand = cycleItem(code, ARMY_COMMANDS, state.selectedCommand);
-        }
+            //TODO: STRUCTURES MISSING ASSIGN_WORKERS (UNIMPLEMENTED COMMAND) AND RESEARCH (NO TECH TREE) COMMANDS IN GAMELIBRARY
+            if(state.modeType.equals(COLONIST)) {
+                state.selectedCommand = cycleItem(code, COLONIST_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(EXPLORER)) {
+                state.selectedCommand = cycleItem(code, EXPLORER_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(MELEE)) {
+                state.selectedCommand = cycleItem(code, SOLDIER_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(RANGED)) {
+                state.selectedCommand = cycleItem(code, SOLDIER_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(CAPITAL)) {
+                state.selectedCommand = cycleItem(code, CAPITAL_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(FARM)) {
+                state.selectedCommand = cycleItem(code, FARM_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(MINE)) {
+                state.selectedCommand = cycleItem(code, MINE_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(POWER)) {
+                state.selectedCommand = cycleItem(code, POWER_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(FORT)) {
+                state.selectedCommand = cycleItem(code, FORT_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(OBSERVATION_TOWER)) {
+                state.selectedCommand = cycleItem(code, OBSERVATION_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(UNIVERSITY)) {
+                state.selectedCommand = cycleItem(code, UNIVERSITY_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(ARMY_MODE)) {
+                state.selectedCommand = cycleItem(code, ARMY_COMMANDS, state.selectedCommand);
+            }
+            else if(state.modeType.equals(RALLY_POINT_MODE)) {
+                state.selectedCommand = cycleItem(code, RALLYPOINT_COMMANDS, state.selectedCommand);
+            }
+//        if(state.gameMode.equals(UNIT_MODE)){
+//            state.selectedCommand = cycleItem(code, UNIT_COMMANDS, state.selectedCommand);
+//        }
+//        else  if(state.gameMode.equals(STRUCTURE_MODE)){
+//            state.selectedCommand = cycleItem(code, STRUCTURE_COMMANDS, state.selectedCommand);
+//        }
+//        else  if(state.gameMode.equals(ARMY_MODE)){
+//            state.selectedCommand = cycleItem(code, ARMY_COMMANDS, state.selectedCommand);
+//        }
 //        else  if(state.gameMode.equals(RALLY_POINT_MODE)){
 //            state.selectedCommand = cycleItem(code, RALLY_POINT_COMMANDS, state.selectedCommand);
 //        }
