@@ -49,12 +49,12 @@ public class GameLibrary {
     public static final String[] RALLYPOINT_COMMANDS = {BUILD_STRUCTURE, PICKUP, DROPOFF};
 
     //Structure Commands
-
-//    public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+    public static final String MAKE_UNIT = "MAKE_UNIT", HEAL_UNIT = "HEAL", ASSIGN_WORKER = "ASSIGN_WORKER";
+    public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
     //Capital Commands
-    public static final String HEAL_UNIT = "HEAL UNIT", BREEDING = "BREEDING";
-    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, HEAL_UNIT, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL, BREEDING};
+    public static final String /*HEAL_UNIT = "HEAL UNIT",*/ BREED = "BREED";
+    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, HEAL_UNIT, BREED, DEFEND, POWER_UP, POWER_DOWN, DECOMMISSION, CANCEL};
 
     //Fort Commands
     public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
