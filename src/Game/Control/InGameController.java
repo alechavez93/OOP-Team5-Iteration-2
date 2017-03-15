@@ -91,8 +91,8 @@ public class InGameController extends GameLibrary implements KeyListener {
             else if(code == keyConfiguration.getNorthEastKey()){
                 direction = Direction.NorthEast;
             }
-            else if(code == keyConfiguration.getSouthEastKey()){
-                direction = Direction.SouthEast;
+            else if(code == keyConfiguration.getSouthKey()){
+                direction = Direction.South;
             }
             else if(code == keyConfiguration.getSouthWestKey()){
                 direction = Direction.SouthWest;
