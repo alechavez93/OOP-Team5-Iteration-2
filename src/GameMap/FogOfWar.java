@@ -45,7 +45,7 @@ public class FogOfWar {
         boolean[][] vis = new boolean[size.x][size.y];
 
         for(Entity e : entityList) {
-            List<Tile> t = GameMap.getInstance().getAllNeighbors(e.getLocation().getVector(), e.getRangeRadius());
+            List<Tile> t = GameMap.getInstance().getAllNeighbors(e.getLocation().getVector(), e.getVisibilityRadius());
             for(Tile tt : t) {
                 vis[tt.getPos().getRow()][tt.getPos().getColumn()] = true;
             }

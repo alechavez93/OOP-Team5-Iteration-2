@@ -8,6 +8,8 @@ package Views;
 
 import Entity.Entity;
 import Entity.Structure.Structure;
+import Entity.Unit.MeleeSoldier;
+import Entity.Unit.RangeSoldier;
 import Entity.Unit.Unit;
 import Game.CyclingState;
 import GameMap.GameMap;
@@ -24,7 +26,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Iterator;
+import java.util.*;
 
 public class ViewPort extends JPanel{
     private PixelPoint origin;
