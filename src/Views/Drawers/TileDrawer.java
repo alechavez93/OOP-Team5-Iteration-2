@@ -33,6 +33,42 @@ public class TileDrawer {
         drawGrid(g, tileShape);
     }
 
+
+    public static void drawShrouded(Graphics g, Tile tile){
+        Color prevColor = g.getColor();
+        g.setColor(new Color(0,0,0,200));
+        PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
+        Polygon tileShape = getHexagon(center);
+        g.fillPolygon(tileShape);
+        g.setColor(prevColor);
+    }
+
+    public static void drawExplored(Graphics g, Tile tile){
+        Color prevColor = g.getColor();
+        g.setColor(new Color(0,0,0,127));
+        PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
+        Polygon tileShape = getHexagon(center);
+        g.fillPolygon(tileShape);
+        g.setColor(prevColor);
+    }
+
+    public static void drawResources(Graphics g, Tile tile){
+        GraphicsFactory graphicsFactory = GraphicsFactory.getInstance();
+        PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
+        PixelPoint foodPoint = new PixelPoint(center.x - PixelMap.TILE_WIDTH/2, center.y - PixelMap.TILE_HEIGHT/2);
+        PixelPoint orePoint = new PixelPoint(center.x - PixelMap.TILE_WIDTH/2, center.y - PixelMap.TILE_HEIGHT/2);
+        PixelPoint energyPoint = new PixelPoint(center.x + PixelMap.TILE_WIDTH/2, center.y - PixelMap.TILE_HEIGHT/2);
+
+        g.drawImage(graphicsFactory.getGraphics(GraphicsFactory.FOOD_ICON), foodPoint.x, foodPoint.y, 50, 50, null);
+        g.drawString(tile.getResources().getFood()+"", foodPoint.x, foodPoint.y);
+
+        g.drawImage(graphicsFactory.getGraphics(GraphicsFactory.ORE_ICON), orePoint.x, orePoint.y, 50, 50, null);
+        g.drawString(tile.getResources().getOre()+"", orePoint.x, orePoint.y);
+
+        g.drawImage(graphicsFactory.getGraphics(GraphicsFactory.ENERGY_ICON), energyPoint.x, energyPoint.y, 50, 50, null);
+        g.drawString(tile.getResources().getEnergy()+"", energyPoint.x, energyPoint.y);
+    }
+
     //Gets corner points for a Hexatile
     private static List<PixelPoint> getHexatilePoints(PixelPoint center){
         List<PixelPoint> points = new ArrayList<>();
