@@ -79,4 +79,6 @@ public abstract class Structure extends Entity{
         }
     }
 
+    public Production getProduction() { return production; }
+
 }

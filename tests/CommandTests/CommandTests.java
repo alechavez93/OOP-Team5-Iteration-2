@@ -245,20 +245,34 @@ public class CommandTests {
         ColonistUnit colonistUnit = (ColonistUnit) game.player1.getEntityManager().getColonistList().get(0);
         MakeCapital command1 = new MakeCapital(colonistUnit);
         game.player1.getEntityManager().finishTurn();
+        CapitalStructure capitalStructure = (CapitalStructure) game.player1.getEntityManager().getCapitalList().get(0);
+
+        //capitalStructure.getWorkers().setNumberOfWorkers(2);
+        System.out.println("Capital workers: " + capitalStructure.getWorkers().getNumberOfWorkers());
+        game.player1.printResources();
+        MakeExplorer makeExplorer = new MakeExplorer(capitalStructure);
+        printCommandList(game.player1);
+        game.player1.getEntityManager().finishTurn();
+
+        printCommandList(game.player1);
+        game.player1.getEntityManager().finishTurn();
+
+        printCommandList(game.player1);
+        game.player1.getEntityManager().finishTurn();
+
+        printCommandList(game.player1);
+        game.player1.getEntityManager().finishTurn();
+
 
         game.player1.printResources();
-        MakeUnit makeUnit = new MakeUnit((CapitalStructure)game.player1.getEntityManager().getCapitalList().get(0), GameLibrary.EXPLORER);
         game.player1.getEntityManager().finishTurn();
-/*         game.player1.printResources();
-        game.player1.getEntityManager().finishTurn();
-        game.player1.printResources();*/
+        game.player1.printResources();
 
         //printEntityList(game.player1);
 
         CreateArmy createArmy = new CreateArmy(game.player1.getEntityManager().getMeleeUnitList().get(0));
         game.player1.getEntityManager().finishTurn();
 
-        CapitalStructure capitalStructure = (CapitalStructure) game.player1.getEntityManager().getCapitalList().get(0);
         Army army = (Army) game.player1.getEntityManager().getArmyList().get(0);
         RallyPoint rallyPoint = army.getRallyPoint();
         System.out.println("Capital has workerCount: " + capitalStructure.getWorkers().getNumberOfWorkers());
@@ -268,8 +282,9 @@ public class CommandTests {
         System.out.println("after pickup it has " + capitalStructure.getWorkers().getNumberOfWorkers());
 
         System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
+
+        game.player1.getEntityManager().finishTurn();
         MoveRallypoint moveRallypoint = new MoveRallypoint(army, new MapCoordinate(1,5));
-        BuildStructure buildStructure = new BuildStructure( army, 5, GameLibrary.FARM);
 
         game.player1.getEntityManager().finishTurn();
         printCommandList(game.player1);
@@ -279,25 +294,34 @@ public class CommandTests {
         System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
         game.player1.getEntityManager().finishTurn();
         printCommandList(game.player1);
+
+
+        game.player1.getEntityManager().finishTurn();
+        game.player1.getEntityManager().finishTurn();
+        game.player1.getEntityManager().finishTurn();
+        BuildStructure buildStructure = new BuildStructure( army, 5, GameLibrary.FARM);
 
         //printEntityList(game.player1);
         //printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
         game.player1.getEntityManager().finishTurn();
         game.player1.getEntityManager().finishTurn();
+
+        System.out.println("~~~~~~~~~~~~~~~~");
         printEntityList(game.player1);
+        printCommandList(game.player1);
 
         System.out.println("~~~~~~~~~~~~~~~~");
         FarmStructure farmStructure = (FarmStructure) game.player1.getEntityManager().getFarmList().get(0);
         PickupWorkers pickupWorkers = new PickupWorkers(rallyPoint, farmStructure, 3);
-        System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
+        /*System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
         System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
         System.out.println("~~~~~~~~~~~~~~~~");
         Dropoff dropoff = new Dropoff(rallyPoint, farmStructure, 3);
         System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
         System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
 
-
+*/
     }
 
     private static void printCommandList(Player player) {

@@ -17,6 +17,7 @@ public class AssignWorkers extends Command {
     // A worker will perform both harvest and producing. Will decide on order later.
 
     public AssignWorkers(String name, Entity entity){
+
         super(name, entity);
     }
 
