@@ -61,6 +61,7 @@ public class FogOfWar {
                 }
             }
         }
+        return;
     }
 
     public void calculateProspect(List<Entity> explorerList) {

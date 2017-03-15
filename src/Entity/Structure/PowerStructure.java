@@ -11,13 +11,16 @@ package Entity.Structure;
 |       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
+import Entity.HarvestComponent;
 import Entity.Worker;
 import GameLibrary.GameLibrary;
+import GameMap.HarvestResources;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
 public class PowerStructure extends Structure {
 
+    private HarvestComponent harvest;
 
     public PowerStructure(int instanceID, MapCoordinate location, EntityManager entityManager, int workerCount) {
         super(GameLibrary.POWER_PLANT, instanceID, location, entityManager);
@@ -29,16 +32,18 @@ public class PowerStructure extends Structure {
         visibilityRadius = 2;
         upkeep = 12;
         workers.setNumberOfWorkers(workerCount);
+        harvest = new HarvestComponent(workers, location, GameLibrary.HarvestType.ENERGY);
         production = new Production(0,1,0,1,0,0,0,0,0);
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {
-
+        harvest.setWorkersAt(location, workerCount);
     }
 
-    public void assignProduce(int workerCount) {
-
+    public int harvest() {
+        return harvest.harvest(production.energyRate);
     }
+
 
     public void destroy(){
         entityManager.destroyPower(this);
