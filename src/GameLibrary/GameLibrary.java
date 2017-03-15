@@ -42,7 +42,7 @@ public class GameLibrary {
     //Army Commands
     public static final String ATTACK = "ATTACK DIRECTION", DEFEND = "DEFEND DIRECTION", MOVE = "MOVE", DISBAND = "DISBAND", DECOMMISSION = "DECOMMISSION",
             POWER_UP = "POWER UP", POWER_DOWN = "POWER DOWN", CANCEL = "CANCEL QUEUED ORDERS";
-    public static final String[] ARMY_COMMANDS = {ATTACK, DEFEND, MOVE, DISBAND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+    public static final String[] ARMY_COMMANDS = {ATTACK, DEFEND, MOVE, POWER_UP, POWER_DOWN, DISBAND, CANCEL, DECOMMISSION};
 
     //Rally Point Commands
     public static final String BUILD_STRUCTURE = "BUILD STRUCTURE", PICKUP = "PICKUP", DROPOFF = "DROPOFF";
@@ -52,12 +52,26 @@ public class GameLibrary {
     public static final String[] STRUCTURE_COMMANDS = {CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Capital Commands
-    public static final String HEAL_UNIT = "HEAL UNIT", BREED = "BREED";
+    public static final String HEAL_UNIT = "HEAL UNIT", BREED = "BREED", ASSIGN_WORKERS = "ASSIGN WORKERS", RESEARCH = "RESEARCH";
     public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, HEAL_UNIT, BREED, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
+    //Farm Commands
+    public static final String[] FARM_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+    //Mine Commands
+    public static final String[] MINE_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+    //Power Commands
+    public static final String[] POWER_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Fort Commands
     public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+    //Observation Tower Commands
+    public static final String[] OBSERVATION_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+    //University Commands
+    public static final String[] UNIVERSITY_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Unit Commands
     public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL", PROSPECT_MODE = "PROSPECT MODE";
@@ -74,7 +88,6 @@ public class GameLibrary {
 
     //Soldier Commands
     public static final String[] SOLDIER_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
-
 
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";

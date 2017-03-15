@@ -7,6 +7,7 @@ package Game;
 ---------------------------------------------------------------------------------------*/
 
 import Commands.*;
+import Entity.Army.Army;
 import Entity.Structure.CapitalStructure;
 import Entity.Structure.FortStructure;
 import Entity.Unit.ColonistUnit;
@@ -96,31 +97,31 @@ public class CommandFactory {
             case GameLibrary.HEAL_UNIT:
                 return new Heal((CapitalStructure)cyclingState.selectedEntity);
 
-//          NEEDS TO BE IMPLEMENTED
+//          TODO:NEEDS TO BE IMPLEMENTED
 //            case GameLibrary.BREED:
 //                return Breed();
 
             // Capital/Farm/Mine/Power Specific Commands
-//          NEEDS TO BE IMPLEMENTED
+//          TODO:NEEDS TO BE IMPLEMENTED
 //            case GameLibrary.ASSIGN_WORKERS:
 //                return AssignWorker();
 
             // University Specific Commands
-//            NEEDS TO BE IMPLEMENTED
+//          TODO:NEEDS TO BE IMPLEMENTED
 //            case GameLibrary.RESEARCH:
 //                return Research();
 
             // Fort Specific Commands
-//              MISSING DIRECTION FROM CYCLING STATE
+//          TODO:MISSING DIRECTION FROM CYCLING STATE
 //            case GameLibrary.ATTACK:
 //                return Attack(((FortStructure)cyclingState.selectedEntity /* Needs Direction */);
 
-//              MISSING SOLDIER TYPE FROM CYCLING STATE
+//          TODO:MISSING SOLDIER TYPE FROM CYCLING STATE
 //            case GameLibrary.MAKE_SOLDIER:
 //                return new MakeSoldier((FortStructure)cyclingState.selectedEntity, /*Needs Soldier Type */);
 
             // All Common Structure Commands
-//              MISSING DIRECTION FROM CYCLING STATE
+//          TODO:MISSING DIRECTION FROM CYCLING STATE
 //            case GameLibrary.DEFEND:
 //                return new Defend(cyclingState.selectedEntity, /* Needs Direction */);
 
@@ -143,11 +144,59 @@ public class CommandFactory {
 
 
     public Command makeArmyCommand() {
-        return null;
+        switch (cyclingState.selectedCommand) {
+
+//          TODO:MISSING DIRECTION FROM CYCLING STATE
+//            case GameLibrary.ATTACK:
+//                return new Attack(cyclingState.selectedEntity, /* Needs Direction */);
+
+//          TODO:MISSING DIRECTION FROM CYCLING STATE
+//            case GameLibrary.DEFEND:
+//                return new Defend(cyclingState.selectedEntity, /* Needs Direction */);
+
+            case GameLibrary.MOVE:
+                return new MoveRallypoint((Army)cyclingState.selectedEntity, cyclingState.cursorCoord);
+
+//          TODO:NEEDS TO BE IMPLEMENTED
+//            case GameLibrary.DISBAND:
+//                return new Disband();
+
+            case GameLibrary.POWER_UP:
+                return new PowerUp(cyclingState.selectedEntity);
+
+            case GameLibrary.POWER_DOWN:
+                return new PowerDown(cyclingState.selectedEntity);
+
+            case GameLibrary.DECOMMISSION:
+                return new Decommission(cyclingState.selectedEntity);
+
+            case GameLibrary.CANCEL:
+                return new CancelOrders(cyclingState.selectedEntity);
+
+            default:
+                return null;
+        }
     }
 
     public Command makeRallyPointCommand() {
-        return null;
+        switch (cyclingState.selectedCommand) {
+
+//          TODO:MISSING RALLYPOINT, STRUCTURE, WORKERCOUNT FROM CYCLING STATE
+//            case GameLibrary.PICKUP:
+//                return new PickupWorkers(/* Needs RallyPoint, Structure, WorkerCount */);
+
+//          TODO:MISSING RALLYPOINT, STRUCTURE, WORKERCOUNT FROM CYCLING STATE
+//            case GameLibrary.DROPOFF:
+//                return new Dropoff(/* Needs RallyPoint, Structure, WorkerCount */);
+
+//          TODO:MISSING ARMY, WORKERCOUNT, STRUCTURETYPE FROM CYCLING STATE
+//            case GameLibrary.BUILD_STRUCTURE:
+//                return new BuildStructure(/* Needs Army, WorkerCount, StructureType */);
+
+            default:
+                return null;
+        }
+
     }
 
 }
