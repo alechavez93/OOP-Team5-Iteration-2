@@ -40,10 +40,15 @@ public class PowerStructure extends Structure {
         harvest.setWorkersAt(location, workerCount);
     }
 
-    public int harvest() {
-        return harvest.harvest(production.energyRate);
+    public void harvest() {
+        entityManager.playerOwner.gainEnergy(harvest.harvest(production.energyRate));
     }
 
+    @Override
+    public void finishTurn() {
+        super.finishTurn();
+        harvest();
+    }
 
     public void destroy(){
         entityManager.destroyPower(this);
