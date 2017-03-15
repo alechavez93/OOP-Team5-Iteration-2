@@ -14,7 +14,7 @@ import Player.EntityManager;
 public class MakeCapital extends Command {
 
     public MakeCapital(ColonistUnit colonist) {
-        super(GameLibrary.BUILD_CAPITAL, colonist);
+        super(GameLibrary.MAKE_CAPITAL, colonist);
     }
 
     @Override
