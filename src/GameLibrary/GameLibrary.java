@@ -36,42 +36,48 @@ public class GameLibrary {
     //Stats
     public static final String VISIBILITY = "VISIBILITY", DEFENSE = "DEFENSE", ARMOR = "ARMOR", SPEED = "SPEED", HEALTH = "HEALTH", EFFICIENCY = "EFFICIENCY";
 
+    //Creating Units
+    public static final String MAKE_EXPLORER = "MAKE EXPLORER", MAKE_SOLDIER = "MAKE SOLDIER";
 
     //Army Commands
     public static final String ATTACK = "ATTACK DIRECTION", DEFEND = "DEFEND DIRECTION", MOVE = "MOVE", DISBAND = "DISBAND", DECOMMISSION = "DECOMMISSION",
             POWER_UP = "POWER UP", POWER_DOWN = "POWER DOWN", CANCEL = "CANCEL QUEUED ORDERS";
     public static final String[] ARMY_COMMANDS = {ATTACK, DEFEND, MOVE, DISBAND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
+    //Rally Point Commands
+    public static final String BUILD_STRUCTURE = "BUILD STRUCTURE", PICKUP = "PICKUP", DROPOFF = "DROPOFF";
+    public static final String[] RALLYPOINT_COMMANDS = {BUILD_STRUCTURE, PICKUP, DROPOFF};
+
     //Structure Commands
-    public static final String MAKE_UNIT = "MAKE UNIT TYPE", HEAL_UNIT = "HEAL UNIT";
+
 //    public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
     //Capital Commands
-    public static final String[] CAPITAL_COMMANDS = {MAKE_UNIT, HEAL_UNIT, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+    public static final String HEAL_UNIT = "HEAL UNIT", BREEDING = "BREEDING";
+    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, HEAL_UNIT, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL, BREEDING};
 
     //Fort Commands
-    public static final String[] FORT_COMMANDS = {MAKE_UNIT, ATTACK, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+    public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
     //Unit Commands
-    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", BUILD_CAPITAL = "BUILD CAPITAL", PROSPECT_MODE = "PROSPECT MODE";
+    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
     //Colonist Commands
-    public static final String[] COLONIST_COMMANDS = {BUILD_CAPITAL, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
     //Explorer Commands
+    public static final String PROSPECT_MODE = "PROSPECT MODE";
     public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
     //Soldier Commands
     public static final String[] SOLDIER_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
 
-    //Explorer Commands
-    public static final String PROSPECT_MODE = "PROSPECT MODE";
 
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
     //Resources (Produce)
-    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL", BREEDING = "BREEDING";
+    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL";
     //Worker stats
     public static final String RADIUS = "RADIUS", DENSITY = "DENSITY";
 
@@ -142,14 +148,7 @@ public class GameLibrary {
 
     public static final int HEAL_FOOD_COST = 10;
 
-    //building structures
-    public static final String BUILD_STRUCTURE = "BUILD STRUCTURE";
-
-    public static final String PICKUP = "PICKUP", DROPOFF = "DROPOFF";
-
     public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
 
-    //Creating Units
-    public static final String MAKE_EXPLORER = "MAKE EXPLORER", MAKE_SOLDIER = "MAKE SOLDIER";
     public static final int EXPLORER_TURNS = 5,MELEE_TURNS = 9, RANGE_TURNS = 11;
 }
