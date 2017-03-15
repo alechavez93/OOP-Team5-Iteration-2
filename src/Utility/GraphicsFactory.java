@@ -76,6 +76,9 @@ public class GraphicsFactory {
         cachedGraphics.put(BACKGROUND_SRC, icon);
         cachedGraphics.put("NONE", body);
         cachedGraphics.put(GameLibrary.ARMY_MODE, army);
+        BufferedImage tech = ImageUtil.loadImage("Tech.png");
+        cachedGraphics.put("TECH", tech);
+
     }
 
     //Public Accessors

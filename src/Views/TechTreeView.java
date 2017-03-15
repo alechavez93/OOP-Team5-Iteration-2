@@ -8,8 +8,12 @@ package Views;
 import Game.CyclingState;
 import Utility.GraphicsFactory;
 import Views.PixelMaps.PixelMap;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class TechTreeView extends View{
+
+    BufferedImage background;
 
     private CyclingState state;
     public static final int MARGIN = PixelMap.MARGIN;
@@ -19,5 +23,15 @@ public class TechTreeView extends View{
         super(name);
         this.state = state;
         graphicsFactory = GraphicsFactory.getInstance();
+        setSize(PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+        background = graphicsFactory.getGraphics("TECH");
+        setVisible(true);
+    }
+
+
+    @Override
+    public void paint(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(background, 0,0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT, null);
     }
 }
