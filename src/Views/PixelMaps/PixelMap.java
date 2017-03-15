@@ -63,7 +63,7 @@ public class PixelMap {
         }
         //If odd Col
         else{
-            return new PixelPoint(coor.getColumn()*width_offset - origin.x, coor.getRow()*TILE_HEIGHT+height_offset - origin.y);
+            return new PixelPoint(coor.getColumn()*width_offset - origin.x, coor.getRow()*TILE_HEIGHT-height_offset - origin.y);
         }
     }
 }

@@ -50,6 +50,8 @@ public class Player {
         this.name = name;
         this.entityManager = new EntityManager(this);
         entityManager.init(location);
+        this.fog = new FogOfWar();
+        fog.calculateVisibility(entityManager.getAllEntities());
         //itemManager = new ItemManager(this);
         //techManager = new TechManager(this);
         this.food = 300;
