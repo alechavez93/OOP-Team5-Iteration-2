@@ -8,6 +8,7 @@ package Views.Drawers;
 ---------------------------------------------------------------------------------------*/
 
 
+import Game.CyclingState;
 import GameMap.Tile;
 import Utility.GraphicsFactory;
 import Views.PixelMaps.PixelMap;
@@ -36,7 +37,7 @@ public class TileDrawer {
 
     public static void drawShrouded(Graphics g, Tile tile){
         Color prevColor = g.getColor();
-        g.setColor(new Color(0,0,0,200));
+        g.setColor(new Color(0,0,0,254));
         PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
         Polygon tileShape = getHexagon(center);
         g.fillPolygon(tileShape);
@@ -45,10 +46,30 @@ public class TileDrawer {
 
     public static void drawExplored(Graphics g, Tile tile){
         Color prevColor = g.getColor();
-        g.setColor(new Color(0,0,0,127));
+        g.setColor(new Color(0,0,0,150));
         PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
         Polygon tileShape = getHexagon(center);
         g.fillPolygon(tileShape);
+        g.setColor(prevColor);
+    }
+
+    public static void drawMarkers(Graphics g, CyclingState state){
+        Color prevColor = g.getColor();
+        //Set Stroke
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(4));
+        g.setColor(new Color(39, 219, 232));
+        if(state.cursorCoord != null){
+            //Draw Layers
+            PixelPoint center = PixelMap.mapCoordinate(state.cursorCoord);
+            Polygon tileShape = getHexagon(center);
+            g2.draw(tileShape);
+        }
+        for(Tile tile: state.path){
+            PixelPoint point = PixelMap.mapCoordinate(tile.getPos());
+            Polygon pathShape = getHexagon(point);
+            g2.draw(pathShape);
+        }
         g.setColor(prevColor);
     }
 

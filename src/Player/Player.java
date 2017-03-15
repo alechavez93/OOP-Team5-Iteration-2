@@ -27,6 +27,7 @@ public class Player {
     private int nutrients;
     private int metal;
     private int power;
+    private Fog fogOfWar;
 
     public Player(int id, MapCoordinate location){
         this.pID = id;
@@ -42,7 +43,7 @@ public class Player {
         this.nutrients = 0;
         this.metal = 0;
         this.power = 0;
-
+        fogOfWar = new Fog(this);
     }
 
     public Player(int id, String name, MapCoordinate location){
@@ -57,8 +58,14 @@ public class Player {
         this.food = 300;
         this.ore = 300;
         this.energy = 300;
+        fogOfWar = new Fog(this);
         this.fog = new FogOfWar();
         fog.calculateVisibility(entityManager.getAllEntities());
+
+    }
+
+    public Fog getFog() {
+        return fogOfWar;
     }
 
     @Override

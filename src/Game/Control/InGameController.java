@@ -5,19 +5,23 @@ package Game.Control;
 |   Description: Manages the game from the In-game side. Excludes starting window.
 ---------------------------------------------------------------------------------------*/
 
+import Commands.Command;
 import Game.CyclingState;
-import Game.Game;
+import Game.*;
 import GameLibrary.GameLibrary;
+import GameMap.GameMap;
+import GameMap.*;
 import Player.EntityManager;
+import Utility.Direction;
 import Views.InGameFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import Entity.*;
+import Views.ViewPort;
 import com.sun.xml.internal.bind.v2.TODO;
+
 
 public class InGameController extends GameLibrary implements KeyListener {
 
@@ -26,18 +30,20 @@ public class InGameController extends GameLibrary implements KeyListener {
     private CyclingState state;
     private Set<Integer> keysPressed;
     private KeyConfiguration keyConfiguration;
-
+    private GameMap map;
 
     public InGameController(InGameFrame frame, CyclingState state){
         this.frame = frame;
         this.state = state;
-//        game = Game.getInstance();
+        game = Game.getInstance();
         keysPressed = new HashSet<>();
         keyConfiguration = new KeyConfiguration();
+        map = GameMap.getInstance();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        moveViewPort(e);
         int code = e.getKeyCode();
         keysPressed.add(code);
         changeScreen(code);
@@ -45,8 +51,37 @@ public class InGameController extends GameLibrary implements KeyListener {
         cycleEntities(code);
         cycleCommands(code);
         specialKeys(code);
+        moveCursor(code);
         frame.getMapView().refreshCyclinigSection();
         frame.getMapView().refreshEntityStateSection();
+
+    }
+
+    public void moveCursor(int code){
+        if(state.cursorCoord != null){
+            Direction direction = null;
+            if(code == keyConfiguration.getNorthKey()){
+                direction = Direction.North;
+            }
+            else if(code == keyConfiguration.getNorthEastKey()){
+                direction = Direction.NorthEast;
+            }
+            else if(code == keyConfiguration.getSouthEastKey()){
+                direction = Direction.SouthEast;
+            }
+            else if(code == keyConfiguration.getSouthWestKey()){
+                direction = Direction.SouthWest;
+            }
+            else if(code == keyConfiguration.getSouthEastKey()){
+                direction = Direction.SouthEast;
+            }
+            else if(code == keyConfiguration.getNorthWestKey()){
+                direction = Direction.NorthWest;
+            }
+            if(state.path.size() > 0){
+                state.path.add(map.getNeighborTile(state.path.get(state.path.size()-1), direction));
+            }else state.path.add(map.getNeighborTile(state.cursorCoord, direction));
+        }
     }
 
 
@@ -60,12 +95,33 @@ public class InGameController extends GameLibrary implements KeyListener {
     }
 
     public void activateCommand(){
-        //Implementation here
+
+        System.out.println(state.selectedCommand);
+        if(state.selectedCommand.equals(GameLibrary.MOVE)){
+            if(state.cursorCoord == null)state.cursorCoord = state.selectedEntity.getLocation();
+            else {
+                CommandFactory.create(state);
+                state.cursorCoord = null;
+                state.path.clear();
+            }
+        }
+        //If immediate command
+        else CommandFactory.create(state);
     }
 
     public void endTurn(){
+        EntityManager entityManager = state.inTurn.getEntityManager();
+        for(Entity entity : entityManager.getAllEntities()){
+            List<Command> commands = entity.getCommandList();
+            if(commands.size()>0) {
+                Command toExecute = commands.get(commands.size() - 1);
+                toExecute.execute();
+                if (toExecute.isFinished()) commands.remove(commands.size() - 1);
+            }
+        }
         game.changeTurn();
         state.inTurn = game.getActivePlayer();
+
     }
 
     public void centerSelectedEntity(){
@@ -74,6 +130,24 @@ public class InGameController extends GameLibrary implements KeyListener {
         frame.getMapView().refreshMinimapSection();
     }
 
+    public void moveViewPort(KeyEvent e) {
+        int code = e.getKeyCode();
+        switch(code) {
+            case KeyEvent.VK_J:
+                ViewPort.scroller.x += -25;
+                break;
+            case KeyEvent.VK_L:
+                ViewPort.scroller.x += 25;
+                break;
+            case KeyEvent.VK_I:
+                ViewPort.scroller.y += -25;
+                break;
+            case KeyEvent.VK_K:
+                ViewPort.scroller.y += 25;
+                break;
+        }
+        ViewPort.getInstance().repaint();
+    }
 
     public void changeScreen(int code){
         switch(code) {
@@ -93,6 +167,31 @@ public class InGameController extends GameLibrary implements KeyListener {
 //                System.out.println(code);
 //                frame.setViewVisible(3);
 //                break;
+        }
+    }
+
+    public void cycleCommands(int code){
+        if(keysPressed.contains(keyConfiguration.getMode())) return;
+        if(code == keyConfiguration.getCycleUp() || code == keyConfiguration.getCycleDown()) {
+
+            if (state.gameMode.equals(UNIT_MODE)) {
+                if (state.modeType.equals(COLONIST)) {
+                    state.selectedCommand = cycleItem(code, COLONIST_COMMANDS, state.selectedCommand);
+//                System.out.println(state.selectedCommand);
+                } else if (state.modeType.equals(EXPLORER)) {
+                    state.selectedCommand = cycleItem(code, EXPLORER_COMMANDS, state.selectedCommand);
+                } else {
+                    state.selectedCommand = cycleItem(code, UNIT_COMMANDS, state.selectedCommand);
+                }
+            } else if (state.gameMode.equals(STRUCTURE_MODE)) {
+                state.selectedCommand = cycleItem(code, STRUCTURE_COMMANDS, state.selectedCommand);
+            } else if (state.gameMode.equals(ARMY_MODE)) {
+                state.selectedCommand = cycleItem(code, ARMY_COMMANDS, state.selectedCommand);
+            }
+//        else  if(state.gameMode.equals(RALLY_POINT_MODE)){
+//            state.selectedCommand = cycleItem(code, RALLY_POINT_COMMANDS, state.selectedCommand);
+//        }
+
         }
     }
 
@@ -123,10 +222,11 @@ public class InGameController extends GameLibrary implements KeyListener {
 
     public void cycleEntities(int code){
         if(keysPressed.contains(keyConfiguration.getMode())) return;
-        if(code == keyConfiguration.getCycleUp() || code == keyConfiguration.getCycleDown()) return;
-        cycleUnits(code);
-        cycleStructures(code);
-        cycleArmy(code);
+        if(code == keyConfiguration.getCycleLeft() || code == keyConfiguration.getCycleRight()) {
+            cycleUnits(code);
+            cycleStructures(code);
+            cycleArmy(code);
+        }
     }
 
 
@@ -192,6 +292,7 @@ public class InGameController extends GameLibrary implements KeyListener {
     }
 
 
+
     public void cycleCommands(int code){
         if(keysPressed.contains(keyConfiguration.getMode())) return;
         if(code == keyConfiguration.getCycleRight() || code == keyConfiguration.getCycleLeft()) return;
@@ -251,6 +352,14 @@ public class InGameController extends GameLibrary implements KeyListener {
 
 
     //Helpers
+//    public static Tile getNextTile(MapCoordinate coor, Direction dir){
+//        switch (dir){
+//            case Direction.North:
+//                break;
+//        }
+//    }
+
+
     private String cycleItem(int code, String[] array, String item){
         if(code == keyConfiguration.getCycleUp() || code == keyConfiguration.getCycleRight())
             return nextItem(array, item);

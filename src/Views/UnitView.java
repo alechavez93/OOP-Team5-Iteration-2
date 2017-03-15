@@ -44,8 +44,8 @@ public class UnitView extends View{
     public void paint(Graphics g) {
         super.paintComponent(g);
         EntityManager entityManager = state.inTurn.getEntityManager();
-        entityManager.addMelee(new MeleeSoldier(count, new MapCoordinate(2,2), entityManager));
-        entityManager.addRange(new RangeSoldier(count++, new MapCoordinate(2,2), entityManager));
+//        entityManager.addMelee(new MeleeSoldier(count, new MapCoordinate(2,2), entityManager));
+//        entityManager.addRange(new RangeSoldier(count++, new MapCoordinate(2,2), entityManager));
 
         //Print Melee Units
         List<Entity> list = entityManager.getMeleeUnitList();
@@ -72,6 +72,7 @@ public class UnitView extends View{
 
     public void printEntityList(Graphics g, List<Entity> list, int rowMultiplier){
         PixelPoint position = null;
+
         for(int i=0; i<10; i++){
             position = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(i+1),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*rowMultiplier);
             if(i<list.size()){
@@ -81,6 +82,7 @@ public class UnitView extends View{
             }
         }
         position.x += PixelMap.TILE_WIDTH;
+        if(list.size() == 0) return;
         OptionDrawer.drawStats(g, list.get(0), position, graphicsFactory);
     }
 }

@@ -74,15 +74,17 @@ public class GameLibrary {
     public static final String[] UNIVERSITY_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Unit Commands
-    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL";
-    public static final String[] UNIT_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
+    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL", PROSPECT_MODE = "PROSPECT MODE";
+    public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, MOVE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, MOVE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
-    //Colonist Commands
-    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+//    //Colonist Commands
+//    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Explorer Commands
-    public static final String PROSPECT_MODE = "PROSPECT MODE";
-    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
+//    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Soldier Commands
     public static final String[] SOLDIER_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};

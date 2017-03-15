@@ -13,6 +13,7 @@ import Entity.Unit.RangeSoldier;
 import Entity.Unit.Unit;
 import Game.CyclingState;
 import GameMap.GameMap;
+import Utility.GraphicsFactory;
 import Utility.Vec2i;
 import Views.Drawers.StructureDrawer;
 import Views.Drawers.TileDrawer;
@@ -34,7 +35,7 @@ public class ViewPort extends JPanel{
     private int mapPixelWidth, mapPixelHeight;
     private static ViewPort instance;
     private CyclingState state;
-    private static Vec2i scroller;
+    public static Vec2i scroller = new Vec2i();
     public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.75*(double)PixelMap.SCREEN_HEIGHT);
 
     private ViewPort(PixelPoint origin, CyclingState state){
@@ -45,9 +46,6 @@ public class ViewPort extends JPanel{
         mapPixelHeight = map.getSize().y * PixelMap.TILE_HEIGHT;
         setBounds(0,0,VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         this.state = state;
-        scroller = new Vec2i();
-        TestController testController = new TestController();
-        addKeyListener(testController);
     }
 
     public void setOrigin(int newX, int newY){
@@ -85,6 +83,7 @@ public class ViewPort extends JPanel{
         for(Iterator iter = map.getIterator(); iter.hasNext();){
             Tile tile = (Tile) iter.next();
             TileDrawer.drawTile(g, tile);
+//            TileDrawer.drawResources(g, tile);
         }
     }
 
@@ -104,7 +103,6 @@ public class ViewPort extends JPanel{
                 }
             }
             else if(visibility.isVisible()){
-                //TileDrawer.drawTile(g, tile);
                 for(Entity e : tile.getOccupyingEntities()){
                     if( e instanceof Unit)
                         UnitDrawer.drawUnit(g, (Unit)e);
@@ -115,6 +113,10 @@ public class ViewPort extends JPanel{
         }
     }
 
+    public void paintLayerThree(Graphics g){
+        TileDrawer.drawMarkers(g, state);
+    }
+
     public void drawVisible(){
 
     }
@@ -122,6 +124,7 @@ public class ViewPort extends JPanel{
     public void paintViewPort(Graphics g){
         paintLayerOne(g);
         paintLayerTwo(g);
+        paintLayerThree(g);
     }
 
     @Override
@@ -129,35 +132,5 @@ public class ViewPort extends JPanel{
         super.paintComponent(g);
         g.translate(-scroller.x, -scroller.y);
         paintViewPort(g);
-    }
-
-    private static class TestController implements KeyListener {
-        public void keyTyped(KeyEvent e) {
-
-        }
-
-        public void keyPressed(KeyEvent e) {
-            int code = e.getKeyCode();
-            System.out.printf("code:"+e.getKeyCode() + "");
-            switch(code) {
-                case KeyEvent.VK_J:
-                    scroller.x += -25;
-                    break;
-                case KeyEvent.VK_L:
-                    scroller.x += 25;
-                    break;
-                case KeyEvent.VK_I:
-                    scroller.y += -25;
-                    break;
-                case KeyEvent.VK_K:
-                    scroller.y += 25;
-                    break;
-            }
-            ViewPort.getInstance().repaint();
-        }
-
-        public void keyReleased(KeyEvent e) {
-
-        }
     }
 }

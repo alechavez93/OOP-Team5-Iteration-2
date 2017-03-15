@@ -34,11 +34,11 @@ public class StructureView extends View{
     public void paint(Graphics g) {
         super.paintComponent(g);
         EntityManager entityManager = state.inTurn.getEntityManager();
-        entityManager.addFarm(new FarmStructure(count, new MapCoordinate(2,2), entityManager, 0));
-        entityManager.addMine(new MineStructure(count, new MapCoordinate(2,3), entityManager, 0));
-        entityManager.addFort(new FortStructure(count, new MapCoordinate(2,4), entityManager, 0));
-        entityManager.addObservation(new ObservationStructure(count, new MapCoordinate(2,5), entityManager, 0));
-        entityManager.addUniversity(new UniversityStructure(count++, new MapCoordinate(3,5), entityManager, 0));
+//        entityManager.addFarm(new FarmStructure(count, new MapCoordinate(2,2), entityManager, 0));
+//        entityManager.addMine(new MineStructure(count, new MapCoordinate(2,3), entityManager, 0));
+//        entityManager.addFort(new FortStructure(count, new MapCoordinate(2,4), entityManager, 0));
+//        entityManager.addObservation(new ObservationStructure(count, new MapCoordinate(2,5), entityManager, 0));
+//        entityManager.addUniversity(new UniversityStructure(count++, new MapCoordinate(3,5), entityManager, 0));
 
 
         //Print Farms
@@ -60,6 +60,13 @@ public class StructureView extends View{
         //Print Universities
         list = entityManager.getUniversityList();
         printEntityList(g, list, 8);
+
+        list = entityManager.getCapitalList();
+        PixelPoint position = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(0+1),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*10);
+        if(list.size() == 0)
+            EntityDrawer.drawEntity(g, position, new CapitalStructure(0,null, null), graphicsFactory);
+        else
+            EntityDrawer.drawEntity(g, position, list.get(0), graphicsFactory);
     }
 
     public void printEntityList(Graphics g, java.util.List<Entity> list, int rowMultiplier){
@@ -73,6 +80,7 @@ public class StructureView extends View{
             }
         }
         position.x += PixelMap.TILE_WIDTH;
+        if(list.size() == 0) return;
         OptionDrawer.drawStats(g, list.get(0), position, graphicsFactory);
     }
 }

@@ -1,5 +1,4 @@
 package Game;
-
 /*--------------------------------------------------------------------------------------
 |    CommandFactory Class: Created by Tonny Xie on 3/14/2017.
 |---------------------------------------------------------------------------------------
@@ -14,7 +13,10 @@ import Entity.Structure.FortStructure;
 import Entity.Unit.ColonistUnit;
 import Entity.Unit.ExplorerUnit;
 import Entity.Unit.Unit;
+import Game.CyclingState;
 import GameLibrary.GameLibrary;
+
+import java.util.ArrayList;
 
 public class CommandFactory {
 
@@ -23,6 +25,18 @@ public class CommandFactory {
 
     public CommandFactory(CyclingState cyclingState) {
         this.cyclingState = cyclingState;
+    }
+
+    public static Command create(CyclingState state){
+        if(state.selectedCommand.equals(GameLibrary.MAKE_CAPITAL)){
+            if(state.selectedEntity instanceof ColonistUnit) {
+                return new MakeCapital((ColonistUnit) state.selectedEntity);
+            }
+        }
+        else if(state.selectedCommand.equals(GameLibrary.MOVE)){
+            return new Move(state.selectedEntity, new ArrayList<>(state.path), state.inTurn.getFog());
+        }
+        return null;
     }
 
     public Command makeCommand() {

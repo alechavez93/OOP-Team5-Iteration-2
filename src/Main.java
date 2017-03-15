@@ -19,15 +19,16 @@ public class Main {
         GameMap map = GameMap.getInstance();
         map.initialize(cMap);
         GraphicsFactory.getInstance();
-        Game game = new Game();
+        Game game = Game.getInstance();
         CyclingState state = new CyclingState();
-
 
         state.inTurn = game.getActivePlayer();
         state.gameMode = GameLibrary.UNIT_MODE;
         state.modeType = GameLibrary.COLONIST;
         state.selectedEntity = state.inTurn.getEntityManager().getColonistList().get(0);
-        state.selectedCommand = GameLibrary.MOVE;
+        state.selectedCommand = GameLibrary.REINFORCE;
+
+        game.setState(state);
 
 
         InGameFrame frame = new InGameFrame();
