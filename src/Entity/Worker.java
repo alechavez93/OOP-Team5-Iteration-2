@@ -12,8 +12,8 @@ import Technology.StructureTechnology.WorkerTechnology;
 public class Worker {
 
     private int numberOfWorkers;
-    private int radius;
-    private int density;
+    public int radius;
+    public int density;
 
     public Worker(int numberOfWorkers) {
         this.numberOfWorkers = numberOfWorkers;
@@ -39,14 +39,11 @@ public class Worker {
         technology.visit(this);
     }
 
-    public void upgradeRadius(int radius) {
-        if(radius > this.radius)
-            this.radius = radius;
+    public void upgradeRadius() {
+        radius++;
     }
 
-    public void upgradeDensity(int density) {
-        if(density > this.density)
-            this.density = density;
-
+    public void upgradeDensity() {
+        density++;
     }
 }
