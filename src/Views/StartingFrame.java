@@ -20,6 +20,7 @@ public class StartingFrame extends JFrame{
     class Background extends JPanel{
         public Background(){
             setBounds(0,0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);
+            setVisible(true);
         }
 
         @Override
@@ -27,6 +28,7 @@ public class StartingFrame extends JFrame{
             super.paintComponent(g);
             BufferedImage img = GraphicsFactory.getInstance().getGraphics(GraphicsFactory.BACKGROUND_SRC);
             g.drawImage(img, 0, 0, PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT, null);
+
         }
     }
 

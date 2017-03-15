@@ -27,16 +27,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.*;
 
 public class ViewPort extends JPanel{
-    private PixelPoint origin;
-    private GameMap map;
+    public static PixelPoint origin;
+    private static GameMap map;
     private int mapPixelWidth, mapPixelHeight;
     private static ViewPort instance;
-    private CyclingState state;
+    private static CyclingState state;
     public static Vec2i scroller = new Vec2i();
     public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.75*(double)PixelMap.SCREEN_HEIGHT);
+    public static BufferedImage viewportPic = null;
+    private Graphics graphics;
 
     private ViewPort(PixelPoint origin, CyclingState state){
         setLayout(null);
@@ -79,7 +83,7 @@ public class ViewPort extends JPanel{
 
 
     //Drawing Tiles
-    public void paintLayerOne(Graphics g){
+    public static void paintLayerOne(Graphics g){
         for(Iterator iter = map.getIterator(); iter.hasNext();){
             Tile tile = (Tile) iter.next();
             TileDrawer.drawTile(g, tile);
@@ -87,7 +91,7 @@ public class ViewPort extends JPanel{
         }
     }
 
-    public void paintLayerTwo(Graphics g){
+    public static void paintLayerTwo(Graphics g){
         FogOfWar fogOfWar = state.inTurn.getFogOfWar();
         for(Iterator iter = map.getIterator(); iter.hasNext();){
             Tile tile = (Tile) iter.next();
@@ -116,7 +120,7 @@ public class ViewPort extends JPanel{
         }
     }
 
-    public void paintLayerThree(Graphics g){
+    public static void paintLayerThree(Graphics g){
         TileDrawer.drawMarkers(g, state);
     }
 
@@ -124,7 +128,7 @@ public class ViewPort extends JPanel{
 
     }
 
-    public void paintViewPort(Graphics g){
+    public static void paintViewPort(Graphics g){
         paintLayerOne(g);
         paintLayerTwo(g);
         paintLayerThree(g);
@@ -133,7 +137,20 @@ public class ViewPort extends JPanel{
     @Override
     public void paint(Graphics g) {
         super.paintComponent(g);
+        graphics = g;
         g.translate(-scroller.x, -scroller.y);
         paintViewPort(g);
+    }
+
+    public static BufferedImage componentToImage(Component component, Rectangle region) throws IOException {
+        BufferedImage img = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_ARGB_PRE);
+        Graphics g = img.getGraphics();
+        g.setColor(component.getForeground());
+        g.setFont(component.getFont());
+        component.paintAll(g);
+        if (region == null) {
+            region = new Rectangle(0, 0, img.getWidth(), img.getHeight());
+        }
+        return img.getSubimage(region.x, region.y, region.width, region.height);
     }
 }

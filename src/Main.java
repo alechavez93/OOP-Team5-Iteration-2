@@ -30,13 +30,19 @@ public class Main {
 
         game.setState(state);
 
-
         InGameFrame frame = new InGameFrame();
         frame.addView(new MapView("Map Overview", state));
         frame.addView(new UnitView("Unit Overview", state));
         frame.addView(new StructureView("Structure Overview", state));
         frame.addView(new TechTreeView("Tech Tree", state));
 
-        frame.addKeyListener(new InGameController(frame, state));
+        InGameController controller = new InGameController(frame, state);
+        frame.addKeyListener(controller);
+
+        StartingFrame start = new StartingFrame();
+        start.addKeyListener(controller);
+        start.setVisible(true);
+        controller.setStartingFrame(start);
+
     }
 }
