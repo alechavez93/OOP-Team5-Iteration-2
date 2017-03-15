@@ -9,6 +9,7 @@ package Views.Drawers;
 
 
 import Game.CyclingState;
+import GameLibrary.GameLibrary;
 import GameMap.Tile;
 import Utility.GraphicsFactory;
 import Views.PixelMaps.PixelMap;
@@ -20,6 +21,8 @@ import java.util.List;
 
 
 public class TileDrawer {
+
+    public static final int FONT_SIZE = OptionDrawer.FONT_SIZE/2;
 
     public static void drawTile(Graphics g, Tile tile){
         //Set Stroke
@@ -46,7 +49,7 @@ public class TileDrawer {
 
     public static void drawExplored(Graphics g, Tile tile){
         Color prevColor = g.getColor();
-        g.setColor(new Color(0,0,0,150));
+        g.setColor(new Color(0,0,0,127));
         PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
         Polygon tileShape = getHexagon(center);
         g.fillPolygon(tileShape);
@@ -76,18 +79,21 @@ public class TileDrawer {
     public static void drawResources(Graphics g, Tile tile){
         GraphicsFactory graphicsFactory = GraphicsFactory.getInstance();
         PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
-        PixelPoint foodPoint = new PixelPoint(center.x - PixelMap.TILE_WIDTH/2, center.y - PixelMap.TILE_HEIGHT/2);
-        PixelPoint orePoint = new PixelPoint(center.x - PixelMap.TILE_WIDTH/2, center.y - PixelMap.TILE_HEIGHT/2);
-        PixelPoint energyPoint = new PixelPoint(center.x + PixelMap.TILE_WIDTH/2, center.y - PixelMap.TILE_HEIGHT/2);
+        PixelPoint foodPoint = new PixelPoint(center.x - PixelMap.TILE_WIDTH/2, center.y - PixelMap.TILE_HEIGHT/2+FONT_SIZE);
+        PixelPoint orePoint = new PixelPoint(center.x-FONT_SIZE, center.y - PixelMap.TILE_HEIGHT/2+FONT_SIZE);
+        PixelPoint energyPoint = new PixelPoint(center.x + PixelMap.TILE_WIDTH/2-(int)(2.3*FONT_SIZE), center.y - PixelMap.TILE_HEIGHT/2+FONT_SIZE);
 
-        g.drawImage(graphicsFactory.getGraphics(GraphicsFactory.FOOD_ICON), foodPoint.x, foodPoint.y, 50, 50, null);
-        g.drawString(tile.getResources().getFood()+"", foodPoint.x, foodPoint.y);
+        g.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, FONT_SIZE));
 
-        g.drawImage(graphicsFactory.getGraphics(GraphicsFactory.ORE_ICON), orePoint.x, orePoint.y, 50, 50, null);
-        g.drawString(tile.getResources().getOre()+"", orePoint.x, orePoint.y);
-
-        g.drawImage(graphicsFactory.getGraphics(GraphicsFactory.ENERGY_ICON), energyPoint.x, energyPoint.y, 50, 50, null);
-        g.drawString(tile.getResources().getEnergy()+"", energyPoint.x, energyPoint.y);
+        //Red for food
+        g.setColor(new Color(81, 7, 19));
+        g.drawString("F"+tile.getResources().getFood(), foodPoint.x, foodPoint.y);
+        //Black for ore
+        g.setColor(new Color(0, 0, 0));
+        g.drawString("O"+tile.getResources().getOre(), orePoint.x, orePoint.y);
+        //Blue for energy
+        g.setColor(new Color(25, 13, 135));
+        g.drawString("E"+tile.getResources().getEnergy(), energyPoint.x, energyPoint.y);
     }
 
     //Gets corner points for a Hexatile
