@@ -110,6 +110,9 @@ public class ViewPort extends JPanel{
                         StructureDrawer.drawStructure(g, (Structure)e);
                 }
             }
+            if(!visibility.isShrouded()){
+                TileDrawer.drawResources(g, tile);
+            }
         }
     }
 
