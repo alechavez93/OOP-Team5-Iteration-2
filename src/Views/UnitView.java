@@ -7,6 +7,7 @@ package Views;
 
 
 import Entity.Entity;
+import Entity.Unit.ExplorerUnit;
 import Entity.Unit.MeleeSoldier;
 import Entity.Unit.RangeSoldier;
 import Game.CyclingState;
@@ -49,15 +50,15 @@ public class UnitView extends View{
 
         //Print Melee Units
         List<Entity> list = entityManager.getMeleeUnitList();
-        printEntityList(g, list, 0);
+        printEntityList(g, list, 0, new MeleeSoldier(-1, null, null));
 
         //Print Ranged Units
         list = entityManager.getRangeUnitList();
-        printEntityList(g, list, 2);
+        printEntityList(g, list, 2, new RangeSoldier(-1, null, null));
 
         //Print Explorer Units
         list = entityManager.getExplorerUnitList();
-        printEntityList(g, list, 4);
+        printEntityList(g, list, 4, new ExplorerUnit(-1, null, null));
 
         //Print Worker Count
         int workerCount = 0;
@@ -70,9 +71,9 @@ public class UnitView extends View{
 
     }
 
-    public void printEntityList(Graphics g, List<Entity> list, int rowMultiplier){
+    public void printEntityList(Graphics g, List<Entity> list, int rowMultiplier, Entity sample){
         PixelPoint position = null;
-
+        EntityDrawer.drawEntity(g, new PixelPoint(PixelMap.TILE_WIDTH - PixelMap.TILE_WIDTH/2 - PixelMap.TILE_WIDTH/4, PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*rowMultiplier), sample, graphicsFactory);
         for(int i=0; i<10; i++){
             position = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(i+1),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*rowMultiplier);
             if(i<list.size()){
@@ -82,7 +83,7 @@ public class UnitView extends View{
             }
         }
         position.x += PixelMap.TILE_WIDTH;
-        if(list.size() == 0) return;
-        OptionDrawer.drawStats(g, list.get(0), position, graphicsFactory);
+        if(list.size() == 0) OptionDrawer.drawStats(g, sample, position, graphicsFactory);
+        else OptionDrawer.drawStats(g, list.get(0), position, graphicsFactory);
     }
 }

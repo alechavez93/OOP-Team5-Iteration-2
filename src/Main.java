@@ -38,6 +38,7 @@ public class Main {
 
         InGameController controller = new InGameController(frame, state);
         frame.addKeyListener(controller);
+        frame.setVisible(false);
 
         StartingFrame start = new StartingFrame();
         start.addKeyListener(controller);

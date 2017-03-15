@@ -36,7 +36,7 @@ public class Game {
 
     public Game(){
 
-        p1Start = new MapCoordinate(2,2);
+        p1Start = new MapCoordinate(2,7);
         p2Start = new MapCoordinate(10,15);
         //GameMap.getInstance().initialize(new Vec2i(20,20));
         player1 = new Player(1, "Logan", p1Start);

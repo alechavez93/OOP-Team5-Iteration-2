@@ -25,6 +25,7 @@ import java.util.List;
 import Entity.*;
 import Views.MiniMapSection;
 import Views.PixelMaps.PixelMap;
+import Views.PixelMaps.PixelPoint;
 import Views.StartingFrame;
 import Views.ViewPort;
 
@@ -145,6 +146,11 @@ public class InGameController extends GameLibrary implements KeyListener {
         }
         game.changeTurn();
         state.inTurn = game.getActivePlayer();
+        MapCoordinate next = null;
+        if(state.inTurn.getEntityManager().getCapitalList().size() > 0) next = state.inTurn.getEntityManager().getCapitalList().get(0).getLocation();
+        else if(state.inTurn.getEntityManager().getColonistList().size() > 0) next = state.inTurn.getEntityManager().getColonistList().get(0).getLocation();
+        PixelPoint nextPlayerPos = PixelMap.mapCoordinate(next);
+        ViewPort.scroller.x = nextPlayerPos.x - ViewPort.VIEWPORT_WIDTH/2; ViewPort.scroller.y = nextPlayerPos.y-ViewPort.VIEWPORT_HEIGHT/2;
         MiniMapSection.updateMiniMap();
     }
 
