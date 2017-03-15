@@ -6,6 +6,7 @@ package Game.Control;
 ---------------------------------------------------------------------------------------*/
 
 import Commands.Command;
+import Entity.Army.Army;
 import Game.CyclingState;
 import Game.*;
 import GameLibrary.GameLibrary;
@@ -67,6 +68,7 @@ public class InGameController extends GameLibrary implements KeyListener {
         cycleCommands(code);
         specialKeys(code);
         moveCursor(code);
+        cycleArmy(code);
         frame.getMapView().refreshCyclinigSection();
         frame.getMapView().refreshEntityStateSection();
         frame.getMapView().refreshMinimapSection();
@@ -107,6 +109,27 @@ public class InGameController extends GameLibrary implements KeyListener {
             if(state.path.size() > 0){
                 state.path.add(map.getNeighborTile(state.path.get(state.path.size()-1), direction));
             }else state.path.add(map.getNeighborTile(state.cursorCoord, direction));
+        }
+    }
+
+
+    public void changeArmy(int code){
+        EntityManager entityManager = state.inTurn.getEntityManager();
+        List<Entity> armies = entityManager.getArmyList();
+        try {
+            if (code == keyConfiguration.getZero()) { state.selectedArmy = (Army) armies.get(0); }
+            else if (code == keyConfiguration.getOne()) { state.selectedArmy = (Army) armies.get(1); }
+            else if (code == keyConfiguration.getTwo()) { state.selectedArmy = (Army) armies.get(2); }
+            else if (code == keyConfiguration.getThree()) { state.selectedArmy = (Army) armies.get(3); }
+            else if (code == keyConfiguration.getFour()) { state.selectedArmy = (Army) armies.get(4); }
+            else if (code == keyConfiguration.getFive()) { state.selectedArmy = (Army) armies.get(5);}
+            else if (code == keyConfiguration.getSix()) { state.selectedArmy = (Army) armies.get(6); }
+            else if (code == keyConfiguration.getSeven()) { state.selectedArmy = (Army) armies.get(7);}
+            else if (code == keyConfiguration.getEight()) { state.selectedArmy = (Army) armies.get(8);}
+            else if (code == keyConfiguration.getNine()) { state.selectedArmy = (Army) armies.get(9); }
+        }
+        catch (Exception ex){
+            System.out.println("Error selecting Armies");
         }
     }
 
