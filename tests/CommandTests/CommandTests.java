@@ -241,28 +241,38 @@ public class CommandTests {
     private static void commandTest5() {
         GameMap.getInstance().initialize(new Vec2i(20, 20));
         Game game = new Game();
+        int turn = 1;
 
         ColonistUnit colonistUnit = (ColonistUnit) game.player1.getEntityManager().getColonistList().get(0);
         MakeCapital command1 = new MakeCapital(colonistUnit);
         game.player1.getEntityManager().finishTurn();
-        CapitalStructure capitalStructure = (CapitalStructure) game.player1.getEntityManager().getCapitalList().get(0);
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 1
 
+        CapitalStructure capitalStructure = (CapitalStructure) game.player1.getEntityManager().getCapitalList().get(0);
         //capitalStructure.getWorkers().setNumberOfWorkers(2);
         System.out.println("Capital workers: " + capitalStructure.getWorkers().getNumberOfWorkers());
         game.player1.printResources();
         MakeExplorer makeExplorer = new MakeExplorer(capitalStructure);
         printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 2
 
         printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 3
 
         printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 4
 
         printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
-
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 5
 
         game.player1.printResources();
         game.player1.getEntityManager().finishTurn();
@@ -284,44 +294,54 @@ public class CommandTests {
         System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
 
         game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 6
+
         MoveRallypoint moveRallypoint = new MoveRallypoint(army, new MapCoordinate(1,5));
-
         game.player1.getEntityManager().finishTurn();
         printCommandList(game.player1);
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 7
+
         System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
         game.player1.getEntityManager().finishTurn();
         printCommandList(game.player1);
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 8
+
         System.out.println("army location: " + army.getLocation().getColumn() + ", " + army.getLocation().getRow());
         game.player1.getEntityManager().finishTurn();
         printCommandList(game.player1);
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 9
 
+//        game.player1.getEntityManager().finishTurn();
+//        game.player1.getEntityManager().finishTurn();
+//        game.player1.getEntityManager().finishTurn();
 
-        game.player1.getEntityManager().finishTurn();
-        game.player1.getEntityManager().finishTurn();
-        game.player1.getEntityManager().finishTurn();
         BuildStructure buildStructure = new BuildStructure( army, 5, GameLibrary.FARM);
-
-        //printEntityList(game.player1);
-        //printCommandList(game.player1);
-        game.player1.getEntityManager().finishTurn();
-        game.player1.getEntityManager().finishTurn();
-        game.player1.getEntityManager().finishTurn();
-
-        System.out.println("~~~~~~~~~~~~~~~~");
         printEntityList(game.player1);
         printCommandList(game.player1);
+        game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 10
 
-        System.out.println("~~~~~~~~~~~~~~~~");
-        FarmStructure farmStructure = (FarmStructure) game.player1.getEntityManager().getFarmList().get(0);
-        PickupWorkers pickupWorkers = new PickupWorkers(rallyPoint, farmStructure, 3);
-        /*System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
-        System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
-        System.out.println("~~~~~~~~~~~~~~~~");
-        Dropoff dropoff = new Dropoff(rallyPoint, farmStructure, 3);
-        System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
-        System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
-
-*/
+//        game.player1.getEntityManager().finishTurn();
+//        game.player1.getEntityManager().finishTurn();
+//
+//        System.out.println("~~~~~~~~~~~~~~~~");
+//        printEntityList(game.player1);
+//        printCommandList(game.player1);
+//
+//        System.out.println("~~~~~~~~~~~~~~~~");
+//        FarmStructure farmStructure = (FarmStructure) game.player1.getEntityManager().getFarmList().get(0);
+//        PickupWorkers pickupWorkers = new PickupWorkers(rallyPoint, farmStructure, 3);
+//        System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
+//        System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
+//        System.out.println("~~~~~~~~~~~~~~~~");
+//        Dropoff dropoff = new Dropoff(rallyPoint, farmStructure, 3);
+//        System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
+//        System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
     }
 
     private static void printCommandList(Player player) {
