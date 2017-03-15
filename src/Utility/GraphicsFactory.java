@@ -70,11 +70,12 @@ public class GraphicsFactory {
             cachedGraphics.put(iconSrc, icon);
         }
 
-        //Load background
+        BufferedImage army = ImageUtil.loadImage(ARMY_SRC);
         BufferedImage icon = ImageUtil.loadImage(BACKGROUND_SRC);
         BufferedImage body = ImageUtil.loadImage(BODY_SRC);
         cachedGraphics.put(BACKGROUND_SRC, icon);
         cachedGraphics.put("NONE", body);
+        cachedGraphics.put(GameLibrary.ARMY_MODE, army);
     }
 
     //Public Accessors

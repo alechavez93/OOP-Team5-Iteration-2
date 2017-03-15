@@ -5,6 +5,7 @@ package Views.Drawers;
 |   Description: Draws an option name with an icon [not required], and a value next to it.
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Army.Army;
 import Entity.Entity;
 import Utility.GraphicsFactory;
 import Views.PixelMaps.PixelMap;
@@ -31,6 +32,7 @@ public class OptionDrawer {
     }
 
     public static void drawStats(Graphics g, Entity entity, PixelPoint position, GraphicsFactory graphicsFactory){
+        if(entity instanceof Army) return;
         g.drawRect(position.x, position.y-PixelMap.MARGIN, (int)(PixelMap.TILE_WIDTH*3.5), (int)(PixelMap.AFTER_SPACE*3.5));
 
         BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.ATTACK_ICON);

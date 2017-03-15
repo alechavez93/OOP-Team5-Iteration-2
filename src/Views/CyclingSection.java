@@ -7,7 +7,9 @@ package Views;
 ---------------------------------------------------------------------------------------*/
 
 
+import Entity.*;
 import Game.CyclingState;
+import GameLibrary.GameLibrary;
 import Utility.GraphicsFactory;
 import Views.Drawers.OptionDrawer;
 import Views.PixelMaps.PixelMap;
@@ -20,7 +22,7 @@ import java.awt.image.BufferedImage;
 public class CyclingSection extends JPanel{
 
     GraphicsFactory graphicsFactory;
-    CyclingState cyclingState;
+    CyclingState state;
 
     public CyclingSection(){
         setLayout(null);
@@ -29,7 +31,7 @@ public class CyclingSection extends JPanel{
         setVisible(true);
     }
 
-    public void setCyclingState(CyclingState cyclingState){ this.cyclingState = cyclingState; }
+    public void setState(CyclingState state){ this.state = state; }
 
     @Override
     public void paint(Graphics g) {
@@ -37,29 +39,30 @@ public class CyclingSection extends JPanel{
         g.drawRect(5, 5, getWidth()-10, getHeight()-10);
         paintCyclingState(g);
         paintResources(g);
+        paintSelectedArmy(g);
     }
 
 
     private void paintCyclingState(Graphics g){
         //Player
         BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.PLAYER_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE), icon, "Player: ", cyclingState.inTurn.getName(), new Color(10,119,16));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE), icon, "Player: ", state.inTurn.getName(), new Color(10,119,16));
 
         //Game Mode
         icon = graphicsFactory.getGraphics(GraphicsFactory.MODE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, "Game Mode: ", cyclingState.gameMode, new Color(0,0,254));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, "Game Mode: ", state.gameMode, new Color(0,0,254));
 
         //Mode Type
         icon = graphicsFactory.getGraphics(GraphicsFactory.TYPE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, "Mode Type: ", cyclingState.modeType, new Color(136,137,46));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, "Mode Type: ", state.modeType, new Color(136,137,46));
 
         //Entity
         icon = graphicsFactory.getGraphics(GraphicsFactory.ID_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*3), icon, "Entity Id: ", cyclingState.selectedEntity.getName()+" "+cyclingState.selectedEntity.getInstanceID()%10, new Color(254,0,0));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*3), icon, "Entity Id: ", state.selectedEntity.getName()+" "+ state.selectedEntity.getInstanceID()%10, new Color(254,0,0));
 
         //Command
         icon = graphicsFactory.getGraphics(GraphicsFactory.COMMAND_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*4), icon, "Command: ", cyclingState.selectedCommand, new Color(254,0,254));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*4), icon, "Command: ", state.selectedCommand, new Color(254,0,254));
     }
 
 
@@ -68,14 +71,29 @@ public class CyclingSection extends JPanel{
 
         //Food
         BufferedImage icon = graphicsFactory.getGraphics(GraphicsFactory.FOOD_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE), icon, cyclingState.inTurn.getFood()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*4, PixelMap.INIT_SPACE), icon, state.inTurn.getFood()+"");
 
         //Ore
         icon = graphicsFactory.getGraphics(GraphicsFactory.ORE_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, cyclingState.inTurn.getOre()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*4, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE), icon, state.inTurn.getOre()+"");
 
         //Energy
         icon = graphicsFactory.getGraphics(GraphicsFactory.ENERGY_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, cyclingState.inTurn.getEnergy()+"");
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH*4, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*2), icon, state.inTurn.getEnergy()+"");
+    }
+
+
+
+    private void paintSelectedArmy(Graphics g){
+        Entity armyObj = state.selectedArmy == null? new NONE(): state.selectedArmy;
+        BufferedImage army = graphicsFactory.getGraphics(GameLibrary.ARMY_MODE);
+        PixelPoint position =  new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE);
+        OptionDrawer.drawStats(g, armyObj, position , graphicsFactory);
+
+        int width = PixelMap.UNIT_HEIGHT*3, height = PixelMap.UNIT_HEIGHT*3, x = (int)(position.x+PixelMap.TILE_WIDTH*3.7), y = position.y;
+        g.drawRect(x-5, y-5, width+10, height+10);
+        System.out.println(army);
+        g.drawImage(army, x, y, width, height, null);
+
     }
 }

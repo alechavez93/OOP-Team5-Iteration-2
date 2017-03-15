@@ -6,6 +6,7 @@ package Views;
 |   around to discover the whole map.
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Army.Army;
 import Entity.Entity;
 import Entity.Structure.Structure;
 import Entity.Unit.MeleeSoldier;
@@ -112,6 +113,9 @@ public class ViewPort extends JPanel{
                         UnitDrawer.drawUnit(g, (Unit)e);
                     else if(e instanceof Structure)
                         StructureDrawer.drawStructure(g, (Structure)e);
+                    else if(e instanceof Army){
+                        UnitDrawer.drawArmy(g, (Army)e);
+                    }
                 }
             }
             if(!visibility.isShrouded()){
