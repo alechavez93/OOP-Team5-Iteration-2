@@ -47,7 +47,7 @@ public class PixelMap {
         }
         //If odd Col
         else{
-            return new PixelPoint(coor.getColumn()*width_offset, coor.getRow()*TILE_HEIGHT+height_offset);
+            return new PixelPoint(coor.getColumn()*width_offset, coor.getRow()*TILE_HEIGHT-height_offset);
         }
     }
 

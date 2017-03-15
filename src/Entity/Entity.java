@@ -209,7 +209,11 @@ public abstract class Entity extends Stats {
 
     // getters
     public String getName() { return name; }
-    public int getInstanceID() { return instanceID; }
+    public int getInstanceID() {
+//        if(instanceID >= 10)
+//            return instanceID%10;
+        return instanceID;
+    }
     public MapCoordinate getLocation() { return location; }
     public Direction getDirection() { return direction; }
     public String getState() { return state; }

@@ -16,6 +16,7 @@ public abstract class Command {
     protected RallyPoint rallyPoint;
 
     public Command(String name, Entity affected) {
+        isFinished = false;
         this.name = name;
         this.affected = affected;
         affected.addCommand(this);

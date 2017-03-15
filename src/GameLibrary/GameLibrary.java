@@ -47,8 +47,11 @@ public class GameLibrary {
     public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
     //Unit Commands
-    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY";
+    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, MOVE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] EXPLORER_COMMANDS = {MOVE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+
 
     //Colonist Commands
     public static final String BUILD_CAPITAL = "BUILD CAPITAL";
