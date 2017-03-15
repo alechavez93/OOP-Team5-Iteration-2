@@ -1,5 +1,6 @@
 package Commands;
 
+import Entity.Army.Army;
 import Entity.Army.RallyPoint;
 import Entity.Structure.*;
 import Entity.Worker;
@@ -22,11 +23,16 @@ public class BuildStructure extends Command {
     private String structureType;
     private int workAmount;
 
-    public BuildStructure(RallyPoint rallyPoint, int workerCount, String structureType){
-        super(BUILD_STRUCTURE, rallyPoint);
+    public BuildStructure(Army army, int workerCount, String structureType){
+        super(BUILD_STRUCTURE, army.getRallyPoint());
         this.workerCount = workerCount;
         this.structureType = structureType;
         workAmount = calculate(structureType);
+        //army.addCommand(this);
+        if(workAmount != -1)
+            System.out.println("something broke");
+
+
     }
 
 
@@ -41,22 +47,22 @@ public class BuildStructure extends Command {
         if(workAmount > 0) return;
 
         switch (structureType){
-            case FARM:  structure = new FarmStructure(entityManager.nextFarmIndex(), rallyPoint.getLocation(), entityManager);
+            case FARM:  structure = new FarmStructure(entityManager.nextFarmIndex(), rallyPoint.getLocation(), entityManager, workerCount);
                         entityManager.addFarm((FarmStructure) structure);
                         break;
-            case MINE:  structure = new MineStructure(entityManager.nextMineIndex(), rallyPoint.getLocation(), entityManager);
+            case MINE:  structure = new MineStructure(entityManager.nextMineIndex(), rallyPoint.getLocation(), entityManager, workerCount);
                         entityManager.addMine((MineStructure) structure);
                         break;
-            case POWER: structure = new PowerStructure(entityManager.nextPowerIndex(), rallyPoint.getLocation(), entityManager);
+            case POWER: structure = new PowerStructure(entityManager.nextPowerIndex(), rallyPoint.getLocation(), entityManager, workerCount);
                         entityManager.addPower((PowerStructure) structure);
                         break;
-            case FORT:  structure = new FortStructure(entityManager.nextFortIndex(), rallyPoint.getLocation(), entityManager);
+            case FORT:  structure = new FortStructure(entityManager.nextFortIndex(), rallyPoint.getLocation(), entityManager, workerCount);
                         entityManager.addFort((FortStructure) structure);
                         break;
-            case OBSERVATION_TOWER: structure = new ObservationStructure(entityManager.nextObservationIndex(), rallyPoint.getLocation(), entityManager);
+            case OBSERVATION_TOWER: structure = new ObservationStructure(entityManager.nextObservationIndex(), rallyPoint.getLocation(), entityManager, workerCount);
                         entityManager.addObservation((ObservationStructure) structure);
                         break;
-            case UNIVERSITY: structure = new UniversityStructure(entityManager.nextUniversityIndex(), rallyPoint.getLocation(), entityManager);
+            case UNIVERSITY: structure = new UniversityStructure(entityManager.nextUniversityIndex(), rallyPoint.getLocation(), entityManager, workerCount);
                         entityManager.addUniversity((UniversityStructure) structure);
                         break;
             default:   break;

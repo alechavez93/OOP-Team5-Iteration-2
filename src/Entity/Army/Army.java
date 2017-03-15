@@ -8,20 +8,36 @@ package Entity.Army;
 import Entity.Entity;
 import Entity.Unit.*;
 import GameLibrary.GameLibrary;
+import Game.Game;
+import GameMap.GameMap;
 import GameMap.MapCoordinate;
+import GameMap.Path;
+import GameMap.AStarPathFinder;
 import Player.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Army extends Entity{
+public class Army extends Entity {
 
     private List<Unit> battleGroup;
-    private List<Unit> reinforcement;
+    private List<UnitPath> reinforcement;
     private RallyPoint rallyPoint;
+    private Path path;
     private int meleeAttack;
     private int rangeAttack;
     private boolean isAttacking;
+    private boolean atRallyPoint;
+
+    private class UnitPath {
+        public Path path;
+        public Unit unit;
+
+        public UnitPath(Path p, Unit u) {
+            this.path = p;
+            this.unit = u;
+        }
+    }
 
     public Army(int instanceID, MapCoordinate location, EntityManager entityManager, Unit initial) {
         super(GameLibrary.ARMY_MODE, instanceID, location, entityManager);
@@ -30,34 +46,39 @@ public class Army extends Entity{
         this.battleGroup.add(initial);
         this.rallyPoint = new RallyPoint(initial.getLocation(), initial.getEntityManager());
         isAttacking = false;
+        atRallyPoint = true;
         updateStats();
     }
 
-    private void updateAttack(){
+    public RallyPoint getRallyPoint() {
+        return rallyPoint;
+    }
+
+    private void updateAttack() {
         meleeAttack = 0;
         rangeAttack = 0;
-        for(Unit unit: battleGroup){
-            if(unit instanceof MeleeSoldier){
+        for (Unit unit : battleGroup) {
+            if (unit instanceof MeleeSoldier) {
                 meleeAttack += unit.getAttack();
-            }else if(unit instanceof RangeSoldier){
+            } else if (unit instanceof RangeSoldier) {
                 rangeAttack += unit.getAttack();
             }
         }
     }
 
-    private  void updateTotalStats(){
+    private void updateTotalStats() {
         resetStats();
         int minSpeed = 5;
         int maxVisibility = 0;
         int minRange = 3;
         //Regular Stats
-        for(Unit unit: battleGroup){
+        for (Unit unit : battleGroup) {
             //Update speed
-            if(unit.getMovement() < minSpeed) minSpeed = unit.getMovement();
+            if (unit.getMovement() < minSpeed) minSpeed = unit.getMovement();
             //Update visibility
-            if(unit.getVisibilityRadius() > maxVisibility) maxVisibility = unit.getVisibilityRadius();
+            if (unit.getVisibilityRadius() > maxVisibility) maxVisibility = unit.getVisibilityRadius();
             //Update range
-            if(unit instanceof Soldier && unit.getRangeRadius() < minRange ) minRange = unit.getRangeRadius();
+            if (unit instanceof Soldier && unit.getRangeRadius() < minRange) minRange = unit.getRangeRadius();
             attack += unit.getAttack();
             defense += unit.getDefense();
             armor += unit.getArmor();
@@ -74,38 +95,123 @@ public class Army extends Entity{
         rangeRadius = minRange;
     }
 
-    public void updateStats(){
+    public void updateStats() {
         updateAttack();
         updateTotalStats();
     }
 
     @Override
-    public void destroy(){
-        for(Unit unit: battleGroup){
+    public void destroy() {
+        for (Unit unit : battleGroup) {
             unit.destroy();
         }
-        for(Unit unit: reinforcement){
-            unit.destroy();
+        for (UnitPath u : reinforcement) {
+            u.unit.destroy();
         }
         entityManager.destroyArmy(this);
     }
 
-    public void addReinforcement(Unit unit){
-        reinforcement.add(unit);
+    public void addReinforcement(Unit unit) {
+        Path p = null;
+        unit.getEntityManager().removeEntity(unit);
+        if (!unit.getLocation().equals(getLocation())) {
+            p = (new AStarPathFinder()).createPath(unit.getLocation(), rallyPoint.getLocation());
+        }
+        UnitPath up = new UnitPath(p, unit);
+        reinforcement.add(up);
+
     }
 
-    public void updateArmyReinforcement(){
-        List<Unit> arrived = new ArrayList<>();
-        for(Unit unit: reinforcement){
-            if(unit.getLocation().equals(getLocation())){
-                battleGroup.add(unit);
-                arrived.add(unit);
-                currentHealth += unit.getCurrentHealth();
+    public void updateArmyReinforcement() {
+        List<UnitPath> arrived = new ArrayList<>();
+        for (UnitPath u : reinforcement) {
+            if (u.unit.getLocation().equals(getLocation())) {
+                battleGroup.add(u.unit);
+                arrived.add(u);
+                currentHealth += u.unit.getCurrentHealth();
                 updateStats();
             }
         }
-        for(Unit removed: arrived){
+
+        for (UnitPath removed : arrived) {
             reinforcement.remove(removed);
         }
     }
+
+    public void finishTurn() {
+        super.finishTurn();
+        processMovement();
+    }
+
+    public void processMovement() {
+        if (!atRallyPoint) {
+            if (!path.isValid()) {
+            }
+            //path.recreate(getLocation());
+            int speed = movement;
+            while (speed > 0) {
+                GameMap.getInstance().shiftEntity(this, path.next());
+                speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
+            }
+            atRallyPoint = getLocation().equals(rallyPoint.getLocation());
+        } else {
+            //Don't want to reinforce until battleGroup is actually there
+            updateArmyReinforcement();
+            for (UnitPath u : reinforcement) {
+                if (!u.path.isValid()) {
+                }
+                //path.recreate(getLocation());
+                int speed = u.unit.movement;
+                while (speed > 0) {
+                    GameMap.getInstance().shiftEntity(u.unit, u.path.next());
+                    speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
+                }
+            }
+        }
+    }
+
+    public void moveRallypoint(MapCoordinate newLoc) {
+        rallyPoint.setLocation(newLoc);
+        atRallyPoint = getLocation().equals(newLoc);
+        if (!atRallyPoint) {
+            path = (new AStarPathFinder()).createPath(getLocation(), newLoc);
+        }
+    }
+
+    public void disband() {
+        //TODO: THIS
+        //Rally point - leave it alone
+        //battlegroup - distribute hp and place
+        //reinforcements - put them back on  map
+
+
+    }
+
+    public List<Entity> getBattleGroup() {
+        List<Entity> battleList = new ArrayList<>();
+        for(Unit unit: battleGroup){
+            battleList.add(unit);
+        }
+        return battleList;
+    }
+
+    public List<Entity> getReinforcement() {
+        List<Entity> reinforcementsList = new ArrayList<>();
+        for(UnitPath path: reinforcement){
+            reinforcementsList.add(path.unit);
+        }
+        return reinforcementsList;
+    }
+
+    public List<Entity> getEntireArmy(){
+        List<Entity> entireList = new ArrayList<>();
+        for(UnitPath path: reinforcement){
+            entireList.add(path.unit);
+        }
+        for(Unit unit: battleGroup){
+            entireList.add(unit);
+        }
+        return entireList;
+    }
+
 }

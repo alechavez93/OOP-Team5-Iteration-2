@@ -18,30 +18,25 @@ import Player.EntityManager;
 
 public class MineStructure extends Structure {
 
-    private int productionRate;
-    private Worker workers;
-    private int workRadius;
-
-    public MineStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+    public MineStructure(int instanceID, MapCoordinate location, EntityManager entityManager, int workerCount) {
         super(GameLibrary.MINE, instanceID, location, entityManager);
-        this.productionRate = 1;
-        this.workers = new Worker(0);
-        this.workRadius = 1;
         defense = 3;
         armor = 5;
         maxHealth = 100;
         currentHealth = maxHealth;
         rangeRadius = 1;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 12;
+        workers.setNumberOfWorkers(workerCount);
+        production = new Production(0,0,1,0,0,1,0,0,0);
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {
-        Resource.ORE.decrementAmount(productionRate*workerCount);
+        Resource.ORE.decrementAmount(production.oreRate*workerCount);
     }
 
     public void assignProduce(int workerCount) {
-        Resource.METAL.incrementAmount( productionRate*workerCount);
+        Resource.METAL.incrementAmount( production.oreRate*workerCount);
     }
 
     public void destroy(){

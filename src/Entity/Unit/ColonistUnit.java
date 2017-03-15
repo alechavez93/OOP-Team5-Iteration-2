@@ -22,7 +22,7 @@ public class ColonistUnit extends Unit {
         maxHealth = 10;
         currentHealth = maxHealth;
         visibilityRadius = 2;
-        upkeep = 2;
+        upkeep = 12;
     }
 
     public CapitalStructure createCapitalStructure() {

@@ -19,11 +19,12 @@ import Player.EntityManager;
 
 public class CreateArmy extends Command{
 
-    //TODO: make this into something instant
 
     public CreateArmy(Entity affected) {
         super(GameLibrary.CREATE_ARMY, affected);
-        }
+        execute();
+    }
+
     @Override
     public void execute() {
         EntityManager entityManager = affected.getEntityManager();
@@ -31,6 +32,7 @@ public class CreateArmy extends Command{
         Army army = new Army(entityManager.nextArmyIndex(),affected.getLocation(), entityManager, (Unit) affected);
         entityManager.addArmy(army);
         ((Unit) affected).setInArmy(true);
+        affected.getEntityManager().removeEntity(affected);
         isFinished = true;
     }
 

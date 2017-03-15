@@ -21,7 +21,7 @@ import Technology.Technology;
 public class UniversityStructure extends Structure {
     private TechManager techmanager;
 
-    public UniversityStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+    public UniversityStructure(int instanceID, MapCoordinate location, EntityManager entityManager, int workerCount) {
         super(GameLibrary.UNIVERSITY, instanceID, location, entityManager);
         this.techmanager = entityManager.playerOwner.getTechManager();
         defense = 3;
@@ -30,7 +30,9 @@ public class UniversityStructure extends Structure {
         currentHealth = maxHealth;
         rangeRadius = 1;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 16;
+        workers.setNumberOfWorkers(workerCount);
+        production = new Production(0,0,0,0,0,0,0,0,0);
     }
 
 

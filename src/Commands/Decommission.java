@@ -11,7 +11,9 @@ import GameLibrary.GameLibrary;
 public class Decommission extends Command {
 
     public Decommission(Entity affected){
+
         super(GameLibrary.DECOMMISSION, affected);
+        execute();
     }
 
     @Override

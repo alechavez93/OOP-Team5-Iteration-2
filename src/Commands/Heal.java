@@ -27,12 +27,12 @@ public class Heal extends Command{
         Tile tile = GameMap.getInstance().getTile(location);
         for (Entity entity: tile.getOccupyingEntities()) {
             if (entity instanceof Unit) {
-                System.out.println("Healing Player " + entity.getEntityManager().playerOwner.getpID() + "'s Unit: " + entity.getName() + entity.getInstanceID());
+                //System.out.println("Healing Player " + entity.getEntityManager().playerOwner.getpID() + "'s Unit: " + entity.getName() + entity.getInstanceID());
                 ((CapitalStructure) affected).heal((Unit)entity);
                 entity.getEntityManager().playerOwner.spendFood(GameLibrary.HEAL_FOOD_COST);
             }
             if (entity instanceof Army) {
-                System.out.println("Healing Player " + entity.getEntityManager().playerOwner.getpID() + "'s Army: " + entity.getName() + entity.getInstanceID());
+                //System.out.println("Healing Player " + entity.getEntityManager().playerOwner.getpID() + "'s Army: " + entity.getName() + entity.getInstanceID());
                 ((CapitalStructure) affected).heal((Army)entity);
                 entity.getEntityManager().playerOwner.spendFood(GameLibrary.HEAL_FOOD_COST);
             }

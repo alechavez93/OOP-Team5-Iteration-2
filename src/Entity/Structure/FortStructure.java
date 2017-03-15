@@ -21,7 +21,7 @@ import Player.EntityManager;
 
 public class FortStructure extends Structure {
 
-    public FortStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+    public FortStructure(int instanceID, MapCoordinate location, EntityManager entityManager, int workerCount) {
         super(GameLibrary.FORT, instanceID, location, entityManager);
         attack = 5;
         defense = 3;
@@ -30,7 +30,9 @@ public class FortStructure extends Structure {
         currentHealth = maxHealth;
         rangeRadius = 1;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 20;
+        workers.setNumberOfWorkers(workerCount);
+        production = new Production(0,0,0,0,0,0,0,0,1);
     }
 
     public MeleeSoldier createMeleeSoldier() {

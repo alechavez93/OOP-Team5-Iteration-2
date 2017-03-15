@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-final public class GameLibrary {
+public class GameLibrary {
 
     //Game Modes
     public static final String STRUCTURE_MODE = "STRUCTURE", RALLY_POINT_MODE = "RALLY POINT", ARMY_MODE = "ARMY", UNIT_MODE = "UNIT";
@@ -23,7 +23,7 @@ final public class GameLibrary {
 
     //Unit Types
     public static final String MELEE = "MELEE SOLDIER", RANGED = "RANGED SOLDIER", COLONIST = "COLONIST", EXPLORER = "EXPLORER", WORKER = "WORKER", BODY = "BODY", SOLDIER = "SOLDIER";
-    public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER, WORKER, BODY};
+    public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER};
 
     //Structure Types
     public static final String CAPITAL = "CAPITAL", FARM = "FARM", MINE = "MINE", POWER_PLANT = "POWER PLANT", FORT = "FORT", OBSERVATION_TOWER = "OBSERVATION TOWER", UNIVERSITY = "UNIVERSITY";
@@ -64,6 +64,9 @@ final public class GameLibrary {
 
     //Soldier Commands
     public static final String[] SOLDIER_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+    //Explorer Commands
+    public static final String PROSPECT_MODE = "PROSPECT MODE";
 
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
@@ -142,5 +145,11 @@ final public class GameLibrary {
     //building structures
     public static final String BUILD_STRUCTURE = "BUILD STRUCTURE";
 
+    public static final String PICKUP = "PICKUP", DROPOFF = "DROPOFF";
+
     public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
+
+    //Creating Units
+    public static final String MAKE_EXPLORER = "MAKE EXPLORER", MAKE_SOLDIER = "MAKE SOLDIER";
+    public static final int EXPLORER_TURNS = 5,MELEE_TURNS = 9, RANGE_TURNS = 11;
 }

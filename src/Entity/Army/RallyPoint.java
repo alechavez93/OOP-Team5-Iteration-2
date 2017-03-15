@@ -11,6 +11,7 @@ import Commands.Command;
 import Entity.Entity;
 import Entity.Structure.Structure;
 import Entity.Worker;
+import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
@@ -33,16 +34,22 @@ public class RallyPoint {
 
     public void pickupWorker(Structure source, int workerCount) {
         if (workerCount <= source.getWorkers().getNumberOfWorkers()) {
-            worker.setNumberOfWorkers(workerCount);
+            worker.incrementNumberOfWorkers(workerCount);
+            source.getWorkers().decrementNumberOfWorkers(workerCount);
         }
-        System.out.println("Not enough workers to pickup");
+        else {
+            System.out.println("Not enough workers to pickup");
+        }
     }
 
     public void dropoffWorker(Structure destination, int workerCount) {
         if (workerCount <= worker.getNumberOfWorkers()) {
-            destination.getWorkers().setNumberOfWorkers(workerCount);
+            destination.getWorkers().incrementNumberOfWorkers(workerCount);
+            worker.decrementNumberOfWorkers(workerCount);
         }
-        System.out.println("Not enough workers to dropoff");
+        else {
+            System.out.println("Not enough workers to dropoff");
+        }
     }
 
     public void build(Structure structureType, int workerCount, MapCoordinate location) {
@@ -58,5 +65,15 @@ public class RallyPoint {
 
     public void setLocation(MapCoordinate location) { this.location = location; }
     public void setWorker(Worker worker) { this.worker = worker; }
-    public EntityManager getEntityManager() { return entityManager; }
+    public EntityManager getEntityManager(){ return entityManager;}
+
+    public void processQueue(){
+        if (!commandList.isEmpty()) {
+            commandList.get(0).execute();
+            if (commandList.get(0).isFinished() == true) {
+                commandList.remove(0);
+            }
+        }
+    }
+
 }

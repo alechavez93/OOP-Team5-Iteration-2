@@ -23,7 +23,7 @@ public class MeleeSoldier extends Soldier {
         currentHealth = maxHealth;
         rangeRadius = 1;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 20;
     }
 
     public void destroy(){
