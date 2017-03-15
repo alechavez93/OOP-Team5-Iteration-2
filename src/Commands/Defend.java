@@ -14,6 +14,8 @@ public class Defend extends Command{
 
     private Direction direction;
 
+
+
     public Defend(Entity affected, Direction direction){
         super(GameLibrary.DEFEND, affected);
         this.direction = direction;

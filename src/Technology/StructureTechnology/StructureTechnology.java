@@ -34,7 +34,7 @@ public class StructureTechnology extends Technology {
         if(techType == POWER) { structure.upgradePowerRate(); }
         if(techType == NUTRIENT) { structure.upgradeNutrientsRate(); }
         if(techType == METAL) { structure.upgradeMetalRate(); }
-        if(techType == BREEDING) { structure.upgradeBreedingRate(); }
+        if(techType == BREED) { structure.upgradeBreedRate(); }
         if(techType == EXPLORER) { structure.upgradeExplorerRate(); }
         if(techType == SOLDIER) { structure.upgradeSolderRate(); }
     }

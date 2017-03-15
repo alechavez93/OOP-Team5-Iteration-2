@@ -105,7 +105,7 @@ public class CapitalStructure extends Structure {
     }
 
     public void breedWorkers(int workerCount) {
-        workers.incrementNumberOfWorkers(production.breedingRate*workerCount/2);
+        workers.incrementNumberOfWorkers(production.breedRate*workerCount/2);
     }
 
     public void heal(Unit unit) {
