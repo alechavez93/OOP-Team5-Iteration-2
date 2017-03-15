@@ -214,5 +214,4 @@ public class Army extends Entity {
         return entireList;
     }
 
-    public RallyPoint getRallyPoint() { return rallyPoint; }
 }

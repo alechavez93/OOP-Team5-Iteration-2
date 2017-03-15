@@ -23,7 +23,7 @@ public class WorkerTechnology extends StructureTechnology{
     }
 
     public void visit(Worker worker){
-        if(techType == DENSITY) { worker.upgradeDensity(1); }
-        if(techType == RADIUS) { worker.upgradeRadius(1); }
+        if(techType == DENSITY) { worker.upgradeDensity(); }
+        if(techType == RADIUS) { worker.upgradeRadius(); }
     }
 }

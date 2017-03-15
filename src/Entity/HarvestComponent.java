@@ -63,4 +63,7 @@ public class HarvestComponent {
         }
     }
 
+    public int harvest() {
+        return 0;
+    }
 }
