@@ -68,6 +68,20 @@ public abstract class Entity extends Stats {
         }
     }
 
+    public void takeDamage(int damage){
+        if(damage == 0) { System.out.println("Something went wrong in takeDamage"); }
+        this.currentHealth -= damage - this.getArmor();
+        //System.out.println(damage - this.getArmor() + " damage was taken by Player " + this.getEntityManager().playerOwner.getpID() + "'s " + this.getName());
+
+        //System.out.println("target's direction: " + getDirection() + ", attacker's direction:: " + entity.getDirection());
+
+        if(this.currentHealth <= 0){
+            System.out.println("Player " + this.getEntityManager().playerOwner.getpID() + "'s " + this.getName() + " died");
+            destroy();
+            return;
+        }
+    }
+
     public void finishTurn() {
         processQueue();
         processUpkeep();

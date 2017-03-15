@@ -21,7 +21,7 @@ public class DamageEffect implements EntityEffect {
     private int damage;
 
     public void apply(Entity e) {
-        //e.takeDamage(); - Figure out better way
+        e.takeDamage(damage);
     }
 
     public DamageEffect(int damage) {

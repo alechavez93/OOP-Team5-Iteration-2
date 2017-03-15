@@ -25,6 +25,7 @@ public class ExplorerUnit extends Unit {
         maxHealth = 10;
         currentHealth = maxHealth;
         visibilityRadius = 4;
+        prospectMode = false;
         upkeep = 12;
     }
 
@@ -43,4 +44,6 @@ public class ExplorerUnit extends Unit {
     public void destroy(){
         entityManager.destroyExplorer(this);
     }
+
+    public boolean isProspecting() { return prospectMode; }
 }

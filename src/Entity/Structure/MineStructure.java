@@ -10,7 +10,6 @@ package Entity.Structure;
 |       + Staffed by Workers (Workers harvest and produce)
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Resource;
 import Entity.Worker;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
@@ -32,11 +31,11 @@ public class MineStructure extends Structure {
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {
-        Resource.ORE.decrementAmount(production.oreRate*workerCount);
+
     }
 
     public void assignProduce(int workerCount) {
-        Resource.METAL.incrementAmount( production.oreRate*workerCount);
+
     }
 
     public void destroy(){

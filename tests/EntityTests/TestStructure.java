@@ -11,7 +11,6 @@ import Entity.Entity;
 import Entity.Structure.CapitalStructure;
 import Entity.Unit.ColonistUnit;
 import Entity.Unit.MeleeSoldier;
-import Entity.Resource;
 import Utility.Vec2i;
 import GameMap.*;
 import Player.*;
@@ -59,15 +58,7 @@ public class TestStructure {
 //        MapCoordinate resourceLocation;
 //        capital.harvest(location);
 
-        System.out.println("\n============================================================");
-        System.out.println("Amount of Energy: " + Resource.ENERGY.getAmount());
-        //capital.assignHarvest(5, Resource.ENERGY, location);
-        System.out.println("Amount of Energy: " + Resource.ENERGY.getAmount());
 
-        System.out.println("\n============================================================");
-        System.out.println("Amount of Nutrients: " + Resource.NUTRIENT.getAmount());
-        //capital.assignProduce(5, Resource.NUTRIENT);
-        System.out.println("Amount of Nutrients: " + Resource.NUTRIENT.getAmount());
 
         System.out.println("\n============================================================");
         meleeSoldier1.setCurrentHealth(5);
