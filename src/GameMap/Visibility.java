@@ -18,17 +18,19 @@ package GameMap;
 
 public class Visibility {
     private boolean isVisible;
-    private boolean isObscured;
+    private boolean isShrouded;
+    private boolean isProspected;
     private MapCoordinate location;
 
     public Visibility(MapCoordinate location) {
         isVisible = false;
-        isObscured = true;
+        isShrouded= true;
         this.location = location;
+        this.isProspected = false;
     }
 
     public void see() {
-        isObscured = false;
+        isShrouded = false;
         isVisible = true;
     }
 
@@ -36,7 +38,11 @@ public class Visibility {
         isVisible = false;
     }
 
+    public void prospect() { isProspected = true; }
+
     public boolean isVisible() { return isVisible; }
-    public boolean isObscured() { return isObscured; }
+    public boolean isShrouded() { return isShrouded; }
+    public boolean isExplored() { return !(isVisible || isShrouded);}
+    public boolean isProspected() {return isProspected; }
     public MapCoordinate getLocation() { return location; }
 }

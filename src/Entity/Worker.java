@@ -12,6 +12,8 @@ import Technology.StructureTechnology.WorkerTechnology;
 public class Worker {
 
     private int numberOfWorkers;
+    public int radius;
+    public int density;
 
     public Worker(int numberOfWorkers) {
         this.numberOfWorkers = numberOfWorkers;
@@ -39,10 +41,10 @@ public class Worker {
     }
 
     public void upgradeRadius() {
-
+        radius++;
     }
 
     public void upgradeDensity() {
-
+        density++;
     }
 }

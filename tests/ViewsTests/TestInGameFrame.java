@@ -21,7 +21,9 @@ public class TestInGameFrame {
         GameMap map = GameMap.getInstance();
         map.initialize(cMap);
         GraphicsFactory.getInstance();
-        EntityManager em = new EntityManager(new Player(0, new MapCoordinate(3,3) ));
+        Player p = new Player(0, new MapCoordinate(3,3));
+        EntityManager em = new EntityManager(p);
+        p.getFogOfWar().calculateVisibility(p.getEntityManager().getAllEntities());
 
         InGameFrame frame = new InGameFrame();
         CyclingState state = new CyclingState();

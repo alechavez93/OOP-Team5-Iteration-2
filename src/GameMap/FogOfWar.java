@@ -1,5 +1,6 @@
 package GameMap;
 
+import Entity.Unit.ExplorerUnit;
 import Utility.Vec2i;
 import Entity.Entity;
 
@@ -44,7 +45,7 @@ public class FogOfWar {
         boolean[][] vis = new boolean[size.x][size.y];
 
         for(Entity e : entityList) {
-            List<Tile> t = GameMap.getInstance().getAllNeighbors(e.getLocation().getVector(), e.getRangeRadius());
+            List<Tile> t = GameMap.getInstance().getAllNeighbors(e.getLocation().getVector(), e.getVisibilityRadius());
             for(Tile tt : t) {
                 vis[tt.getPos().getRow()][tt.getPos().getColumn()] = true;
             }
@@ -62,6 +63,18 @@ public class FogOfWar {
         }
     }
 
+    public void calculateProspect(List<Entity> explorerList) {
+        for(Entity e : explorerList) {
+            if(!((ExplorerUnit)e).isProspecting())
+                continue;
+            List<Tile> t = GameMap.getInstance().getAllNeighbors(e.getLocation().getVector(), e.getRangeRadius());
+            for(Tile tt : t) {
+                visMatrix[tt.getPos().getRow()][tt.getPos().getColumn()].prospect();
+            }
+            visMatrix[e.getLocation().getRow()][e.getLocation().getColumn()].prospect();
+        }
+    }
+
     //This returns reference and is modifiable, but also don't have to copy a huge matrix
     public Visibility[][] getVisibilityMatrix() {
         return visMatrix;
@@ -73,5 +86,9 @@ public class FogOfWar {
         for(Visibility[] v : visMatrix)
             l.addAll(Arrays.asList(v));
         return l;
+    }
+
+    public Visibility getVisibiltyAt( MapCoordinate loc) {
+        return visMatrix[loc.getRow()][loc.getColumn()];
     }
 }

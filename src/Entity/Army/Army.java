@@ -50,35 +50,35 @@ public class Army extends Entity {
         updateStats();
     }
 
-    public RallyPoint getRallyPoint() {
-        return rallyPoint;
-    }
+//    public RallyPoint getRallyPoint() {
+//        return rallyPoint;
+//    }
 
     private void updateAttack() {
         meleeAttack = 0;
         rangeAttack = 0;
-        for (Unit unit : battleGroup) {
-            if (unit instanceof MeleeSoldier) {
+        for(Unit unit: battleGroup){
+            if(unit instanceof MeleeSoldier){
                 meleeAttack += unit.getAttack();
-            } else if (unit instanceof RangeSoldier) {
+            }else if(unit instanceof RangeSoldier){
                 rangeAttack += unit.getAttack();
             }
         }
     }
 
-    private void updateTotalStats() {
+    private  void updateTotalStats(){
         resetStats();
         int minSpeed = 5;
         int maxVisibility = 0;
         int minRange = 3;
         //Regular Stats
-        for (Unit unit : battleGroup) {
+        for(Unit unit: battleGroup){
             //Update speed
-            if (unit.getMovement() < minSpeed) minSpeed = unit.getMovement();
+            if(unit.getMovement() < minSpeed) minSpeed = unit.getMovement();
             //Update visibility
-            if (unit.getVisibilityRadius() > maxVisibility) maxVisibility = unit.getVisibilityRadius();
+            if(unit.getVisibilityRadius() > maxVisibility) maxVisibility = unit.getVisibilityRadius();
             //Update range
-            if (unit instanceof Soldier && unit.getRangeRadius() < minRange) minRange = unit.getRangeRadius();
+            if(unit instanceof Soldier && unit.getRangeRadius() < minRange ) minRange = unit.getRangeRadius();
             attack += unit.getAttack();
             defense += unit.getDefense();
             armor += unit.getArmor();
@@ -95,23 +95,23 @@ public class Army extends Entity {
         rangeRadius = minRange;
     }
 
-    public void updateStats() {
+    public void updateStats(){
         updateAttack();
         updateTotalStats();
     }
 
     @Override
-    public void destroy() {
-        for (Unit unit : battleGroup) {
+    public void destroy(){
+        for(Unit unit: battleGroup){
             unit.destroy();
         }
-        for (UnitPath u : reinforcement) {
+        for(UnitPath u: reinforcement){
             u.unit.destroy();
         }
         entityManager.destroyArmy(this);
     }
 
-    public void addReinforcement(Unit unit) {
+    public void addReinforcement(Unit unit){
         Path p = null;
         unit.getEntityManager().removeEntity(unit);
         if (!unit.getLocation().equals(getLocation())) {
@@ -149,8 +149,8 @@ public class Army extends Entity {
             }
             //path.recreate(getLocation());
             int speed = movement;
-            while (speed > 0) {
-                GameMap.getInstance().shiftEntity(this, path.next());
+            while(speed > 0 && !path.isEnd()) {
+                GameMap.getInstance().shiftEntity(this,path.next());
                 speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
             }
             atRallyPoint = getLocation().equals(rallyPoint.getLocation());
@@ -162,8 +162,8 @@ public class Army extends Entity {
                 }
                 //path.recreate(getLocation());
                 int speed = u.unit.movement;
-                while (speed > 0) {
-                    GameMap.getInstance().shiftEntity(u.unit, u.path.next());
+                while(speed > 0 && !u.path.isEnd()) {
+                    GameMap.getInstance().shiftEntity(u.unit,u.path.next());
                     speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
                 }
             }
@@ -214,4 +214,5 @@ public class Army extends Entity {
         return entireList;
     }
 
+    public RallyPoint getRallyPoint() { return rallyPoint; }
 }

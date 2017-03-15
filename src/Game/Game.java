@@ -32,11 +32,11 @@ public class Game {
 
     public Game(){
 
-        p1Start = new MapCoordinate(1,1);
+        p1Start = new MapCoordinate(3,3);
         p2Start = new MapCoordinate(10,10);
         //GameMap.getInstance().initialize(new Vec2i(20,20));
-        player1 = new Player(1, p1Start);
-        player2 = new Player(2, p2Start);
+        player1 = new Player(1, "Logan", p1Start);
+        player2 = new Player(2, "Wade", p2Start);
         activePlayer = player1;
         turnCount = 1;
         currentPlayer = 0;
@@ -104,4 +104,5 @@ public class Game {
     }
 
     public int getTurnCount() { return turnCount; }
+
 }

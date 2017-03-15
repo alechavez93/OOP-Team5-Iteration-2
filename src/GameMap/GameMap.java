@@ -210,4 +210,23 @@ public class GameMap {
             return (c.x == origin.getVector().y%2) ? Direction.SouthEast : Direction.NorthEast;
         return (c.x == origin.getVector().y%2) ? Direction.SouthWest : Direction.NorthWest;
     }
+
+    public static int distanceTo(MapCoordinate origin, MapCoordinate target) {
+        if(origin.equals(target))
+            return 0;
+        Vec2i a = origin.getVector();
+        Vec2i b = target.getVector();
+
+        //Convert a to cube
+        int xa = a.y;
+        int za = a.x - a.y - (a.y%2) / 2;
+        int ya = -xa - za;
+
+        //Convert b to cube
+        int xb = b.y;
+        int zb = b.x - b.y - (b.y%2) / 2;
+        int yb = -xb - zb;
+
+        return Math.max(Math.abs(xa-xb), Math.max(Math.abs(ya-yb), Math.abs(za-zb)));
+    }
 }

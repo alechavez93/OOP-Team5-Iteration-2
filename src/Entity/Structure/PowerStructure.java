@@ -11,7 +11,6 @@ package Entity.Structure;
 |       NOTE: + indicates implemented functions
 ---------------------------------------------------------------------------------------*/
 
-import Entity.Resource;
 import Entity.Worker;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
@@ -34,11 +33,11 @@ public class PowerStructure extends Structure {
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {
-        Resource.ENERGY.decrementAmount(production.energyRate*workerCount);
+
     }
 
     public void assignProduce(int workerCount) {
-        Resource.POWER.incrementAmount( production.energyRate*workerCount);
+
     }
 
     public void destroy(){
