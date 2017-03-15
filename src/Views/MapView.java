@@ -8,10 +8,8 @@ package Views;
 
 
 import Game.CyclingState;
-import Views.PixelMaps.PixelMap;
 import Views.PixelMaps.PixelPoint;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class MapView extends View{
 
@@ -30,7 +28,7 @@ public class MapView extends View{
         entityState = new EntityStateSection();
         miniMap = new MiniMapSection();
 
-        cyclingSection.setCyclingState(state);
+        cyclingSection.setState(state);
         entityState.setCyclingState(state);
 
 
@@ -43,7 +41,7 @@ public class MapView extends View{
     }
 
     public void CyclingState(CyclingState state){
-        cyclingSection.setCyclingState(state);
+        cyclingSection.setState(state);
         entityState.setCyclingState(state);
     }
 

@@ -6,6 +6,7 @@ package Views.Drawers;
 |   does a mapping between directions and angles based on origin being x-axis.
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Army.Army;
 import Entity.Entity;
 import Entity.Unit.Unit;
 import Utility.Direction;
@@ -34,6 +35,19 @@ public class UnitDrawer {
         drawMarker(g, PixelMap.UNIT_MARKER_RADIUS, facingPos, player);
     }
 
+    public static void drawArmy(Graphics g, Army army){
+        Player player = army.getEntityManager().playerOwner;
+        g.setClip(null);
+        PixelPoint center = PixelMap.mapCoordinate(army.getLocation());
+        PixelPoint facingPos = getFacingPos(center, army.getDirection());
+        PixelPoint pos = getFinalPos(army, center);
+        BufferedImage unitImg = GraphicsFactory.getInstance().getUnit(army.getName());
+
+        //Drawing Unit and Marker
+        g.drawImage(unitImg, pos.x, pos.y, PixelMap.UNIT_HEIGHT, PixelMap.UNIT_HEIGHT, null);
+        drawMarker(g, PixelMap.UNIT_MARKER_RADIUS, facingPos, player);
+    }
+
 
     private static void drawMarker(Graphics g, int radius, PixelPoint center, Player player){
         g.setColor(player.getColor());
@@ -41,8 +55,8 @@ public class UnitDrawer {
         g.drawOval(center.x-radius, center.y-radius, radius*2, radius*2);
     }
 
-    private static PixelPoint getFinalPos(Unit unit, PixelPoint center){
-        PixelPoint facingPos = getFacingPos(center, unit.getDirection());
+    private static PixelPoint getFinalPos(Entity entity, PixelPoint center){
+        PixelPoint facingPos = getFacingPos(center, entity.getDirection());
         return new PixelPoint(facingPos.x-PixelMap.UNIT_HEIGHT/2, facingPos.y-PixelMap.UNIT_HEIGHT/2);
     }
 

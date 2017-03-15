@@ -6,6 +6,7 @@ package Views;
 ---------------------------------------------------------------------------------------*/
 
 
+import Entity.Army.Army;
 import Entity.Entity;
 import Entity.Unit.ExplorerUnit;
 import Entity.Unit.MeleeSoldier;
@@ -60,9 +61,15 @@ public class UnitView extends View{
         list = entityManager.getExplorerUnitList();
         printEntityList(g, list, 4, new ExplorerUnit(-1, null, null));
 
+        list = entityManager.getArmyList();
+        printEntityList(g, list, 6, new Army(-1, null, null, new MeleeSoldier(-1, null, null)));
+
         //Print Worker Count
+        //UPDATE THE WORKER COUNT
         int workerCount = 0;
-        PixelPoint point = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*6);
+
+
+        PixelPoint point = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*8);
         g.drawRect(point.x- MARGIN, point.y- MARGIN, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2, PixelMap.STRUCTURE_HEIGHT+ MARGIN *2);
         BufferedImage worker = graphicsFactory.getGraphics(GameLibrary.WORKER);
         g.setFont(new Font(Font.DIALOG_INPUT, Font.BOLD, 2*OptionDrawer.FONT_SIZE));
