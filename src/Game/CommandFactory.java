@@ -20,14 +20,15 @@ public class CommandFactory {
     }
 
     public Command makeCommand() {
-
+/*
         switch (cyclingState.gameMode) {
 
             case GameLibrary.STRUCTURE_MODE:
                 return makeStructureCommand();
 
             case GameLibrary.RALLY_POINT_MODE
-        }
+        }*/
+return null;
     }
 
 }

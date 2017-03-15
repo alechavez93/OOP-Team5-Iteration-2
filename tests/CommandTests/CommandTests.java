@@ -39,7 +39,8 @@ public class CommandTests {
         //commandTest2();
         //commandTest3();
         //commandTest4();
-        commandTest5();
+        //commandTest5();
+        commandTest6();
     }
 
     // Make Capital (Colonist), Create Army (Explorer), Decommission (Explorer
@@ -366,6 +367,31 @@ public class CommandTests {
 //        Dropoff dropoff = new Dropoff(rallyPoint, farmStructure, 3);
 //        System.out.println("rally workercount: " + rallyPoint.getWorker().getNumberOfWorkers());
 //        System.out.println("farm workercount: " + farmStructure.getWorkers().getNumberOfWorkers());
+    }
+
+    // Worker Breeding
+    private static void commandTest6() {
+        GameMap.getInstance().initialize(new Vec2i(20, 20));
+        Game game = new Game();
+
+        game.player1.printResources();
+        ColonistUnit colonistUnit = (ColonistUnit) game.player1.getEntityManager().getColonistList().get(0);
+        MakeCapital command1 = new MakeCapital(colonistUnit);
+        game.player1.getEntityManager().finishTurn();
+
+        CapitalStructure capitalStructure = (CapitalStructure )game.player1.getEntityManager().getCapitalList().get(0);
+        System.out.println("Number of workers in capital: " + capitalStructure.getWorkers().getNumberOfWorkers());
+
+        Breeding breeding = new Breeding(capitalStructure, 5);
+        printCommandList(game.player1);
+        game.player1.getEntityManager().finishTurn();
+        game.player1.getEntityManager().finishTurn();
+        game.player1.getEntityManager().finishTurn();
+
+        System.out.println("Number of workers in capital: " + capitalStructure.getWorkers().getNumberOfWorkers());
+        printCommandList(game.player1);
+
+
     }
 
     private static void printCommandList(Player player) {

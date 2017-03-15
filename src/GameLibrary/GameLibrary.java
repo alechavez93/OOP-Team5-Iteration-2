@@ -49,26 +49,25 @@ public class GameLibrary {
     public static final String[] RALLYPOINT_COMMANDS = {BUILD_STRUCTURE, PICKUP, DROPOFF};
 
     //Structure Commands
-
-//    public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+    public static final String[] STRUCTURE_COMMANDS = { CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Capital Commands
     public static final String HEAL_UNIT = "HEAL UNIT", BREEDING = "BREEDING";
-    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, HEAL_UNIT, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL, BREEDING};
+    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, BREEDING, HEAL_UNIT, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Fort Commands
-    public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+    public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Unit Commands
     public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL";
-    public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] UNIT_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Colonist Commands
-    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION };
 
     //Explorer Commands
     public static final String PROSPECT_MODE = "PROSPECT MODE";
-    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Soldier Commands
     public static final String[] SOLDIER_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
@@ -150,5 +149,5 @@ public class GameLibrary {
 
     public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
 
-    public static final int EXPLORER_TURNS = 5,MELEE_TURNS = 9, RANGE_TURNS = 11;
+    public static final int EXPLORER_TURNS = 5,MELEE_TURNS = 9, RANGE_TURNS = 11, BREEDING_TURNS = 7;
 }
