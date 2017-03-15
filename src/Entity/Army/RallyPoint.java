@@ -11,6 +11,7 @@ import Commands.Command;
 import Entity.Entity;
 import Entity.Structure.Structure;
 import Entity.Worker;
+import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
@@ -64,5 +65,15 @@ public class RallyPoint {
 
     public void setLocation(MapCoordinate location) { this.location = location; }
     public void setWorker(Worker worker) { this.worker = worker; }
-    public EntityManager getEntityManager() { return entityManager; }
+    public EntityManager getEntityManager(){ return entityManager;
+
+    public void processQueue(){
+        if (!commandList.isEmpty()) {
+            commandList.get(0).execute();
+            if (commandList.get(0).isFinished() == true) {
+                commandList.remove(0);
+            }
+        }
+    }
+
 }

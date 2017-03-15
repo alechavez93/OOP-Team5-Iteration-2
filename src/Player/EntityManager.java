@@ -120,6 +120,9 @@ public class EntityManager {
         while ( entityListIterator.hasNext()){
             entityListIterator.next().finishTurn();
         }
+        for(Entity entity: armyList){
+            ((Army) entity).getRallyPoint().processQueue();
+        }
     }
 
     public void accept( EntityTechnology technology){
