@@ -93,6 +93,7 @@ public class ViewPort extends JPanel{
     }
 
     public static void paintLayerTwo(Graphics g){
+
         FogOfWar fogOfWar = state.inTurn.getFogOfWar();
         for(Iterator iter = map.getIterator(); iter.hasNext();){
             Tile tile = (Tile) iter.next();
@@ -121,10 +122,11 @@ public class ViewPort extends JPanel{
                 TileDrawer.drawResources(g, tile);
             }
         }
+
     }
 
     public static void paintLayerThree(Graphics g){
-        TileDrawer.drawMarkers(g, state);
+        //TileDrawer.drawMarkers(g, state);
     }
 
     public void drawVisible(){
