@@ -11,6 +11,7 @@ import Game.CyclingState;
 import Views.PixelMaps.PixelMap;
 import Views.PixelMaps.PixelPoint;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class MapView extends View{
 
@@ -31,6 +32,7 @@ public class MapView extends View{
 
         cyclingSection.setCyclingState(state);
         entityState.setCyclingState(state);
+
 
         //Adding inner components
         add(viewPort);

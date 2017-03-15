@@ -14,11 +14,18 @@ import GameMap.*;
 import Player.EntityManager;
 import Utility.Direction;
 import Views.InGameFrame;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.util.*;
+import java.util.List;
 
 import Entity.*;
+import Views.MiniMapSection;
+import Views.PixelMaps.PixelMap;
+import Views.StartingFrame;
 import Views.ViewPort;
 import com.sun.xml.internal.bind.v2.TODO;
 
@@ -27,6 +34,7 @@ public class InGameController extends GameLibrary implements KeyListener {
 
     private Game game;
     private InGameFrame frame;
+    private StartingFrame startingFrame;
     private CyclingState state;
     private Set<Integer> keysPressed;
     private KeyConfiguration keyConfiguration;
@@ -41,8 +49,14 @@ public class InGameController extends GameLibrary implements KeyListener {
         map = GameMap.getInstance();
     }
 
+    public void setStartingFrame(StartingFrame startingFrame) {
+        this.startingFrame = startingFrame;
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
+        startingFrame.setVisible(false);
+        frame.setVisible(true);
         moveViewPort(e);
         int code = e.getKeyCode();
         keysPressed.add(code);
@@ -54,6 +68,17 @@ public class InGameController extends GameLibrary implements KeyListener {
         moveCursor(code);
         frame.getMapView().refreshCyclinigSection();
         frame.getMapView().refreshEntityStateSection();
+        frame.getMapView().refreshMinimapSection();
+
+        try {
+            BufferedImage img = ViewPort.componentToImage(frame.getMapView().getComponent(0), new Rectangle(0, 0, ViewPort.VIEWPORT_WIDTH, ViewPort.VIEWPORT_HEIGHT));
+            ViewPort.viewportPic = img;
+//            System.out.println(img);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            System.out.println("LOL");
+        }
 
     }
 
@@ -121,7 +146,7 @@ public class InGameController extends GameLibrary implements KeyListener {
         }
         game.changeTurn();
         state.inTurn = game.getActivePlayer();
-
+        MiniMapSection.updateMiniMap();
     }
 
     public void centerSelectedEntity(){
