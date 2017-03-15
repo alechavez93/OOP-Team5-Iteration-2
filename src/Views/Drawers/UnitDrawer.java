@@ -41,7 +41,7 @@ public class UnitDrawer {
         PixelPoint center = PixelMap.mapCoordinate(army.getLocation());
         PixelPoint facingPos = getFacingPos(center, army.getDirection());
         PixelPoint pos = getFinalPos(army, center);
-        BufferedImage unitImg = GraphicsFactory.getInstance().getUnit(army.getName());
+        BufferedImage unitImg = GraphicsFactory.getInstance().getGraphics(army.getName());
 
         //Drawing Unit and Marker
         g.drawImage(unitImg, pos.x, pos.y, PixelMap.UNIT_HEIGHT, PixelMap.UNIT_HEIGHT, null);
