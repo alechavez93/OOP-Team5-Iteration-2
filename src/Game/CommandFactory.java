@@ -69,7 +69,7 @@ public class CommandFactory {
             return new PowerUp(state.selectedEntity);
         }
         else if(state.selectedCommand.equals(GameLibrary.PROSPECT_MODE)){
-            return new Prospect(state.selectedEntity);
+            return new ProspectMode((ExplorerUnit) state.selectedEntity);
         }
 /*        else if(state.selectedCommand.equals(GameLibrary.REINFORCE)){
             return new ReinforceArmy()

@@ -239,6 +239,21 @@ public class InGameController extends GameLibrary implements KeyListener {
                     state.selectedCommand = cycleItem(code, UNIT_COMMANDS, state.selectedCommand);
                 }
             } else if (state.gameMode.equals(STRUCTURE_MODE)) {
+                if(state.modeType.equals(CAPITAL)) {
+                    state.selectedCommand = cycleItem(code, CAPITAL_COMMANDS, state.selectedCommand);
+                } else if(state.modeType.equals(FARM)){
+                    state.selectedCommand = cycleItem(code, FARM_COMMANDS, state.selectedCommand);
+                } else if(state.modeType.equals(MINE)){
+                    state.selectedCommand = cycleItem(code, MINE_COMMANDS, state.selectedCommand);
+                } else if(state.modeType.equals(POWER)){
+                    state.selectedCommand = cycleItem(code, POWER_COMMANDS, state.selectedCommand);
+                } else if(state.modeType.equals(FORT)){
+                    state.selectedCommand = cycleItem(code, FORT_COMMANDS, state.selectedCommand);
+                } else if(state.modeType.equals(OBSERVATION_TOWER)){
+                    state.selectedCommand = cycleItem(code, OBSERVATION_COMMANDS, state.selectedCommand);
+                } else if(state.modeType.equals(UNIVERSITY)){
+                    state.selectedCommand = cycleItem(code, UNIVERSITY_COMMANDS, state.selectedCommand);
+                } else
                 state.selectedCommand = cycleItem(code, STRUCTURE_COMMANDS, state.selectedCommand);
             } else if (state.gameMode.equals(ARMY_MODE)) {
                 state.selectedCommand = cycleItem(code, ARMY_COMMANDS, state.selectedCommand);
