@@ -6,6 +6,7 @@ package ViewsTests;
 |   and the Pixel mappings.
 ---------------------------------------------------------------------------------------*/
 
+import Game.CyclingState;
 import GameMap.GameMap;
 import Utility.MapLoader;
 import Utility.Vec2i;
@@ -20,7 +21,7 @@ public class TestViewPort {
         char[][] cMap = MapLoader.getCharMap("sample");
         GameMap map = GameMap.getInstance();
         map.initialize(cMap);
-        ViewPort.initialize(new PixelPoint(0,0));
+        ViewPort.initialize(new PixelPoint(0,0), new CyclingState());
         JFrame frame = new JFrame("Game");
         frame.setLayout(null);
         frame.setBounds(0,0,PixelMap.SCREEN_WIDTH, PixelMap.SCREEN_HEIGHT);

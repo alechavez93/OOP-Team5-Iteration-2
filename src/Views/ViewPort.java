@@ -9,7 +9,9 @@ package Views;
 import Entity.Entity;
 import Entity.Structure.Structure;
 import Entity.Unit.Unit;
+import Game.CyclingState;
 import GameMap.GameMap;
+import Utility.Vec2i;
 import Views.Drawers.StructureDrawer;
 import Views.Drawers.TileDrawer;
 import Views.Drawers.UnitDrawer;
@@ -20,6 +22,8 @@ import GameMap.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Iterator;
 
 public class ViewPort extends JPanel{
@@ -27,15 +31,21 @@ public class ViewPort extends JPanel{
     private GameMap map;
     private int mapPixelWidth, mapPixelHeight;
     private static ViewPort instance;
+    private CyclingState state;
+    private static Vec2i scroller;
     public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.75*(double)PixelMap.SCREEN_HEIGHT);
 
-    private ViewPort(PixelPoint origin){
+    private ViewPort(PixelPoint origin, CyclingState state){
         setLayout(null);
         this.origin = origin;
         map = GameMap.getInstance();
         mapPixelWidth = map.getSize().x * PixelMap.TILE_WIDTH;
         mapPixelHeight = map.getSize().y * PixelMap.TILE_HEIGHT;
         setBounds(0,0,VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        this.state = state;
+        scroller = new Vec2i();
+        TestController testController = new TestController();
+        addKeyListener(testController);
     }
 
     public void setOrigin(int newX, int newY){
@@ -55,8 +65,8 @@ public class ViewPort extends JPanel{
         return origin.getCopy();
     }
 
-    public static void initialize(PixelPoint origin){
-        instance = new ViewPort(origin);
+    public static void initialize(PixelPoint origin, CyclingState state){
+        instance = new ViewPort(origin, state);
     }
 
     public static ViewPort getInstance(){
@@ -68,26 +78,84 @@ public class ViewPort extends JPanel{
     }
 
 
+    //Drawing Tiles
     public void paintLayerOne(Graphics g){
         for(Iterator iter = map.getIterator(); iter.hasNext();){
             Tile tile = (Tile) iter.next();
             TileDrawer.drawTile(g, tile);
-            for(Entity e : tile.getOccupyingEntities()){
-                if( e instanceof Unit)
-                    UnitDrawer.drawUnit(g, (Unit)e);
-                else if(e instanceof Structure)
-                    StructureDrawer.drawStructure(g, (Structure)e);
+        }
+    }
+
+    public void paintLayerTwo(Graphics g){
+        FogOfWar fogOfWar = state.inTurn.getFogOfWar();
+        for(Iterator iter = map.getIterator(); iter.hasNext();){
+            Tile tile = (Tile) iter.next();
+            Visibility visibility = fogOfWar.getVisibiltyAt(tile.getPos());
+            if(visibility.isShrouded()){
+                TileDrawer.drawShrouded(g, tile);
+            }
+            else if(visibility.isExplored()){
+                TileDrawer.drawExplored(g, tile);
+                for(Entity e : tile.getOccupyingEntities()){
+                    if(e instanceof Structure)
+                        StructureDrawer.drawStructure(g, (Structure)e);
+                }
+            }
+            else if(visibility.isVisible()){
+                TileDrawer.drawTile(g, tile);
+                for(Entity e : tile.getOccupyingEntities()){
+                    if( e instanceof Unit)
+                        UnitDrawer.drawUnit(g, (Unit)e);
+                    else if(e instanceof Structure)
+                        StructureDrawer.drawStructure(g, (Structure)e);
+                }
             }
         }
     }
 
+    public void drawVisible(){
+
+    }
+
     public void paintViewPort(Graphics g){
         paintLayerOne(g);
+        paintLayerTwo(g);
     }
 
     @Override
     public void paint(Graphics g) {
         super.paintComponent(g);
+        g.translate(-scroller.x, -scroller.y);
         paintViewPort(g);
+    }
+
+    private static class TestController implements KeyListener {
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        public void keyPressed(KeyEvent e) {
+            int code = e.getKeyCode();
+            System.out.printf("code:"+e.getKeyCode() + "");
+            switch(code) {
+                case KeyEvent.VK_J:
+                    scroller.x += -25;
+                    break;
+                case KeyEvent.VK_L:
+                    scroller.x += 25;
+                    break;
+                case KeyEvent.VK_I:
+                    scroller.y += -25;
+                    break;
+                case KeyEvent.VK_K:
+                    scroller.y += 25;
+                    break;
+            }
+            ViewPort.getInstance().repaint();
+        }
+
+        public void keyReleased(KeyEvent e) {
+
+        }
     }
 }

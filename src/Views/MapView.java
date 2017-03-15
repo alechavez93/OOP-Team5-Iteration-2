@@ -23,7 +23,7 @@ public class MapView extends View{
         super(name);
 
         //Initialize ViewPort and other Sections
-        ViewPort.initialize(new PixelPoint(0,0));
+        ViewPort.initialize(new PixelPoint(0,0), state);
         viewPort = ViewPort.getInstance();
         cyclingSection = new CyclingSection();
         entityState = new EntityStateSection();
