@@ -120,6 +120,9 @@ public class EntityManager {
         while ( entityListIterator.hasNext()){
             entityListIterator.next().finishTurn();
         }
+        for(Entity entity: armyList){
+            ((Army) entity).getRallyPoint().processQueue();
+        }
     }
 
     public void accept( EntityTechnology technology){
@@ -140,10 +143,10 @@ public class EntityManager {
 
     public List<Entity> getAllEntities(){
         List<Entity> totalList = new ArrayList<Entity>();
-        addunique(totalList, colonistUnitList);
-        addunique(totalList, explorerUnitList);
-        addunique(totalList, meleeUnitList);
-        addunique(totalList, rangeUnitList);
+        addUnique(totalList, colonistUnitList);
+        addUnique(totalList, explorerUnitList);
+        addUnique(totalList, meleeUnitList);
+        addUnique(totalList, rangeUnitList);
         totalList.addAll(capitalList);
         totalList.addAll(farmList);
         totalList.addAll(fortList);
@@ -157,7 +160,7 @@ public class EntityManager {
 
     }
 
-    public void addunique(List<Entity> totallist, List<Entity> entityList){
+    public void addUnique(List<Entity> totallist, List<Entity> entityList){
         for(Entity entity : entityList)
         if(!(((Unit) entity ).getInArmy())){
             totallist.add(entity);
@@ -729,7 +732,7 @@ public class EntityManager {
         entity.setState(GameLibrary.ATTACK);
         Tile t = GameMap.getInstance().getTile(coordinate);
         //System.out.println("Player " + entity.getEntityManager().playerOwner.getpID() + "'s " + entity.getName() + " is attacking (" + t.getPos().getRow() + " , " + t.getPos().getColumn() + ")");
-        System.out.println(t.getOccupyingEntities().length + " targets attacked");
+        //System.out.println(t.getOccupyingEntities().length + " targets attacked");
         for (Entity target : t.getOccupyingEntities()) {
             //System.out.println("Attacking " + entity.getName());
             target.takeDamage(entity, GameLibrary.ATTACK);

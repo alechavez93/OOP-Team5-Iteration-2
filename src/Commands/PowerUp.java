@@ -9,7 +9,7 @@ import Entity.Entity;
 import GameLibrary.GameLibrary;
 
 public class PowerUp extends Command {
-    int turnCount = 2;
+    int turnCount = 3;
 
     public PowerUp(Entity affected){
         super(GameLibrary.POWER_UP, affected);
@@ -18,9 +18,10 @@ public class PowerUp extends Command {
     @Override
     public void execute() {
         turnCount--;
-        affected.powerUp();
+
         if(turnCount == 0){
             isFinished = true;
+            affected.powerUp();
         }
     }
 }

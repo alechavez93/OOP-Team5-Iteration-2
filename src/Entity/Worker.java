@@ -11,10 +11,11 @@ import Technology.StructureTechnology.WorkerTechnology;
 
 public class Worker {
 
-    int numberOfWorkers;
+    private int numberOfWorkers;
 
     public Worker(int numberOfWorkers) {
         this.numberOfWorkers = numberOfWorkers;
+        System.out.println("Worker Count: " + getNumberOfWorkers());
     }
 
     public void incrementNumberOfWorkers(int numberOfWorkers) {

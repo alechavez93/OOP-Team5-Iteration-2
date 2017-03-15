@@ -18,7 +18,7 @@ import Player.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Army extends Entity{
+public class Army extends Entity {
 
     private List<Unit> battleGroup;
     private List<UnitPath> reinforcement;
@@ -50,31 +50,35 @@ public class Army extends Entity{
         updateStats();
     }
 
-    private void updateAttack(){
+    public RallyPoint getRallyPoint() {
+        return rallyPoint;
+    }
+
+    private void updateAttack() {
         meleeAttack = 0;
         rangeAttack = 0;
-        for(Unit unit: battleGroup){
-            if(unit instanceof MeleeSoldier){
+        for (Unit unit : battleGroup) {
+            if (unit instanceof MeleeSoldier) {
                 meleeAttack += unit.getAttack();
-            }else if(unit instanceof RangeSoldier){
+            } else if (unit instanceof RangeSoldier) {
                 rangeAttack += unit.getAttack();
             }
         }
     }
 
-    private  void updateTotalStats(){
+    private void updateTotalStats() {
         resetStats();
         int minSpeed = 5;
         int maxVisibility = 0;
         int minRange = 3;
         //Regular Stats
-        for(Unit unit: battleGroup){
+        for (Unit unit : battleGroup) {
             //Update speed
-            if(unit.getMovement() < minSpeed) minSpeed = unit.getMovement();
+            if (unit.getMovement() < minSpeed) minSpeed = unit.getMovement();
             //Update visibility
-            if(unit.getVisibilityRadius() > maxVisibility) maxVisibility = unit.getVisibilityRadius();
+            if (unit.getVisibilityRadius() > maxVisibility) maxVisibility = unit.getVisibilityRadius();
             //Update range
-            if(unit instanceof Soldier && unit.getRangeRadius() < minRange ) minRange = unit.getRangeRadius();
+            if (unit instanceof Soldier && unit.getRangeRadius() < minRange) minRange = unit.getRangeRadius();
             attack += unit.getAttack();
             defense += unit.getDefense();
             armor += unit.getArmor();
@@ -91,42 +95,45 @@ public class Army extends Entity{
         rangeRadius = minRange;
     }
 
-    public void updateStats(){
+    public void updateStats() {
         updateAttack();
         updateTotalStats();
     }
 
     @Override
-    public void destroy(){
-        for(Unit unit: battleGroup){
+    public void destroy() {
+        for (Unit unit : battleGroup) {
             unit.destroy();
         }
-        for(UnitPath u: reinforcement){
+        for (UnitPath u : reinforcement) {
             u.unit.destroy();
         }
         entityManager.destroyArmy(this);
     }
 
-    public void addReinforcement(Unit unit){
+    public void addReinforcement(Unit unit) {
         Path p = null;
-        if(!unit.getLocation().equals(getLocation())) {
+        unit.getEntityManager().removeEntity(unit);
+        if (!unit.getLocation().equals(getLocation())) {
             p = (new AStarPathFinder()).createPath(unit.getLocation(), rallyPoint.getLocation());
         }
         UnitPath up = new UnitPath(p, unit);
         reinforcement.add(up);
+
     }
 
-    public void updateArmyReinforcement(){
+    public void updateArmyReinforcement() {
         List<UnitPath> arrived = new ArrayList<>();
-        for(UnitPath u: reinforcement){
-            if(u.unit.getLocation().equals(getLocation())){
+        for (UnitPath u : reinforcement) {
+            if (u.unit.getLocation().equals(getLocation())) {
                 battleGroup.add(u.unit);
                 arrived.add(u);
                 currentHealth += u.unit.getCurrentHealth();
                 updateStats();
             }
         }
-        for(UnitPath removed: arrived){
+
+        for (UnitPath removed : arrived) {
             reinforcement.remove(removed);
         }
     }
@@ -137,24 +144,26 @@ public class Army extends Entity{
     }
 
     public void processMovement() {
-        if(!atRallyPoint) {
-            if(!path.isValid()) {}
-                //path.recreate(getLocation());
+        if (!atRallyPoint) {
+            if (!path.isValid()) {
+            }
+            //path.recreate(getLocation());
             int speed = movement;
-            while(speed > 0) {
-                GameMap.getInstance().shiftEntity(this,path.next());
+            while (speed > 0) {
+                GameMap.getInstance().shiftEntity(this, path.next());
                 speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
             }
             atRallyPoint = getLocation().equals(rallyPoint.getLocation());
         } else {
             //Don't want to reinforce until battleGroup is actually there
             updateArmyReinforcement();
-            for(UnitPath u : reinforcement) {
-                if(!u.path.isValid()) {}
+            for (UnitPath u : reinforcement) {
+                if (!u.path.isValid()) {
+                }
                 //path.recreate(getLocation());
                 int speed = u.unit.movement;
-                while(speed > 0) {
-                    GameMap.getInstance().shiftEntity(u.unit,u.path.next());
+                while (speed > 0) {
+                    GameMap.getInstance().shiftEntity(u.unit, u.path.next());
                     speed -= GameMap.getInstance().getTile(getLocation()).getMovementCost();
                 }
             }
@@ -164,12 +173,17 @@ public class Army extends Entity{
     public void moveRallypoint(MapCoordinate newLoc) {
         rallyPoint.setLocation(newLoc);
         atRallyPoint = getLocation().equals(newLoc);
-        if(!atRallyPoint) {
-            path = (new AStarPathFinder()).createPath(getLocation(),newLoc);
+        if (!atRallyPoint) {
+            path = (new AStarPathFinder()).createPath(getLocation(), newLoc);
         }
     }
 
     public void disband() {
+        //TODO: THIS
+        //Rally point - leave it alone
+        //battlegroup - distribute hp and place
+        //reinforcements - put them back on  map
+
 
     }
 
@@ -200,5 +214,4 @@ public class Army extends Entity{
         return entireList;
     }
 
-    public RallyPoint getRallyPoint() { return rallyPoint; }
 }

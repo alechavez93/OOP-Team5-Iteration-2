@@ -34,11 +34,11 @@ public class StructureView extends View{
     public void paint(Graphics g) {
         super.paintComponent(g);
         EntityManager entityManager = state.inTurn.getEntityManager();
-        entityManager.addFarm(new FarmStructure(count, new MapCoordinate(2,2), entityManager));
-        entityManager.addMine(new MineStructure(count, new MapCoordinate(2,3), entityManager));
-        entityManager.addFort(new FortStructure(count, new MapCoordinate(2,4), entityManager));
-        entityManager.addObservation(new ObservationStructure(count, new MapCoordinate(2,5), entityManager));
-        entityManager.addUniversity(new UniversityStructure(count++, new MapCoordinate(3,5), entityManager));
+        entityManager.addFarm(new FarmStructure(count, new MapCoordinate(2,2), entityManager, 0));
+        entityManager.addMine(new MineStructure(count, new MapCoordinate(2,3), entityManager, 0));
+        entityManager.addFort(new FortStructure(count, new MapCoordinate(2,4), entityManager, 0));
+        entityManager.addObservation(new ObservationStructure(count, new MapCoordinate(2,5), entityManager, 0));
+        entityManager.addUniversity(new UniversityStructure(count++, new MapCoordinate(3,5), entityManager, 0));
 
 
         //Print Farms

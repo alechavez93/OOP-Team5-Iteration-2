@@ -15,10 +15,14 @@ import Technology.StructureTechnology.StructureTechnology;
 public abstract class Structure extends Entity{
     Production production;
     Worker workers;
+    int workRadius;
 
     public Structure(String name, int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(name, instanceID, location, entityManager);
         this.workers = new Worker(0);
+        this.workRadius = 1;
+        this.production = new Production(0,0,0,0,0,0,0,0,0);
+
     }
 
     public void acceptTech(StructureTechnology tech){
@@ -70,5 +74,13 @@ public abstract class Structure extends Entity{
     }
 
     public void setWorkers(Worker workers) { this.workers = workers; }
+
+    public void processUpkeep(){
+        if(!entityManager.spendResources(0,upkeep,0)){
+            degrade();
+        }
+    }
+
+    public Production getProduction() { return production; }
 
 }
