@@ -46,9 +46,9 @@ public class Player {
         entityManager.init(location);
         //itemManager = new ItemManager(this);
         techManager = new TechManager(this);
-        this.food = 300;
-        this.ore = 400;
-        this.energy = 300;
+        this.food = 600;
+        this.ore = 800;
+        this.energy = 600;
         this.fog = new FogOfWar();
         fog.calculateVisibility(entityManager.getAllEntities());
         this.nutrients = 0;
@@ -67,9 +67,9 @@ public class Player {
         fog.calculateVisibility(entityManager.getAllEntities());
         //itemManager = new ItemManager(this);
         //techManager = new TechManager(this);
-        this.food = 300;
-        this.ore = 300;
-        this.energy = 300;
+        this.food = 800;
+        this.ore = 800;
+        this.energy = 800;
         fogOfWar = new Fog(this);
         this.fog = new FogOfWar();
         fog.calculateVisibility(entityManager.getAllEntities());

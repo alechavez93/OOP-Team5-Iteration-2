@@ -36,12 +36,17 @@ public class FarmStructure extends Structure {
         production = new Production(1,0,0,0,1,0,0,0,0);
     }
 
+    public void finishTurn() {
+        super.finishTurn();
+        harvest();
+    }
+
     public void assignHarvest(int workerCount, MapCoordinate location) {
         harvest.setWorkersAt(location, workerCount);
     }
 
-    public int harvest() {
-        return harvest.harvest(production.foodRate);
+    public void harvest() {
+        entityManager.playerOwner.gainFood(harvest.harvest(production.foodRate));
     }
 
     public void destroy(){

@@ -72,10 +72,14 @@ public class Game {
 
         System.out.println(state);
         //Change Player
+
+        activePlayer.getFogOfWar().calculateVisibility(activePlayer.getEntityManager().getAllEntities());
+
         if(activePlayer == player1)
             activePlayer = player2;
         else if(activePlayer == player2)
             activePlayer = player1;
+
 
         System.out.println(activePlayer.getName());
         //Update State

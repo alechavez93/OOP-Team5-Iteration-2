@@ -17,7 +17,7 @@ import Player.EntityManager;
 
 public class ExplorerUnit extends Unit {
 
-    private boolean prospectMode = false;
+    private boolean prospectMode;
 
     public ExplorerUnit(int instanceID, MapCoordinate location, EntityManager entityManager) {
         super(GameLibrary.EXPLORER, instanceID, location, entityManager);

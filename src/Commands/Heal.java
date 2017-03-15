@@ -10,6 +10,7 @@ package Commands;
 import Entity.Army.Army;
 import Entity.Entity;
 import Entity.Structure.CapitalStructure;
+import Entity.Unit.ColonistUnit;
 import Entity.Unit.Unit;
 import GameLibrary.GameLibrary;
 import GameMap.*;
@@ -27,14 +28,15 @@ public class Heal extends Command{
         Tile tile = GameMap.getInstance().getTile(location);
         for (Entity entity: tile.getOccupyingEntities()) {
             if (entity instanceof Unit) {
-                //System.out.println("Healing Player " + entity.getEntityManager().playerOwner.getpID() + "'s Unit: " + entity.getName() + entity.getInstanceID());
-                ((CapitalStructure) affected).heal((Unit)entity);
-                entity.getEntityManager().playerOwner.spendFood(GameLibrary.HEAL_FOOD_COST);
+                if (affected.getEntityManager().spendResources(GameLibrary.HEAL_FOOD_COST, 0, 0)){
+                    ((CapitalStructure) affected).heal((Unit)entity);
+                }
             }
             if (entity instanceof Army) {
                 //System.out.println("Healing Player " + entity.getEntityManager().playerOwner.getpID() + "'s Army: " + entity.getName() + entity.getInstanceID());
-                ((CapitalStructure) affected).heal((Army)entity);
-                entity.getEntityManager().playerOwner.spendFood(GameLibrary.HEAL_FOOD_COST);
+                if (affected.getEntityManager().spendResources(GameLibrary.HEAL_FOOD_COST, 0, 0)) {
+                    ((CapitalStructure) affected).heal((Army) entity);
+                }
             }
         }
         isFinished = true;

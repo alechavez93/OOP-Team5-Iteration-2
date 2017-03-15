@@ -90,6 +90,8 @@ public class CyclingSection extends JPanel{
         PixelPoint position =  new PixelPoint(PixelMap.TILE_WIDTH*5, PixelMap.INIT_SPACE);
         OptionDrawer.drawStats(g, armyObj, position , graphicsFactory);
 
+        System.out.println("ARMY OBJECT: " + armyObj.getName());
+
         int width = PixelMap.UNIT_HEIGHT*3, height = PixelMap.UNIT_HEIGHT*3, x = (int)(position.x+PixelMap.TILE_WIDTH*3.7), y = position.y;
         g.drawRect(x-5, y-5, width+10, height+10);
         System.out.println(army);
