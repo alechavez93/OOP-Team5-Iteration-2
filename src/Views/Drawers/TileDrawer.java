@@ -40,7 +40,7 @@ public class TileDrawer {
 
     public static void drawShrouded(Graphics g, Tile tile){
         Color prevColor = g.getColor();
-        g.setColor(new Color(0,0,0,254));
+        g.setColor(new Color(0,0,0,200));
         PixelPoint center = PixelMap.mapCoordinate(tile.getPos());
         Polygon tileShape = getHexagon(center);
         g.fillPolygon(tileShape);

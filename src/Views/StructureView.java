@@ -40,47 +40,50 @@ public class StructureView extends View{
 //        entityManager.addObservation(new ObservationStructure(count, new MapCoordinate(2,5), entityManager, 0));
 //        entityManager.addUniversity(new UniversityStructure(count++, new MapCoordinate(3,5), entityManager, 0));
 
-
         //Print Farms
         java.util.List<Entity> list = entityManager.getFarmList();
-        printEntityList(g, list, 0);
+        printEntityList(g, list, 0, new FarmStructure(-1,null,null,0));
 
         //Print Mines
         list = entityManager.getMineList();
-        printEntityList(g, list, 2);
+        printEntityList(g, list, 2, new MineStructure(-1,null,null,0));
 
         //Print Forts
         list = entityManager.getFortList();
-        printEntityList(g, list, 4);
+        printEntityList(g, list, 4, new FortStructure(-1,null,null,0));
 
         //Print Towers
         list = entityManager.getObservationList();
-        printEntityList(g, list, 6);
+        printEntityList(g, list, 6, new ObservationStructure(-1,null,null,0));
 
         //Print Universities
         list = entityManager.getUniversityList();
-        printEntityList(g, list, 8);
+        printEntityList(g, list, 8, new UniversityStructure());
 
+        //Print Universities
         list = entityManager.getCapitalList();
-        PixelPoint position = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(0+1),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*10);
-        if(list.size() == 0)
-            EntityDrawer.drawEntity(g, position, new CapitalStructure(0,null, null), graphicsFactory);
-        else
-            EntityDrawer.drawEntity(g, position, list.get(0), graphicsFactory);
+        printEntityList(g, list, 10, new CapitalStructure(-1, null, null));
+
+//        list = entityManager.getCapitalList();
+//        PixelPoint position = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(0+1),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*10);
+//        if(list.size() == 0)
+//            EntityDrawer.drawEntity(g, position, new CapitalStructure(0,null, null), graphicsFactory);
+//        else EntityDrawer.drawEntity(g, position, list.get(0), graphicsFactory);
     }
 
-    public void printEntityList(Graphics g, java.util.List<Entity> list, int rowMultiplier){
+    public void printEntityList(Graphics g, java.util.List<Entity> list, int rowMultiplier, Entity sample){
         PixelPoint position = null;
+        EntityDrawer.drawEntity(g, new PixelPoint(PixelMap.TILE_WIDTH - PixelMap.TILE_WIDTH/2 - PixelMap.TILE_WIDTH/4, PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*rowMultiplier), sample, graphicsFactory);
         for(int i=0; i<10; i++){
             position = new PixelPoint((PixelMap.TILE_WIDTH+PixelMap.TILE_WIDTH/2)*(i+1),PixelMap.UNIT_HEIGHT+PixelMap.STRUCTURE_HEIGHT*rowMultiplier);
             if(i<list.size()){
                 EntityDrawer.drawEntity(g, position, list.get(i), graphicsFactory);
-            }else{
+            }else if(!(sample instanceof CapitalStructure)){
                 EntityDrawer.drawEntity(g, position, i);
             }
         }
         position.x += PixelMap.TILE_WIDTH;
-        if(list.size() == 0) return;
-        OptionDrawer.drawStats(g, list.get(0), position, graphicsFactory);
+        if(list.size() == 0) OptionDrawer.drawStats(g, sample, position, graphicsFactory);
+        else OptionDrawer.drawStats(g, list.get(0), position, graphicsFactory);
     }
 }
