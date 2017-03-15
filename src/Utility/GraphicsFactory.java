@@ -72,7 +72,9 @@ public class GraphicsFactory {
 
         //Load background
         BufferedImage icon = ImageUtil.loadImage(BACKGROUND_SRC);
+        BufferedImage body = ImageUtil.loadImage(BODY_SRC);
         cachedGraphics.put(BACKGROUND_SRC, icon);
+        cachedGraphics.put("NONE", body);
     }
 
     //Public Accessors
