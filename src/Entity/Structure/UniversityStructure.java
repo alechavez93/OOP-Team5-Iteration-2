@@ -32,6 +32,7 @@ public class UniversityStructure extends Structure {
         visibilityRadius = 2;
         upkeep = 16;
         workers.setNumberOfWorkers(workerCount);
+        production = new Production(0,0,0,0,0,0,0,0,0);
     }
 
 

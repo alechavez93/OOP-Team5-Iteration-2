@@ -26,6 +26,7 @@ public class ObservationStructure extends Structure {
         visibilityRadius = 2;
         upkeep = 8;
         workers.setNumberOfWorkers(workerCount);
+        production = new Production(0,0,0,0,0,0,0,0,0);
     }
 
     public void destroy(){

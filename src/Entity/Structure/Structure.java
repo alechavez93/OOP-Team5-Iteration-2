@@ -21,6 +21,8 @@ public abstract class Structure extends Entity{
         super(name, instanceID, location, entityManager);
         this.workers = new Worker(0);
         this.workRadius = 1;
+        this.production = new Production(0,0,0,0,0,0,0,0,0);
+
     }
 
     public void acceptTech(StructureTechnology tech){

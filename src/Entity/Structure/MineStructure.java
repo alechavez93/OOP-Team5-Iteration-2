@@ -28,6 +28,7 @@ public class MineStructure extends Structure {
         visibilityRadius = 2;
         upkeep = 12;
         workers.setNumberOfWorkers(workerCount);
+        production = new Production(0,0,1,0,0,1,0,0,0);
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {

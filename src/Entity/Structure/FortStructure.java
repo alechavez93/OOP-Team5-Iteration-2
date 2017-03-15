@@ -32,6 +32,7 @@ public class FortStructure extends Structure {
         visibilityRadius = 2;
         upkeep = 20;
         workers.setNumberOfWorkers(workerCount);
+        production = new Production(0,0,0,0,0,0,0,0,1);
     }
 
     public MeleeSoldier createMeleeSoldier() {

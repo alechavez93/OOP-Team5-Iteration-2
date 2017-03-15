@@ -6,6 +6,7 @@ import Entity.Army.Army;
 import Entity.Army.RallyPoint;
 import Entity.Structure.CapitalStructure;
 import Entity.Structure.FarmStructure;
+import Entity.Structure.FortStructure;
 import Entity.Unit.*;
 import Game.Game;
 import GameLibrary.GameLibrary;
@@ -319,12 +320,35 @@ public class CommandTests {
 //        game.player1.getEntityManager().finishTurn();
 //        game.player1.getEntityManager().finishTurn();
 
-        BuildStructure buildStructure = new BuildStructure( army, 5, GameLibrary.FARM);
+        BuildStructure buildStructure = new BuildStructure( army, 5, GameLibrary.FORT);
         printEntityList(game.player1);
         printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
         System.out.printf("END TURN %d ------------------------\n", turn++);
         // END TURN 10
+
+        game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 11
+
+        game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 12
+        printEntityList(game.player1);
+
+        FortStructure fortStructure = (FortStructure) game.player1.getEntityManager().getFortList().get(0);
+        MakeSoldier makeSoldier = new MakeSoldier(fortStructure, GameLibrary.RANGED);
+        printCommandList(game.player1);
+
+        game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 13
+
+        game.player1.getEntityManager().finishTurn();
+        System.out.printf("END TURN %d ------------------------\n", turn++);
+        // END TURN 14
+
+        printEntityList(game.player1);
 
 //        game.player1.getEntityManager().finishTurn();
 //        game.player1.getEntityManager().finishTurn();

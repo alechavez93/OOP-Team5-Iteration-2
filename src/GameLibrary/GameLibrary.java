@@ -53,6 +53,9 @@ final public class GameLibrary {
     //Colonist Commands
     public static final String BUILD_CAPITAL = "BUILD CAPITAL";
 
+    //Explorer Commands
+    public static final String PROSPECT_MODE = "PROSPECT MODE";
+
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
     //Resources (Produce)

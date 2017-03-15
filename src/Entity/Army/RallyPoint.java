@@ -65,7 +65,7 @@ public class RallyPoint {
 
     public void setLocation(MapCoordinate location) { this.location = location; }
     public void setWorker(Worker worker) { this.worker = worker; }
-    public EntityManager getEntityManager(){ return entityManager;
+    public EntityManager getEntityManager(){ return entityManager;}
 
     public void processQueue(){
         if (!commandList.isEmpty()) {
