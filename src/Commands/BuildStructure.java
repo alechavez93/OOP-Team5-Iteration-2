@@ -28,6 +28,7 @@ public class BuildStructure extends Command {
         this.workerCount = workerCount;
         this.structureType = structureType;
         workAmount = calculate(structureType);
+        army.addCommand(this);
         if(workAmount != -1)
             System.out.println("something broke");
 
