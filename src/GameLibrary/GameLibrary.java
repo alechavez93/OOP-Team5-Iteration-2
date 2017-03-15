@@ -131,4 +131,6 @@ public class GameLibrary {
     public static final String BUILD_STRUCTURE = "BUILD STRUCTURE";
 
     public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
+
+    public enum HarvestType { ORE, FOOD, ENERGY };
 }

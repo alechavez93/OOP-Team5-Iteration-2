@@ -96,6 +96,7 @@ public class AStarPathFinder implements PathFinder {
         return null;
     }
 
+    //This is essentially GameMap's distanceTo, but unchecked and (theoretically) faster
     private int distanceHeuristic(Vec2i a, Vec2i b) {
         //Convert a to cube
         int xa = a.y;

@@ -16,7 +16,7 @@ package Entity.Structure;
 ---------------------------------------------------------------------------------------*/
 
 import Entity.Army.Army;
-import Entity.Resource;
+
 import Entity.Unit.ExplorerUnit;
 import Entity.Unit.Unit;
 import Entity.Worker;

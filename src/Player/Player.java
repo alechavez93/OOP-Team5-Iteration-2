@@ -1,5 +1,6 @@
 package Player;
 
+import GameMap.FogOfWar;
 import GameMap.MapCoordinate;
 
 /**
@@ -14,6 +15,7 @@ import GameMap.MapCoordinate;
 ---------------------------------------------------------------------------------------*/
 
 public class Player {
+    private FogOfWar fog;
     private int pID;
     private String name;
     private EntityManager entityManager;
@@ -92,11 +94,13 @@ public class Player {
         return entityManager;
     }
     public TechManager getTechManager() { return techManager; }
+    public FogOfWar getFogOfWar() { return fog; }
 
     public void endTurn(){
-
 //        itemManager.finishTurn();
         entityManager.finishTurn();
+        fog.calculateVisibility(entityManager.getAllEntities());
+        fog.calculateProspect(entityManager.getExplorerUnitList());
 //        techManager.finishTurn();
         //do other stuff maybe
     }
