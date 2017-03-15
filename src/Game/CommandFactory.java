@@ -36,6 +36,46 @@ public class CommandFactory {
         else if(state.selectedCommand.equals(GameLibrary.MOVE)){
             return new Move(state.selectedEntity, new ArrayList<>(state.path), state.inTurn.getFog());
         }
+        else if(state.selectedCommand.equals(GameLibrary.ATTACK)){
+            return new Attack(state.selectedEntity, state.cursorCoord);
+        }
+        else if(state.selectedCommand.equals(GameLibrary.BREED)){
+            return new Breeding((CapitalStructure) (state.selectedEntity));
+        }
+/*        else if(state.selectedCommand.equals(GameLibrary.BUILD_STRUCTURE)){
+            return new BuildStructure(state.selectedArmy, )
+        }*/
+        else if(state.selectedCommand.equals(GameLibrary.CREATE_ARMY)){
+            return new CreateArmy(state.selectedEntity);
+            //TODO: THIS DOES NOT WORK
+        }
+        else if(state.selectedCommand.equals(GameLibrary.DECOMMISSION)){
+            return new Decommission(state.selectedEntity);
+        }
+        else if(state.selectedCommand.equals(GameLibrary.DEFEND)){
+            return null;
+            //TODO: THIS DOES NOT WORK, NEED TO SELECT TARGET
+        }
+        else if(state.selectedCommand.equals(GameLibrary.HEAL_UNIT)){
+            return new Heal((CapitalStructure)state.selectedEntity);
+        }
+        else if(state.selectedCommand.equals(GameLibrary.MAKE_EXPLORER)){
+            return new MakeExplorer((CapitalStructure)state.selectedEntity);
+        }
+        else if(state.selectedCommand.equals(GameLibrary.POWER_DOWN)){
+            return new PowerDown(state.selectedEntity);
+        }
+        else if(state.selectedCommand.equals(GameLibrary.POWER_UP)){
+            return new PowerUp(state.selectedEntity);
+        }
+        else if(state.selectedCommand.equals(GameLibrary.PROSPECT_MODE)){
+            return new Prospect(state.selectedEntity);
+        }
+/*        else if(state.selectedCommand.equals(GameLibrary.REINFORCE)){
+            return new ReinforceArmy()
+            //TODO: ADD FUNCTIONALITY TO SELECT TARGET
+        }*/
+
         return null;
     }
 

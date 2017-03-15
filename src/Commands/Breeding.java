@@ -20,9 +20,9 @@ public class Breeding extends Command {
     private int workAmount;
     private int workerCount;
 
-    public Breeding(CapitalStructure capitalStructure, int workerCount){
+    public Breeding(CapitalStructure capitalStructure){
         super(GameLibrary.BREED, capitalStructure);
-        this.workerCount = workerCount;
+        this.workerCount = capitalStructure.getWorkers().getNumberOfWorkers();
         this.workAmount = calculate(capitalStructure.getEntityManager());
     }
 

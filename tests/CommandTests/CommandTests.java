@@ -37,10 +37,10 @@ public class CommandTests {
 
         //commandTest1();
         //commandTest2();
-        //commandTest3();
+        commandTest3();
         //commandTest4();
         //commandTest5();
-        commandTest6();
+        //commandTest6();
     }
 
     // Make Capital (Colonist), Create Army (Explorer), Decommission (Explorer
@@ -321,7 +321,7 @@ public class CommandTests {
 //        game.player1.getEntityManager().finishTurn();
 //        game.player1.getEntityManager().finishTurn();
 
-        BuildStructure buildStructure = new BuildStructure( army, 5, GameLibrary.FORT);
+        BuildStructure buildStructure = new BuildStructure( army, GameLibrary.FORT);
         printEntityList(game.player1);
         printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
@@ -382,7 +382,7 @@ public class CommandTests {
         CapitalStructure capitalStructure = (CapitalStructure )game.player1.getEntityManager().getCapitalList().get(0);
         System.out.println("Number of workers in capital: " + capitalStructure.getWorkers().getNumberOfWorkers());
 
-        Breeding breeding = new Breeding(capitalStructure, 5);
+        Breeding breeding = new Breeding(capitalStructure);
         printCommandList(game.player1);
         game.player1.getEntityManager().finishTurn();
         game.player1.getEntityManager().finishTurn();
