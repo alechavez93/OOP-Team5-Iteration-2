@@ -41,7 +41,7 @@ public class ViewPort extends JPanel{
     public static Vec2i scroller = new Vec2i();
     public static final int VIEWPORT_WIDTH = PixelMap.SCREEN_WIDTH, VIEWPORT_HEIGHT = (int)(0.75*(double)PixelMap.SCREEN_HEIGHT);
     public static BufferedImage viewportPic = null;
-    private Graphics graphics;
+    //private Graphics graphics;
 
     private ViewPort(PixelPoint origin, CyclingState state){
         setLayout(null);
@@ -96,18 +96,17 @@ public class ViewPort extends JPanel{
         FogOfWar fogOfWar = state.inTurn.getFogOfWar();
         for(Iterator iter = map.getIterator(); iter.hasNext();){
             Tile tile = (Tile) iter.next();
+            TileDrawer.drawTile(g, tile);
             Visibility visibility = fogOfWar.getVisibiltyAt(tile.getPos());
             if(visibility.isShrouded()){
                 TileDrawer.drawShrouded(g, tile);
-            }
-            else if(visibility.isExplored()){
+            } else if(visibility.isExplored()){
                 TileDrawer.drawExplored(g, tile);
                 for(Entity e : tile.getOccupyingEntities()){
                     if(e instanceof Structure)
                         StructureDrawer.drawStructure(g, (Structure)e);
                 }
-            }
-            else if(visibility.isVisible()){
+            } else if(visibility.isVisible()){
                 for(Entity e : tile.getOccupyingEntities()){
                     if( e instanceof Unit)
                         UnitDrawer.drawUnit(g, (Unit)e);
@@ -141,7 +140,7 @@ public class ViewPort extends JPanel{
     @Override
     public void paint(Graphics g) {
         super.paintComponent(g);
-        graphics = g;
+        //graphics = g;
         g.translate(-scroller.x, -scroller.y);
         paintViewPort(g);
     }

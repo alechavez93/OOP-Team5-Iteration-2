@@ -38,10 +38,14 @@ public class MineStructure extends Structure {
         harvest.setWorkersAt(location, workerCount);
     }
 
-    public int harvest() {
-        return harvest.harvest(production.oreRate);
+    public void harvest() {
+        entityManager.playerOwner.gainOre(harvest.harvest(production.oreRate));
     }
 
+    public void finishTurn() {
+        super.finishTurn();
+        harvest();
+    }
 
     public void destroy(){
         entityManager.destroyMine(this);
