@@ -18,22 +18,18 @@ import Player.EntityManager;
 
 public class FarmStructure extends Structure {
 
-    private int productionRate;
-    private Worker workers;
-    private int workRadius;
 
-    public FarmStructure(int instanceID, MapCoordinate location, EntityManager entityManager) {
+    public FarmStructure(int instanceID, MapCoordinate location, EntityManager entityManager, int workerCount) {
         super(GameLibrary.FARM, instanceID, location, entityManager);
-        this.productionRate = 1;
-        this.workers = new Worker(0);
-        this.workRadius = 1;
         defense = 3;
         armor = 5;
         maxHealth = 100;
         currentHealth = maxHealth;
         rangeRadius = 1;
         visibilityRadius = 2;
-        upkeep = 5;
+        upkeep = 12;
+        workers.setNumberOfWorkers(workerCount);
+        production = new Production(1,0,0,0,1,0,0,0,0);
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {

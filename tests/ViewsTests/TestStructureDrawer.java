@@ -26,12 +26,12 @@ public class TestStructureDrawer {
 
             int startRow = 1, startCol = 1;
             Structure capital = new CapitalStructure(0, new MapCoordinate(startRow,startCol), new EntityManager(new Player(0, new MapCoordinate(3,3))));
-            Structure farm = new FarmStructure(1, new MapCoordinate(startRow,startCol+1), new EntityManager(new Player(0, new MapCoordinate(3,3))));
-            Structure fort = new FortStructure(2, new MapCoordinate(startRow,startCol+2), new EntityManager(new Player(0, new MapCoordinate(3,3))));
-            Structure plant = new PowerStructure(3, new MapCoordinate(startRow,startCol+3), new EntityManager(new Player(0, new MapCoordinate(3,3))));
-            Structure mine = new MineStructure(4, new MapCoordinate(startRow,startCol+4), new EntityManager(new Player(0, new MapCoordinate(3,3))));
-            Structure tower = new ObservationStructure(5, new MapCoordinate(startRow,startCol+5), new EntityManager(new Player(0, new MapCoordinate(3,3))));
-            Structure university = new UniversityStructure(6, new MapCoordinate(startRow,startCol+6), new EntityManager(new Player(0, new MapCoordinate(3,3))));
+            Structure farm = new FarmStructure(1, new MapCoordinate(startRow,startCol+1), new EntityManager(new Player(0, new MapCoordinate(3,3))),0);
+            Structure fort = new FortStructure(2, new MapCoordinate(startRow,startCol+2), new EntityManager(new Player(0, new MapCoordinate(3,3))),0);
+            Structure plant = new PowerStructure(3, new MapCoordinate(startRow,startCol+3), new EntityManager(new Player(0, new MapCoordinate(3,3))),0);
+            Structure mine = new MineStructure(4, new MapCoordinate(startRow,startCol+4), new EntityManager(new Player(0, new MapCoordinate(3,3))),0);
+            Structure tower = new ObservationStructure(5, new MapCoordinate(startRow,startCol+5), new EntityManager(new Player(0, new MapCoordinate(3,3))),0);
+            Structure university = new UniversityStructure(6, new MapCoordinate(startRow,startCol+6), new EntityManager(new Player(0, new MapCoordinate(3,3))),0);
             TileDrawer.drawTile(g, Tile.makeTile(GameLibrary.TileType.GRASS, new Vec2i(startCol,startRow)));
             TileDrawer.drawTile(g, Tile.makeTile(GameLibrary.TileType.SAND, new Vec2i(startCol,startRow+1)));
             TileDrawer.drawTile(g, Tile.makeTile(GameLibrary.TileType.GRASS, new Vec2i(startCol,startRow+2)));

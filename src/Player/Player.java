@@ -24,6 +24,9 @@ public class Player {
     private int food;
     private int ore;
     private int energy;
+    private int nutrients;
+    private int metal;
+    private int power;
 
     public Player(int id, MapCoordinate location){
         this.pID = id;
@@ -32,10 +35,13 @@ public class Player {
         //itemManager = new ItemManager(this);
         techManager = new TechManager(this);
         this.food = 300;
-        this.ore = 300;
+        this.ore = 400;
         this.energy = 300;
         this.fog = new FogOfWar();
         fog.calculateVisibility(entityManager.getAllEntities());
+        this.nutrients = 0;
+        this.metal = 0;
+        this.power = 0;
 
     }
 
@@ -62,11 +68,18 @@ public class Player {
     public int getEnergy(){ return this.energy; }
     public int getOre(){ return this.ore; }
     public String getName(){ return name; }
+    public int getNutrients() { return this.nutrients; }
+    public int getMetal() { return this.metal; }
+    public int getPower() { return this.power; }
 
 
     public void gainFood(int amount) { this.food += amount; }
     public void gainEnergy(int amount) { this.energy += amount; }
     public void gainOre(int amount) {this.ore += amount; }
+    public void printResources() { System.out.println("Food: " + food + ", Ore: " + ore + ", Energy: " + energy); }
+    public void gainNutrients(int amount) { this.nutrients += amount; }
+    public void gainMetal(int amount) { this.metal += amount; }
+    public void gainPower(int amount) { this.power += amount; }
 
     public boolean spendFood(int amount){
         if( this.food > amount){
@@ -87,6 +100,30 @@ public class Player {
     public boolean spendEnergy(int amount){
         if( this.energy > amount){
             this.energy -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean spendNutrients(int amount){
+        if( this.nutrients > amount){
+            this.nutrients -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean spendMetal(int amount){
+        if( this.metal > amount){
+            this.metal -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean spendPower(int amount){
+        if( this.power > amount){
+            this.power -= amount;
             return true;
         }
         return false;

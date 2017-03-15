@@ -17,6 +17,7 @@ public class Worker {
 
     public Worker(int numberOfWorkers) {
         this.numberOfWorkers = numberOfWorkers;
+        System.out.println("Worker Count: " + getNumberOfWorkers());
     }
 
     public void incrementNumberOfWorkers(int numberOfWorkers) {

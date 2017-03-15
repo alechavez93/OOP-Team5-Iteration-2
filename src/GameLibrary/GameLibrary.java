@@ -53,6 +53,9 @@ public class GameLibrary {
     //Colonist Commands
     public static final String BUILD_CAPITAL = "BUILD CAPITAL";
 
+    //Explorer Commands
+    public static final String PROSPECT_MODE = "PROSPECT MODE";
+
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
     //Resources (Produce)
@@ -130,7 +133,13 @@ public class GameLibrary {
     //building structures
     public static final String BUILD_STRUCTURE = "BUILD STRUCTURE";
 
+    public static final String PICKUP = "PICKUP", DROPOFF = "DROPOFF";
+
     public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
 
     public enum HarvestType { ORE, FOOD, ENERGY };
+
+    //Creating Units
+    public static final String MAKE_EXPLORER = "MAKE EXPLORER", MAKE_SOLDIER = "MAKE SOLDIER";
+    public static final int EXPLORER_TURNS = 5,MELEE_TURNS = 9, RANGE_TURNS = 11;
 }

@@ -21,12 +21,24 @@ public class MakeCapital extends Command {
     public void execute() {
         EntityManager entityManager = affected.getEntityManager();
 
-        if (entityManager.spendResources(GameLibrary.CAPITAL_FOOD, GameLibrary.CAPITAL_ORE, GameLibrary.CAPITAL_ENERGY))
-            entityManager.addCapital(((ColonistUnit)affected).createCapitalStructure());
-        if (entityManager.spendResources(GameLibrary.MELEE_FOOD, GameLibrary.MELEE_ORE, GameLibrary.MELEE_ENERGY))
+        //System.out.println("Consuming: ");
+        //entityManager.playerOwner.printResources();
+//        System.out.println("FOOD: " + GameLibrary.CAPITAL_FOOD + GameLibrary.MELEE_FOOD * 2);
+        //System.out.println1111
+        if (entityManager.spendResources(GameLibrary.CAPITAL_FOOD, GameLibrary.CAPITAL_ORE, GameLibrary.CAPITAL_ENERGY)) {
+            entityManager.addCapital(((ColonistUnit) affected).createCapitalStructure());
+            //entityManager.playerOwner.printResources();
+        }
+        if (entityManager.spendResources(GameLibrary.MELEE_FOOD, GameLibrary.MELEE_ORE, GameLibrary.MELEE_ENERGY)){
+            //entityManager.playerOwner.printResources();
             entityManager.addMelee(((ColonistUnit)affected).createMeleeSoldier());
-        if (entityManager.spendResources(GameLibrary.MELEE_FOOD, GameLibrary.MELEE_ORE, GameLibrary.MELEE_ENERGY))
+        }
+        if (entityManager.spendResources(GameLibrary.MELEE_FOOD, GameLibrary.MELEE_ORE, GameLibrary.MELEE_ENERGY)){
+            //entityManager.playerOwner.printResources();
             entityManager.addMelee(((ColonistUnit)affected).createMeleeSoldier());
+        }
+        //entityManager.playerOwner.printResources();
+
 
         affected.destroy();
         isFinished = true;
