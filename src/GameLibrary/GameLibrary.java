@@ -65,7 +65,8 @@ public class GameLibrary {
     public static final String[] POWER_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Fort Commands
-    public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+    public static final String MAKE_MELEE = "MAKE MELEE", MAKE_RANGED = "MAKE RANGED";
+    public static final String[] FORT_COMMANDS = {MAKE_MELEE, MAKE_RANGED, ATTACK, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Observation Tower Commands
     public static final String[] OBSERVATION_COMMANDS = {DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};

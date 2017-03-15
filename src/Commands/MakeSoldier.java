@@ -26,7 +26,7 @@ public class MakeSoldier extends Command {
     private String type;
 
     public MakeSoldier(FortStructure fortStructure, String type){
-        super(GameLibrary.MAKE_EXPLORER, fortStructure);
+        super(GameLibrary.MAKE_SOLDIER, fortStructure);
         this.fortStructure = fortStructure;
         this.type = type;
         workAmount = calculate(fortStructure, type);
