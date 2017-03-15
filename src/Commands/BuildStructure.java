@@ -23,9 +23,9 @@ public class BuildStructure extends Command {
     private String structureType;
     private int workAmount;
 
-    public BuildStructure(Army army, int workerCount, String structureType){
+    public BuildStructure(Army army, String structureType){
         super(BUILD_STRUCTURE, army.getRallyPoint());
-        this.workerCount = workerCount;
+        this.workerCount = army.getRallyPoint().getWorker().getNumberOfWorkers();
         this.structureType = structureType;
         workAmount = calculate(structureType);
         //army.addCommand(this);
