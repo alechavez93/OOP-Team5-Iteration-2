@@ -30,7 +30,8 @@ public class EntityDrawer {
         //Draw the health bar
         drawHealthBar(g, new PixelPoint(point.x, point.y+(int)(1.2*PixelMap.STRUCTURE_HEIGHT)), entity);
 
-        g.drawString(entity.getInstanceID()+"",point.x+PixelMap.TILE_WIDTH/8, point.y+PixelMap.TILE_WIDTH/2+PixelMap.TILE_WIDTH/3);
+        g.drawString(entity.getInstanceID()%10+"",point.x+PixelMap.TILE_WIDTH/8, point.y+PixelMap.TILE_WIDTH/2+PixelMap.TILE_WIDTH/3);
+//        g.drawString(entity.getInstanceID()+"",point.x+PixelMap.TILE_WIDTH/8, point.y+PixelMap.TILE_WIDTH/2+PixelMap.TILE_WIDTH/3);
     }
 
     public static void drawEntity(Graphics g, PixelPoint point, int number){
