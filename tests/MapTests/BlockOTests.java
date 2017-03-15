@@ -21,9 +21,9 @@ public class BlockOTests {
         GameMap.getInstance().initialize(new Vec2i(15,10));
         testMap();
         testTile();
-        testAoE();
+        //testAoE();
         //testPath();
-        //testFog();
+        testFog();
     }
 
     //TODO: Proper Neighbor Testing
@@ -147,7 +147,7 @@ public class BlockOTests {
     public static void testFog() {
         FogOfWar fog = new FogOfWar();
         List<Entity> list = new ArrayList<Entity>(2);
-        list.add(new RangeSoldier(3, new MapCoordinate(1,1), null));
+        list.add(new MeleeSoldier(3, new MapCoordinate(1,1), null));
         list.add(new MeleeSoldier(3, new MapCoordinate(5,5), null));
         fog.calculateVisibility(list);
         Visibility[][] vis = fog.getVisibilityMatrix();

@@ -3,6 +3,8 @@ import Entity.Worker;
 import GameLibrary.GameLibrary;
 import GameMap.GameMap;
 import GameMap.MapCoordinate;
+import GameMap.HarvestResources;
+import GameMap.Tile;
 
 import java.util.List;
 
@@ -63,4 +65,26 @@ public class HarvestComponent {
         }
     }
 
+    public int harvest(int rate) {
+        int harvest = 0;
+        for(WorkGroup w : workGroups) {
+            int h = w.workers * rate;
+            HarvestResources r = GameMap.getInstance().getTile(w.location).getResources();
+            switch(type) {
+                case ORE:
+                    r.decrementOre(h);
+                    h = (r.getOre() < h) ? r.getOre() : h;
+                    break;
+                case FOOD:
+                    h = (r.getFood() < h) ? r.getFood() : h;
+                    break;
+                case ENERGY:
+                    r.decrementEnergy(h);
+                    h = (r.getEnergy() < h) ? r.getEnergy() : h;
+                    break;
+            }
+            harvest += h;
+        }
+        return harvest;
+    }
 }

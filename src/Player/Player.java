@@ -57,7 +57,8 @@ public class Player {
         this.food = 300;
         this.ore = 300;
         this.energy = 300;
-
+        this.fog = new FogOfWar();
+        fog.calculateVisibility(entityManager.getAllEntities());
     }
 
     @Override

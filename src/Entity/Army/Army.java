@@ -50,9 +50,9 @@ public class Army extends Entity {
         updateStats();
     }
 
-//    public RallyPoint getRallyPoint() {
-//        return rallyPoint;
-//    }
+    public RallyPoint getRallyPoint() {
+        return rallyPoint;
+    }
 
     private void updateAttack() {
         meleeAttack = 0;
@@ -214,5 +214,4 @@ public class Army extends Entity {
         return entireList;
     }
 
-    public RallyPoint getRallyPoint() { return rallyPoint; }
 }
