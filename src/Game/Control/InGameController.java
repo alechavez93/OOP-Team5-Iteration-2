@@ -67,7 +67,7 @@ public class InGameController extends GameLibrary implements KeyListener {
         cycleCommands(code);
         specialKeys(code);
         moveCursor(code);
-        cycleArmy(code);
+        changeArmy(code);
         frame.getMapView().refreshCyclinigSection();
         frame.getMapView().refreshEntityStateSection();
         frame.getMapView().refreshMinimapSection();
@@ -110,7 +110,6 @@ public class InGameController extends GameLibrary implements KeyListener {
             }else state.path.add(map.getNeighborTile(state.cursorCoord, direction));
         }
     }
-
 
     public void changeArmy(int code){
         EntityManager entityManager = state.inTurn.getEntityManager();

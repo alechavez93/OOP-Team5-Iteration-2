@@ -71,6 +71,12 @@ public class CommandFactory {
         else if(state.selectedCommand.equals(GameLibrary.PROSPECT_MODE)){
             return new ProspectMode((ExplorerUnit) state.selectedEntity);
         }
+        else if(state.selectedCommand.equals(GameLibrary.MAKE_MELEE)){
+            return new MakeMelee((FortStructure) state.selectedEntity);
+        }
+        else if(state.selectedCommand.equals(GameLibrary.MAKE_RANGED)){
+            return new MakeRanged((FortStructure) state.selectedEntity);
+        }
 /*        else if(state.selectedCommand.equals(GameLibrary.REINFORCE)){
             return new ReinforceArmy()
             //TODO: ADD FUNCTIONALITY TO SELECT TARGET
