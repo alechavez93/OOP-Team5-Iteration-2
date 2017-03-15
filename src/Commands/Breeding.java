@@ -21,7 +21,7 @@ public class Breeding extends Command {
     private int workerCount;
 
     public Breeding(CapitalStructure capitalStructure, int workerCount){
-        super(GameLibrary.BREEDING, capitalStructure);
+        super(GameLibrary.BREED, capitalStructure);
         this.workerCount = workerCount;
         this.workAmount = calculate(capitalStructure.getEntityManager());
     }
@@ -29,7 +29,7 @@ public class Breeding extends Command {
     @Override
     public void execute() {
         EntityManager entityManager = affected.getEntityManager();
-        workAmount -= ((CapitalStructure) affected).getProduction().getBreedingRate() * workerCount;
+        workAmount -= ((CapitalStructure) affected).getProduction().getBreedRate() * workerCount;
 
         if(workAmount > 0) return;
 
@@ -40,7 +40,7 @@ public class Breeding extends Command {
 
     public int calculate( EntityManager entityManager){
         if(entityManager.spendResources(GameLibrary.WORKER_FOOD, GameLibrary.WORKER_ORE, GameLibrary.WORKER_ENRGY)){
-            return GameLibrary.BREEDING_TURNS;
+            return GameLibrary.BREED_TURNS;
         }
         return -1;
     }

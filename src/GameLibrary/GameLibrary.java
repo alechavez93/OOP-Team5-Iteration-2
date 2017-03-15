@@ -52,8 +52,9 @@ public class GameLibrary {
     public static final String[] STRUCTURE_COMMANDS = {CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Capital Commands
-    public static final String HEAL_UNIT = "HEAL UNIT", BREEDING = "BREEDING";
-    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, BREEDING, HEAL_UNIT, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+    public static final String HEAL_UNIT = "HEAL UNIT", BREED = "BREED";
+    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, HEAL_UNIT, BREED, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+
 
     //Fort Commands
     public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
@@ -153,7 +154,7 @@ public class GameLibrary {
     public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
 
 
-    public static final int EXPLORER_TURNS = 5, MELEE_TURNS = 9, RANGE_TURNS = 11, BREEDING_TURNS = 7;
+    public static final int EXPLORER_TURNS = 5, MELEE_TURNS = 9, RANGE_TURNS = 11, BREED_TURNS = 7;
 
     public enum HarvestType {ORE, FOOD, ENERGY};
 }
