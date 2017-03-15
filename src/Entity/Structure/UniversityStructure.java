@@ -35,6 +35,18 @@ public class UniversityStructure extends Structure {
         production = new Production(0,0,0,0,0,0,0,0,0);
     }
 
+    public UniversityStructure() {
+        super(GameLibrary.UNIVERSITY, -1, null, null);
+        defense = 3;
+        armor = 5;
+        maxHealth = 125;
+        currentHealth = maxHealth;
+        rangeRadius = 1;
+        visibilityRadius = 2;
+        upkeep = 16;
+        production = new Production(0,0,0,0,0,0,0,0,0);
+    }
+
 
     public void finishResearch(Technology tech){
         techmanager.addTech(tech);
