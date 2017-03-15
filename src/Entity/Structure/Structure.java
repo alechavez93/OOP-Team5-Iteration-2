@@ -57,8 +57,8 @@ public abstract class Structure extends Entity{
         this.production.metalRate *= 1.1;
     }
 
-    public void upgradeBreedingRate() {
-        this.production.breedingRate *= 1.1;
+    public void upgradeBreedRate() {
+        this.production.breedRate *= 1.1;
     }
 
     public void upgradeExplorerRate() {

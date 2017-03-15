@@ -161,6 +161,10 @@ public class InGameController extends GameLibrary implements KeyListener {
                 System.out.println(code);
                 frame.setViewVisible(2);
                 break;
+//            case KeyEvent.VK_R:
+//                System.out.println(code);
+//                frame.setViewVisible(3);
+//                break;
         }
     }
 

@@ -10,12 +10,15 @@ package Entity.Structure;
 |       + Staffed by Workers (Workers harvest and produce)
 ---------------------------------------------------------------------------------------*/
 
+import Entity.HarvestComponent;
 import Entity.Worker;
 import GameLibrary.GameLibrary;
 import GameMap.MapCoordinate;
 import Player.EntityManager;
 
 public class MineStructure extends Structure {
+
+    private HarvestComponent harvest;
 
     public MineStructure(int instanceID, MapCoordinate location, EntityManager entityManager, int workerCount) {
         super(GameLibrary.MINE, instanceID, location, entityManager);
@@ -26,17 +29,19 @@ public class MineStructure extends Structure {
         rangeRadius = 1;
         visibilityRadius = 2;
         upkeep = 12;
+        harvest = new HarvestComponent(workers, location, GameLibrary.HarvestType.ORE);
         workers.setNumberOfWorkers(workerCount);
         production = new Production(0,0,1,0,0,1,0,0,0);
     }
 
     public void assignHarvest(int workerCount, MapCoordinate location) {
-
+        harvest.setWorkersAt(location, workerCount);
     }
 
-    public void assignProduce(int workerCount) {
-
+    public int harvest() {
+        return harvest.harvest(production.oreRate);
     }
+
 
     public void destroy(){
         entityManager.destroyMine(this);

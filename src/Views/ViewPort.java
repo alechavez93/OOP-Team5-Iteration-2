@@ -103,7 +103,6 @@ public class ViewPort extends JPanel{
                 }
             }
             else if(visibility.isVisible()){
-//                TileDrawer.drawResources(g, tile);
                 for(Entity e : tile.getOccupyingEntities()){
                     if( e instanceof Unit)
                         UnitDrawer.drawUnit(g, (Unit)e);

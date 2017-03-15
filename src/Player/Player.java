@@ -59,6 +59,9 @@ public class Player {
         this.ore = 300;
         this.energy = 300;
         fogOfWar = new Fog(this);
+        this.fog = new FogOfWar();
+        fog.calculateVisibility(entityManager.getAllEntities());
+
     }
 
     public Fog getFog() {

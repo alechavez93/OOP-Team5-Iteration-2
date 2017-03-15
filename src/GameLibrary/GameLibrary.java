@@ -36,33 +36,50 @@ public class GameLibrary {
     //Stats
     public static final String VISIBILITY = "VISIBILITY", DEFENSE = "DEFENSE", ARMOR = "ARMOR", SPEED = "SPEED", HEALTH = "HEALTH", EFFICIENCY = "EFFICIENCY";
 
+    //Creating Units
+    public static final String MAKE_EXPLORER = "MAKE EXPLORER", MAKE_SOLDIER = "MAKE SOLDIER";
 
     //Army Commands
     public static final String ATTACK = "ATTACK DIRECTION", DEFEND = "DEFEND DIRECTION", MOVE = "MOVE", DISBAND = "DISBAND", DECOMMISSION = "DECOMMISSION",
             POWER_UP = "POWER UP", POWER_DOWN = "POWER DOWN", CANCEL = "CANCEL QUEUED ORDERS";
     public static final String[] ARMY_COMMANDS = {ATTACK, DEFEND, MOVE, DISBAND, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
 
+    //Rally Point Commands
+    public static final String BUILD_STRUCTURE = "BUILD STRUCTURE", PICKUP = "PICKUP", DROPOFF = "DROPOFF";
+    public static final String[] RALLYPOINT_COMMANDS = {BUILD_STRUCTURE, PICKUP, DROPOFF};
+
     //Structure Commands
-    public static final String MAKE_UNIT = "MAKE UNIT TYPE", HEAL_UNIT = "HEAL UNIT";
-    public static final String[] STRUCTURE_COMMANDS = {ATTACK, MAKE_UNIT, DEFEND, HEAL_UNIT, DECOMMISSION, POWER_DOWN, POWER_UP, CANCEL};
+    public static final String[] STRUCTURE_COMMANDS = {CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+    //Capital Commands
+    public static final String HEAL_UNIT = "HEAL UNIT", BREED = "BREED";
+    public static final String[] CAPITAL_COMMANDS = {MAKE_EXPLORER, HEAL_UNIT, BREED, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+
+    //Fort Commands
+    public static final String[] FORT_COMMANDS = {MAKE_SOLDIER, ATTACK, DEFEND, CANCEL, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Unit Commands
-    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL";
+    public static final String REINFORCE = "REINFORCE ARMY", CREATE_ARMY = "CREATE ARMY", MAKE_CAPITAL = "MAKE CAPITAL", PROSPECT_MODE = "PROSPECT MODE";
     public static final String[] UNIT_COMMANDS = {REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
     public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, MOVE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
-    public static final String[] EXPLORER_COMMANDS = {MOVE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
+    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, MOVE, REINFORCE, DECOMMISSION, POWER_DOWN, POWER_UP};
 
 
-    //Colonist Commands
-    public static final String BUILD_CAPITAL = "BUILD CAPITAL";
+//    //Colonist Commands
+//    public static final String[] COLONIST_COMMANDS = {MAKE_CAPITAL, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
 
     //Explorer Commands
-    public static final String PROSPECT_MODE = "PROSPECT MODE";
+//    public static final String[] EXPLORER_COMMANDS = {PROSPECT_MODE, REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
+
+    //Soldier Commands
+    public static final String[] SOLDIER_COMMANDS = {REINFORCE, POWER_UP, POWER_DOWN, DECOMMISSION};
+
 
     //Resources (Harvest)
     public static final String ENERGY = "ENERGY", ORE = "ORE", FOOD = "FOOD";
     //Resources (Produce)
-    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL", BREEDING = "BREEDING";
+    public static final String POWER = "POWER", NUTRIENT = "NUTRIENT", METAL = "METAL";
     //Worker stats
     public static final String RADIUS = "RADIUS", DENSITY = "DENSITY";
 
@@ -74,17 +91,18 @@ public class GameLibrary {
 
     //Tile
     public enum TileType {
-        GRASS("Grass", 1, false, GraphicsFactory.GRASS,'G'),
-        MOUNTAIN("Mountain", 999, true, GraphicsFactory.MOUNTAIN,'M'),
-        SAND("Sand", 2, false, GraphicsFactory.SAND,'S'),
-        WATER("Water", 999, true, GraphicsFactory.WATER,'W'),
-        JUNGLE("Jungle", 3, false, GraphicsFactory.JUNGLE,'J');
+        GRASS("Grass", 1, false, GraphicsFactory.GRASS, 'G'),
+        MOUNTAIN("Mountain", 999, true, GraphicsFactory.MOUNTAIN, 'M'),
+        SAND("Sand", 2, false, GraphicsFactory.SAND, 'S'),
+        WATER("Water", 999, true, GraphicsFactory.WATER, 'W'),
+        JUNGLE("Jungle", 3, false, GraphicsFactory.JUNGLE, 'J');
 
         public final String name;
         public final int movementCost;
         public final boolean impassable;
         public final String graphicName;
         public final char charSymbol;
+
         TileType(String name, int movementCost, boolean impassable, String graphicName, char charSymbol) {
             this.name = name;
             this.movementCost = movementCost;
@@ -96,7 +114,8 @@ public class GameLibrary {
 
     //Graphics mapping for Structures
     public static Map<String, String> structMap = new HashMap<>();
-    static{
+
+    static {
         structMap.put(CAPITAL, GraphicsFactory.CAPITAL_SRC);
         structMap.put(FARM, GraphicsFactory.FARM_SRC);
         structMap.put(MINE, GraphicsFactory.MINE_SRC);
@@ -108,7 +127,8 @@ public class GameLibrary {
 
     //Graphics mapping for Structures
     public static Map<String, String> unitMap = new HashMap<>();
-    static{
+
+    static {
         unitMap.put(MELEE, GraphicsFactory.MELEE_SRC);
         unitMap.put(RANGED, GraphicsFactory.RANGED_SRC);
         unitMap.put(EXPLORER, GraphicsFactory.EXPLORER_SRC);
@@ -119,30 +139,24 @@ public class GameLibrary {
 
     //Stuff Creation Cost
     public static final int MELEE_FOOD = 30, MELEE_ORE = 10, MELEE_ENERGY = 0,
-                            RANGED_FOOD = 25, RANGED_ORE = 20, RANGED_ENERGY = 10,
-                            EXPLORER_FOOD = 40, EXPLORER_ORE = 15, EXPLORER_ENERGY = 15,
-                            WORKER_FOOD = 10, WORKER_ORE = 0, WORKER_ENRGY = 5;
+            RANGED_FOOD = 25, RANGED_ORE = 20, RANGED_ENERGY = 10,
+            EXPLORER_FOOD = 40, EXPLORER_ORE = 15, EXPLORER_ENERGY = 15,
+            WORKER_FOOD = 10, WORKER_ORE = 0, WORKER_ENRGY = 5;
 
     public static final int CAPITAL_FOOD = 0, CAPITAL_ORE = 200, CAPITAL_ENERGY = 100,
-                            FARM_FOOD = 50, FARM_ORE = 50, FARM_ENERGY = 50,
-                            MINE_FOOD = 0, MINE_ORE = 100, MINE_ENERGY = 50,
-                            POWER_FOOD = 0, POWER_ORE = 100, POWER_ENERGY = 100,
-                            FORT_FOOD = 100, FORT_ORE = 100, FORT_ENERGY = 50,
-                            OBSERVATION_FOOD = 0, OBSERVATION_ORE = 50, OBSERVATION_ENERGY = 50,
-                            UNIVERSITY_FOOD = 0, UNIVERSITY_ORE = 100, UNIVERSITY_ENERGY = 150;
+            FARM_FOOD = 50, FARM_ORE = 50, FARM_ENERGY = 50,
+            MINE_FOOD = 0, MINE_ORE = 100, MINE_ENERGY = 50,
+            POWER_FOOD = 0, POWER_ORE = 100, POWER_ENERGY = 100,
+            FORT_FOOD = 100, FORT_ORE = 100, FORT_ENERGY = 50,
+            OBSERVATION_FOOD = 0, OBSERVATION_ORE = 50, OBSERVATION_ENERGY = 50,
+            UNIVERSITY_FOOD = 0, UNIVERSITY_ORE = 100, UNIVERSITY_ENERGY = 150;
 
     public static final int HEAL_FOOD_COST = 10;
 
-    //building structures
-    public static final String BUILD_STRUCTURE = "BUILD STRUCTURE";
-
-    public static final String PICKUP = "PICKUP", DROPOFF = "DROPOFF";
-
     public static final int FARM_TURNS = 15, MINE_TURNS = 20, POWER_TURNS = 20, FORT_TURNS = 30, OBSERVATION_TURNS = 25, UNIVERSITY_TURNS = 25;
 
-    public enum HarvestType { ORE, FOOD, ENERGY };
 
-    //Creating Units
-    public static final String MAKE_EXPLORER = "MAKE EXPLORER", MAKE_SOLDIER = "MAKE SOLDIER";
-    public static final int EXPLORER_TURNS = 5,MELEE_TURNS = 9, RANGE_TURNS = 11;
+    public static final int EXPLORER_TURNS = 5, MELEE_TURNS = 9, RANGE_TURNS = 11, BREED_TURNS = 7;
+
+    public enum HarvestType {ORE, FOOD, ENERGY};
 }

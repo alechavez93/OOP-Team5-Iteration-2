@@ -5,6 +5,7 @@ package Commands;
 |   Description: Cancels all issued commands contained by an Entity.
 ---------------------------------------------------------------------------------------*/
 
+import Entity.Army.RallyPoint;
 import Entity.Entity;
 import GameLibrary.GameLibrary;
 
