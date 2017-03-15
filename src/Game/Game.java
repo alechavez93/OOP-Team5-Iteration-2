@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class Game {
 
     private static Game singleton = null;
-    private MapCoordinate p1Start = new MapCoordinate(1,1);
-    private MapCoordinate p2Start = new MapCoordinate(18,18);
+    private MapCoordinate p1Start;
+    private MapCoordinate p2Start;
     public Player player1;
     public Player player2;
     private Player activePlayer;
@@ -32,7 +32,8 @@ public class Game {
 
     public Game(){
 
-
+        p1Start = new MapCoordinate(1,1);
+        p2Start = new MapCoordinate(10,10);
         //GameMap.getInstance().initialize(new Vec2i(20,20));
         player1 = new Player(1, p1Start);
         player2 = new Player(2, p2Start);

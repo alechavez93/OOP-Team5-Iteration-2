@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-final public class GameLibrary {
+public class GameLibrary {
 
     //Game Modes
     public static final String STRUCTURE_MODE = "STRUCTURE", RALLY_POINT_MODE = "RALLY POINT", ARMY_MODE = "ARMY", UNIT_MODE = "UNIT";
@@ -23,7 +23,7 @@ final public class GameLibrary {
 
     //Unit Types
     public static final String MELEE = "MELEE SOLDIER", RANGED = "RANGED SOLDIER", COLONIST = "COLONIST", EXPLORER = "EXPLORER", WORKER = "WORKER", BODY = "BODY", SOLDIER = "SOLDIER";
-    public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER, WORKER, BODY};
+    public static final String[] UNITS = {MELEE, RANGED, COLONIST, EXPLORER};
 
     //Structure Types
     public static final String CAPITAL = "CAPITAL", FARM = "FARM", MINE = "MINE", POWER_PLANT = "POWER PLANT", FORT = "FORT", OBSERVATION_TOWER = "OBSERVATION TOWER", UNIVERSITY = "UNIVERSITY";

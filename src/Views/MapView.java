@@ -53,4 +53,20 @@ public class MapView extends View{
         entityState.repaint();
         miniMap.repaint();
     }
+
+    public void refreshCyclinigSection(){
+        cyclingSection.repaint();
+    }
+
+    public void refreshViewportSection(){
+        viewPort.repaint();
+    }
+
+    public void refreshEntityStateSection(){
+        entityState.repaint();
+    }
+
+    public void refreshMinimapSection(){
+        miniMap.repaint();
+    }
 }
