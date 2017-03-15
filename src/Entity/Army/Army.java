@@ -173,5 +173,32 @@ public class Army extends Entity{
 
     }
 
+    public List<Entity> getBattleGroup() {
+        List<Entity> battleList = new ArrayList<>();
+        for(Unit unit: battleGroup){
+            battleList.add(unit);
+        }
+        return battleList;
+    }
+
+    public List<Entity> getReinforcement() {
+        List<Entity> reinforcementsList = new ArrayList<>();
+        for(UnitPath path: reinforcement){
+            reinforcementsList.add(path.unit);
+        }
+        return reinforcementsList;
+    }
+
+    public List<Entity> getEntireArmy(){
+        List<Entity> entireList = new ArrayList<>();
+        for(UnitPath path: reinforcement){
+            entireList.add(path.unit);
+        }
+        for(Unit unit: battleGroup){
+            entireList.add(unit);
+        }
+        return entireList;
+    }
+
     public RallyPoint getRallyPoint() { return rallyPoint; }
 }
