@@ -28,7 +28,6 @@ import Views.PixelMaps.PixelMap;
 import Views.PixelMaps.PixelPoint;
 import Views.StartingFrame;
 import Views.ViewPort;
-import com.sun.xml.internal.bind.v2.TODO;
 
 
 public class InGameController extends GameLibrary implements KeyListener {
@@ -138,6 +137,7 @@ public class InGameController extends GameLibrary implements KeyListener {
     public void endTurn(){
         EntityManager entityManager = state.inTurn.getEntityManager();
         for(Entity entity : entityManager.getAllEntities()){
+            entity.processUpkeep();
             List<Command> commands = entity.getCommandList();
             if(commands.size()>0) {
                 Command toExecute = commands.get(commands.size() - 1);
@@ -145,6 +145,7 @@ public class InGameController extends GameLibrary implements KeyListener {
                 if (toExecute.isFinished()) commands.remove(commands.size() - 1);
             }
         }
+        game.endGameCheck();
         game.changeTurn();
         state.inTurn = game.getActivePlayer();
         MapCoordinate next = null;

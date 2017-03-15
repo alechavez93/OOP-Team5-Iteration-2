@@ -107,23 +107,23 @@ public class Game {
     }
 
 
-    public int endGameCheck(){
+    public void endGameCheck(){
 
         for(Player player: players){
             int settlerCount = player.getEntityManager().getColonistUnitCount();
             int capitalCount = player.getEntityManager().getCapitalCount();
             if(capitalCount + settlerCount < 1){
                 gameOver = true;
-                return player.getpID();
+                System.out.println("someone lost the game");
+                endGame();
+                //
             }
         }
-
-        return 0;
     }
 
-    public void endGame(int i){
+    public void endGame(){
         // quit game? idk
-        System.out.println("Player " + (i) + " has lost the game");
+        System.out.println("A Player has lost the game");
         System.exit(0);
     }
 
