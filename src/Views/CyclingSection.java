@@ -55,7 +55,7 @@ public class CyclingSection extends JPanel{
 
         //Entity
         icon = graphicsFactory.getGraphics(GraphicsFactory.ID_ICON);
-        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*3), icon, "Entity Id: ", cyclingState.selectedEntity.getName()+" "+cyclingState.selectedEntity.getInstanceID(), new Color(254,0,0));
+        OptionDrawer.drawOption(g, new PixelPoint(PixelMap.TILE_WIDTH/2, PixelMap.INIT_SPACE+PixelMap.AFTER_SPACE*3), icon, "Entity Id: ", cyclingState.selectedEntity.getName()+" "+cyclingState.selectedEntity.getInstanceID()%10, new Color(254,0,0));
 
         //Command
         icon = graphicsFactory.getGraphics(GraphicsFactory.COMMAND_ICON);
